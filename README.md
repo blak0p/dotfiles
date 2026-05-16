@@ -9,22 +9,26 @@ Este repositorio contiene mi configuración personal, scripts unificados y herra
 - `hardware/`: Controladores para la pantalla del disipador Deepcool AK620.
 - `dev/`: Código fuente de proyectos personales (Axiom).
 
-## 🛠️ Instalación rápida
-Para restaurar estos archivos en un sistema nuevo, puedes usar el script de setup o crear enlaces manuales:
+## 🛠️ Instalación Automática
+Para instalar todo en una máquina nueva, simplemente ejecutá este comando:
 
 ```bash
-# Ejemplo para bash
-ln -sf ~/dotfiles/home/.bashrc ~/.bashrc
-
-# Ejemplo para scripts
-ln -sf ~/dotfiles/scripts ~/scripts
+git clone git@github.com:Alejandro-M-P/dotfiles.git ~/dotfiles && bash ~/dotfiles/install.sh
 ```
 
-## 🎮 Gestión de Juegos (Switch)
-He unificado los scripts de gestión de ROMs para que sea más fácil:
-- `auto_nsz.sh`: Servicio que vigila la carpeta y convierte NSZ a NSP automáticamente.
-- `convertir-nsz`: Script "maestro" para organizar, convertir y limpiar nombres.
-- `organizar.sh`: Separa juegos base de actualizaciones/DLCs.
+El script se encargará de:
+1. Crear los enlaces simbólicos (symlinks).
+2. Hacer un backup automático de cualquier archivo existente que pueda entrar en conflicto.
+3. Organizar las carpetas necesarias (`.config`, `Documentos/dev`, etc.).
+
+---
+
+## 🧹 Registro de Limpieza (Lo que se unificó)
+
+Para mantener el sistema limpio, se realizaron los siguientes cambios:
+- **Scripts:** `~/.scripts/` se movió a `~/scripts/` para evitar duplicidad.
+- **Switch:** `convertir-nsz` es ahora el script único de gestión (reemplaza a `convertit.sh`).
+- **Bash:** Se eliminaron archivos temporales vacíos (`.bashrcs`, `.bashrc_temp`).
 
 ---
 *Configuración privada para uso personal.*

@@ -1,65 +1,63 @@
 #!/bin/bash
 
-LAUNCH_CMD="steam -bigpicture"
-TOGGLE_FILE="$HOME/scripts/steam-autopicture.ignore"
+# --- CONFIGURACIÓN ---
+IGNORE_FILE="$HOME/scripts/steam-autopicture.ignore"
 LOG_FILE="$HOME/scripts/steam-autopicture.log"
+LOCK_FILE="/tmp/steam_autopicture.lock"
+
+# Evitar múltiples instancias de forma profesional
+exec 200>"$LOCK_FILE"
+flock -n 200 || exit 0
 
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
 
-notificar() {
-    local msg="$1"
-    notify-send "Steam Autopicture" "$msg" 2>/dev/null || true
-}
-
+# --- FUNCIONES ---
 log() {
-    echo "[$(date '+%H:%M:%S')] $*" >> "$LOG_FILE"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >> "$LOG_FILE"
 }
 
-es_joystick() {
-    local sysfs_path="$1"
-    udevadm info -a -p "$sysfs_path" 2>/dev/null | grep -q "ID_INPUT_JOYSTICK=\"1\""
+notificar() {
+    notify-send "Steam Autopicture" "$1" --icon=steam --hint=int:transient:1 2>/dev/null || true
 }
 
-nombre_dispositivo() {
-    local sysfs_path="$1"
-    udevadm info --query=property -p "$sysfs_path" 2>/dev/null | grep -oP 'ID_MODEL_FROM_DATABASE=\K.*' | head -1 | tr -d '"' || echo "desconocido"
-}
+# --- INICIO ---
+truncate -s 0 "$LOG_FILE" # Limpiar log al empezar
+log "🚀 Servicio de detección de mandos iniciado"
 
-main() {
-    log "Iniciado"
-    stdbuf -oL udevadm monitor --subsystem-match=input --udev 2>/dev/null | \
-    while read -r line; do
-        if [[ "$line" =~ add ]] && [[ "$line" =~ event ]]; then
-            sysfs_path=$(echo "$line" | awk '{print $4}')
-            log "Evento: $sysfs_path"
+# Escuchamos el kernel por eventos de entrada
+stdbuf -oL udevadm monitor --subsystem-match=input --udev | while read -r line; do
+    log "DEBUG: Línea recibida: $line"
+    # Buscamos eventos de "añadir" dispositivo
+    if [[ "$line" == *"add"* ]] && [[ "$line" == *"/devices/"* ]]; then
+        # Extraemos la ruta del dispositivo en el sistema
+        dev_path=$(echo "$line" | grep -oP '/devices/\S+')
+        [ -z "$dev_path" ] && continue
 
-            if [ -z "$sysfs_path" ] || ! es_joystick "$sysfs_path"; then
-                log "No es joystick"
+        # Verificamos si es un Joystick real
+        if udevadm info -a -p "$dev_path" 2>/dev/null | grep -q 'ID_INPUT_JOYSTICK="1"'; then
+            log "🎮 Mando detectado en: $dev_path"
+
+            # ¿Está el modo automático desactivado?
+            if [ -f "$IGNORE_FILE" ]; then
+                log "🔇 Modo automático desactivado (archivo .ignore presente). Ignorando."
                 continue
             fi
 
-            nombre=$(nombre_dispositivo "$sysfs_path")
-            log "Joystick detectado: $nombre"
+            # Pequeña pausa para evitar rebotes de eventos de hardware
+            sleep 2
 
-            if [ -f "$TOGGLE_FILE" ]; then
-                notificar "Ignorado: toggle activo"
-                log "Toggle activo, ignorado"
-                continue
-            fi
-
-            if ! pgrep -x steam >/dev/null 2>&1; then
-                notificar "$nombre — Abriendo Steam"
-                log "Abriendo Steam"
-                $LAUNCH_CMD &
+            if ! pgrep -x "steam" >/dev/null; then
+                log "🚀 Steam cerrado. Iniciando en modo Big Picture..."
+                notificar "Mando conectado: Iniciando Steam..."
+                steam -bigpicture &
             else
-                notificar "$nombre — Abriendo Big Picture"
-                log "Abriendo Big Picture"
+                log "📺 Steam ya abierto. Cambiando a Big Picture..."
+                notificar "Mando conectado: Abriendo Big Picture..."
                 steam steam://open/bigpicture &
             fi
 
-            sleep 15
+            # Pausa de enfriamiento (cooldown) para no procesar el mismo mando varias veces
+            sleep 10
         fi
-    done
-}
-
-main
+    fi
+done

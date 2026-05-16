@@ -4,8 +4,8 @@
     postBuffer = 524288000
 
 [user]
-    name = Alejandro-M-P
-    email = martinpujaltea@gmail.com
+	name = Alejandro-M-P
+	email = martinpujaltea@gmail.com
 
 [filter "lfs"]
     clean = git-lfs clean -- %f

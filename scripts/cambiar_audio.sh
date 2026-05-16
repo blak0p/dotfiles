@@ -1,40 +1,25 @@
 #!/bin/bash
 
-# Aislamos el bloque de salidas (Sinks)
-SINKS_BLOCK=$(wpctl status | sed -n '/Sinks:/,/Sources:/p')
+# 1. Definimos los nombres internos de WirePlumber (son más fiables que los IDs)
+SINK_RYZEN="alsa_output.pci-0000_0f_00.6.analog-stereo"
+SINK_STEEL="alsa_output.usb-SteelSeries_SteelSeries_Arctis_Nova_5-00.iec958-stereo"
 
-# 1. Buscamos el ID de los Altavoces (Ryzen / ALC897)
-# Intentamos primero por nombre descriptivo
-ID_RYZEN=$(echo "$SINKS_BLOCK" | grep -i "Ryzen" | grep -oP '\d+' | head -n 1)
+# 2. Obtenemos el nombre del dispositivo que tiene la estrella [*] (el activo)
+# Usamos wpctl status para ver quién es el default actual
+CURRENT_NAME=$(wpctl inspect @DEFAULT_AUDIO_SINK@ | grep "node.name" | cut -d '"' -f 2)
 
-# 2. Buscamos el ID de los Cascos (SteelSeries)
-# Los SteelSeries a veces no aparecen en Sinks si están apagados o en standby.
-ID_STEEL=$(echo "$SINKS_BLOCK" | grep -i "SteelSeries" | grep -oP '\d+' | head -n 1)
-
-# Si no está en Sinks, lo buscamos en la config por defecto (Settings)
-if [ -z "$ID_STEEL" ]; then
-    ID_STEEL=$(wpctl status | grep -A 10 "Default Configured Devices" | grep -i "SteelSeries" | grep -oP '\d+' | head -n 1)
-fi
-
-# 3. Detectamos cuál tiene la estrella [*] (el activo)
-CURRENT_ID=$(echo "$SINKS_BLOCK" | grep '\*' | grep -oP '\d+' | head -n 1)
-
-# --- LÓGICA DE CAMBIO ---
-
-# Si el actual es el de los Cascos (o si no es el de Ryzen), cambiamos a Ryzen (Altavoces)
-if [ "$CURRENT_ID" == "$ID_STEEL" ] || [ -z "$ID_STEEL" ]; then
-    if [ ! -z "$ID_RYZEN" ]; then
-        wpctl set-default "$ID_RYZEN"
-        notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=normal
-    else
-        notify-send "Audio" "⚠️ Error: No encuentro Altavoces" --icon=dialog-error
-    fi
+# 3. Lógica de cambio
+if [[ "$CURRENT_NAME" == "$SINK_STEEL" ]]; then
+    # Estamos en cascos, cambiamos a altavoces
+    wpctl set-default "$SINK_RYZEN"
+    notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=normal
 else
-    # Si el actual es Ryzen (o cualquier otro), cambiamos a Cascos
-    if [ ! -z "$ID_STEEL" ]; then
-        wpctl set-default "$ID_STEEL"
+    # Estamos en altavoces (o cualquier otro), cambiamos a cascos
+    # Verificamos si los cascos están disponibles antes de intentar cambiar
+    if wpctl status | grep -q "SteelSeries"; then
+        wpctl set-default "$SINK_STEEL"
         notify-send "Audio" "Cambiado a: CASCOS 🎧" --icon=audio-headphones --urgency=normal
     else
-        notify-send "Audio" "⚠️ No se detectan los Cascos" --icon=dialog-warning
+        notify-send "Audio" "⚠️ Cascos SteelSeries no detectados" --icon=dialog-warning
     fi
 fi

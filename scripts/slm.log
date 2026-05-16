@@ -1,0 +1,9 @@
+2026-05-16T15:33:38.773+0200	INFO	src/main.go:40	[SLM starts]
+2026-05-16T15:33:38.773+0200	INFO	src/main.go:41	[Executable: /var/home/alejandro/scripts/switch-library-manager]
+2026-05-16T15:33:38.773+0200	INFO	src/main.go:42	[Working directory: /var/home/alejandro/scripts]
+2026-05-16T15:33:38.773+0200	INFO	console/console-flags.go:112	[Flag -m: <missing>]
+2026-05-16T15:33:38.773+0200	INFO	console/console-flags.go:114	[Flag -f: /run/media/system/Juegos/Emulation/roms/switch]
+2026-05-16T15:33:38.773+0200	INFO	console/console-flags.go:112	[Flag -r: <missing>]
+2026-05-16T15:33:38.773+0200	INFO	console/console-flags.go:112	[Flag -e: <missing>]
+2026-05-16T15:33:38.787+0200	INFO	db/utils.go:47	file [https://tinfoil.media/repo/db/titles.json] was not downloaded, reason - [Get "https://tinfoil.media/repo/db/titles.json": dial tcp [::1]:443: connect: connection refused]
+2026-05-16T15:33:38.787+0200	INFO	db/utils.go:60	Local file is empty, or corrupted

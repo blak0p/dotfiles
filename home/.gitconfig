@@ -5,7 +5,7 @@
 
 [user]
     name = Alejandro-M-P
-    email = jyfwdd4b7@privaterelay.appleid.com
+    email = martinpujaltea@gmail.com
 
 [filter "lfs"]
     clean = git-lfs clean -- %f

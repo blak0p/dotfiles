@@ -1,38 +1,30 @@
 #!/bin/bash
 
-# 1. Obtenemos el ID de los Cascos (SteelSeries)
-# Los buscamos en Sinks o en Settings
-ID_STEEL=$(wpctl status | grep -i "SteelSeries" | grep -oP '\d+\.' | grep -oP '\d+' | head -n 1)
+# 1. Detectar quién es el dispositivo por defecto actualmente
+# Usamos el nombre descriptivo porque es más humano
+CURRENT_DESC=$(wpctl status | grep -A 15 "Sinks:" | grep '\*' | sed 's/^[│ ]*[* ]*[0-9]*\. //g' | cut -d '[' -f 1 | xargs)
 
-# Si el ID es 0, significa que los cascos no están en Sinks (ID 0 suele ser la referencia de Settings)
-# En ese caso, intentamos buscar por el nombre descriptivo en todo el status
-if [ "$ID_STEEL" == "0" ] || [ -z "$ID_STEEL" ]; then
-    ID_STEEL=$(wpctl status | grep -i "SteelSeries" | grep -oP '^\s*[│ ]\s*(\*?\s*)(\d+)\.' | grep -oP '\d+' | head -n 1)
-fi
+# 2. Buscar IDs dinámicamente
+ID_RYZEN=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -i "Ryzen" | grep -oP '\d+' | head -n 1)
+ID_STEEL=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -i "SteelSeries" | grep -oP '\d+' | head -n 1)
 
-# 2. Obtenemos el ID de los Altavoces (Ryzen)
-ID_RYZEN=$(wpctl status | grep -i "Ryzen" | grep -i "Sink" -B 1 | grep -oP '\d+' | head -n 1)
-# Si falló la anterior, buscamos Ryzen en cualquier lugar de Sinks
-if [ -z "$ID_RYZEN" ]; then
-    ID_RYZEN=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -i "Ryzen" | grep -oP '\d+' | head -n 1)
-fi
-
-# 3. Detectamos quién es el default actual (ID)
-CURRENT_ID=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep '\*' | grep -oP '\d+' | head -n 1)
-
-# 4. Lógica de cambio
-# Si estamos en cascos (o no los encontramos), pasamos a Altavoces
-if [ "$CURRENT_ID" == "$ID_STEEL" ] || [ -z "$ID_STEEL" ]; then
-    if [ ! -z "$ID_RYZEN" ]; then
-        wpctl set-default "$ID_RYZEN"
-        notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=normal
+# 3. Lógica de conmutación pura
+if [[ "$CURRENT_DESC" == *"Ryzen"* ]]; then
+    # Estamos en ALTAVOCES, queremos ir a CASCOS
+    if [ ! -z "$ID_STEEL" ]; then
+        wpctl set-default "$ID_STEEL"
+        notify-send "Audio" "Cambiado a: CASCOS 🎧" --icon=audio-headphones --urgency=critical
+    else
+        # Si no hay cascos, avisamos pero no cambiamos
+        notify-send "Audio" "⚠️ Cascos no detectados" --icon=dialog-warning --urgency=critical
     fi
 else
-    # Si estamos en altavoces, pasamos a Cascos
-    if [ ! -z "$ID_STEEL" ] && [ "$ID_STEEL" != "0" ]; then
-        wpctl set-default "$ID_STEEL"
-        notify-send "Audio" "Cambiado a: CASCOS 🎧" --icon=audio-headphones --urgency=normal
+    # Estamos en CASCOS (o cualquier otro), queremos ir a ALTAVOCES
+    if [ ! -z "$ID_RYZEN" ]; then
+        wpctl set-default "$ID_RYZEN"
+        # Forzamos la notificación para que salga sí o sí
+        notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=critical
     else
-        notify-send "Audio" "⚠️ Cascos no detectados o apagados" --icon=dialog-warning
+        notify-send "Audio" "❌ No se encontró la tarjeta Ryzen" --icon=dialog-error --urgency=critical
     fi
 fi

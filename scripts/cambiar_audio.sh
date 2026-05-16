@@ -1,30 +1,29 @@
 #!/bin/bash
 
-# 1. Detectar quién es el dispositivo por defecto actualmente
-# Usamos el nombre descriptivo porque es más humano
-CURRENT_DESC=$(wpctl status | grep -A 15 "Sinks:" | grep '\*' | sed 's/^[│ ]*[* ]*[0-9]*\. //g' | cut -d '[' -f 1 | xargs)
+# 1. Obtener IDs dinámicos buscando por nombre en la sección de Sinks
+ID_RYZEN=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "[0-9]+\. .*Ryzen" | grep -oP '\d+' | head -n 1)
+ID_STEEL=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "[0-9]+\. .*SteelSeries" | grep -oP '\d+' | head -n 1)
 
-# 2. Buscar IDs dinámicamente
-ID_RYZEN=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -i "Ryzen" | grep -oP '\d+' | head -n 1)
-ID_STEEL=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -i "SteelSeries" | grep -oP '\d+' | head -n 1)
+# 2. Detectar si Ryzen es el actual por defecto
+IS_RYZEN_ACTIVE=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "\*.*[0-9]+\. .*Ryzen" > /dev/null && echo "yes" || echo "no")
 
-# 3. Lógica de conmutación pura
-if [[ "$CURRENT_DESC" == *"Ryzen"* ]]; then
-    # Estamos en ALTAVOCES, queremos ir a CASCOS
+# 3. Lógica de conmutación
+if [ "$IS_RYZEN_ACTIVE" == "yes" ]; then
+    # --- CAMBIAR A CASCOS ---
     if [ ! -z "$ID_STEEL" ]; then
         wpctl set-default "$ID_STEEL"
-        notify-send "Audio" "Cambiado a: CASCOS 🎧" --icon=audio-headphones --urgency=critical
+        # Notificación con ID único para evitar bloqueos del sistema de notis
+        notify-send "Audio" "Cambiado a: CASCOS 🎧" --icon=audio-headphones --urgency=normal --hint=int:transient:1
     else
-        # Si no hay cascos, avisamos pero no cambiamos
-        notify-send "Audio" "⚠️ Cascos no detectados" --icon=dialog-warning --urgency=critical
+        notify-send "Audio" "⚠️ Cascos no encontrados" --icon=dialog-warning --urgency=normal
     fi
 else
-    # Estamos en CASCOS (o cualquier otro), queremos ir a ALTAVOCES
+    # --- CAMBIAR A ALTAVOCES ---
     if [ ! -z "$ID_RYZEN" ]; then
         wpctl set-default "$ID_RYZEN"
-        # Forzamos la notificación para que salga sí o sí
-        notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=critical
+        # Notificación con ID único para evitar bloqueos
+        notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=normal --hint=int:transient:1
     else
-        notify-send "Audio" "❌ No se encontró la tarjeta Ryzen" --icon=dialog-error --urgency=critical
+        notify-send "Audio" "❌ Error: No se halló la tarjeta Ryzen" --icon=dialog-error --urgency=critical
     fi
 fi

@@ -1,42 +1,52 @@
 #!/usr/bin/env python3
-import os, subprocess, time, glob, sys
+import os, subprocess, time, glob
 
-# ==========================================
-# CONFIGURACIÓN (Cambia esto si cambias de SO)
-# ==========================================
-CONTROLLER_MAC = "A0:5A:59:D4:13:A3"
 JOYSTICK_NODES = "/dev/input/js*"
-CHECK_INTERVAL = 2  # Segundos entre escaneos
-LAUNCH_ALWAYS  = True # Abrir Steam aunque ya esté abierto
 
-# Comandos de Steam (Orden de prioridad)
-STEAM_CMDS = [
-    ["steam"], # Nativo
-    ["flatpak", "run", "com.valvesoftware.Steam"] # Flatpak
-]
-# ==========================================
+CHECK_INTERVAL = 2
+ESDE_PATH = "/home/alejandro/Emulation/tools/ES-DE.AppImage"
+STEAM_LIBRARY = "/run/media/system/Juegos/SteamLibrary/steamapps"
+DESKTOP_OUTPUT = "/home/alejandro/Emulation/roms/steam"
 
-def get_steam_cmd():
-    for cmd in STEAM_CMDS:
-        binary = cmd[0]
-        if subprocess.run(["which", binary], capture_output=True).returncode == 0:
-            return cmd
-    return None
+EXCLUDE = ["Proton", "Steam Linux", "Steamworks"]
 
-def handle_connect():
-    cmd_base = get_steam_cmd()
-    if not cmd_base: return
+def update_steam_shortcuts():
+    import glob as g
+    for f in g.glob(f"{STEAM_LIBRARY}/appmanifest_*.acf"):
+        with open(f) as file:
+            content = file.read()
+        
+        import re
+        app_id = re.search(r'"appid"\s+"([^"]+)"', content)
+        name = re.search(r'"name"\s+"([^"]+)"', content)
+        
+        if not app_id or not name:
+            continue
+        
+        name = name.group(1)
+        app_id = app_id.group(1)
+        
+        if any(ex in name for ex in EXCLUDE):
+            continue
+        
+        desktop = f"[Desktop Entry]\nName={name}\nExec=steam steam://rungameid/{app_id}\nIcon=steam\nType=Application"
+        path = f"{DESKTOP_OUTPUT}/{name}.desktop"
+        
+        with open(path, "w") as out:
+            out.write(desktop)
     
-    print(f"🎮 Mando detectado! Abriendo Steam...")
-    subprocess.Popen(cmd_base + ["steam://open/bigpicture"])
+    print("✅ Shortcuts de Steam actualizados")
 
 def is_joystick_connected():
-    nodes = glob.glob(JOYSTICK_NODES)
-    return len(nodes) > 0
+    return len(glob.glob(JOYSTICK_NODES)) > 0
+
+def handle_connect():
+    print("🎮 Mando detectado! Actualizando juegos y abriendo ES-DE...")
+    update_steam_shortcuts()
+    subprocess.Popen([ESDE_PATH])
 
 if __name__ == "__main__":
-    print(f"🚀 Auto-Big-Picture Iniciado (Buscando en {JOYSTICK_NODES})")
-    
+    print(f"🚀 Iniciado (Escuchando mandos...)")
     was_connected = is_joystick_connected()
     
     try:

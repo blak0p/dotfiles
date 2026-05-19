@@ -1,7 +1,7 @@
 [http]
-    lowSpeedLimit = 1000
-    lowSpeedTime = 60
-    postBuffer = 524288000
+	lowSpeedLimit = 1000
+	lowSpeedTime = 60
+	postBuffer = 524288000
 
 [user]
 	name = Alejandro-M-P

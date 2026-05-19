@@ -53,6 +53,9 @@ for js in /dev/input/js*; do
 done
 
 # 2. Monitoreo de eventos para nuevas conexiones
+LAST_ACTIVATION=0
+COOLDOWN_SEC=10
+
 stdbuf -oL udevadm monitor --udev | while read -r line; do
     if [[ "$line" == *"add"* || "$line" == *"bind"* ]]; then
         # Pequeña espera para que udev termine de procesar el dispositivo
@@ -65,8 +68,14 @@ stdbuf -oL udevadm monitor --udev | while read -r line; do
                     log "🔇 Modo automático desactivado. Ignorando."
                     continue
                 fi
-                activar_modo_juego
-                sleep 5 # Cooldown
+
+                CURRENT_TIME=$(date +%s)
+                if (( CURRENT_TIME - LAST_ACTIVATION > COOLDOWN_SEC )); then
+                    activar_modo_juego
+                    LAST_ACTIVATION=$CURRENT_TIME
+                else
+                    log "⏳ Ignorando evento múltiple (cooldown activo)"
+                fi
                 break
             fi
         done

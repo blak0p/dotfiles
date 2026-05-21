@@ -1,83 +1,114 @@
 #!/bin/bash
 
-# --- CONFIGURACIÓN ---
-IGNORE_FILE="$HOME/scripts/steam-autopicture.ignore"
+LAUNCH_CMD="steam -bigpicture"
+TOGGLE_FILE="$HOME/scripts/steam-autopicture.ignore"
 LOG_FILE="$HOME/scripts/steam-autopicture.log"
-LOCK_FILE="/tmp/steam_autopicture.lock"
-
-# Evitar múltiples instancias
-exec 200>"$LOCK_FILE"
-flock -n 200 || exit 0
+LOG_MAX_LINES=500
+LOG_KEEP_LINES=200
 
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
 
-# --- FUNCIONES ---
-log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" >> "$LOG_FILE"
-}
-
 notificar() {
-    notify-send "Steam Autopicture" "$1" --icon=steam --hint=int:transient:1 2>/dev/null || true
+    notify-send "Steam Autopicture" "$1" 2>/dev/null || true
 }
 
-activar_modo_juego() {
-    log "🎮 Mando real detectado. Activando Modo Performance e iniciando Steam Big Picture..."
-    notificar "Mando conectado: Modo Performance Activado"
-    
-    # Intentamos activar el perfil de rendimiento
-    sudo tuned-adm profile throughput-performance-bazzite 2>/dev/null || log "⚠️ No se pudo cambiar el perfil de tuned"
+log() {
+    local nivel="$1"
+    shift
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$nivel] $*" >> "$LOG_FILE"
+}
 
-    if ! pgrep -x "steam" >/dev/null; then
-        log "🚀 Steam cerrado. Iniciando..."
-        steam -bigpicture &
+rotar_log() {
+    if [ -f "$LOG_FILE" ] && [ "$(wc -l < "$LOG_FILE")" -gt "$LOG_MAX_LINES" ]; then
+        tail -n "$LOG_KEEP_LINES" "$LOG_FILE" > "${LOG_FILE}.tmp" && mv "${LOG_FILE}.tmp" "$LOG_FILE"
+        log INFO "Log rotado"
+    fi
+}
+
+es_joystick() {
+    udevadm info -a -p "$1" 2>/dev/null | grep -q 'ID_INPUT_JOYSTICK="1"'
+}
+
+nombre_dispositivo() {
+    udevadm info --query=property -p "$1" 2>/dev/null \
+        | grep -oP 'ID_MODEL_FROM_DATABASE=\K.*' \
+        | head -1 | tr -d '"' \
+        || echo "desconocido"
+}
+
+procesar_evento() {
+    local sysfs_path
+
+    sysfs_path=$(echo "$1" | grep -oP '(?<= )/devices/\S+')
+    [ -z "$sysfs_path" ] && sysfs_path=$(echo "$1" | awk '{print $4}')
+
+    if [ -z "$sysfs_path" ]; then
+        log WARN "Path vacío, línea ignorada: $1"
+        return
+    fi
+
+    if ! es_joystick "$sysfs_path"; then
+        log INFO "Dispositivo ignorado (no es joystick): $sysfs_path"
+        return
+    fi
+
+    local nombre
+    nombre=$(nombre_dispositivo "$sysfs_path")
+    log INFO "Joystick detectado: $nombre"
+
+    if [ -f "$TOGGLE_FILE" ]; then
+        log INFO "Toggle activo — acción ignorada"
+        notificar "Ignorado: toggle activo"
+        return
+    fi
+
+    if ! pgrep -x steam >/dev/null 2>&1; then
+        log INFO "Steam cerrado — lanzando Steam en Big Picture"
+        notificar "$nombre — Abriendo Steam"
+        $LAUNCH_CMD &
     else
-        log "📺 Steam ya abierto. Cambiando a Big Picture..."
+        log INFO "Steam abierto — abriendo Big Picture"
+        notificar "$nombre — Abriendo Big Picture"
         steam steam://open/bigpicture &
     fi
 }
 
-# --- INICIO ---
-truncate -s 0 "$LOG_FILE"
-log "🚀 Servicio de detección de mandos iniciado (v2.1)"
+escuchar() {
+    local lanzamiento_en_curso=0
 
-# 1. Chequeo inicial: si ya hay un mando conectado al arrancar
-# Buscamos 'ID_INPUT_JOYSTICK=1' (sin comillas, que es como sale en udevadm info)
-for js in /dev/input/js*; do
-    [ -e "$js" ] || continue
-    if udevadm info -n "$js" | grep -q 'ID_INPUT_JOYSTICK=1' && ! udevadm info -n "$js" | grep -qi 'ASRock'; then
-        log "✅ Mando ya conectado al inicio: $js"
-        activar_modo_juego
-        # No salimos con break aquí por si hay más de uno, pero con uno basta para lanzar Steam
-        break
-    fi
-done
-
-# 2. Monitoreo de eventos para nuevas conexiones
-LAST_ACTIVATION=0
-COOLDOWN_SEC=10
-
-stdbuf -oL udevadm monitor --udev | while read -r line; do
-    if [[ "$line" == *"add"* || "$line" == *"bind"* ]]; then
-        # Pequeña espera para que udev termine de procesar el dispositivo
-        sleep 1
-        
-        for js in /dev/input/js*; do
-            [ -e "$js" ] || continue
-            if udevadm info -n "$js" | grep -q 'ID_INPUT_JOYSTICK=1' && ! udevadm info -n "$js" | grep -qi 'ASRock'; then
-                if [ -f "$IGNORE_FILE" ]; then
-                    log "🔇 Modo automático desactivado. Ignorando."
-                    continue
-                fi
-
-                CURRENT_TIME=$(date +%s)
-                if (( CURRENT_TIME - LAST_ACTIVATION > COOLDOWN_SEC )); then
-                    activar_modo_juego
-                    LAST_ACTIVATION=$CURRENT_TIME
-                else
-                    log "⏳ Ignorando evento múltiple (cooldown activo)"
-                fi
-                break
+    stdbuf -oL udevadm monitor --subsystem-match=input --udev 2>/dev/null | \
+    while read -r line; do
+        if [[ "$line" =~ add ]] && [[ "$line" =~ event ]]; then
+            if [ "$lanzamiento_en_curso" -eq 1 ]; then
+                log INFO "Evento ignorado — lanzamiento ya en curso"
+                continue
             fi
-        done
-    fi
-done
+
+            lanzamiento_en_curso=1
+            procesar_evento "$line"
+            sleep 15
+            lanzamiento_en_curso=0
+        fi
+    done
+}
+
+main() {
+    mkdir -p "$(dirname "$LOG_FILE")"
+    rotar_log
+
+    echo "" >> "$LOG_FILE"
+    echo "======================================" >> "$LOG_FILE"
+    log INFO "Daemon iniciado (PID $$)"
+    echo "======================================" >> "$LOG_FILE"
+
+    local reintentos=0
+    while true; do
+        log INFO "Escuchando eventos udevadm..."
+        escuchar
+        reintentos=$((reintentos + 1))
+        log ERROR "udevadm monitor terminó inesperadamente (intento $reintentos) — reintentando en 5s"
+        sleep 5
+    done
+}
+
+main

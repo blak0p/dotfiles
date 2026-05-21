@@ -1,14 +1,37 @@
 #!/bin/bash
 
-IGNORE_FILE="$HOME/scripts/steam-autopicture.ignore"
+TOGGLE_FILE="$HOME/scripts/steam-autopicture.ignore"
+LOCK_FILE="/tmp/steam-autopicture-toggle.lock"
+LOG_FILE="$HOME/scripts/steam-autopicture.log"
 
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
 
-if [ -f "$IGNORE_FILE" ]; then
-    rm -f "$IGNORE_FILE"
-    notify-send "Steam Autopicture" "✅ Activado" --icon=steam --hint=int:transient:1
+log() {
+    local nivel="$1"
+    shift
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$nivel] $*" >> "$LOG_FILE"
+}
+
+notificar() {
+    notify-send "Steam Autopicture" "$1" 2>/dev/null || true
+}
+
+if [ -e "$LOCK_FILE" ]; then
+    log WARN "Toggle ya en ejecución, saliendo"
+    notificar "⚠️ Toggle ya en ejecución"
+    exit 1
+fi
+touch "$LOCK_FILE"
+trap 'rm -f "$LOCK_FILE"' EXIT
+
+mkdir -p "$(dirname "$TOGGLE_FILE")"
+
+if [ -f "$TOGGLE_FILE" ]; then
+    rm -f "$TOGGLE_FILE"
+    log INFO "Toggle desactivado → daemon activado"
+    notificar "✅ Activado"
 else
-    mkdir -p "$(dirname "$IGNORE_FILE")"
-    touch "$IGNORE_FILE"
-    notify-send "Steam Autopicture" "❌ Desactivado" --icon=steam --hint=int:transient:1
+    touch "$TOGGLE_FILE"
+    log INFO "Toggle activado → daemon desactivado"
+    notificar "❌ Desactivado"
 fi

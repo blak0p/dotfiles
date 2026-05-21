@@ -6,3 +6,6 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
+
+# Added by Antigravity CLI installer
+export PATH="/home/alejandro/.local/bin:$PATH"

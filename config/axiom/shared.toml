@@ -19,6 +19,10 @@ src = ".fzf.bash"
 dst = ".fzf.bash"
 
 [[symlinks]]
+src = ".bashrc_openclaw"
+dst = ".bashrc_openclaw"
+
+[[symlinks]]
 src = ".bash"
 dst = ".bash"
 

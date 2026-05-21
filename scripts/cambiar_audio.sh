@@ -1,29 +1,39 @@
 #!/bin/bash
 
-# 1. Obtener IDs dinámicos buscando por nombre en la sección de Sinks
-ID_RYZEN=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "[0-9]+\. .*Ryzen" | grep -oP '\d+' | head -n 1)
-ID_STEEL=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "[0-9]+\. .*SteelSeries" | grep -oP '\d+' | head -n 1)
+# ==========================================
+# CONFIGURACIÓN (Dispositivos y Nombres)
+# ==========================================
+# Nombres parciales para buscar en PipeWire
+NAME_PRIMARY="SteelSeries" # Tus cascos
+NAME_SECONDARY="Ryzen"     # Tus altavoces (o lo que no sea cascos)
 
-# 2. Detectar si Ryzen es el actual por defecto
-IS_RYZEN_ACTIVE=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "\*.*[0-9]+\. .*Ryzen" > /dev/null && echo "yes" || echo "no")
+# Iconos y Etiquetas
+LABEL_PRIMARY="CASCOS 🎧"
+LABEL_SECONDARY="ALTAVOCES 🔊"
+ICON_PRIMARY="audio-headphones"
+ICON_SECONDARY="audio-speakers"
+# ==========================================
 
-# 3. Lógica de conmutación
-if [ "$IS_RYZEN_ACTIVE" == "yes" ]; then
-    # --- CAMBIAR A CASCOS ---
-    if [ ! -z "$ID_STEEL" ]; then
-        wpctl set-default "$ID_STEEL"
-        # Notificación con ID único para evitar bloqueos del sistema de notis
-        notify-send "Audio" "Cambiado a: CASCOS 🎧" --icon=audio-headphones --urgency=normal --hint=int:transient:1
+# 1. Obtener IDs dinámicos
+ID_PRIMARY=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "[0-9]+\. .*$NAME_PRIMARY" | grep -oP '\d+' | head -n 1)
+ID_SECONDARY=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "[0-9]+\. .*$NAME_SECONDARY" | grep -oP '\d+' | head -n 1)
+
+# 2. Detectar cuál está activo (con el asterisco *)
+IS_SECONDARY_ACTIVE=$(wpctl status | sed -n '/Sinks:/,/Sources:/p' | grep -E "\*.*[0-9]+\. .*$NAME_SECONDARY" > /dev/null && echo "yes" || echo "no")
+
+# 3. Lógica de cambio
+if [ "$IS_SECONDARY_ACTIVE" == "yes" ]; then
+    if [ ! -z "$ID_PRIMARY" ]; then
+        wpctl set-default "$ID_PRIMARY"
+        notify-send "Audio" "Cambiado a: $LABEL_PRIMARY" --icon=$ICON_PRIMARY --hint=int:transient:1
     else
-        notify-send "Audio" "⚠️ Cascos no encontrados" --icon=dialog-warning --urgency=normal
+        notify-send "Audio" "⚠️ $NAME_PRIMARY no detectado" --icon=dialog-warning
     fi
 else
-    # --- CAMBIAR A ALTAVOCES ---
-    if [ ! -z "$ID_RYZEN" ]; then
-        wpctl set-default "$ID_RYZEN"
-        # Notificación con ID único para evitar bloqueos
-        notify-send "Audio" "Cambiado a: ALTAVOCES 🔊" --icon=audio-speakers --urgency=normal --hint=int:transient:1
+    if [ ! -z "$ID_SECONDARY" ]; then
+        wpctl set-default "$ID_SECONDARY"
+        notify-send "Audio" "Cambiado a: $LABEL_SECONDARY" --icon=$ICON_SECONDARY --hint=int:transient:1
     else
-        notify-send "Audio" "❌ Error: No se halló la tarjeta Ryzen" --icon=dialog-error --urgency=critical
+        notify-send "Audio" "❌ No se halló $NAME_SECONDARY" --icon=dialog-error --urgency=critical
     fi
 fi

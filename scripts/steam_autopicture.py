@@ -1,1 +1,0 @@
-/var/home/alejandro/dotfiles/scripts/steam_autopicture.sh

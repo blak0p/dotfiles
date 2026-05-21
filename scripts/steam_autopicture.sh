@@ -25,12 +25,9 @@ rotar_log() {
     fi
 }
 
-es_joystick() {
-    udevadm info -a -p "$1" 2>/dev/null | grep -q 'ID_INPUT_JOYSTICK="1"'
-}
-
 nombre_dispositivo() {
-    udevadm info --query=property -p "$1" 2>/dev/null \
+    local sysfs_path="$1"
+    udevadm info --query=property -p "$sysfs_path" 2>/dev/null \
         | grep -oP 'ID_MODEL_FROM_DATABASE=\K.*' \
         | head -1 | tr -d '"' \
         || echo "desconocido"
@@ -47,14 +44,13 @@ procesar_evento() {
         return
     fi
 
-    if ! es_joystick "$sysfs_path"; then
-        log INFO "Dispositivo ignorado (no es joystick): $sysfs_path"
-        return
-    fi
+    # Subimos un nivel para obtener el path del input padre
+    local parent_path
+    parent_path=$(dirname "$sysfs_path")
 
     local nombre
-    nombre=$(nombre_dispositivo "$sysfs_path")
-    log INFO "Joystick detectado: $nombre"
+    nombre=$(nombre_dispositivo "$parent_path")
+    log INFO "Joystick detectado: $nombre ($sysfs_path)"
 
     if [ -f "$TOGGLE_FILE" ]; then
         log INFO "Toggle activo — acción ignorada"
@@ -78,7 +74,7 @@ escuchar() {
 
     stdbuf -oL udevadm monitor --subsystem-match=input --udev 2>/dev/null | \
     while read -r line; do
-        if [[ "$line" =~ add ]] && [[ "$line" =~ event ]]; then
+        if [[ "$line" =~ add ]] && [[ "$line" =~ /js[0-9] ]]; then
             if [ "$lanzamiento_en_curso" -eq 1 ]; then
                 log INFO "Evento ignorado — lanzamiento ya en curso"
                 continue
@@ -86,7 +82,7 @@ escuchar() {
 
             lanzamiento_en_curso=1
             procesar_evento "$line"
-            sleep 15
+            sleep 5
             lanzamiento_en_curso=0
         fi
     done

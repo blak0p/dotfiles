@@ -3,3 +3,23 @@
 [2026-05-21 21:24:07] [INFO] Daemon iniciado (PID 5539)
 ======================================
 [2026-05-21 21:24:07] [INFO] Escuchando eventos udevadm...
+[2026-05-21 21:32:08] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input28/event26
+[2026-05-21 21:32:23] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input30/event27
+[2026-05-21 21:32:38] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input29/event26
+[2026-05-21 21:32:53] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input31/event28
+[2026-05-21 21:33:03] [INFO] Toggle activado → daemon desactivado
+[2026-05-21 21:33:04] [INFO] Toggle desactivado → daemon activado
+[2026-05-21 21:33:08] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input32/event29
+[2026-05-21 21:34:01] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input36/event29
+[2026-05-21 21:34:16] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input33/event26
+[2026-05-21 21:34:31] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input35/event28
+[2026-05-21 21:34:46] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input34/event27
+
+======================================
+[2026-05-21 21:35:33] [INFO] Daemon iniciado (PID 10365)
+======================================
+[2026-05-21 21:35:33] [INFO] Escuchando eventos udevadm...
+[2026-05-21 21:35:54] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000C/input/input37/js1)
+[2026-05-21 21:35:54] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-21 21:36:02] [INFO] Joystick detectado:  (/devices/virtual/input/input41/js2)
+[2026-05-21 21:36:02] [INFO] Steam abierto — abriendo Big Picture

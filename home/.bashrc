@@ -30,7 +30,6 @@ claw-fix    : Resetea permisos y reinicia servicios.
 claw-status : Verifica salud y conexión WhatsApp.
 claw-help   : Muestra esta ayuda.
 ------------------------- "'
-source ~/.bashrc_openclaw
 
 # Added by Antigravity CLI installer
 export PATH="/home/alejandro/.local/bin:$PATH"

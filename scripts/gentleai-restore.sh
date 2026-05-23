@@ -11,11 +11,11 @@ LATEST_LINK="$HOME/gentleai-backup/latest"
 MASTER_DIR="$HOME/.gentle-ai/shared"
 OPENCODE="$HOME/.config/opencode"
 GEMINI="$HOME/.gemini"
-VAULT="$HOME/Documentos/dev/Boveda"
+VAULT="$HOME/dev/Boveda"
 
 # ─── Archivos a trackear ───────────────────────────────────────
 SKILLS_SRC="$MASTER_DIR/skills"
-REGISTRY="$HOME/Documentos/dev/git-courer/.atl/skill-registry.md"
+REGISTRY="$HOME/dev/git-courer/.atl/skill-registry.md"
 
 # ─── BACKUP ─────────────────────────────────────────────────────
 backup() {
@@ -85,7 +85,7 @@ restore() {
     # 4. Restaurar skill registry de git-courer
     if [ -f "$B/git-courer/skill-registry.md" ]; then
         cp "$B/git-courer/skill-registry.md" \
-           "$HOME/Documentos/dev/git-courer/.atl/skill-registry.md"
+           "$HOME/dev/git-courer/.atl/skill-registry.md"
         echo "   ✅ git-courer skill-registry.md restaurado"
     fi
 

@@ -19,7 +19,7 @@ git clone git@github.com:Alejandro-M-P/dotfiles.git ~/dotfiles && bash ~/dotfile
 El script se encargará de:
 1. Crear los enlaces simbólicos (symlinks).
 2. Hacer un backup automático de cualquier archivo existente que pueda entrar en conflicto.
-3. Organizar las carpetas necesarias (`.config`, `Documentos/dev`, etc.).
+3. Organizar las carpetas necesarias (`.config`, `dev`, etc.).
 
 ---
 

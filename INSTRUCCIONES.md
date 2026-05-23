@@ -30,7 +30,7 @@ ln -sf ~/dotfiles/config/starship.tom ~/.config/starship.tom
 
 # Axiom y Hardware
 ln -sf ~/dotfiles/config/axiom ~/.config/axiom
-ln -sf ~/dotfiles/dev/axiom ~/Documentos/dev/axiom
+ln -sf ~/dotfiles/dev/axiom ~/dev/axiom
 ln -sf ~/dotfiles/hardware/deepcool-ak620 ~/deepcool-ak620-digital-linux
 ```
 

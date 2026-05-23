@@ -89,7 +89,7 @@ check_symlink "$HOME/.config/starship.tom" "$DOTFILES_DIR/config/starship.tom"
 check_symlink "$HOME/.config/starship.tomls" "$DOTFILES_DIR/config/starship.tomls"
 
 # Dev & Hardware
-check_symlink "$HOME/Documentos/dev/axiom" "$DOTFILES_DIR/dev/axiom"
+check_symlink "$HOME/dev/axiom" "$DOTFILES_DIR/dev/axiom"
 check_symlink "$HOME/deepcool-ak620-digital-linux" "$DOTFILES_DIR/hardware/deepcool-ak620"
 
 # --- 3. CHEQUEO DE HARDWARE (Python Venv) ---

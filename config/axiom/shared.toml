@@ -19,10 +19,6 @@ src = ".fzf.bash"
 dst = ".fzf.bash"
 
 [[symlinks]]
-src = ".bashrc_openclaw"
-dst = ".bashrc_openclaw"
-
-[[symlinks]]
 src = ".bash"
 dst = ".bash"
 
@@ -69,13 +65,16 @@ dst = ".ssh/known_hosts"
 [[symlinks]]
 src = ".claude"
 dst = ".claude"
+
 [[symlinks]]
 src = ".claude.json"
 dst = ".claude.json"
 
 [[symlinks]]
 src = ".local/bin/ollama"
-dst = "run/host/usr/local/bin/ollama"
+dst = "/run/host/var/usrlocal/bin/ollama"
+
 [[symlinks]]
 src = ".gemini"
 dst = ".gemini"
+

@@ -1,5 +1,5 @@
 # --- DEV & HARDWARE ---
-link_file "$DOTFILES_DIR/dev/axiom" "$HOME/Documentos/dev/axiom"
+link_file "$DOTFILES_DIR/dev/axiom" "$HOME/dev/axiom"
 link_file "$DOTFILES_DIR/hardware/deepcool-ak620" "$HOME/deepcool-ak620-digital-linux"
 
 # --- DEPENDENCIAS DE HARDWARE (Python) ---

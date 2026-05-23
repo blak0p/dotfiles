@@ -101,7 +101,7 @@ func writeAxiomEnv(homeDir, name string) {
 	}
 
 	envFile := filepath.Join(homeDir, ".axiom-env.sh")
-	content := fmt.Sprintf("export AXIOM_BUNKER=1\ncd /%s 2>/dev/null || true\n", name)
+	content := fmt.Sprintf("export AXIOM_BUNKER=1\nexport PATH=\"$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH\"\ncd /%s 2>/dev/null || true\n", name)
 	if err := os.WriteFile(envFile, []byte(content), 0644); err != nil {
 		fmt.Printf("⚠ No se pudo escribir .axiom-env.sh: %v\n", err)
 	}
@@ -158,7 +158,7 @@ func Create(cfg Config, name string) error {
 		if sshSocket != "" {
 			flags += fmt.Sprintf(" --volume %s:%s:ro", sshSocket, sshSocket)
 		}
-		flags += " --volume /home/linuxbrew:/home/linuxbrew:ro"
+		flags += " --volume /var/home/linuxbrew/.linuxbrew:" + filepath.Join(homeDir, ".linuxbrew") + ":ro"
 		flags += " --env AXIOM_BUNKER=1"
 
 		packages := "git github-cli nano"

@@ -1,0 +1,14 @@
+[Unit]
+Description=Handles steam big picture for Bluetooth/USB controllers
+After=graphical-session.target bluetooth.service
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sh -c 'systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XAUTHORITY'
+ExecStart=/var/home/alejandro/dotfiles/scripts/steam_autopicture.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=graphical-session.target

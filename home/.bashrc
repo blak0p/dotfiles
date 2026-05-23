@@ -33,3 +33,4 @@ claw-help   : Muestra esta ayuda.
 
 # Added by Antigravity CLI installer
 export PATH="/home/alejandro/.local/bin:$PATH"
+

@@ -101,7 +101,7 @@ func writeAxiomEnv(homeDir, name string) {
 	}
 
 	envFile := filepath.Join(homeDir, ".axiom-env.sh")
-	content := fmt.Sprintf("export AXIOM_BUNKER=1\nexport PATH=\"$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH\"\ncd /%s 2>/dev/null || true\n", name)
+	content := fmt.Sprintf("export AXIOM_BUNKER=1\nexport PATH=\"/home/alejandro/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH\"\ncd /%s 2>/dev/null || true\n", name)
 	if err := os.WriteFile(envFile, []byte(content), 0644); err != nil {
 		fmt.Printf("⚠ No se pudo escribir .axiom-env.sh: %v\n", err)
 	}
@@ -140,7 +140,7 @@ func Create(cfg Config, name string) error {
 		return fmt.Errorf("homeDir '%s' no es seguro, abortando", homeDir)
 	}
 
-	dirs := []string{codeDir, homeDir, cfg.ModelsDir}
+	dirs := []string{codeDir, homeDir}
 	for _, dir := range dirs {
 		if err := os.MkdirAll(dir, 0700); err != nil {
 			return fmt.Errorf("no se pudo crear el directorio %s: %w", dir, err)
@@ -158,7 +158,7 @@ func Create(cfg Config, name string) error {
 		if sshSocket != "" {
 			flags += fmt.Sprintf(" --volume %s:%s:ro", sshSocket, sshSocket)
 		}
-		flags += " --volume /var/home/linuxbrew/.linuxbrew:" + filepath.Join(homeDir, ".linuxbrew") + ":ro"
+		flags += " --volume /var/home/linuxbrew/.linuxbrew:/home/linuxbrew/.linuxbrew:ro"
 		flags += " --env AXIOM_BUNKER=1"
 
 		packages := "git github-cli nano"

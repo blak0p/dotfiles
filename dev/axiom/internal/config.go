@@ -10,7 +10,6 @@ import (
 type Config struct {
 	BaseDir    string
 	EntornoDir string
-	ModelsDir  string
 	SSHKey     string
 	Image      string
 }
@@ -26,11 +25,10 @@ type SharedConfig struct {
 
 func DefaultConfig() Config {
 	home, _ := os.UserHomeDir()
-	base := filepath.Join(home, "Documentos", "dev")
+	base := filepath.Join(home, "dev")
 	return Config{
 		BaseDir:    base,
 		EntornoDir: filepath.Join(base, ".entorno"),
-		ModelsDir:  filepath.Join(base, "ai_config", "models"),
 		SSHKey:     filepath.Join(home, ".ssh", "id_ed25519"),
 		Image:      "archlinux:latest",
 	}

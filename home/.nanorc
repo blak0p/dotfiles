@@ -1,0 +1,15 @@
+# --- INTERFAZ LIMPIA ---
+set linenumbers
+set titlecolor white,blue
+set statuscolor white,green
+set numbercolor yellow
+
+# --- COMPORTAMIENTO PARA PROGRAMAR ---
+# Tabulaciones de 4 espacios (estándar en Go y OOP)
+set tabsize 4
+set tabstospaces
+
+# --- SELECCIÓN Y RATÓN ---
+# Desactivamos el ratón para que puedas seleccionar y copiar 
+# con el clic derecho/izquierdo de Kitty sin problemas.
+# set mouse

@@ -11,7 +11,7 @@ if [ -d "$SERVICES_DIR" ]; then
     echo -e "${GREEN}✅ systemd daemon recargado${NC}"
 
     # Habilitar servicios conocidos
-    for svc in auto-big-picture ak620-digital tokensave-daemon; do
+    for svc in auto-big-picture ak620-digital tokensave-daemon dotfiles-auto-sync; do
         if systemctl --user enable "$svc" 2>/dev/null; then
             systemctl --user start "$svc" 2>/dev/null
             echo -e "${GREEN}✅ $svc habilitado e iniciado${NC}"

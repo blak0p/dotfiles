@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LAUNCH_CMD="steam -bigpicture"
+LAUNCH_CMD="/usr/bin/bazzite-steam -bigpicture"
 TOGGLE_FILE="$HOME/scripts/steam-autopicture.ignore"
 LOG_FILE="$HOME/scripts/steam-autopicture.log"
 LOG_MAX_LINES=500
@@ -65,7 +65,7 @@ procesar_evento() {
     else
         log INFO "Steam abierto — abriendo Big Picture"
         notificar "$nombre — Abriendo Big Picture"
-        steam steam://open/bigpicture &
+        /usr/bin/bazzite-steam steam://open/bigpicture &
     fi
 }
 

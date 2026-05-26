@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Aislamos el bloque de micrófonos para no confundir IDs de salida con entrada
+SOURCES_BLOCK=$(wpctl status | sed -n '/Sources:/,/Filters:/p')
+
+# Capturamos IDs
+ID_DEDICATED=$(echo "$SOURCES_BLOCK" | grep "{{MIC_DEDICATED}}" | grep -oP '\d+' | head -n 1)
+ID_HEADSET=$(echo "$SOURCES_BLOCK" | grep "{{MIC_HEADSET}}" | grep -oP '\d+' | head -n 1)
+
+# Detectamos el activo (*)
+CURRENT=$(echo "$SOURCES_BLOCK" | grep '\*' | grep -oP '\d+' | head -n 1)
+
+if [ "$CURRENT" == "$ID_DEDICATED" ]; then
+    wpctl set-default "$ID_HEADSET"
+    notify-send "Micrófono" "Cambiado a: MICRO CASCOS" --icon=audio-input-microphone
+else
+    wpctl set-default "$ID_DEDICATED"
+    notify-send "Micrófono" "Cambiado a: MICRO DEDICADO" --icon=audio-input-microphone
+fi

@@ -65,6 +65,11 @@ check_shell_core() {
             check_symlink "$HOME/.bashrc.d/${f}.sh" "$DOTFILES_DIR/home/.bashrc.d/${f}.sh"
     done
 
+    for script in cambiar_audio.sh cambiar_micro.sh; do
+        [ -f "$DOTFILES_DIR/modules/shell-core/scripts/$script" ] && \
+            check_symlink "$HOME/scripts/$script" "$DOTFILES_DIR/modules/shell-core/scripts/$script"
+    done
+
     check_dependency git
 }
 

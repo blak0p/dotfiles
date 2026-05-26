@@ -53,3 +53,12 @@ fi
 if [ -f "$DOTFILES_DIR/home/.bashrc.d/homebrew.sh" ]; then
     link_file "$DOTFILES_DIR/home/.bashrc.d/homebrew.sh" "$HOME/.bashrc.d/homebrew.sh"
 fi
+
+# 4. scripts/ — migrar de symlink a directorio real
+# Cada módulo linkea sus propios scripts adentro
+if [ -L "$HOME/scripts" ]; then
+    OLD_TARGET=$(readlink -f "$HOME/scripts")
+    echo -e "  Migrando ~/scripts: $OLD_TARGET → directorio real"
+    rm "$HOME/scripts"
+fi
+mkdir -p "$HOME/scripts"

@@ -1,34 +1,60 @@
 # 🚀 Dotfiles de Alejandro-M-P
 
-Este repositorio contiene mi configuración personal, scripts unificados y herramientas de hardware.
+Configuración personal modular. Cada módulo es autónomo: incluye scripts, configs y systemd.
 
-## 📁 Estructura
-- `home/`: Archivos de configuración de la raíz (`.bashrc`, `.zshrc`, `.gitconfig`).
-- `config/`: Configuraciones de aplicaciones (`kitty`, `fastfetch`, `axiom`, `starship`, etc.).
-- `scripts/`: Mis utilitarios personales (audio, micro, gestión de juegos).
-- `hardware/`: Controladores para la pantalla del disipador Deepcool AK620.
-- `dev/`: Código fuente de proyectos personales (Axiom).
-
-## 🛠️ Instalación Automática
-Para instalar todo en una máquina nueva, simplemente ejecutá este comando:
+## 📦 Instalación
 
 ```bash
-git clone git@github.com:Alejandro-M-P/dotfiles.git ~/dotfiles && bash ~/dotfiles/install.sh
+git clone git@github.com:Alejandro-M-P/dotfiles.git ~/dotfiles
+~/dotfiles/install.sh
 ```
 
-El script se encargará de:
-1. Crear los enlaces simbólicos (symlinks).
-2. Hacer un backup automático de cualquier archivo existente que pueda entrar en conflicto.
-3. Organizar las carpetas necesarias (`.config`, `dev`, etc.).
+Elegís los módulos que querés con una checklist. Solo eso se instala.
+
+## 📁 Estructura
+
+```
+dotfiles/
+├── install.sh          # Instalador con checklist de módulos
+├── doctor.sh           # Diagnóstico modular
+├── home/               # Base para shell-core
+├── config/             # Base para módulos (legacy)
+├── scripts/            # Base para módulos (legacy)
+├── modules/
+│   ├── shell-core/     # bashrc, bashrc.d, zshrc, nanorc, gitconfig
+│   ├── prompt/         # oh-my-posh, starship
+│   ├── apps/           # kitty, btop, fastfetch
+│   ├── gaming/         # Steam autopicture, ROM tools, systemd
+│   ├── ai/             # Gentle AI, Ollama
+│   ├── dev/            # LazyGit, Axiom, scripts
+│   └── hardware/       # Deepcool AK620 + daemon
+├── install.d.legacy/   # Scripts viejos (referencia)
+├── backups/            # Backups automáticos
+└── hardware/           # Deepcool (legacy)
+```
+
+## 🧩 Módulos
+
+| Módulo | shell | scripts | config | systemd | bashrc.d |
+|--------|-------|---------|--------|---------|----------|
+| shell-core | ✅ | — | — | — | ✅ |
+| prompt | — | — | ✅ | — | ✅ |
+| apps | — | — | ✅ | — | — |
+| gaming | — | ✅ | ✅ | ✅ | — |
+| ai | — | ✅ | — | — | ✅ |
+| dev | — | ✅ | ✅ | ✅ | ✅ |
+| hardware | — | — | ✅ | ✅ | — |
+
+Cada `modules/*/install.sh` sabe exactamente qué linkear y habilitar.
+
+## 🩺 Diagnóstico
+
+```bash
+~/dotfiles/doctor.sh
+```
+
+Detecta automáticamente los módulos instalados y verifica symlinks + dependencias.
 
 ---
 
-## 🧹 Registro de Limpieza (Lo que se unificó)
-
-Para mantener el sistema limpio, se realizaron los siguientes cambios:
-- **Scripts:** `~/.scripts/` se movió a `~/scripts/` para evitar duplicidad.
-- **Switch:** `convertir-nsz` es ahora el script único de gestión (reemplaza a `convertit.sh`).
-- **Bash:** Se eliminaron archivos temporales vacíos (`.bashrcs`, `.bashrc_temp`).
-
----
 *Configuración privada para uso personal.*

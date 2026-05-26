@@ -1,51 +1,52 @@
-# 🛠️ Guía Rápida: Cómo usar mis Dotfiles
+# 🛠️ Dotfiles — Instalación por Módulos
 
-Si estás en una PC nueva y querés tener todo como lo tenés ahora, seguí estos pasos:
+## En una PC nueva
 
-### 1. Descargar el repositorio
 ```bash
 git clone git@github.com:Alejandro-M-P/dotfiles.git ~/dotfiles
+~/dotfiles/install.sh
 ```
 
-### 2. Instalar (crear enlaces)
-Copiá y pegá estos comandos para que el sistema reconozca tus configuraciones:
+El instalador te muestra una lista de módulos. Elegís los que quieras y solo eso se instala.
+
+### Módulos disponibles
+
+| # | Módulo | Incluye |
+|---|--------|---------|
+| 1 | shell-core | bashrc, bashrc.d base (aliases, fzf, zoxide, completions), zshrc, nanorc, gitconfig |
+| 2 | prompt | oh-my-posh (tema), starship |
+| 3 | apps | kitty, btop, fastfetch |
+| 4 | gaming | Steam autopicture, ROM tools, auto-big-picture service |
+| 5 | ai | Gentle AI, Ollama |
+| 6 | dev | LazyGit, Axiom, scripts de desarrollo |
+| 7 | hardware | Deepcool AK620 + daemon |
+
+### Para tu PC (todo)
 
 ```bash
-# Bash y Shell
-ln -sf ~/dotfiles/home/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/home/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/home/.bashrc.d ~/.bashrc.d
-ln -sf ~/dotfiles/home/.bash_profile ~/.bash_profile
-
-# Scripts Personales
-ln -sf ~/dotfiles/scripts ~/scripts
-
-# Aplicaciones (Kitty, Btop, etc.)
-ln -sf ~/dotfiles/config/kitty ~/.config/kitty
-ln -sf ~/dotfiles/config/btop ~/.config/btop
-ln -sf ~/dotfiles/config/fastfetch ~/.config/fastfetch
-ln -sf ~/dotfiles/config/lazygit ~/.config/lazygit
-ln -sf ~/dotfiles/config/oh-my-posh ~/.config/oh-my-posh
-ln -sf ~/dotfiles/config/starship.tom ~/.config/starship.tom
-
-# Axiom y Hardware
-ln -sf ~/dotfiles/config/axiom ~/.config/axiom
-ln -sf ~/dotfiles/dev/axiom ~/dev/axiom
-ln -sf ~/dotfiles/hardware/deepcool-ak620 ~/deepcool-ak620-digital-linux
+~/dotfiles/install.sh
+# Elegí "a" (todos)
 ```
 
----
+### Para la PC de tu novia (solo gaming)
 
-## 🧹 Registro de Limpieza (Lo que quité)
+```bash
+~/dotfiles/install.sh
+# Elegí: 1,2,3,4  (shell-core + prompt + apps + gaming)
+```
 
-Para que el sistema sea más eficiente, eliminé/moví estas cosas redundantes:
+## Cómo agregar un módulo nuevo
 
-1.  **Archivos de Bash inútiles:**
-    *   `~/.bashrcs` (Estaba vacío).
-    *   `~/.bashrc_temp` (Configuración vieja de ZSH).
-2.  **Scripts Redundantes:**
-    *   `~/.scripts/`: Borré la carpeta entera. Los scripts `toggle_audio.sh` y `toggle_mic.sh` ahora viven en `~/scripts/` (unificados con el resto).
-    *   `~/scripts/convertit.sh`: Borrado (reemplazado por el más potente `convertir-nsz`).
-    *   `~/scripts/convertit updates y dlc.sh`: Borrado (reemplazado por el más potente `convertir-nsz`).
+1. Creá `modules/<nombre>/install.sh`
+2. Poné los scripts, configs, systemd, bashrc.d dentro del módulo
+3. Agregalo a las listas `MODULE_NAMES` y `MODULE_DESCS` en `install.sh`
+4. Agregá la función de chequeo en `doctor.sh`
 
-*Nota: Los archivos borrados se guardaron una copia en `~/dotfiles/backups/` por si alguna vez necesitás ver qué tenían, pero ya no molestan en tu sistema principal.*
+Cada módulo es autónomo — incluye TODO lo que necesita (scripts + config + systemd + bashrc.d).
+
+## Diagnóstico
+
+```bash
+~/dotfiles/doctor.sh
+```
+Detecta automáticamente qué módulos están instalados y verifica solo esos.

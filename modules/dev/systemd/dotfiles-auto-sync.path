@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch dotfiles for changes and auto-sync
+
+[Path]
+PathModified=/var/home/alejandro/dotfiles
+Unit=dotfiles-auto-sync.service
+
+[Install]
+WantedBy=default.target

@@ -4,8 +4,8 @@
 	postBuffer = 524288000
 
 [user]
-	name = Alejandro-M-P
-	email = martinpujaltea@gmail.com
+	name = {{GIT_USER_NAME}}
+	email = {{GIT_USER_EMAIL}}
 
 [init]
 	defaultBranch = main
@@ -14,10 +14,9 @@
 	rebase = true
 
 [core]
-	hooksPath = /home/alejandro/.config/git/hooks
+	hooksPath = {{HOME}}/.config/git/hooks
 
 [diff]
-	external = difft
 	colorMoved = default
 
 [merge]

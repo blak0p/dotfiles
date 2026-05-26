@@ -1,0 +1,189 @@
+#!/usr/bin/env python3
+import os, struct, socket, time, errno, sys
+
+DSU_ADDR = ("127.0.0.1", 26760)
+gyro = [0.0, 0.0, 0.0]
+accel = [0.0, 0.0, 0.0]
+packet_counter = 0
+
+HIDRAW_DEV = None
+
+def find_hidraw():
+    for name in os.listdir("/sys/bus/hid/devices/"):
+        path = f"/sys/bus/hid/devices/{name}"
+        if not os.path.isdir(path):
+            continue
+        try:
+            hid_id = open(f"{path}/modalias").read().strip()
+        except:
+            continue
+        if "0000057E" in hid_id or "00002009" in hid_id or "057E" in hid_id:
+            for entry in os.listdir(path):
+                if entry.startswith("hidraw"):
+                    hidraw_path = f"/sys/bus/hid/devices/{name}/{entry}"
+                    if os.path.isdir(hidraw_path):
+                        child = os.listdir(hidraw_path)
+                        if child:
+                            return f"/dev/{child[0]}"
+    return None
+
+def crc32(data):
+    crc = 0xFFFFFFFF
+    for b in data:
+        crc ^= b
+        for _ in range(8):
+            crc = (crc >> 1) ^ 0xEDB88320 if crc & 1 else crc >> 1
+    return crc ^ 0xFFFFFFFF
+
+def make_dsu_response(msg_type, payload, req_id=0):
+    magic = b"DSUS"
+    ver = 1001
+    body = struct.pack("<I", msg_type) + payload
+    length = 16 + 4 + len(payload)
+    total = struct.pack("<4sHH", magic, ver, length)
+    total += struct.pack("<II", 0, req_id) + body
+    crc = crc32(total[:8] + b"\x00\x00\x00\x00" + total[12:])
+    total = total[:8] + struct.pack("<I", crc) + total[12:]
+    return total
+
+def make_slot_data():
+    global packet_counter
+    packet_counter += 1
+    mac = b"\x00\x00\x00\x00\x00\x00"
+    ts = int(time.time() * 1_000_000)
+    p = bytearray(80)
+    p[0] = 0
+    p[1] = 2
+    p[2] = 2
+    p[3] = 2
+    p[4:10] = mac
+    p[10] = 0
+    p[11] = 1
+    struct.pack_into("<I", p, 12, packet_counter)
+    struct.pack_into("<ffff", p, 16, 0.0, 0.0, 0.0, 0.0)
+    struct.pack_into("<ffff", p, 32, 128.0, 128.0, 128.0, 128.0)
+    struct.pack_into("<Q", p, 48, ts)
+    struct.pack_into("<fff", p, 56, accel[0], accel[1], accel[2])
+    struct.pack_into("<fff", p, 68, gyro[0], gyro[1], gyro[2])
+    return bytes(p)
+
+def make_info_response(req_id=0):
+    empty_slot = struct.pack("<BBBB6sB", 0xFF, 0, 0, 0, b"\x00" * 6, 0)
+    return make_dsu_response(0x100001, empty_slot * 4, req_id)
+
+def parse_0x21(data):
+    global gyro, accel
+    if len(data) < 25 or data[0] != 0x21:
+        return False
+    ax = struct.unpack_from("<h", data, 13)[0]
+    ay = struct.unpack_from("<h", data, 15)[0]
+    az = struct.unpack_from("<h", data, 17)[0]
+    gx = struct.unpack_from("<h", data, 19)[0]
+    gy = struct.unpack_from("<h", data, 21)[0]
+    gz = struct.unpack_from("<h", data, 23)[0]
+    accel[0] = ax / 4096.0
+    accel[1] = ay / 4096.0
+    accel[2] = az / 4096.0
+    gyro[0] = gx / 14247.0
+    gyro[1] = gy / 14247.0
+    gyro[2] = gz / 14247.0
+    return True
+
+def run():
+    global HIDRAW_DEV
+
+    hidraw_dev = find_hidraw()
+    if not hidraw_dev:
+        print("Nintendo Switch controller not found. Connect it and try again.")
+        sys.exit(1)
+
+    HIDRAW_DEV = hidraw_dev
+    print(f"Opening {hidraw_dev}...")
+
+    wfd = os.open(hidraw_dev, os.O_RDWR)
+    rfd = os.open(hidraw_dev, os.O_RDONLY | os.O_NONBLOCK)
+
+    imu_cmd = bytearray(49)
+    imu_cmd[0] = 0x01
+    imu_cmd[11] = 0x00
+    imu_cmd[12] = 0x40
+    imu_cmd[13] = 0x01
+
+    os.write(wfd, imu_cmd)
+    time.sleep(0.1)
+    try:
+        d = os.read(rfd, 128)
+        parse_0x21(d)
+    except:
+        pass
+    print("IMU enabled")
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind(("0.0.0.0", 26760))
+    sock.setblocking(0)
+    print(f"DSU server on {DSU_ADDR}")
+    print(f"IMU via {hidraw_dev} (60Hz poll when clients active)")
+
+    clients = {}
+    last_dsu_push = 0
+    last_imu_poll = 0
+    POLL_INTERVAL = 0.016
+
+    while True:
+        now = time.monotonic()
+
+        for _ in range(128):
+            try:
+                d = os.read(rfd, 64)
+                if not d:
+                    break
+                parse_0x21(d)
+            except OSError as e:
+                if e.errno in (errno.EAGAIN, errno.EWOULDBLOCK):
+                    break
+                print(f"Read error: {e}")
+                time.sleep(0.1)
+                break
+
+        has_clients = bool(clients)
+        if has_clients and now - last_imu_poll >= POLL_INTERVAL:
+            try:
+                os.write(wfd, imu_cmd)
+            except OSError:
+                pass
+            last_imu_poll = now
+
+        try:
+            req, addr = sock.recvfrom(256)
+            if len(req) < 20:
+                continue
+            msg_type = struct.unpack_from("<I", req, 16)[0]
+            req_id = struct.unpack_from("<I", req, 12)[0]
+
+            if msg_type == 0x100000:
+                resp = make_dsu_response(0x100001, struct.pack("<I", 4), req_id)
+                sock.sendto(resp, addr)
+            elif msg_type == 0x100001:
+                resp = make_info_response(req_id)
+                sock.sendto(resp, addr)
+            elif msg_type == 0x100002:
+                clients[addr] = time.monotonic()
+                resp = make_dsu_response(0x100002, make_slot_data(), req_id)
+                sock.sendto(resp, addr)
+        except BlockingIOError:
+            pass
+
+        now_t = time.time()
+        clients = {a: t for a, t in clients.items() if now_t - t <= 5}
+
+        if has_clients and now_t - last_dsu_push >= 0.004:
+            for addr in list(clients.keys()):
+                try:
+                    resp = make_dsu_response(0x100002, make_slot_data(), 0)
+                    sock.sendto(resp, addr)
+                except:
+                    clients.pop(addr, None)
+            last_dsu_push = now_t
+
+if __name__ == "__main__":
+    run()

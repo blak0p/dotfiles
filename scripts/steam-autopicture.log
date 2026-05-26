@@ -1,319 +1,377 @@
+[2026-05-23 21:57:47] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 21:57:47] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 21:57:47] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_TiGAZj
+[2026-05-23 21:57:47] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 21:57:50] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-05-23 21:57:55] [INFO] Toggle activado → daemon desactivado
+[2026-05-23 22:27:24] [INFO] Toggle desactivado → daemon activado
+[2026-05-23 22:27:30] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02E0.0012/input/input47/js1)
+[2026-05-23 22:27:30] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 22:27:30] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 22:27:30] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_TiGAZj
+[2026-05-23 22:27:30] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-23 22:27:31] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 22:27:33] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-05-23 22:28:15] [INFO] Toggle activado → daemon desactivado
 
 ======================================
-[2026-05-21 21:24:07] [INFO] Daemon iniciado (PID 5539)
+[2026-05-23 22:45:06] [INFO] Daemon iniciado (PID 2128)
 ======================================
-[2026-05-21 21:24:07] [INFO] Escuchando eventos udevadm...
-[2026-05-21 21:32:08] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input28/event26
-[2026-05-21 21:32:23] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input30/event27
-[2026-05-21 21:32:38] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input29/event26
-[2026-05-21 21:32:53] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input31/event28
-[2026-05-21 21:33:03] [INFO] Toggle activado → daemon desactivado
-[2026-05-21 21:33:04] [INFO] Toggle desactivado → daemon activado
-[2026-05-21 21:33:08] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input32/event29
-[2026-05-21 21:34:01] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input36/event29
-[2026-05-21 21:34:16] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input33/event26
-[2026-05-21 21:34:31] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input35/event28
-[2026-05-21 21:34:46] [INFO] Dispositivo ignorado (no es joystick): /devices/virtual/misc/uhid/0005:045E:02E0.000B/input/input34/event27
+[2026-05-23 22:45:06] [INFO] Escuchando eventos udevadm...
+[2026-05-23 22:45:36] [INFO] Toggle desactivado → daemon activado
+[2026-05-23 22:45:37] [INFO] Toggle activado → daemon desactivado
+[2026-05-23 22:45:47] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input28/js1)
+[2026-05-23 22:45:47] [INFO] Toggle activo — acción ignorada
+[2026-05-23 22:45:48] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 22:47:07] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input33/js1)
+[2026-05-23 22:47:07] [INFO] Toggle activo — acción ignorada
 
 ======================================
-[2026-05-21 21:35:33] [INFO] Daemon iniciado (PID 10365)
+[2026-05-23 22:51:33] [INFO] Daemon iniciado (PID 3999)
 ======================================
-[2026-05-21 21:35:33] [INFO] Escuchando eventos udevadm...
-[2026-05-21 21:35:54] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000C/input/input37/js1)
-[2026-05-21 21:35:54] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-21 21:36:02] [INFO] Joystick detectado:  (/devices/virtual/input/input41/js2)
-[2026-05-21 21:36:02] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-21 21:37:54] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000D/input/input42/js1)
-[2026-05-21 21:37:54] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-21 21:37:59] [INFO] Joystick detectado:  (/devices/virtual/input/input46/js2)
-[2026-05-21 21:37:59] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 22:51:33] [INFO] Escuchando eventos udevadm...
+[2026-05-23 22:51:39] [INFO] Toggle desactivado → daemon activado
+[2026-05-23 22:51:39] [INFO] Toggle activado → daemon desactivado
+[2026-05-23 22:51:52] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input28/js1)
+[2026-05-23 22:51:52] [INFO] Toggle activo — acción ignorada
+[2026-05-23 22:57:29] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input31/js1)
+[2026-05-23 22:57:29] [INFO] Toggle activo — acción ignorada
+[2026-05-23 22:57:32] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-05-23 22:58:16] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input33/js1)
+[2026-05-23 22:58:16] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:01:28] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input34/js1)
+[2026-05-23 23:01:28] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:01:34] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
+[2026-05-23 23:03:20] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input36/js1)
+[2026-05-23 23:03:20] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:03:23] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-05-23 23:04:41] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input38/js1)
+[2026-05-23 23:04:41] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:04:57] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input39/js1)
+[2026-05-23 23:04:57] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:05:41] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input40/js1)
+[2026-05-23 23:05:41] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:06:08] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input41/js1)
+[2026-05-23 23:06:08] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:06:27] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input42/js1)
+[2026-05-23 23:06:27] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:06:32] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:08:45] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input44/js1)
+[2026-05-23 23:08:45] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:09:55] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input45/js1)
+[2026-05-23 23:09:55] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:10:11] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input46/js1)
+[2026-05-23 23:10:11] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:10:11] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:11:54] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input48/js1)
+[2026-05-23 23:11:54] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:12:03] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
+[2026-05-23 23:12:04] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input50/js1)
+[2026-05-23 23:12:04] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:14:04] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input51/js1)
+[2026-05-23 23:14:04] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:14:11] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-05-23 23:14:11] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-05-23 23:14:49] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input54/js1)
+[2026-05-23 23:14:49] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:14:53] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-05-23 23:14:54] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:17:46] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input57/js1)
+[2026-05-23 23:17:46] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:17:50] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-05-23 23:17:51] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:19:34] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input60/js1)
+[2026-05-23 23:19:34] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:19:37] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-05-23 23:19:38] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-05-23 23:21:46] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input63/js1)
+[2026-05-23 23:21:46] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:21:51] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:21:51] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:24:41] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input66/js1)
+[2026-05-23 23:24:41] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:24:46] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:24:46] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:27:26] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input69/js1)
+[2026-05-23 23:27:26] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:27:35] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
+[2026-05-23 23:27:36] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input71/js1)
+[2026-05-23 23:27:36] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:28:29] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input72/js1)
+[2026-05-23 23:28:29] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:28:34] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:28:34] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:30:34] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input75/js1)
+[2026-05-23 23:30:34] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:30:39] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:30:40] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
+[2026-05-23 23:31:39] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input78/js1)
+[2026-05-23 23:31:39] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:31:45] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-05-23 23:31:46] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-05-23 23:31:53] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input81/js1)
+[2026-05-23 23:31:53] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:31:54] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:32:12] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input83/js1)
+[2026-05-23 23:32:12] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:32:29] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input84/js1)
+[2026-05-23 23:32:29] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:32:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:32:37] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-05-23 23:32:37] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-05-23 23:33:01] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input88/js1)
+[2026-05-23 23:33:01] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:33:01] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:33:15] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input90/js1)
+[2026-05-23 23:33:15] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:33:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:33:31] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input92/js1)
+[2026-05-23 23:33:31] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:33:31] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:33:42] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input94/js1)
+[2026-05-23 23:33:42] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:33:43] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:33:52] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input96/js1)
+[2026-05-23 23:33:52] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:33:53] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:35:27] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input98/js1)
+[2026-05-23 23:35:27] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:35:28] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:36:30] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input100/js1)
+[2026-05-23 23:36:30] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:36:42] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input101/js1)
+[2026-05-23 23:36:42] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:36:42] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:37:00] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input103/js1)
+[2026-05-23 23:37:00] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:37:00] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:37:07] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-05-23 23:37:08] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-05-23 23:37:32] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input107/js1)
+[2026-05-23 23:37:32] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:37:32] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:37:43] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input109/js1)
+[2026-05-23 23:37:43] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:37:44] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:38:00] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input111/js1)
+[2026-05-23 23:38:00] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:38:01] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:38:18] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input113/js1)
+[2026-05-23 23:38:18] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:38:19] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:38:34] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input115/js1)
+[2026-05-23 23:38:34] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:38:35] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:39:56] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input117/js1)
+[2026-05-23 23:39:56] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:39:56] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:39:58] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-05-23 23:40:29] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input120/js1)
+[2026-05-23 23:40:29] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:41:01] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input121/js1)
+[2026-05-23 23:41:01] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:41:30] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input122/js1)
+[2026-05-23 23:41:30] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:41:57] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input123/js1)
+[2026-05-23 23:41:57] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:42:37] [INFO] Toggle desactivado → daemon activado
+[2026-05-23 23:42:40] [INFO] Toggle activado → daemon desactivado
+[2026-05-23 23:42:46] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input124/js1)
+[2026-05-23 23:42:46] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:42:50] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-05-23 23:43:35] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input126/js1)
+[2026-05-23 23:43:35] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:43:50] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input127/js1)
+[2026-05-23 23:43:50] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:43:50] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:45:00] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input129/js1)
+[2026-05-23 23:45:00] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:45:36] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input130/js1)
+[2026-05-23 23:45:36] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:48:31] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input131/js1)
+[2026-05-23 23:48:31] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:48:36] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-05-23 23:49:32] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input133/js1)
+[2026-05-23 23:49:32] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:49:45] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input134/js1)
+[2026-05-23 23:49:45] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:50:18] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input135/js1)
+[2026-05-23 23:50:18] [INFO] Toggle activo — acción ignorada
+[2026-05-23 23:53:55] [INFO] Toggle desactivado → daemon activado
+[2026-05-23 23:55:03] [INFO] Log rotado
 
 ======================================
-[2026-05-21 22:56:15] [INFO] Daemon iniciado (PID 1928)
+[2026-05-23 23:55:03] [INFO] Daemon iniciado (PID 2167)
 ======================================
-[2026-05-21 22:56:15] [INFO] Escuchando eventos udevadm...
+[2026-05-23 23:55:03] [INFO] Escuchando eventos udevadm...
+[2026-05-23 23:55:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000D/input/input29/js1)
+[2026-05-23 23:55:21] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:55:21] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:55:21] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:55:21] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-23 23:55:28] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-05-23 23:55:40] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input33/js1)
+[2026-05-23 23:55:40] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:55:40] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:55:40] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:55:40] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 23:55:56] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input34/js1)
+[2026-05-23 23:55:56] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:55:56] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:55:56] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:55:56] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 23:56:10] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input35/js1)
+[2026-05-23 23:56:10] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:56:10] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:56:10] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:56:10] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 23:56:33] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input36/js1)
+[2026-05-23 23:56:33] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:56:33] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:56:33] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:56:33] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 23:56:48] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input37/js1)
+[2026-05-23 23:56:48] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:56:48] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:56:48] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:56:48] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 23:56:49] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-23 23:57:02] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input39/js1)
+[2026-05-23 23:57:02] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:57:02] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:57:02] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:57:02] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-23 23:57:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-23 23:57:14] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input41/js1)
+[2026-05-23 23:57:14] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-23 23:57:14] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-23 23:57:14] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_GTEEZW
+[2026-05-23 23:57:14] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-24 00:03:41] [INFO] Toggle activado → daemon desactivado
+[2026-05-24 00:05:01] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input42/js1)
+[2026-05-24 00:05:01] [INFO] Toggle activo — acción ignorada
+[2026-05-24 00:05:14] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input43/js1)
+[2026-05-24 00:05:14] [INFO] Toggle activo — acción ignorada
+[2026-05-24 00:05:56] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input44/js1)
+[2026-05-24 00:05:56] [INFO] Toggle activo — acción ignorada
 
 ======================================
-[2026-05-22 10:21:08] [INFO] Daemon iniciado (PID 1931)
+[2026-05-24 21:24:24] [INFO] Daemon iniciado (PID 2151)
 ======================================
-[2026-05-22 10:21:08] [INFO] Escuchando eventos udevadm...
-[2026-05-22 13:03:48] [INFO] Toggle activado → daemon desactivado
-[2026-05-22 13:03:54] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.000A/input/input28/js1)
-[2026-05-22 13:03:54] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:04:13] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000C/input/input31/js1)
-[2026-05-22 13:04:13] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:04:18] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000C/input/input32/js1)
-[2026-05-22 13:04:18] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:10:50] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.000D/input/input36/js2)
-[2026-05-22 13:10:50] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:14:04] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000F/input/input39/js1)
-[2026-05-22 13:14:04] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:15:22] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.0010/input/input43/js2)
-[2026-05-22 13:15:22] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:19:53] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0012/input/input46/js1)
-[2026-05-22 13:19:53] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:21:16] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.0013/input/input50/js1)
-[2026-05-22 13:21:16] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:26:22] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0015/input/input53/js1)
-[2026-05-22 13:26:22] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:27:41] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0016/input/input57/js1)
-[2026-05-22 13:27:41] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:28:27] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0017/input/input61/js1)
-[2026-05-22 13:28:27] [INFO] Toggle activo — acción ignorada
-[2026-05-22 13:29:16] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:057E:2009.0018/input/input65/js1)
-[2026-05-22 13:29:16] [INFO] Toggle activo — acción ignorada
+[2026-05-24 21:24:24] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-22 13:56:39] [INFO] Daemon iniciado (PID 1925)
+[2026-05-25 09:16:27] [INFO] Daemon iniciado (PID 2144)
 ======================================
-[2026-05-22 13:56:39] [INFO] Escuchando eventos udevadm...
-[2026-05-22 13:57:02] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input28/js1)
-[2026-05-22 13:57:02] [INFO] Toggle activo — acción ignorada
+[2026-05-25 09:16:27] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-22 14:00:16] [INFO] Daemon iniciado (PID 1960)
+[2026-05-25 14:22:45] [INFO] Daemon iniciado (PID 2138)
 ======================================
-[2026-05-22 14:00:16] [INFO] Escuchando eventos udevadm...
-[2026-05-22 14:01:42] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input28/js1)
-[2026-05-22 14:01:42] [INFO] Toggle activo — acción ignorada
-[2026-05-22 14:17:08] [INFO] Toggle desactivado → daemon activado
-[2026-05-22 14:17:32] [INFO] Joystick detectado:  (/devices/virtual/input/input31/js1)
-[2026-05-22 14:17:32] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 14:18:54] [INFO] Joystick detectado:  (/devices/virtual/input/input32/js1)
-[2026-05-22 14:18:54] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 14:20:19] [INFO] Joystick detectado:  (/devices/virtual/input/input33/js1)
-[2026-05-22 14:20:19] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 14:20:24] [INFO] Joystick detectado:  (/devices/virtual/input/input34/js1)
-[2026-05-22 14:20:24] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 14:20:29] [INFO] Joystick detectado:  (/devices/virtual/input/input35/js1)
-[2026-05-22 14:20:29] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 14:38:46] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:057E:2009.0010/input/input39/js1)
-[2026-05-22 14:38:46] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 14:40:57] [INFO] Toggle activado → daemon desactivado
-[2026-05-22 14:40:58] [INFO] Toggle desactivado → daemon activado
-[2026-05-22 14:41:17] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0011/input/input42/js1)
-[2026-05-22 14:41:17] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 14:41:22] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0011/input/input43/js1)
-[2026-05-22 14:41:22] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 14:41:39] [INFO] Joystick detectado:  (/devices/virtual/input/input47/js2)
-[2026-05-22 14:41:39] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 14:42:22] [INFO] Joystick detectado:  (/devices/virtual/input/input48/js2)
-[2026-05-22 14:42:22] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 15:45:22] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.0012/input/input49/js1)
-[2026-05-22 15:45:22] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 15:45:37] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.0014/input/input52/js1)
-[2026-05-22 15:45:37] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 16:05:17] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0016/input/input55/js1)
-[2026-05-22 16:05:17] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 16:05:46] [INFO] Joystick detectado:  (/devices/virtual/input/input59/js2)
-[2026-05-22 16:05:46] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 16:06:04] [INFO] Joystick detectado:  (/devices/virtual/input/input60/js2)
-[2026-05-22 16:06:04] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 16:10:02] [INFO] Joystick detectado:  (/devices/virtual/input/input61/js2)
-[2026-05-22 16:10:02] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 18:10:28] [INFO] Toggle activado → daemon desactivado
-[2026-05-22 18:11:14] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0017/input/input62/js1)
-[2026-05-22 18:11:14] [INFO] Toggle activo — acción ignorada
-[2026-05-22 18:46:04] [INFO] Joystick detectado:  (/devices/virtual/input/input74/js1)
-[2026-05-22 18:46:04] [INFO] Toggle activo — acción ignorada
-[2026-05-22 18:46:12] [INFO] Joystick detectado:  (/devices/virtual/input/input75/js1)
-[2026-05-22 18:46:12] [INFO] Toggle activo — acción ignorada
-[2026-05-22 18:46:17] [INFO] Joystick detectado:  (/devices/virtual/input/input76/js1)
-[2026-05-22 18:46:17] [INFO] Toggle activo — acción ignorada
-[2026-05-22 18:46:41] [INFO] Joystick detectado:  (/devices/virtual/input/input77/js1)
-[2026-05-22 18:46:41] [INFO] Toggle activo — acción ignorada
-[2026-05-22 18:46:46] [INFO] Joystick detectado:  (/devices/virtual/input/input78/js1)
-[2026-05-22 18:46:46] [INFO] Toggle activo — acción ignorada
-[2026-05-22 18:48:09] [INFO] Toggle desactivado → daemon activado
-[2026-05-22 18:50:44] [INFO] Joystick detectado:  (/devices/virtual/input/input79/js1)
-[2026-05-22 18:50:44] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 18:51:04] [INFO] Joystick detectado:  (/devices/virtual/input/input82/js1)
-[2026-05-22 18:51:04] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 18:51:09] [INFO] Joystick detectado:  (/devices/virtual/input/input83/js1)
-[2026-05-22 18:51:09] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 18:52:05] [INFO] Joystick detectado:  (/devices/virtual/input/input84/js1)
-[2026-05-22 18:52:05] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 18:52:10] [INFO] Joystick detectado:  (/devices/virtual/input/input85/js1)
-[2026-05-22 18:52:10] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 18:59:58] [INFO] Joystick detectado:  (/devices/virtual/input/input88/js1)
-[2026-05-22 18:59:58] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:00:03] [INFO] Joystick detectado:  (/devices/virtual/input/input89/js1)
-[2026-05-22 19:00:03] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:00:08] [INFO] Joystick detectado:  (/devices/virtual/input/input90/js1)
-[2026-05-22 19:00:08] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:04:50] [INFO] Joystick detectado:  (/devices/virtual/input/input93/js1)
-[2026-05-22 19:04:50] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:04:58] [INFO] Joystick detectado:  (/devices/virtual/input/input94/js1)
-[2026-05-22 19:04:58] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:05:03] [INFO] Joystick detectado:  (/devices/virtual/input/input95/js1)
-[2026-05-22 19:05:03] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:05:47] [INFO] Joystick detectado:  (/devices/virtual/input/input96/js1)
-[2026-05-22 19:05:47] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:05:52] [INFO] Joystick detectado:  (/devices/virtual/input/input97/js1)
-[2026-05-22 19:05:52] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:11:02] [INFO] Joystick detectado:  (/devices/virtual/input/input100/js1)
-[2026-05-22 19:11:02] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:11:07] [INFO] Joystick detectado:  (/devices/virtual/input/input101/js1)
-[2026-05-22 19:11:07] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:11:12] [INFO] Joystick detectado:  (/devices/virtual/input/input102/js1)
-[2026-05-22 19:11:12] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:13:15] [INFO] Joystick detectado:  (/devices/virtual/input/input103/js1)
-[2026-05-22 19:13:15] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:13:41] [INFO] Joystick detectado:  (/devices/virtual/input/input104/js1)
-[2026-05-22 19:13:41] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:13:46] [INFO] Joystick detectado:  (/devices/virtual/input/input105/js1)
-[2026-05-22 19:13:46] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:21:48] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0022/input/input108/js1)
-[2026-05-22 19:21:48] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 19:22:06] [INFO] Joystick detectado:  (/devices/virtual/input/input112/js2)
-[2026-05-22 19:22:06] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:24:06] [INFO] Joystick detectado:  (/devices/virtual/input/input113/js2)
-[2026-05-22 19:24:06] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:24:11] [INFO] Joystick detectado:  (/devices/virtual/input/input114/js2)
-[2026-05-22 19:24:11] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:24:29] [INFO] Joystick detectado:  (/devices/virtual/input/input115/js2)
-[2026-05-22 19:24:29] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:25:26] [INFO] Joystick detectado:  (/devices/virtual/input/input116/js2)
-[2026-05-22 19:25:26] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:25:45] [INFO] Joystick detectado:  (/devices/virtual/input/input117/js3)
-[2026-05-22 19:25:45] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:30:11] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0023/input/input118/js1)
-[2026-05-22 19:30:11] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 19:30:31] [INFO] Joystick detectado:  (/devices/virtual/input/input122/js2)
-[2026-05-22 19:30:31] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:31:42] [INFO] Joystick detectado:  (/devices/virtual/input/input123/js2)
-[2026-05-22 19:31:42] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:32:32] [INFO] Joystick detectado:  (/devices/virtual/input/input124/js3)
-[2026-05-22 19:32:32] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:34:49] [INFO] Joystick detectado:  (/devices/virtual/input/input125/js2)
-[2026-05-22 19:34:49] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:35:59] [INFO] Joystick detectado:  (/devices/virtual/input/input126/js2)
-[2026-05-22 19:35:59] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:36:25] [INFO] Joystick detectado:  (/devices/virtual/input/input127/js2)
-[2026-05-22 19:36:25] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:37:10] [INFO] Joystick detectado:  (/devices/virtual/input/input128/js2)
-[2026-05-22 19:37:10] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:42:49] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0024/input/input129/js1)
-[2026-05-22 19:42:49] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:42:54] [INFO] Joystick detectado:  (/devices/virtual/input/input133/js2)
-[2026-05-22 19:42:54] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:49:29] [INFO] Joystick detectado:  (/devices/virtual/input/input134/js3)
-[2026-05-22 19:49:29] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:58:45] [INFO] Joystick detectado:  (/devices/virtual/input/input135/js2)
-[2026-05-22 19:58:45] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 19:59:59] [INFO] Joystick detectado:  (/devices/virtual/input/input136/js3)
-[2026-05-22 19:59:59] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-25 14:22:45] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-22 20:44:50] [INFO] Daemon iniciado (PID 1955)
+[2026-05-25 20:12:47] [INFO] Daemon iniciado (PID 2136)
 ======================================
-[2026-05-22 20:44:50] [INFO] Escuchando eventos udevadm...
+[2026-05-25 20:12:47] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-22 22:08:56] [INFO] Daemon iniciado (PID 2010)
+[2026-05-26 14:24:45] [INFO] Daemon iniciado (PID 2131)
 ======================================
-[2026-05-22 22:08:56] [INFO] Escuchando eventos udevadm...
+[2026-05-26 14:24:45] [INFO] Escuchando eventos udevadm...
+[2026-05-26 15:30:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input28/js1)
+[2026-05-26 15:30:21] [INFO] Toggle activo — acción ignorada
+[2026-05-26 15:30:24] [INFO] Toggle desactivado → daemon activado
 
 ======================================
-[2026-05-22 22:11:30] [INFO] Daemon iniciado (PID 2015)
+[2026-05-26 15:37:53] [INFO] Daemon iniciado (PID 129796)
 ======================================
-[2026-05-22 22:11:30] [INFO] Escuchando eventos udevadm...
-[2026-05-22 22:12:15] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000D/input/input29/js1)
-[2026-05-22 22:12:15] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 22:12:20] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000D/input/input30/js1)
-[2026-05-22 22:12:20] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-26 15:37:53] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-22 22:15:15] [INFO] Daemon iniciado (PID 6470)
+[2026-05-26 15:38:11] [INFO] Daemon iniciado (PID 129856)
 ======================================
-[2026-05-22 22:15:15] [INFO] Escuchando eventos udevadm...
-[2026-05-22 22:15:37] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000E/input/input34/js1)
-[2026-05-22 22:15:37] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 22:15:44] [INFO] Joystick detectado:  (/devices/virtual/input/input38/js2)
-[2026-05-22 22:15:44] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 22:16:26] [INFO] Joystick detectado:  (/devices/virtual/input/input39/js2)
-[2026-05-22 22:16:26] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 22:20:22] [INFO] Joystick detectado:  (/devices/virtual/input/input40/js2)
-[2026-05-22 22:20:22] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 23:01:26] [INFO] Joystick detectado:  (/devices/virtual/input/input41/js2)
-[2026-05-22 23:01:26] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 23:02:32] [INFO] Joystick detectado:  (/devices/virtual/input/input42/js2)
-[2026-05-22 23:02:32] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 23:07:40] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000F/input/input43/js1)
-[2026-05-22 23:07:40] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-22 23:07:45] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0010/input/input47/js2)
-[2026-05-22 23:07:45] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 23:07:48] [INFO] Toggle activado → daemon desactivado
-[2026-05-22 23:07:50] [INFO] Joystick detectado:  (/devices/virtual/input/input50/js2)
-[2026-05-22 23:07:50] [INFO] Toggle activo — acción ignorada
-[2026-05-22 23:07:55] [INFO] Joystick detectado:  (/devices/virtual/input/input51/js3)
-[2026-05-22 23:07:55] [INFO] Toggle activo — acción ignorada
-[2026-05-22 23:08:00] [INFO] Joystick detectado:  (/devices/virtual/input/input52/js4)
-[2026-05-22 23:08:00] [INFO] Toggle activo — acción ignorada
-[2026-05-22 23:09:41] [INFO] Joystick detectado:  (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:0079:181C.0012/input/input55/js1)
-[2026-05-22 23:09:41] [INFO] Toggle activo — acción ignorada
-[2026-05-22 23:09:51] [INFO] Toggle desactivado → daemon activado
-[2026-05-22 23:09:54] [INFO] Toggle activado → daemon desactivado
-[2026-05-22 23:09:57] [INFO] Toggle desactivado → daemon activado
-[2026-05-22 23:09:57] [INFO] Toggle activado → daemon desactivado
-[2026-05-22 23:10:03] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.0014/input/input58/js1)
-[2026-05-22 23:10:03] [INFO] Toggle activo — acción ignorada
-[2026-05-22 23:10:08] [INFO] Toggle desactivado → daemon activado
-[2026-05-22 23:10:15] [INFO] Joystick detectado:  (/devices/virtual/input/input62/js2)
-[2026-05-22 23:10:15] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-22 23:10:25] [INFO] Joystick detectado:  (/devices/virtual/input/input63/js2)
-[2026-05-22 23:10:25] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-26 15:38:11] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-23 10:20:13] [INFO] Daemon iniciado (PID 2023)
+[2026-05-26 15:39:13] [INFO] Daemon iniciado (PID 130026)
 ======================================
-[2026-05-23 10:20:13] [INFO] Escuchando eventos udevadm...
-[2026-05-23 10:22:16] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input28/js1)
-[2026-05-23 10:22:16] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-23 10:22:21] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input30/js1)
-[2026-05-23 10:22:21] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 10:22:44] [INFO] Joystick detectado:  (/devices/virtual/input/input34/js2)
-[2026-05-23 10:22:44] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 10:23:05] [INFO] Toggle activado → daemon desactivado
-[2026-05-23 10:37:54] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02FD.000B/input/input35/js1)
-[2026-05-23 10:37:54] [INFO] Toggle activo — acción ignorada
-[2026-05-23 11:10:28] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02FD.000C/input/input39/js1)
-[2026-05-23 11:10:28] [INFO] Toggle activo — acción ignorada
-[2026-05-23 11:19:28] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:057E:2009.000D/input/input43/js1)
-[2026-05-23 11:19:28] [INFO] Toggle activo — acción ignorada
-[2026-05-23 11:25:50] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000E/input/input46/js1)
-[2026-05-23 11:25:50] [INFO] Toggle activo — acción ignorada
-[2026-05-23 11:45:02] [INFO] Toggle desactivado → daemon activado
-[2026-05-23 11:45:15] [INFO] Joystick detectado:  (/devices/virtual/input/input54/js2)
-[2026-05-23 11:45:15] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 11:45:20] [INFO] Joystick detectado:  (/devices/virtual/input/input55/js3)
-[2026-05-23 11:45:20] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 11:46:10] [INFO] Joystick detectado:  (/devices/virtual/input/input56/js2)
-[2026-05-23 11:46:10] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 11:46:15] [INFO] Joystick detectado:  (/devices/virtual/input/input57/js3)
-[2026-05-23 11:46:15] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 11:46:42] [INFO] Joystick detectado:  (/devices/virtual/input/input58/js2)
-[2026-05-23 11:46:42] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 11:46:47] [INFO] Joystick detectado:  (/devices/virtual/input/input59/js3)
-[2026-05-23 11:46:47] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-26 15:39:13] [INFO] Escaneando dispositivos existentes...
+[2026-05-26 15:39:13] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:39:13] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:39:13] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:39:13] [INFO] Escuchando eventos udevadm...
+[2026-05-26 15:41:12] [INFO] No es joystick (/devices/virtual/misc/uhid/0005:057E:2009.000D/input/input36) — ignorado
+[2026-05-26 15:41:12] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-26 15:41:12] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-26 15:41:12] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
 
 ======================================
-[2026-05-23 12:39:43] [INFO] Daemon iniciado (PID 2013)
+[2026-05-26 15:42:23] [INFO] Daemon iniciado (PID 132071)
 ======================================
-[2026-05-23 12:39:43] [INFO] Escuchando eventos udevadm...
+[2026-05-26 15:42:23] [INFO] Escaneando dispositivos existentes...
+[2026-05-26 15:42:23] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:42:23] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:42:23] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:42:23] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-23 14:52:10] [INFO] Daemon iniciado (PID 2010)
+[2026-05-26 15:43:23] [INFO] Daemon iniciado (PID 132431)
 ======================================
-[2026-05-23 14:52:10] [INFO] Escuchando eventos udevadm...
+[2026-05-26 15:43:23] [INFO] Escaneando dispositivos existentes...
+[2026-05-26 15:43:23] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:43:23] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:43:23] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:43:23] [INFO] Escuchando eventos udevadm...
 
 ======================================
-[2026-05-23 15:09:38] [INFO] Daemon iniciado (PID 8877)
+[2026-05-26 15:44:36] [INFO] Daemon iniciado (PID 132754)
 ======================================
-[2026-05-23 15:09:38] [INFO] Escuchando eventos udevadm...
-[2026-05-23 15:09:58] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input28/js1)
-[2026-05-23 15:09:58] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-05-23 15:10:03] [INFO] Joystick detectado:  (/devices/virtual/misc/uhid/0005:045E:02E0.000A/input/input29/js1)
-[2026-05-23 15:10:03] [INFO] Steam abierto — abriendo Big Picture
-[2026-05-23 15:10:08] [INFO] Joystick detectado:  (/devices/virtual/input/input33/js2)
-[2026-05-23 15:10:08] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-26 15:44:36] [INFO] Escaneando dispositivos existentes...
+[2026-05-26 15:44:36] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:44:36] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:44:36] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:44:36] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-05-26 15:45:48] [INFO] Daemon iniciado (PID 133350)
+======================================
+[2026-05-26 15:45:48] [INFO] Escaneando dispositivos existentes...
+[2026-05-26 15:45:48] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:45:48] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:45:48] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:45:48] [INFO] Joystick ya conectado: /dev/input/event26
+[2026-05-26 15:45:48] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-26 15:45:48] [INFO] Joystick detectado (poll): desconocido (/dev/input/event26)
+[2026-05-26 15:45:48] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:45:48] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:45:48] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:45:48] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-26 15:45:48] [INFO] Escuchando eventos udevadm...
+[2026-05-26 15:45:55] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input39)
+[2026-05-26 15:45:55] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:45:55] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:45:55] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:45:55] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-26 15:45:56] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-26 15:45:56] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-05-26 15:48:03] [INFO] Toggle activado → daemon desactivado
+[2026-05-26 15:48:04] [INFO] Toggle desactivado → daemon activado
+[2026-05-26 15:48:05] [INFO] Toggle activado → daemon desactivado
+
+======================================
+[2026-05-26 15:50:39] [INFO] Daemon iniciado (PID 136056)
+======================================
+[2026-05-26 15:50:39] [INFO] Joystick detectado (poll): desconocido (/dev/input/event26)
+[2026-05-26 15:50:39] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:50:39] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:50:39] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:50:39] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-05-26 15:50:39] [INFO] Escuchando eventos udevadm...
+[2026-05-26 15:50:43] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input44)
+[2026-05-26 15:50:43] [INFO] Entorno importado: DISPLAY=:0
+[2026-05-26 15:50:43] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-05-26 15:50:43] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZsaYsA
+[2026-05-26 15:50:43] [INFO] Steam abierto — abriendo Big Picture
+[2026-05-26 15:50:43] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-05-26 15:50:43] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)

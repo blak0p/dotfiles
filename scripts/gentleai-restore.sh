@@ -3,60 +3,64 @@ set -euo pipefail
 
 # ╔══════════════════════════════════════════════════════════════╗
 # ║  gentleai-restore.sh — Backup & Restore para gentle-ai      ║
-# ║  Uso: ./gentleai-restore.sh backup|restore                  ║
+# ║  Uso: ./gentleai-restore.sh backup|restore|history          ║
 # ╚══════════════════════════════════════════════════════════════╝
 #
-# Mergea skills/, commands/, AGENTS.md / GEMINI.md / CLAUDE.md
-# entre los 3 backends (opencode, gemini, claude).
-# El más nuevo gana, lo que falta se copia, todo se reparte a los 3.
-# NO toca plugins, prompts, json, config, etc.
+# Backup/Restore de ~/.config/opencode/skills/ (openmode).
+# NO toca gemini, claude, ni gentle-ai/shared.
+# Snapshots con timestamp, safety check antes de restore.
+#
+# ¿Por qué opencode-only? Porque gemini y claude los escribe el
+# oficial y siempre pisaban los skills buenos con basura.
+# Ya fue.
 
-BACKUP_DIR="$HOME/gentleai-backup/latest"
-
-# Los 3 backends
-OC_BASE="$HOME/.config/opencode"
-GM_BASE="$HOME/.gemini"
-CL_BASE="$HOME/.claude"
-
-# ─── SYNC: backup + restore automático ──────────────────────────
-sync_all() {
-    echo "🔄 Sync completo: backup + restore"
-    echo ""
-    backup
-    echo ""
-    restore
-    echo ""
-    echo "✅ Sync completado — los 3 backends están sincronizados."
-}
+BACKUP_ROOT="$HOME/gentleai-backup"
+LATEST_LINK="$BACKUP_ROOT/latest"
+KEEP_LAST=15
 
 # ─── HELP ───────────────────────────────────────────────────────
 help() {
-    echo "Uso: $0 {backup|restore|sync|help}"
+    echo "Uso: $0 {backup|restore [snapshot]|history|help}"
     echo ""
-    echo "  backup   Mergea skills, commands, AGENTS/GEMINI/CLAUDE.md"
-    echo "           de opencode + gemini + claude a un backup unificado."
-    echo "  restore  Distribuye el backup unificado a los 3 backends."
-    echo "  sync     backup + restore automático (un solo paso)."
-    echo ""
+    echo "  backup                 Crea snapshot de ~/.config/opencode/skills/"
+    echo "  restore [snapshot]     Restaura desde un snapshot (o el último)"
+    echo "  history                Lista snapshots disponibles"
+    echo "  help                   Esto"
 }
 
-# ─── Encuentra el archivo más nuevo entre una lista ─────────────
-newest_of() {
-    local newest=""
-    local newest_ts=0
-    local f ts
-    for f in "$@"; do
-        [ -f "$f" ] || continue
-        ts=$(stat -c %Y "$f" 2>/dev/null || echo 0)
-        if [ "$ts" -gt "$newest_ts" ]; then
-            newest_ts=$ts
-            newest="$f"
-        fi
+# ─── SNAPSHOTS ──────────────────────────────────────────────────
+snapshot_name() { date +%Y%m%d-%H%M%S; }
+snapshot_dir()  { echo "$BACKUP_ROOT/backup-$1"; }
+
+is_valid_snapshot() { [ -d "$BACKUP_ROOT/backup-$1" ]; }
+
+list_snapshots() {
+    ls -1d "$BACKUP_ROOT"/backup-* 2>/dev/null | sort -r | while read -r d; do
+        d=$(basename "$d")
+        echo "${d#backup-}"
     done
-    echo "$newest"
 }
 
-# ─── Lista skills (archivos + directorios) de un directorio ─────
+latest_snapshot() { list_snapshots | head -1; }
+
+cleanup_old_snapshots() {
+    local total
+    total=$(list_snapshots | wc -l)
+    if [ "$total" -gt "$KEEP_LAST" ]; then
+        list_snapshots | tail -n $((total - KEEP_LAST)) | while read -r snap; do
+            rm -rf "$BACKUP_ROOT/backup-$snap"
+            echo "      🗑️  Backup antiguo: $snap"
+        done
+    fi
+}
+
+update_latest_link() {
+    local snap="$1"
+    [ -d "$LATEST_LINK" ] && rm -rf "$LATEST_LINK"
+    ln -snf "$BACKUP_ROOT/backup-$snap" "$LATEST_LINK"
+}
+
+# ─── HELPERS ────────────────────────────────────────────────────
 list_skills() {
     local dir="$1"
     [ -d "$dir" ] || return 0
@@ -66,7 +70,6 @@ list_skills() {
     done
 }
 
-# ─── Lista commands (archivos .md) de un directorio ─────────────
 list_commands() {
     local dir="$1"
     [ -d "$dir" ] || return 0
@@ -76,197 +79,216 @@ list_commands() {
     done
 }
 
-# ─── BACKUP ──────────────────────────────────────────────────────
-backup() {
-    echo "📦 Backup unificado en: $BACKUP_DIR"
-    rm -rf "$BACKUP_DIR"
-    mkdir -p "$BACKUP_DIR"/{skills,commands,md}
+# Safety check: compara skills del backup contra lo que tiene opencode
+safety_check() {
+    local B="$1"
+    local force="${2:-false}"
 
-    # ── SKILLS ────────────────────────────────────────────────────
-    echo "   Skills: mergeando..."
-    # Agarrar todos los nombres de skills de los 3 backends
-    all_skills=$( (list_skills "$OC_BASE/skills"; list_skills "$GM_BASE/skills"; list_skills "$CL_BASE/skills") | sort -u )
+    local backup_skills
+    backup_skills=$(list_skills "$B/skills")
+    local dest_skills
+    dest_skills=$(list_skills "$OC_BASE/skills")
 
-    total=$(echo "$all_skills" | wc -l)
-    count=0
-    for skill in $all_skills; do
-        count=$((count + 1))
-        # Mostrar progreso cada 10 skills
-        [ $((count % 10)) -eq 0 ] && echo "      [$count/$total] skills procesados..."
+    local only_in_backup only_in_dest
+    only_in_backup=$(comm -23 <(echo "$backup_skills") <(echo "$dest_skills") | grep -c . || true)
+    only_in_dest=$(comm -13 <(echo "$backup_skills") <(echo "$dest_skills") | grep -c . || true)
 
-        # Posibles ubicaciones
-        oc_src="$OC_BASE/skills/$skill"
-        gm_src="$GM_BASE/skills/$skill"
-        cl_src="$CL_BASE/skills/$skill"
-        dest="$BACKUP_DIR/skills/$skill"
+    local backup_count dest_count
+    backup_count=$(echo "$backup_skills" | grep -c . || true)
+    dest_count=$(echo "$dest_skills" | grep -c . || true)
 
-        if [ -d "$oc_src" ] || [ -d "$gm_src" ] || [ -d "$cl_src" ]; then
-            # ── Es un directorio ──
-            mkdir -p "$dest"
-            # Recopilar todos los archivos dentro de la skill en los 3 backends
-            declare -A seen_files
-            for src in "$oc_src" "$gm_src" "$cl_src"; do
-                [ -d "$src" ] || continue
-                while IFS= read -r -d '' f; do
-                    rel="${f#$src/}"
-                    # Si ya vimos este archivo, comparar y quedarnos con el más nuevo
-                    if [ -n "${seen_files[$rel]:-}" ]; then
-                        existing="${seen_files[$rel]}"
-                        if [ "$(stat -c %Y "$f")" -gt "$(stat -c %Y "$existing")" ]; then
-                            seen_files["$rel"]="$f"
-                        fi
-                    else
-                        seen_files["$rel"]="$f"
-                    fi
-                done < <(find "$src" -type f -print0)
-            done
-            # Copiar los más nuevos
-            for rel in "${!seen_files[@]}"; do
-                mkdir -p "$(dirname "$dest/$rel")"
-                cp -p "${seen_files[$rel]}" "$dest/$rel"
-            done
-        elif [ -f "$oc_src" ] || [ -f "$gm_src" ] || [ -f "$cl_src" ] || [ -L "$oc_src" ] || [ -L "$gm_src" ] || [ -L "$cl_src" ]; then
-            # ── Es un archivo suelto o symlink (code-review, init, etc) ──
-            # Si es symlink (posiblemente roto), copiamos como symlink
-            if [ -L "$oc_src" ] || [ -L "$gm_src" ] || [ -L "$cl_src" ]; then
-                for src in "$oc_src" "$gm_src" "$cl_src"; do
-                    [ -L "$src" ] && cp -P "$src" "$dest" 2>/dev/null && break
-                done
-            else
-                newest=$(newest_of "$oc_src" "$gm_src" "$cl_src")
-                cp -p "$newest" "$dest"
+    if [ "$only_in_backup" -gt 5 ] || [ "$only_in_dest" -gt 5 ]; then
+        echo "   ⚠️  Diferencia grande detectada:"
+        echo "      Skills en backup: $backup_count"
+        echo "      Skills actuales:  $dest_count"
+        echo "      Solo en backup:   $only_in_backup"
+        echo "      Solo acá:         $only_in_dest"
+
+        if [ "$force" != "true" ]; then
+            echo ""
+            echo "   ¿Querés continuar con el restore? (y/N) "
+            read -r confirm
+            if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
+                echo "   ❌ Restore cancelado."
+                exit 1
             fi
         fi
-    done
+    fi
+}
 
-    # ── COMMANDS ──────────────────────────────────────────────────
-    echo "   Commands: mergeando..."
-    mkdir -p "$BACKUP_DIR/commands"
-    all_cmds=$( (list_commands "$OC_BASE/commands"; list_commands "$GM_BASE/commands"; list_commands "$CL_BASE/commands") | sort -u)
-    for cmd in $all_cmds; do
-        newest=$(newest_of "$OC_BASE/commands/$cmd" "$GM_BASE/commands/$cmd" "$CL_BASE/commands/$cmd")
-        cp -p "$newest" "$BACKUP_DIR/commands/$cmd"
-    done
+# ─── BACKUP ──────────────────────────────────────────────────────
+backup() {
+    local snap
+    snap=$(snapshot_name)
+    local B
+    B=$(snapshot_dir "$snap")
 
-    # ── AGENTS.md / GEMINI.md / CLAUDE.md ───────────────────────
-    echo "   MD files: eligiendo el más nuevo..."
-    newest_md=$(newest_of \
-        "$OC_BASE/AGENTS.md" \
-        "$GM_BASE/GEMINI.md" \
-        "$CL_BASE/CLAUDE.md" \
-    )
-    if [ -n "$newest_md" ]; then
-        cp -p "$newest_md" "$BACKUP_DIR/md/master.md"
-        echo "      Más nuevo: $(basename "$(dirname "$newest_md")")/$(basename "$newest_md")"
-    else
-        echo "      ⚠️  No se encontró ningún AGENTS/GEMINI/CLAUDE.md"
+    echo "📦 Backup snapshot: $snap"
+    mkdir -p "$B"/{skills,commands,md}
+
+    # SKILLS — solo desde opencode
+    echo "   Skills: copiando desde opencode..."
+    if [ -d "$OC_BASE/skills" ]; then
+        for entry in "$OC_BASE/skills"/*; do
+            [ -e "$entry" ] || [ -L "$entry" ] || continue
+            skill=$(basename "$entry")
+            dest="$B/skills/$skill"
+            if [ -L "$entry" ]; then
+                cp -P "$entry" "$dest"
+            else
+                cp -rp "$entry" "$dest"
+            fi
+        done
+    fi
+    local total_skills
+    total_skills=$(list_skills "$B/skills" | wc -l)
+
+    # COMMANDS — solo desde opencode
+    echo "   Commands: copiando..."
+    if [ -d "$OC_BASE/commands" ]; then
+        mkdir -p "$B/commands"
+        for entry in "$OC_BASE/commands"/*.md; do
+            [ -f "$entry" ] || continue
+            cp -p "$entry" "$B/commands/$(basename "$entry")"
+        done
+    fi
+    local total_cmds
+    total_cmds=$(list_commands "$B/commands" | wc -l)
+
+    # MD — AGENTS.md
+    echo "   MD files: copiando..."
+    if [ -f "$OC_BASE/AGENTS.md" ]; then
+        cp -p "$OC_BASE/AGENTS.md" "$B/md/AGENTS.md"
     fi
 
+    update_latest_link "$snap"
+    cleanup_old_snapshots
+
     echo ""
     echo "════════════════════════════════════════"
-    echo "  ✅ Backup unificado completado"
-    echo "     $total skills"
-    echo "     $(list_commands "$BACKUP_DIR/commands" | wc -l) commands"
+    echo "  ✅ SNAPSHOT CREADO: $snap"
+    echo "     $total_skills skills"
+    echo "     $total_cmds commands"
     echo "════════════════════════════════════════"
     echo ""
-    echo "  Distribuí con: $0 restore"
+    echo "  Restaurá con: $0 restore $snap"
+    echo "  Al último:    $0 restore"
 }
 
 # ─── RESTORE ─────────────────────────────────────────────────────
 restore() {
-    local B="$BACKUP_DIR"
-    if [ ! -d "$B" ]; then
-        echo "❌ No hay backup en $B. Corré backup primero."
-        exit 1
+    local snap="${1:-}"
+    local force="${2:-false}"
+    local B
+
+    if [ -n "$snap" ]; then
+        if ! is_valid_snapshot "$snap"; then
+            echo "❌ Snapshot no encontrado: backup-$snap"
+            exit 1
+        fi
+        B=$(snapshot_dir "$snap")
+    else
+        snap=$(latest_snapshot)
+        if [ -z "$snap" ]; then
+            echo "❌ No hay snapshots. Corré backup primero."
+            exit 1
+        fi
+        B=$(snapshot_dir "$snap")
     fi
-    echo "♻️  Restaurando desde: $B"
+
+    echo "♻️  Restaurando desde: $snap"
+    echo "   ($B)"
     echo ""
 
-    # ── SKILLS: de backup a los 3 backends ──────────────────────
-    echo "   Skills: distribuyendo..."
+    safety_check "$B" "$force"
+
+    # SKILLS — solo a opencode
+    echo "   Skills: restaurando..."
+    local total
     total=$(find "$B/skills" -maxdepth 1 -mindepth 1 | wc -l)
-    count=0
+    local count=0
     for skill_path in "$B/skills"/*; do
         [ -e "$skill_path" ] || continue
-        skill=$(basename "$skill_path")
         count=$((count + 1))
-        [ $((count % 10)) -eq 0 ] && echo "      [$count/$total] skills distribuidos..."
+        [ $((count % 10)) -eq 0 ] && echo "      [$count/$total] skills..."
+        skill=$(basename "$skill_path")
+        dest="$OC_BASE/skills/$skill"
 
-        for base in "$OC_BASE" "$GM_BASE" "$CL_BASE"; do
-            dest="$base/skills/$skill"
-            if [ -d "$skill_path" ]; then
-                rm -rf "$dest"
-                cp -r "$skill_path" "$dest"
-            elif [ -f "$skill_path" ] || [ -L "$skill_path" ]; then
-                [ -L "$skill_path" ] && cp -P "$skill_path" "$dest" || cp -p "$skill_path" "$dest"
-            fi
-        done
+        rm -rf "$dest"
+        if [ -L "$skill_path" ]; then
+            cp -P "$skill_path" "$dest" 2>/dev/null || true
+        elif [ -d "$skill_path" ]; then
+            mkdir -p "$dest"
+            cp -r "$skill_path"/* "$dest/" 2>/dev/null || true
+        elif [ -f "$skill_path" ]; then
+            cp -p "$skill_path" "$dest"
+        fi
     done
 
-    # ── COMMANDS: de backup a los que tengan commands ───────────
-    echo "   Commands: distribuyendo..."
+    # COMMANDS
+    echo "   Commands: restaurando..."
+    mkdir -p "$OC_BASE/commands"
     for cmd_path in "$B/commands"/*.md; do
         [ -f "$cmd_path" ] || continue
-        cmd=$(basename "$cmd_path")
-        for base in "$OC_BASE" "$GM_BASE" "$CL_BASE"; do
-            # opencode, claude tienen commands/; gemini no
-            [ -d "$base/commands" ] || continue
-            cp -p "$cmd_path" "$base/commands/$cmd"
-        done
+        cp -p "$cmd_path" "$OC_BASE/commands/$(basename "$cmd_path")"
     done
 
-    # ── MD files: el master a cada backend con su nombre ─────────
-    echo "   MD files: distribuyendo..."
-    if [ -f "$B/md/master.md" ]; then
-        cp -p "$B/md/master.md" "$OC_BASE/AGENTS.md"
-        cp -p "$B/md/master.md" "$GM_BASE/GEMINI.md"
-        cp -p "$B/md/master.md" "$CL_BASE/CLAUDE.md"
-        echo "      master.md → AGENTS.md / GEMINI.md / CLAUDE.md"
-    else
-        echo "      ⚠️  No hay master.md en el backup"
-    fi
-
-    # ── Sincronizar gentle-ai shared ─────────────────────────────
-    if [ -d "$HOME/.gentle-ai/shared/skills" ]; then
-        echo "   📥 Sincronizando gentle-ai shared..."
-        rm -rf "$HOME/.gentle-ai/shared/skills"
-        cp -r "$B/skills" "$HOME/.gentle-ai/shared/skills"
-
-        rm -f "$HOME/.gentle-ai/shared/AGENTS.md"
-        rm -f "$HOME/.gentle-ai/shared/GEMINI.md"
-        rm -f "$HOME/.gentle-ai/shared/CLAUDE.md"
-        [ -f "$B/md/master.md" ] && cp -p "$B/md/master.md" "$HOME/.gentle-ai/shared/AGENTS.md"
-
-        if [ -d "$HOME/.gentle-ai/shared/commands" ]; then
-            rm -rf "$HOME/.gentle-ai/shared/commands"
-            cp -r "$B/commands" "$HOME/.gentle-ai/shared/commands"
-        fi
+    # MD
+    echo "   MD files: restaurando..."
+    if [ -f "$B/md/AGENTS.md" ]; then
+        cp -p "$B/md/AGENTS.md" "$OC_BASE/AGENTS.md"
     fi
 
     echo ""
     echo "════════════════════════════════════════"
-    echo "  ✅ RESTORE COMPLETO"
+    echo "  ✅ RESTORE COMPLETO desde: $snap"
     echo "     $total skills"
     echo "     $(find "$B/commands" -name '*.md' | wc -l) commands"
-    echo "     AGENTS/GEMINI/CLAUDE.md sincronizados"
     echo "════════════════════════════════════════"
     echo ""
-    echo "  Backends actualizados:"
-    echo "    - ~/.config/opencode/"
-    echo "    - ~/.gemini/"
-    echo "    - ~/.claude/"
-    echo "    - ~/.gentle-ai/shared/"
+    echo "  Backend actualizado: ~/.config/opencode/"
 }
 
-case "${1:-help}" in
-    sync)
-        sync_all
-        ;;
+# ─── HISTORY ─────────────────────────────────────────────────────
+history() {
+    echo "📋 Snapshots disponibles:"
+    echo ""
+    for snap in $(list_snapshots); do
+        local B
+        B=$(snapshot_dir "$snap")
+        local skills_count commands_count
+        skills_count=$(list_skills "$B/skills" | wc -l)
+        commands_count=$(list_commands "$B/commands" | wc -l)
+        local is_latest=""
+        [ "$(latest_snapshot)" = "$snap" ] && is_latest="  ← último"
+        echo "  $snap  (${skills_count} skills, ${commands_count} commands)${is_latest}"
+    done
+}
+
+# ─── MAIN ────────────────────────────────────────────────────────
+OC_BASE="$HOME/.config/opencode"
+
+cmd="${1:-help}"
+shift 2>/dev/null || true
+
+case "$cmd" in
     backup)
         backup
         ;;
     restore)
-        restore
+        snap_arg=""
+        force_flag="false"
+        for arg in "$@"; do
+            if [ "$arg" = "--force" ]; then
+                force_flag="true"
+            elif [ -z "$snap_arg" ]; then
+                snap_arg="$arg"
+            fi
+        done
+        restore "$snap_arg" "$force_flag"
+        ;;
+    history)
+        history
         ;;
     help|*)
         help

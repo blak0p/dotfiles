@@ -45,7 +45,7 @@ importar_entorno() {
     env_vars=$(systemctl --user show-environment 2>/dev/null)
     if [ -n "$env_vars" ]; then
         local var
-        for var in DISPLAY WAYLAND_DISPLAY XAUTHORITY; do
+        for var in DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_SESSION_TYPE; do
             local val
             val=$(echo "$env_vars" | grep "^${var}=" | cut -d= -f2-)
             if [ -n "$val" ]; then
@@ -87,7 +87,6 @@ procesar_evento() {
 
     if [ -f "$TOGGLE_FILE" ]; then
         log INFO "Toggle activo — acción ignorada"
-        notificar "Ignorado: toggle activo"
         return
     fi
 
@@ -96,11 +95,11 @@ procesar_evento() {
 
     if ! pgrep -x steam >/dev/null 2>&1; then
         log INFO "Steam cerrado — lanzando Steam en Big Picture"
-        notificar "$nombre — Abriendo Steam"
+        notificar "🎮 $nombre detectado — Abriendo Steam"
         $LAUNCH_CMD &
     else
         log INFO "Steam abierto — abriendo Big Picture"
-        notificar "$nombre — Abriendo Big Picture"
+        notificar "🎮 $nombre detectado — Cambiando a Big Picture"
         /usr/bin/bazzite-steam steam://open/bigpicture &
     fi
 }
@@ -109,8 +108,21 @@ escuchar() {
     local last_activation=0
 
     stdbuf -oL udevadm monitor --subsystem-match=input --udev 2>/dev/null | \
-    while read -t 15 -r line; do
+    while read -r line; do
         if [[ "$line" =~ (add|bind) ]] && [[ "$line" =~ /input/ ]]; then
+            # Solo aplicamos cooldown si el dispositivo es realmente un joystick
+            local sysfs_path=$(echo "$line" | grep -oP '(?<= )/devices/\S+')
+            [ -z "$sysfs_path" ] && sysfs_path=$(echo "$line" | awk '{print $4}')
+            
+            # Si no es /js*, verificamos propiedades de udev
+            if [[ ! "$sysfs_path" =~ /js[0-9] ]]; then
+                # Damos tiempo a udev para que asigne las propiedades al dispositivo
+                sleep 0.3
+                if ! udevadm info --query=property -p "$sysfs_path" 2>/dev/null | grep -q 'ID_INPUT_JOYSTICK=1'; then
+                    continue # Ignoramos dispositivos que no son mandos sin activar cooldown
+                fi
+            fi
+
             local now
             now=$(date +%s)
             local diff=$((now - last_activation))
@@ -126,27 +138,60 @@ escuchar() {
 }
 
 escanear_mandos() {
-    # Si Steam ya está abierto, no hacemos nada (evita loops)
-    pgrep -x steam >/dev/null 2>&1 && return
-
-    for ev in /dev/input/event*; do
+    for ev in /dev/input/js* /dev/input/event*; do
         [ -e "$ev" ] || continue
         local props
         props=$(udevadm info --query=property -n "$ev" 2>/dev/null)
-        if echo "$props" | grep -q 'ID_INPUT_JOYSTICK=1'; then
+        
+        local is_joystick=0
+        if [[ "$ev" =~ /dev/input/js[0-9]+ ]]; then
+            is_joystick=1
+        elif echo "$props" | grep -q 'ID_INPUT_JOYSTICK=1'; then
+            is_joystick=1
+        fi
+
+        if [ "$is_joystick" -eq 1 ]; then
             local nombre
             nombre=$(echo "$props" | grep -oP 'ID_MODEL=\K.*' | head -1 | tr -d '"')
-            log INFO "Joystick detectado (poll): ${nombre:-desconocido} ($ev)"
+            [ -z "$nombre" ] && nombre="Mando"
+            
+            log INFO "Joystick detectado (poll): $nombre ($ev)"
             if [ -f "$TOGGLE_FILE" ]; then
                 log INFO "Toggle activo — ignorado"
                 return
             fi
+            
             importar_entorno
-            log INFO "Steam cerrado — lanzando Steam en Big Picture"
-            $LAUNCH_CMD &
+            if ! pgrep -x steam >/dev/null 2>&1; then
+                log INFO "Steam cerrado — lanzando Steam en Big Picture"
+                notificar "🎮 $nombre detectado — Abriendo Steam"
+                $LAUNCH_CMD &
+            else
+                log INFO "Steam abierto — abriendo Big Picture"
+                notificar "🎮 $nombre detectado — Cambiando a Big Picture"
+                /usr/bin/bazzite-steam steam://open/bigpicture &
+            fi
             return
         fi
     done
+}
+
+esperar_entorno_grafico() {
+    log INFO "Esperando a que el entorno gráfico esté listo..."
+    local max_intentos=30
+    local intento=0
+    while [ $intento -lt $max_intentos ]; do
+        local env_vars
+        env_vars=$(systemctl --user show-environment 2>/dev/null)
+        if echo "$env_vars" | grep -qE "^(DISPLAY|WAYLAND_DISPLAY)="; then
+            log INFO "Entorno gráfico detectado."
+            return 0
+        fi
+        intento=$((intento + 1))
+        sleep 1
+    done
+    log WARN "No se detectó entorno gráfico después de $max_intentos segundos. Continuando de todos modos."
+    return 1
 }
 
 main() {
@@ -157,6 +202,9 @@ main() {
     echo "======================================" >> "$LOG_FILE"
     log INFO "Daemon iniciado (PID $$)"
     echo "======================================" >> "$LOG_FILE"
+
+    # Esperar a que el entorno gráfico esté disponible antes de escanear o escuchar
+    esperar_entorno_grafico
 
     local reintentos=0
     while true; do
@@ -170,3 +218,4 @@ main() {
 }
 
 main
+

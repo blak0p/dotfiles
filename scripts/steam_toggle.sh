@@ -29,9 +29,11 @@ mkdir -p "$(dirname "$TOGGLE_FILE")"
 if [ -f "$TOGGLE_FILE" ]; then
     rm -f "$TOGGLE_FILE"
     log INFO "Toggle desactivado → daemon activado"
-    notificar "✅ Activado"
+    notificar "✅ Auto-Apertura: SI (Steam se abrirá al conectar mando)"
+    # Reiniciamos el servicio para que detecte mandos que se conectaron mientras estaba pausado
+    systemctl --user restart steam-autopicture.service
 else
     touch "$TOGGLE_FILE"
     log INFO "Toggle activado → daemon desactivado"
-    notificar "❌ Desactivado"
+    notificar "❌ Auto-Apertura: NO (Detección de mandos pausada)"
 fi

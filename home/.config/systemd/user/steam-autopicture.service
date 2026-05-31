@@ -1,0 +1,12 @@
+[Unit]
+Description=Steam Big Picture Auto-launcher
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/dotfiles/scripts/steam_autopicture.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

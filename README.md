@@ -1,4 +1,4 @@
-# 🚀 Dotfiles de Alejandro-M-P
+# 🚀 Dotfiles de Blak0p
 
 Configuración personal modular. Cada módulo es autónomo: incluye scripts, configs y systemd.
 

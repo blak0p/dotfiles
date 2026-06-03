@@ -14,4 +14,4 @@ pip-delete-this-directory.txt
 .lucid
 .precision
 secrets/
-home/.bashrc.d/github-token.sh
+**/github-token.sh

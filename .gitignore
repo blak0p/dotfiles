@@ -13,3 +13,4 @@ pip-delete-this-directory.txt
 .toast
 .lucid
 .precision
+home/.bashrc.d/github-token.sh

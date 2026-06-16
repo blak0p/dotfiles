@@ -8,7 +8,7 @@ NC='\033[0m'
 
 echo -e "${BLUE}🚀 Dotfiles — Instalación por módulos${NC}"
 
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR="$HOME/dev/dotfiles"
 BACKUP_DIR="$DOTFILES_DIR/backups/$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$BACKUP_DIR"
 

@@ -4,14 +4,14 @@ gentle() {
     case "${1:-}" in
         sync)
             # Soporta 'gentle sync gemini', 'gentle sync claude', etc.
-            "$HOME/dotfiles/scripts/gentleai-config.sh" sync "${2:-opencode}"
+            "$HOME/dev/dotfiles/scripts/gentleai-config.sh" sync "${2:-opencode}"
             ;;
         backup)
-            "$HOME/dotfiles/scripts/gentleai-config.sh" backup
+            "$HOME/dev/dotfiles/scripts/gentleai-config.sh" backup
             ;;
         restore|distribute)
             # Shortcut to distribute what's in master
-            "$HOME/dotfiles/scripts/gentleai-config.sh" distribute
+            "$HOME/dev/dotfiles/scripts/gentleai-config.sh" distribute
             ;;
         *)
             echo "Universal Gentle AI Manager (SSOT)"

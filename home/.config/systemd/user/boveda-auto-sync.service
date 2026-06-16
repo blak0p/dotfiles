@@ -1,0 +1,6 @@
+[Unit]
+Description=Auto-commit and push Boveda changes
+
+[Service]
+Type=oneshot
+ExecStart=/var/home/alejandro/dev/dotfiles/scripts/boveda-auto-sync.sh

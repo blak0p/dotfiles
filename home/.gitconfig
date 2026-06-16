@@ -4,7 +4,7 @@
 	postBuffer = 524288000
 
 [user]
-	name = blak0p
+	name = Alejandro
 	email = martinpujaltea@gmail.com
 
 [init]
@@ -31,3 +31,11 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[safe]
+	directory = /tmp

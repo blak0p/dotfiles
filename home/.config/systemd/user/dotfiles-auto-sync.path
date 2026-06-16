@@ -2,7 +2,7 @@
 Description=Watch dotfiles for changes and auto-sync
 
 [Path]
-PathModified=/var/home/alejandro/dotfiles
+PathModified=/var/home/alejandro/dev/dotfiles
 Unit=dotfiles-auto-sync.service
 
 [Install]

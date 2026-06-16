@@ -3,4 +3,4 @@ Description=Auto-commit and push dotfiles changes
 
 [Service]
 Type=oneshot
-ExecStart=/var/home/alejandro/dotfiles/scripts/dotfiles-auto-sync.sh
+ExecStart=/var/home/alejandro/dev/dotfiles/scripts/dotfiles-auto-sync.sh

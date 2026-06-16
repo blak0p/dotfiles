@@ -71,6 +71,10 @@ src = ".claude.json"
 dst = ".claude.json"
 
 [[symlinks]]
+src = ".secrets"
+dst = ".secrets"
+
+[[symlinks]]
 src = ".local/bin/ollama"
 dst = "/run/host/var/usrlocal/bin/ollama"
 

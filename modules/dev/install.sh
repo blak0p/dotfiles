@@ -3,6 +3,20 @@
 
 echo -e "\n${BLUE}═══ dev ═══${NC}"
 
+if ! command -v inotifywait &>/dev/null; then
+    echo -e "${YELLOW}⚠️  inotifywait no encontrado. Necesario para boveda-watch y dotfiles-watch.${NC}"
+    if command -v rpm-ostree &>/dev/null; then
+        echo -e "${YELLOW}   Instalando inotify-tools (requiere reboot)...${NC}"
+        rpm-ostree install -y inotify-tools
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y inotify-tools
+    elif command -v apt &>/dev/null; then
+        sudo apt install -y inotify-tools
+    else
+        echo -e "${YELLOW}   Instalá inotify-tools manualmente y reiniciá.${NC}"
+    fi
+fi
+
 # Scripts
 mkdir -p "$HOME/scripts"
 for script in merge_md.py; do

@@ -1,314 +1,3 @@
-[2026-06-14 12:22:20] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 12:22:20] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 12:22:20] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_bDOKpz
-[2026-06-14 12:22:20] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 12:22:20] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-14 12:22:20] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 12:22:20] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 12:22:27] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-14 12:22:27] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-14 12:22:27] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-14 12:22:36] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input61)
-[2026-06-14 12:22:36] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 12:22:36] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 12:22:36] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_bDOKpz
-[2026-06-14 12:22:36] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 12:22:36] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-14 12:22:37] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 12:22:37] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 12:30:33] [INFO] Toggle activado → daemon desactivado
-[2026-06-14 12:50:32] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.0011/input/input62)
-[2026-06-14 12:50:32] [INFO] Toggle activo — acción ignorada
-[2026-06-14 12:50:32] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 12:50:33] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 12:50:44] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-14 12:50:44] [INFO] Daemon iniciado (PID 172721)
-======================================
-[2026-06-14 12:50:44] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 12:50:44] [INFO] Entorno gráfico detectado.
-[2026-06-14 12:50:44] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
-[2026-06-14 12:50:44] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 12:50:44] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 12:50:44] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_bDOKpz
-[2026-06-14 12:50:44] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 12:50:44] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-14 12:50:44] [INFO] Escuchando eventos udevadm...
-[2026-06-14 12:50:51] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input63)
-[2026-06-14 12:50:51] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 12:50:51] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 12:50:51] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_bDOKpz
-[2026-06-14 12:50:51] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 12:50:51] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-14 12:50:51] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 12:50:52] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 12:51:00] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
-[2026-06-14 12:51:01] [INFO] Joystick detectado: Microsoft X-Box 360 pad 0 (/devices/virtual/input/input64/event256)
-[2026-06-14 12:51:01] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 12:51:01] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 12:51:01] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_bDOKpz
-[2026-06-14 12:51:01] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 12:51:01] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-14 12:51:01] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-
-======================================
-[2026-06-14 14:05:54] [INFO] Daemon iniciado (PID 1827)
-======================================
-[2026-06-14 14:05:54] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 14:05:55] [INFO] Entorno gráfico detectado.
-[2026-06-14 14:05:55] [INFO] Escuchando eventos udevadm...
-[2026-06-14 14:36:02] [INFO] Toggle activado → daemon desactivado
-[2026-06-14 14:36:06] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000D/input/input33/js1)
-[2026-06-14 14:36:06] [INFO] Toggle activo — acción ignorada
-[2026-06-14 14:36:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 14:36:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 14:36:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 14:36:38] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000E/input/input36/js2)
-[2026-06-14 14:36:38] [INFO] Toggle activo — acción ignorada
-[2026-06-14 14:36:39] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 14:36:39] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 14:38:15] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000F/input/input39)
-[2026-06-14 14:38:15] [INFO] Toggle activo — acción ignorada
-[2026-06-14 14:38:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 15:19:55] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.0010/input/input41)
-[2026-06-14 15:19:55] [INFO] Toggle activo — acción ignorada
-[2026-06-14 15:19:56] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 15:36:43] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.0011/input/input43)
-[2026-06-14 15:36:43] [INFO] Toggle activo — acción ignorada
-[2026-06-14 15:36:43] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 15:40:14] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.0012/input/input45)
-[2026-06-14 15:40:14] [INFO] Toggle activo — acción ignorada
-[2026-06-14 15:40:14] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 15:40:56] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-14 15:40:56] [INFO] Daemon iniciado (PID 101818)
-======================================
-[2026-06-14 15:40:56] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 15:40:56] [INFO] Entorno gráfico detectado.
-[2026-06-14 15:40:56] [INFO] Joystick detectado (poll): Mando (/dev/input/event31)
-[2026-06-14 15:40:56] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 15:40:56] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 15:40:56] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_eOVNkD
-[2026-06-14 15:40:56] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 15:40:56] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-14 15:40:56] [INFO] Escuchando eventos udevadm...
-[2026-06-14 15:41:03] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input47)
-[2026-06-14 15:41:03] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 15:41:03] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 15:41:03] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_eOVNkD
-[2026-06-14 15:41:03] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 15:41:03] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-14 15:41:03] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 15:41:04] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 15:41:53] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input48/js1)
-[2026-06-14 15:41:53] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-14 15:41:53] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-14 15:41:53] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_eOVNkD
-[2026-06-14 15:41:53] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-14 15:41:53] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-14 15:46:42] [INFO] Toggle activado → daemon desactivado
-
-======================================
-[2026-06-14 18:02:23] [INFO] Daemon iniciado (PID 1816)
-======================================
-[2026-06-14 18:02:23] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 18:02:24] [INFO] Entorno gráfico detectado.
-[2026-06-14 18:02:24] [INFO] Escuchando eventos udevadm...
-
-======================================
-[2026-06-14 18:37:37] [INFO] Daemon iniciado (PID 1834)
-======================================
-[2026-06-14 18:37:37] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 18:37:38] [INFO] Entorno gráfico detectado.
-[2026-06-14 18:37:38] [INFO] Escuchando eventos udevadm...
-
-======================================
-[2026-06-14 19:02:59] [INFO] Daemon iniciado (PID 1831)
-======================================
-[2026-06-14 19:02:59] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 19:03:00] [INFO] Entorno gráfico detectado.
-[2026-06-14 19:03:00] [INFO] Escuchando eventos udevadm...
-[2026-06-14 19:03:22] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-14 19:03:22] [INFO] Daemon iniciado (PID 3282)
-======================================
-[2026-06-14 19:03:22] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 19:03:22] [INFO] Entorno gráfico detectado.
-[2026-06-14 19:03:22] [INFO] Escuchando eventos udevadm...
-[2026-06-14 19:03:23] [INFO] Toggle activado → daemon desactivado
-[2026-06-14 19:03:26] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input32/js1)
-[2026-06-14 19:03:26] [INFO] Toggle activo — acción ignorada
-[2026-06-14 19:03:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 19:03:28] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-14 19:03:47] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input37)
-[2026-06-14 19:03:47] [INFO] Toggle activo — acción ignorada
-[2026-06-14 19:03:47] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 19:03:47] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 19:04:38] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000D/input/input38)
-[2026-06-14 19:04:38] [INFO] Toggle activo — acción ignorada
-[2026-06-14 19:04:39] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 19:05:38] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000E/input/input40)
-[2026-06-14 19:05:38] [INFO] Toggle activo — acción ignorada
-[2026-06-14 19:05:39] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-
-======================================
-[2026-06-14 22:35:44] [INFO] Daemon iniciado (PID 1832)
-======================================
-[2026-06-14 22:35:44] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-14 22:35:45] [INFO] Entorno gráfico detectado.
-[2026-06-14 22:35:45] [INFO] Escuchando eventos udevadm...
-[2026-06-14 22:36:16] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input32/js1)
-[2026-06-14 22:36:16] [INFO] Toggle activo — acción ignorada
-[2026-06-14 22:36:16] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 22:36:17] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 23:21:06] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input35)
-[2026-06-14 23:21:06] [INFO] Toggle activo — acción ignorada
-[2026-06-14 23:21:06] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 23:40:25] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000C/input/input37/js1)
-[2026-06-14 23:40:25] [INFO] Toggle activo — acción ignorada
-[2026-06-14 23:40:26] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 23:40:26] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 23:40:26] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 23:40:27] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-14 23:40:27] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-14 23:40:27] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-14 23:42:14] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000D/input/input41)
-[2026-06-14 23:42:14] [INFO] Toggle activo — acción ignorada
-[2026-06-14 23:42:14] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 23:42:14] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 23:42:15] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 23:42:15] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-14 23:42:16] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-14 23:43:08] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input43)
-[2026-06-14 23:43:08] [INFO] Toggle activo — acción ignorada
-[2026-06-14 23:43:08] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 23:43:08] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 23:48:47] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input44)
-[2026-06-14 23:48:47] [INFO] Toggle activo — acción ignorada
-[2026-06-14 23:48:47] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-14 23:48:47] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-
-======================================
-[2026-06-15 09:43:23] [INFO] Daemon iniciado (PID 1796)
-======================================
-[2026-06-15 09:43:23] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 09:43:24] [INFO] Entorno gráfico detectado.
-[2026-06-15 09:43:25] [INFO] Escuchando eventos udevadm...
-[2026-06-15 12:05:21] [INFO] Toggle desactivado → daemon activado
-[2026-06-15 12:05:21] [INFO] Log rotado
-
-======================================
-[2026-06-15 12:05:21] [INFO] Daemon iniciado (PID 96126)
-======================================
-[2026-06-15 12:05:21] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 12:05:21] [INFO] Entorno gráfico detectado.
-[2026-06-15 12:05:21] [INFO] Escuchando eventos udevadm...
-[2026-06-15 12:05:26] [INFO] Toggle activado → daemon desactivado
-[2026-06-15 12:06:02] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000D/input/input33/js1)
-[2026-06-15 12:06:02] [INFO] Toggle activo — acción ignorada
-[2026-06-15 12:06:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:06:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:06:03] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 12:06:09] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-15 12:06:09] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-15 12:06:10] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
-[2026-06-15 12:06:45] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input37)
-[2026-06-15 12:06:45] [INFO] Toggle activo — acción ignorada
-[2026-06-15 12:06:46] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 12:06:46] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 12:07:10] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input38)
-[2026-06-15 12:07:10] [INFO] Toggle activo — acción ignorada
-[2026-06-15 12:07:10] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:07:10] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:07:33] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input39)
-[2026-06-15 12:07:33] [INFO] Toggle activo — acción ignorada
-[2026-06-15 12:07:33] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:07:34] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 12:09:18] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input40)
-[2026-06-15 12:09:18] [INFO] Toggle activo — acción ignorada
-[2026-06-15 12:09:18] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:09:18] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 12:09:26] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
-[2026-06-15 12:09:26] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
-[2026-06-15 12:09:27] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
-[2026-06-15 13:11:28] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000E/input/input42)
-[2026-06-15 13:11:28] [INFO] Toggle activo — acción ignorada
-[2026-06-15 13:11:28] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 13:11:29] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 13:11:30] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-15 13:11:30] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-15 13:11:31] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
-[2026-06-15 13:11:44] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input44)
-[2026-06-15 13:11:44] [INFO] Toggle activo — acción ignorada
-[2026-06-15 13:11:44] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 13:11:44] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-
-======================================
-[2026-06-15 14:57:45] [INFO] Daemon iniciado (PID 1830)
-======================================
-[2026-06-15 14:57:45] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 14:57:46] [INFO] Entorno gráfico detectado.
-[2026-06-15 14:57:46] [INFO] Escuchando eventos udevadm...
-[2026-06-15 14:57:56] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-15 14:57:56] [INFO] Daemon iniciado (PID 3261)
-======================================
-[2026-06-15 14:57:56] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 14:57:56] [INFO] Entorno gráfico detectado.
-[2026-06-15 14:57:56] [INFO] Escuchando eventos udevadm...
-[2026-06-15 14:59:16] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000A/input/input32/js1)
-[2026-06-15 14:59:16] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 14:59:16] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 14:59:16] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_zcqBsD
-[2026-06-15 14:59:16] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 14:59:16] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-15 14:59:17] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 14:59:17] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 15:00:51] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000E/input/input36/js1)
-[2026-06-15 15:00:51] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 15:00:51] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 15:00:51] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_zcqBsD
-[2026-06-15 15:00:51] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 15:00:51] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 15:00:52] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 15:00:52] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 15:00:52] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 15:00:53] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-15 15:00:53] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-15 15:00:53] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-15 15:01:41] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input40)
-[2026-06-15 15:01:41] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 15:01:41] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 15:01:41] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_zcqBsD
-[2026-06-15 15:01:41] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 15:01:41] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 15:01:41] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 15:01:41] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-
-======================================
-[2026-06-15 15:42:09] [INFO] Daemon iniciado (PID 1820)
-======================================
-[2026-06-15 15:42:09] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 15:42:10] [INFO] Entorno gráfico detectado.
-[2026-06-15 15:42:10] [INFO] Escuchando eventos udevadm...
-
-======================================
-[2026-06-15 17:12:39] [INFO] Daemon iniciado (PID 1829)
-======================================
-[2026-06-15 17:12:39] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 17:12:40] [INFO] Entorno gráfico detectado.
-[2026-06-15 17:12:40] [INFO] Escuchando eventos udevadm...
-[2026-06-15 17:13:26] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input32/js1)
-[2026-06-15 17:13:26] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 17:13:26] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 17:13:26] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_xOrzXi
-[2026-06-15 17:13:26] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 17:13:26] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-15 17:13:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
 [2026-06-15 17:13:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
 [2026-06-15 17:13:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
 [2026-06-15 17:13:33] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
@@ -508,3 +197,278 @@
 [2026-06-16 13:15:57] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
 [2026-06-16 13:15:57] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
 [2026-06-16 13:16:15] [INFO] Toggle activado → daemon desactivado
+[2026-06-16 13:17:14] [INFO] Toggle desactivado → daemon activado
+[2026-06-16 13:17:14] [INFO] Log rotado
+
+======================================
+[2026-06-16 13:17:14] [INFO] Daemon iniciado (PID 186700)
+======================================
+[2026-06-16 13:17:14] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 13:17:14] [INFO] Entorno gráfico detectado.
+[2026-06-16 13:17:14] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
+[2026-06-16 13:17:14] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:17:14] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:17:14] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:17:14] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:17:14] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-16 13:17:14] [INFO] Escuchando eventos udevadm...
+[2026-06-16 13:17:17] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input40)
+[2026-06-16 13:17:17] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:17:17] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:17:17] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:17:17] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:17:17] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 13:17:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-16 13:17:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-16 13:17:19] [INFO] Toggle activado → daemon desactivado
+[2026-06-16 13:19:12] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-16 13:19:12] [INFO] Daemon iniciado (PID 189097)
+======================================
+[2026-06-16 13:19:12] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 13:19:12] [INFO] Entorno gráfico detectado.
+[2026-06-16 13:19:12] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
+[2026-06-16 13:19:12] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:19:12] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:19:12] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:19:12] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:19:12] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-16 13:19:12] [INFO] Escuchando eventos udevadm...
+[2026-06-16 13:19:15] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input41)
+[2026-06-16 13:19:15] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:19:15] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:19:15] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:19:15] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:19:15] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 13:19:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:19:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:19:29] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input42)
+[2026-06-16 13:19:29] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:19:29] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:19:29] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:19:29] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:19:29] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 13:19:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:19:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:22:50] [INFO] Toggle activado → daemon desactivado
+[2026-06-16 13:32:14] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-16 13:32:16] [INFO] Daemon iniciado (PID 199390)
+======================================
+[2026-06-16 13:32:16] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 13:32:16] [INFO] Entorno gráfico detectado.
+[2026-06-16 13:32:16] [INFO] Escuchando eventos udevadm...
+[2026-06-16 13:32:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000F/input/input43)
+[2026-06-16 13:32:21] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:32:21] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:32:21] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:32:21] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:32:21] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-16 13:32:21] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:32:21] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:32:25] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-06-16 13:32:25] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-06-16 13:32:25] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
+[2026-06-16 13:32:34] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input45)
+[2026-06-16 13:32:34] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 13:32:34] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 13:32:34] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
+[2026-06-16 13:32:34] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 13:32:34] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 13:32:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 13:32:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+
+======================================
+[2026-06-16 13:58:10] [INFO] Daemon iniciado (PID 1814)
+======================================
+[2026-06-16 13:58:10] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 13:58:11] [INFO] Entorno gráfico detectado.
+[2026-06-16 13:58:11] [INFO] Escuchando eventos udevadm...
+[2026-06-16 14:01:19] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input32/js1)
+[2026-06-16 14:01:19] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 14:01:19] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 14:01:19] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
+[2026-06-16 14:01:19] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 14:01:19] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-16 14:01:19] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:01:19] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:01:20] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-16 14:01:26] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-06-16 14:01:26] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-06-16 14:01:26] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
+[2026-06-16 14:01:34] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input36)
+[2026-06-16 14:01:34] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 14:01:34] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 14:01:34] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
+[2026-06-16 14:01:34] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 14:01:34] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 14:01:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:01:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:09:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input37/js3)
+[2026-06-16 14:09:21] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 14:09:21] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 14:09:21] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
+[2026-06-16 14:09:22] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 14:09:22] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 14:09:22] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-16 14:09:23] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-16 14:09:38] [INFO] Toggle activado → daemon desactivado
+[2026-06-16 14:09:38] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-16 14:09:40] [INFO] Daemon iniciado (PID 6816)
+======================================
+[2026-06-16 14:09:40] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 14:09:40] [INFO] Entorno gráfico detectado.
+[2026-06-16 14:09:40] [INFO] Joystick detectado (poll): Mando (/dev/input/event256)
+[2026-06-16 14:09:40] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 14:09:40] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 14:09:40] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
+[2026-06-16 14:09:40] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 14:09:40] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-16 14:09:40] [INFO] Escuchando eventos udevadm...
+[2026-06-16 14:11:05] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input40)
+[2026-06-16 14:11:05] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 14:11:05] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 14:11:05] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
+[2026-06-16 14:11:05] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 14:11:05] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-16 14:11:05] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:11:05] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:11:16] [INFO] Toggle activado → daemon desactivado
+[2026-06-16 14:31:17] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000C/input/input41)
+[2026-06-16 14:31:17] [INFO] Toggle activo — acción ignorada
+[2026-06-16 14:31:17] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:31:17] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:31:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-16 14:31:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-16 14:31:19] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-16 14:31:21] [INFO] Toggle desactivado → daemon activado
+[2026-06-16 14:31:22] [WARN] Toggle ya en ejecución, saliendo
+
+======================================
+[2026-06-16 14:31:23] [INFO] Daemon iniciado (PID 15773)
+======================================
+[2026-06-16 14:31:23] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 14:31:23] [INFO] Entorno gráfico detectado.
+[2026-06-16 14:31:23] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
+[2026-06-16 14:31:23] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-16 14:31:23] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-16 14:31:23] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
+[2026-06-16 14:31:23] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-16 14:31:23] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-16 14:31:23] [INFO] Escuchando eventos udevadm...
+[2026-06-16 14:31:25] [INFO] Toggle activado → daemon desactivado
+[2026-06-16 14:31:27] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input43)
+[2026-06-16 14:31:27] [INFO] Toggle activo — acción ignorada
+[2026-06-16 14:31:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-16 14:31:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+
+======================================
+[2026-06-16 18:33:56] [INFO] Daemon iniciado (PID 1820)
+======================================
+[2026-06-16 18:33:56] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 18:33:57] [INFO] Entorno gráfico detectado.
+[2026-06-16 18:33:57] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-16 20:23:38] [INFO] Daemon iniciado (PID 1821)
+======================================
+[2026-06-16 20:23:38] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 20:23:39] [INFO] Entorno gráfico detectado.
+[2026-06-16 20:23:39] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-16 21:48:48] [INFO] Daemon iniciado (PID 1820)
+======================================
+[2026-06-16 21:48:48] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-16 21:48:49] [INFO] Entorno gráfico detectado.
+[2026-06-16 21:48:49] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-17 08:57:32] [INFO] Daemon iniciado (PID 1830)
+======================================
+[2026-06-17 08:57:32] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 08:57:33] [INFO] Entorno gráfico detectado.
+[2026-06-17 08:57:33] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-17 09:34:29] [INFO] Daemon iniciado (PID 1822)
+======================================
+[2026-06-17 09:34:29] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 09:34:30] [INFO] Entorno gráfico detectado.
+[2026-06-17 09:34:30] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-17 10:32:59] [INFO] Daemon iniciado (PID 1819)
+======================================
+[2026-06-17 10:32:59] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 10:33:00] [INFO] Entorno gráfico detectado.
+[2026-06-17 10:33:00] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-17 15:02:37] [INFO] Daemon iniciado (PID 1826)
+======================================
+[2026-06-17 15:02:37] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 15:02:38] [INFO] Entorno gráfico detectado.
+[2026-06-17 15:02:38] [INFO] Escuchando eventos udevadm...
+[2026-06-17 15:21:46] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-17 15:21:46] [INFO] Daemon iniciado (PID 18174)
+======================================
+[2026-06-17 15:21:46] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 15:21:46] [INFO] Entorno gráfico detectado.
+[2026-06-17 15:21:46] [INFO] Escuchando eventos udevadm...
+[2026-06-17 15:21:47] [INFO] Toggle activado → daemon desactivado
+
+======================================
+[2026-06-17 15:59:39] [INFO] Daemon iniciado (PID 1815)
+======================================
+[2026-06-17 15:59:39] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 15:59:40] [INFO] Entorno gráfico detectado.
+[2026-06-17 15:59:40] [INFO] Escuchando eventos udevadm...
+[2026-06-17 17:17:08] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input32/js1)
+[2026-06-17 17:17:08] [INFO] Toggle activo — acción ignorada
+[2026-06-17 17:17:08] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 17:17:08] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 17:17:09] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 17:17:18] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-17 17:17:19] [INFO] Daemon iniciado (PID 75773)
+======================================
+[2026-06-17 17:17:19] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 17:17:19] [INFO] Entorno gráfico detectado.
+[2026-06-17 17:17:19] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
+[2026-06-17 17:17:19] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-17 17:17:19] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-17 17:17:19] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_BnGmJJ
+[2026-06-17 17:17:19] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-17 17:17:19] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-17 17:17:19] [INFO] Escuchando eventos udevadm...
+[2026-06-17 17:17:29] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input35)
+[2026-06-17 17:17:29] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-17 17:17:29] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-17 17:17:29] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_BnGmJJ
+[2026-06-17 17:17:29] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-17 17:17:29] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-17 17:17:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 17:17:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 17:17:57] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input36)
+[2026-06-17 17:17:57] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-17 17:17:57] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-17 17:17:57] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_BnGmJJ
+[2026-06-17 17:17:57] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-17 17:17:57] [INFO] Steam abierto — abriendo Big Picture
+[2026-06-17 17:17:57] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 17:17:57] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+
+======================================
+[2026-06-17 17:37:04] [INFO] Daemon iniciado (PID 1818)
+======================================
+[2026-06-17 17:37:04] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 17:37:05] [INFO] Entorno gráfico detectado.
+[2026-06-17 17:37:05] [INFO] Escuchando eventos udevadm...

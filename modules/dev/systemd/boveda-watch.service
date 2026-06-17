@@ -1,0 +1,14 @@
+[Unit]
+Description=Boveda vault watcher — auto-commit via inotify
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/dev/dotfiles/scripts/boveda-watch.sh
+Restart=always
+RestartSec=5
+Nice=19
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=default.target

@@ -25,13 +25,13 @@ link_file "$DOTFILES_DIR/modules/dev/bashrc.d/github-token.sh"  "$HOME/.bashrc.d
 
 # Systemd
 mkdir -p "$HOME/.config/systemd/user"
-for svc in tokensave-daemon.service dotfiles-auto-sync.service dotfiles-auto-sync.path; do
+for svc in tokensave-daemon.service dotfiles-auto-sync.service dotfiles-auto-sync.path boveda-watch.service; do
     if [ -f "$DOTFILES_DIR/modules/dev/systemd/$svc" ]; then
         link_file "$DOTFILES_DIR/modules/dev/systemd/$svc" "$HOME/.config/systemd/user/$svc"
     fi
 done
 systemctl --user daemon-reload 2>/dev/null
-for svc in tokensave-daemon dotfiles-auto-sync.path; do
+for svc in tokensave-daemon dotfiles-auto-sync.path boveda-watch; do
     if systemctl --user enable "$svc" 2>/dev/null; then
         systemctl --user start "$svc" 2>/dev/null
         echo -e "${GREEN}✅ $svc habilitado${NC}"

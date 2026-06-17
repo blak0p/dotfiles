@@ -1,9 +1,0 @@
-[Unit]
-Description=Watch Boveda for changes and auto-sync
-
-[Path]
-PathModified=/var/home/alejandro/dev/Boveda
-Unit=boveda-auto-sync.service
-
-[Install]
-WantedBy=default.target

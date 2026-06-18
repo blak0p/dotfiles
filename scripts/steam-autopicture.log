@@ -1,315 +1,3 @@
-[2026-06-15 17:13:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 17:13:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 17:13:33] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-15 17:13:33] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-15 17:13:33] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-15 17:13:41] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input36)
-[2026-06-15 17:13:41] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 17:13:41] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 17:13:41] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_xOrzXi
-[2026-06-15 17:13:41] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 17:13:41] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 17:13:41] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 17:13:41] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 17:16:55] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input37/js3)
-[2026-06-15 17:16:55] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 17:16:55] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 17:16:55] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_xOrzXi
-[2026-06-15 17:16:55] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 17:16:55] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 17:16:56] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 17:16:57] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-15 17:16:59] [INFO] Toggle activado → daemon desactivado
-
-======================================
-[2026-06-15 19:18:02] [INFO] Daemon iniciado (PID 1816)
-======================================
-[2026-06-15 19:18:02] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 19:18:03] [INFO] Entorno gráfico detectado.
-[2026-06-15 19:18:03] [INFO] Escuchando eventos udevadm...
-[2026-06-15 19:18:08] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-15 19:18:08] [INFO] Daemon iniciado (PID 3053)
-======================================
-[2026-06-15 19:18:08] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 19:18:08] [INFO] Entorno gráfico detectado.
-[2026-06-15 19:18:08] [INFO] Escuchando eventos udevadm...
-[2026-06-15 19:18:08] [INFO] Toggle activado → daemon desactivado
-[2026-06-15 19:18:33] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input33)
-[2026-06-15 19:18:33] [INFO] Toggle activo — acción ignorada
-[2026-06-15 19:18:33] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:18:34] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:20:16] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000C/input/input35)
-[2026-06-15 19:20:16] [INFO] Toggle activo — acción ignorada
-[2026-06-15 19:20:17] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:15] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000D/input/input37/js1)
-[2026-06-15 19:22:15] [INFO] Toggle activo — acción ignorada
-[2026-06-15 19:22:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:22:38] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input41)
-[2026-06-15 19:22:38] [INFO] Toggle activo — acción ignorada
-[2026-06-15 19:22:38] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:22:38] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:22:59] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-15 19:22:59] [INFO] Daemon iniciado (PID 7053)
-======================================
-[2026-06-15 19:22:59] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 19:22:59] [INFO] Entorno gráfico detectado.
-[2026-06-15 19:22:59] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
-[2026-06-15 19:22:59] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 19:22:59] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 19:22:59] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 19:22:59] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 19:22:59] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 19:22:59] [INFO] Escuchando eventos udevadm...
-[2026-06-15 19:23:11] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input42)
-[2026-06-15 19:23:11] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 19:23:11] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 19:23:11] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 19:23:11] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 19:23:11] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 19:23:11] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:23:11] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:23:23] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input43)
-[2026-06-15 19:23:23] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 19:23:23] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 19:23:23] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 19:23:23] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 19:23:23] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 19:23:23] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:23:23] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:24:02] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input44)
-[2026-06-15 19:24:02] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 19:24:02] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 19:24:02] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 19:24:02] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 19:24:02] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 19:24:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:24:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:24:08] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
-[2026-06-15 19:24:08] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
-[2026-06-15 19:24:08] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
-[2026-06-15 19:26:50] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input46)
-[2026-06-15 19:26:50] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 19:26:50] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 19:26:50] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 19:26:50] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 19:26:50] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 19:26:50] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:26:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 19:27:24] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:1949:040A.000E/input/input47)
-[2026-06-15 19:27:24] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 19:27:24] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 19:27:24] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 19:27:24] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 19:27:24] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-15 19:27:24] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 19:27:25] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-15 20:08:25] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:1949:040A.000F/input/input48)
-[2026-06-15 20:08:25] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-15 20:08:25] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-15 20:08:25] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZjNBco
-[2026-06-15 20:08:25] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-15 20:08:25] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-15 20:08:25] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 20:08:25] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-
-======================================
-[2026-06-15 20:31:57] [INFO] Daemon iniciado (PID 1829)
-======================================
-[2026-06-15 20:31:57] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 20:31:58] [INFO] Entorno gráfico detectado.
-[2026-06-15 20:31:58] [INFO] Escuchando eventos udevadm...
-
-======================================
-[2026-06-15 21:28:21] [INFO] Daemon iniciado (PID 1820)
-======================================
-[2026-06-15 21:28:21] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-15 21:28:22] [INFO] Entorno gráfico detectado.
-[2026-06-15 21:28:22] [INFO] Escuchando eventos udevadm...
-[2026-06-15 22:19:35] [INFO] Toggle activado → daemon desactivado
-[2026-06-15 22:20:27] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000D/input/input33/js1)
-[2026-06-15 22:20:27] [INFO] Toggle activo — acción ignorada
-[2026-06-15 22:20:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 22:20:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 22:20:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 22:20:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 22:20:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-15 22:20:28] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-
-======================================
-[2026-06-16 10:06:01] [INFO] Daemon iniciado (PID 11059)
-======================================
-[2026-06-16 10:06:01] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 10:06:01] [INFO] Entorno gráfico detectado.
-[2026-06-16 10:06:01] [INFO] Escuchando eventos udevadm...
-[2026-06-16 10:31:50] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000D/input/input33/js1)
-[2026-06-16 10:31:50] [INFO] Toggle activo — acción ignorada
-[2026-06-16 10:31:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 10:31:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 10:31:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 10:31:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 10:31:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 10:31:52] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
-[2026-06-16 10:31:52] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-16 10:31:53] [INFO] Daemon iniciado (PID 14135)
-======================================
-[2026-06-16 10:31:53] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 10:31:53] [INFO] Entorno gráfico detectado.
-[2026-06-16 10:31:53] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
-[2026-06-16 10:31:53] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 10:31:53] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 10:31:53] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 10:31:53] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 10:31:53] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-16 10:31:53] [INFO] Escuchando eventos udevadm...
-[2026-06-16 10:31:57] [INFO] Toggle activado → daemon desactivado
-[2026-06-16 11:10:02] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input37)
-[2026-06-16 11:10:02] [INFO] Toggle activo — acción ignorada
-[2026-06-16 11:10:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 11:10:02] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:15:48] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-16 13:15:48] [INFO] Daemon iniciado (PID 183912)
-======================================
-[2026-06-16 13:15:48] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 13:15:48] [INFO] Entorno gráfico detectado.
-[2026-06-16 13:15:48] [INFO] Escuchando eventos udevadm...
-[2026-06-16 13:15:50] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000E/input/input38)
-[2026-06-16 13:15:50] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:15:50] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:15:50] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:15:50] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:15:50] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-16 13:15:50] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:15:51] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 13:15:57] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-16 13:15:57] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-16 13:15:57] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-16 13:16:15] [INFO] Toggle activado → daemon desactivado
-[2026-06-16 13:17:14] [INFO] Toggle desactivado → daemon activado
-[2026-06-16 13:17:14] [INFO] Log rotado
-
-======================================
-[2026-06-16 13:17:14] [INFO] Daemon iniciado (PID 186700)
-======================================
-[2026-06-16 13:17:14] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 13:17:14] [INFO] Entorno gráfico detectado.
-[2026-06-16 13:17:14] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
-[2026-06-16 13:17:14] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:17:14] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:17:14] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:17:14] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:17:14] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-16 13:17:14] [INFO] Escuchando eventos udevadm...
-[2026-06-16 13:17:17] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input40)
-[2026-06-16 13:17:17] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:17:17] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:17:17] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:17:17] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:17:17] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-16 13:17:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 13:17:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 13:17:19] [INFO] Toggle activado → daemon desactivado
-[2026-06-16 13:19:12] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-16 13:19:12] [INFO] Daemon iniciado (PID 189097)
-======================================
-[2026-06-16 13:19:12] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 13:19:12] [INFO] Entorno gráfico detectado.
-[2026-06-16 13:19:12] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
-[2026-06-16 13:19:12] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:19:12] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:19:12] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:19:12] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:19:12] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-16 13:19:12] [INFO] Escuchando eventos udevadm...
-[2026-06-16 13:19:15] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input41)
-[2026-06-16 13:19:15] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:19:15] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:19:15] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:19:15] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:19:15] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-16 13:19:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:19:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:19:29] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input42)
-[2026-06-16 13:19:29] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:19:29] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:19:29] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:19:29] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:19:29] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-16 13:19:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:19:29] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:22:50] [INFO] Toggle activado → daemon desactivado
-[2026-06-16 13:32:14] [INFO] Toggle desactivado → daemon activado
-
-======================================
-[2026-06-16 13:32:16] [INFO] Daemon iniciado (PID 199390)
-======================================
-[2026-06-16 13:32:16] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 13:32:16] [INFO] Entorno gráfico detectado.
-[2026-06-16 13:32:16] [INFO] Escuchando eventos udevadm...
-[2026-06-16 13:32:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000F/input/input43)
-[2026-06-16 13:32:21] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:32:21] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:32:21] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:32:21] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:32:21] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-16 13:32:21] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:32:21] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:32:25] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
-[2026-06-16 13:32:25] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
-[2026-06-16 13:32:25] [INFO] Evento ignorado — cooldown activo (4 segundos transcurridos)
-[2026-06-16 13:32:34] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input45)
-[2026-06-16 13:32:34] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 13:32:34] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 13:32:34] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_ZbkExa
-[2026-06-16 13:32:34] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 13:32:34] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-16 13:32:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 13:32:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-
-======================================
-[2026-06-16 13:58:10] [INFO] Daemon iniciado (PID 1814)
-======================================
-[2026-06-16 13:58:10] [INFO] Esperando a que el entorno gráfico esté listo...
-[2026-06-16 13:58:11] [INFO] Entorno gráfico detectado.
-[2026-06-16 13:58:11] [INFO] Escuchando eventos udevadm...
-[2026-06-16 14:01:19] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input32/js1)
-[2026-06-16 14:01:19] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 14:01:19] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 14:01:19] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
-[2026-06-16 14:01:19] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 14:01:19] [INFO] Steam cerrado — lanzando Steam en Big Picture
-[2026-06-16 14:01:19] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 14:01:19] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 14:01:20] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
-[2026-06-16 14:01:26] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-16 14:01:26] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-16 14:01:26] [INFO] Evento ignorado — cooldown activo (7 segundos transcurridos)
-[2026-06-16 14:01:34] [INFO] Joystick detectado: desconocido (/devices/virtual/input/input36)
-[2026-06-16 14:01:34] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 14:01:34] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 14:01:34] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
-[2026-06-16 14:01:34] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
-[2026-06-16 14:01:34] [INFO] Steam abierto — abriendo Big Picture
-[2026-06-16 14:01:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 14:01:34] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
-[2026-06-16 14:09:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input37/js3)
-[2026-06-16 14:09:21] [INFO] Entorno importado: DISPLAY=:0
-[2026-06-16 14:09:21] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
-[2026-06-16 14:09:21] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_UFPslD
 [2026-06-16 14:09:22] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
 [2026-06-16 14:09:22] [INFO] Steam abierto — abriendo Big Picture
 [2026-06-16 14:09:22] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
@@ -472,3 +160,202 @@
 [2026-06-17 17:37:04] [INFO] Esperando a que el entorno gráfico esté listo...
 [2026-06-17 17:37:05] [INFO] Entorno gráfico detectado.
 [2026-06-17 17:37:05] [INFO] Escuchando eventos udevadm...
+[2026-06-17 17:47:21] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input32/js1)
+[2026-06-17 17:47:21] [INFO] Entorno importado: DISPLAY=:0
+[2026-06-17 17:47:21] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-06-17 17:47:21] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_AkwNYO
+[2026-06-17 17:47:21] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-06-17 17:47:21] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-06-17 17:47:22] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 17:47:22] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 17:47:23] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 17:47:26] [INFO] Toggle activado → daemon desactivado
+[2026-06-17 17:47:37] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000B/input/input35/js2)
+[2026-06-17 17:47:37] [INFO] Toggle activo — acción ignorada
+[2026-06-17 17:47:38] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 17:47:38] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 17:59:20] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000C/input/input38)
+[2026-06-17 17:59:20] [INFO] Toggle activo — acción ignorada
+[2026-06-17 17:59:20] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 17:59:58] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000D/input/input40)
+[2026-06-17 17:59:58] [INFO] Toggle activo — acción ignorada
+[2026-06-17 17:59:59] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 18:05:53] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000E/input/input42)
+[2026-06-17 18:05:53] [INFO] Toggle activo — acción ignorada
+[2026-06-17 18:05:54] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 18:09:23] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.000F/input/input44)
+[2026-06-17 18:09:23] [INFO] Toggle activo — acción ignorada
+[2026-06-17 18:09:23] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 18:16:08] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0010/input/input46)
+[2026-06-17 18:16:08] [INFO] Toggle activo — acción ignorada
+[2026-06-17 18:16:09] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 18:16:58] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0011/input/input48)
+[2026-06-17 18:16:58] [INFO] Toggle activo — acción ignorada
+[2026-06-17 18:16:59] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 18:23:02] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.0012/input/input50)
+[2026-06-17 18:23:02] [INFO] Toggle activo — acción ignorada
+[2026-06-17 18:23:03] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 18:26:38] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.0013/input/input52)
+[2026-06-17 18:26:38] [INFO] Toggle activo — acción ignorada
+[2026-06-17 18:26:38] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 18:41:02] [INFO] Log rotado
+
+======================================
+[2026-06-17 18:41:02] [INFO] Daemon iniciado (PID 1855)
+======================================
+[2026-06-17 18:41:02] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 18:41:03] [INFO] Entorno gráfico detectado.
+[2026-06-17 18:41:03] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-17 18:45:26] [INFO] Daemon iniciado (PID 2091)
+======================================
+[2026-06-17 18:45:26] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-17 18:45:27] [INFO] Entorno gráfico detectado.
+[2026-06-17 18:45:27] [INFO] Escuchando eventos udevadm...
+[2026-06-17 19:42:39] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input41)
+[2026-06-17 19:42:39] [INFO] Toggle activo — acción ignorada
+[2026-06-17 19:42:39] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 19:42:39] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 19:42:41] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 19:42:41] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 19:42:42] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 20:02:06] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0013/input/input43/js1)
+[2026-06-17 20:02:06] [INFO] Toggle activo — acción ignorada
+[2026-06-17 20:02:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 20:02:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 20:51:32] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0014/input/input46)
+[2026-06-17 20:51:32] [INFO] Toggle activo — acción ignorada
+[2026-06-17 20:51:32] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 20:53:31] [INFO] No es joystick (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input48) — ignorado
+[2026-06-17 20:53:32] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 20:53:36] [INFO] Evento ignorado — cooldown activo (5 segundos transcurridos)
+[2026-06-17 20:53:37] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
+[2026-06-17 20:53:37] [INFO] Evento ignorado — cooldown activo (6 segundos transcurridos)
+[2026-06-17 20:53:39] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-06-17 20:53:39] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-06-17 20:53:39] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-06-17 20:55:06] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input55)
+[2026-06-17 20:55:06] [INFO] Toggle activo — acción ignorada
+[2026-06-17 20:55:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 20:55:07] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 20:55:09] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 20:55:09] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 20:55:09] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:00:40] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input59)
+[2026-06-17 21:00:40] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:00:41] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:00:41] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:00:43] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:00:43] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:00:43] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:04:32] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input63)
+[2026-06-17 21:04:32] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:04:32] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:04:33] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:04:34] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:04:34] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:04:35] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:06:19] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input67)
+[2026-06-17 21:06:19] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:06:19] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:06:20] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:06:21] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:06:21] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:06:22] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:13:16] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input71)
+[2026-06-17 21:13:16] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:13:17] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:13:17] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:13:19] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:13:19] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:13:19] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:24:13] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input75)
+[2026-06-17 21:24:13] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:24:13] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:24:13] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:24:15] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:24:15] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:24:15] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:28:17] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input79)
+[2026-06-17 21:28:17] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:28:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:28:18] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:28:20] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:28:20] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:28:20] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:44:55] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0026/input/input83)
+[2026-06-17 21:44:55] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:44:56] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:47:34] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0027/input/input85)
+[2026-06-17 21:47:34] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:47:35] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:48:28] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.0029/input/input87)
+[2026-06-17 21:48:28] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:48:29] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:48:36] [INFO] Evento ignorado — cooldown activo (8 segundos transcurridos)
+[2026-06-17 21:48:37] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
+[2026-06-17 21:48:37] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
+[2026-06-17 21:48:37] [INFO] Evento ignorado — cooldown activo (9 segundos transcurridos)
+[2026-06-17 21:48:51] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.002B/input/input92)
+[2026-06-17 21:48:51] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:48:51] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:48:51] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:49:15] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.002C/input/input93)
+[2026-06-17 21:49:15] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:49:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:49:16] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:49:48] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.002D/input/input94)
+[2026-06-17 21:49:48] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:49:48] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:49:48] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:50:23] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input95)
+[2026-06-17 21:50:23] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:50:23] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:50:24] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:50:26] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:50:26] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:50:26] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:51:24] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0030/input/input99)
+[2026-06-17 21:51:24] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:51:24] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:53:19] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0031/input/input101)
+[2026-06-17 21:53:19] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:53:19] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:55:44] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input103)
+[2026-06-17 21:55:44] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:55:44] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:55:45] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:55:47] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:55:47] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:55:47] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 21:56:26] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input107)
+[2026-06-17 21:56:26] [INFO] Toggle activo — acción ignorada
+[2026-06-17 21:56:26] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 21:56:27] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-17 21:56:28] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:56:28] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 21:56:29] [INFO] Evento ignorado — cooldown activo (3 segundos transcurridos)
+[2026-06-17 22:02:54] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/input/input111)
+[2026-06-17 22:02:54] [INFO] Toggle activo — acción ignorada
+[2026-06-17 22:02:54] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 22:02:54] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 22:02:56] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 22:02:56] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 22:02:56] [INFO] Evento ignorado — cooldown activo (2 segundos transcurridos)
+[2026-06-17 22:03:27] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0038/input/input115)
+[2026-06-17 22:03:27] [INFO] Toggle activo — acción ignorada
+[2026-06-17 22:03:27] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 22:04:16] [INFO] Joystick detectado: desconocido (/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:0d:00.0/usb1/1-3/1-3:1.0/0003:057E:2009.0039/input/input117)
+[2026-06-17 22:04:16] [INFO] Toggle activo — acción ignorada
+[2026-06-17 22:04:16] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-17 22:06:02] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:057E:2009.003A/input/input119)
+[2026-06-17 22:06:02] [INFO] Toggle activo — acción ignorada
+[2026-06-17 22:06:03] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+
+======================================
+[2026-06-18 09:21:01] [INFO] Daemon iniciado (PID 1947)
+======================================
+[2026-06-18 09:21:01] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 09:21:02] [INFO] Entorno gráfico detectado.
+[2026-06-18 09:21:02] [INFO] Escuchando eventos udevadm...

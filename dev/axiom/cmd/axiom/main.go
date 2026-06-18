@@ -23,11 +23,14 @@ func main() {
 
 	var err error
 	switch cmd {
-		case "create":
-			err = requireName(cmd, arg)
-			if err == nil {
-				err = internal.Create(cfg, arg)
+	case "create":
+		err = requireName(cmd, arg)
+		if err == nil {
+			if len(os.Args) >= 4 {
+				cfg.Image = os.Args[3]
 			}
+			err = internal.Create(cfg, arg)
+		}
 		case "enter":
 			err = requireName(cmd, arg)
 			if err == nil {
@@ -71,11 +74,15 @@ func usage() {
 	fmt.Println(`axiom — gestión de entornos de desarrollo
 
 	Uso:
-	axiom create <nombre>   Crea el entorno y entra
-	axiom enter  <nombre>   Entra al entorno
-	axiom sync <nombre>     Sincroniza symlinks de un entorno
-	axiom sync --all        Sincroniza symlinks de todos los entornos
-	axiom list              Lista los entornos
-	axiom delete <nombre>   Elimina el entorno (el código no se borra)
-	axiom help              Muestra esta ayuda`)
+	axiom create <nombre> [imagen]   Crea el entorno (imagen por defecto: archlinux:latest)
+	axiom enter  <nombre>            Entra al entorno
+	axiom sync <nombre>              Sincroniza symlinks de un entorno
+	axiom sync --all                 Sincroniza symlinks de todos los entornos
+	axiom list                       Lista los entornos
+	axiom delete <nombre>            Elimina el entorno (el código no se borra)
+	axiom help                       Muestra esta ayuda
+
+	Ejemplos:
+	axiom create unity ubuntu:24.04
+	axiom create fedora fedora:41`)
 }

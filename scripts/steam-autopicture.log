@@ -359,3 +359,72 @@
 [2026-06-18 09:21:01] [INFO] Esperando a que el entorno gráfico esté listo...
 [2026-06-18 09:21:02] [INFO] Entorno gráfico detectado.
 [2026-06-18 09:21:02] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-18 11:03:21] [INFO] Daemon iniciado (PID 1918)
+======================================
+[2026-06-18 11:03:21] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 11:03:22] [INFO] Entorno gráfico detectado.
+[2026-06-18 11:03:22] [INFO] Escuchando eventos udevadm...
+[2026-06-18 12:28:48] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-18 12:28:48] [INFO] Daemon iniciado (PID 97970)
+======================================
+[2026-06-18 12:28:48] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 12:28:48] [INFO] Entorno gráfico detectado.
+[2026-06-18 12:28:48] [INFO] Escuchando eventos udevadm...
+[2026-06-18 12:28:49] [INFO] Toggle activado → daemon desactivado
+[2026-06-18 12:29:00] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000A/input/input32/js1)
+[2026-06-18 12:29:00] [INFO] Toggle activo — acción ignorada
+[2026-06-18 12:29:01] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-18 12:29:01] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-18 12:29:01] [INFO] Evento ignorado — cooldown activo (1 segundos transcurridos)
+[2026-06-18 12:59:15] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000B/input/input35)
+[2026-06-18 12:59:15] [INFO] Toggle activo — acción ignorada
+[2026-06-18 12:59:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-06-18 12:59:15] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+
+======================================
+[2026-06-18 15:28:59] [INFO] Daemon iniciado (PID 1915)
+======================================
+[2026-06-18 15:28:59] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 15:29:00] [INFO] Entorno gráfico detectado.
+[2026-06-18 15:29:00] [INFO] Escuchando eventos udevadm...
+[2026-06-18 18:44:58] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-18 18:44:58] [INFO] Daemon iniciado (PID 186433)
+======================================
+[2026-06-18 18:44:58] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 18:44:58] [INFO] Entorno gráfico detectado.
+[2026-06-18 18:44:58] [INFO] Escuchando eventos udevadm...
+[2026-06-18 18:44:58] [INFO] Toggle activado → daemon desactivado
+
+======================================
+[2026-06-18 20:25:47] [INFO] Daemon iniciado (PID 1921)
+======================================
+[2026-06-18 20:25:47] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 20:25:48] [INFO] Entorno gráfico detectado.
+[2026-06-18 20:25:48] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-18 23:30:11] [INFO] Daemon iniciado (PID 1932)
+======================================
+[2026-06-18 23:30:11] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-18 23:30:16] [INFO] Entorno gráfico detectado.
+[2026-06-18 23:30:17] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-19 00:38:28] [INFO] Daemon iniciado (PID 1924)
+======================================
+[2026-06-19 00:38:28] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-19 00:38:29] [INFO] Entorno gráfico detectado.
+[2026-06-19 00:38:29] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-19 09:42:24] [INFO] Daemon iniciado (PID 1923)
+======================================
+[2026-06-19 09:42:24] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-19 09:42:25] [INFO] Entorno gráfico detectado.
+[2026-06-19 09:42:25] [INFO] Escuchando eventos udevadm...

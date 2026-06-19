@@ -161,7 +161,7 @@ func Create(cfg Config, name string) error {
 		flags += " --volume /var/home/linuxbrew/.linuxbrew:/home/linuxbrew/.linuxbrew:ro"
 		flags += " --env AXIOM_BUNKER=1"
 
-		packages := "git github-cli nano"
+		packages := packagesForImage(cfg.Image)
 		fmt.Printf("→ Creando entorno '%s' con paquetes: %s...\n", name, packages)
 
 		cmd := exec.Command(distroboxBin, "create",
@@ -335,6 +335,21 @@ func Delete(cfg Config, name string) error {
 		fmt.Printf("⚠ Aviso: no se pudo remover completamente %s: %v\n", homeDir, err)
 	}
 	return nil
+}
+
+// packagesForImage devuelve los paquetes básicos según la imagen.
+func packagesForImage(image string) string {
+	img := strings.ToLower(image)
+	switch {
+	case strings.Contains(img, "ubuntu") || strings.Contains(img, "debian"):
+		return "git gh nano code"
+	case strings.Contains(img, "fedora") || strings.Contains(img, "fedora-toolbox"):
+		return "git gh nano code"
+	case strings.Contains(img, "alpine"):
+		return "git github-cli nano code"
+	default:
+		return "git github-cli nano code"
+	}
 }
 
 // bunkerExists comprueba match exacto de nombre contra el output de distrobox list.

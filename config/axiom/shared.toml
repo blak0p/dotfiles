@@ -82,3 +82,11 @@ dst = "/run/host/var/usrlocal/bin/ollama"
 src = ".gemini"
 dst = ".gemini"
 
+[[symlinks]]
+src = ".config/Code"
+dst = ".config/Code"
+
+[[symlinks]]
+src = ".vscode/extensions"
+dst = ".vscode/extensions"
+

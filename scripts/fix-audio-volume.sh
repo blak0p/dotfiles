@@ -3,7 +3,7 @@
 # Cuando PipeWire usa perfil pro-audio, el slider de KDE no controla
 # el Master de ALSA, y a veces queda bajo sin que te des cuenta.
 
-CARD=2
+CARD=3
 
 amixer -c "$CARD" sset Master 87 2>/dev/null || {
     notify-send "fix-audio-volume" "No se encontro la tarjeta $CARD" -i dialog-error

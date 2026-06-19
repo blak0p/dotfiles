@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/Alejandro-M-P/axiom/internal"
 )
@@ -28,6 +30,8 @@ func main() {
 		if err == nil {
 			if len(os.Args) >= 4 {
 				cfg.Image = os.Args[3]
+			} else {
+				cfg.Image = promptDistro()
 			}
 			err = internal.Create(cfg, arg)
 		}
@@ -70,11 +74,30 @@ func requireName(cmd, name string) error {
 	return nil
 }
 
+func promptDistro() string {
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		fmt.Print("¿Qué imagen querés? (1) Arch  (2) Ubuntu  (3) Fedora  o escribí una: [1]: ")
+		answer, _ := reader.ReadString('\n')
+		answer = strings.TrimSpace(answer)
+		switch answer {
+		case "2", "ubuntu", "Ubuntu":
+			return "ubuntu:latest"
+		case "3", "fedora", "Fedora":
+			return "registry.fedoraproject.org/fedora-toolbox:latest"
+		case "", "1", "arch", "Arch":
+			return "archlinux:latest"
+		default:
+			return answer
+		}
+	}
+}
+
 func usage() {
 	fmt.Println(`axiom — gestión de entornos de desarrollo
 
 	Uso:
-	axiom create <nombre> [imagen]   Crea el entorno (imagen por defecto: archlinux:latest)
+	axiom create <nombre> [imagen]   Crea el entorno (te pregunta la distro)
 	axiom enter  <nombre>            Entra al entorno
 	axiom sync <nombre>              Sincroniza symlinks de un entorno
 	axiom sync --all                 Sincroniza symlinks de todos los entornos
@@ -83,6 +106,7 @@ func usage() {
 	axiom help                       Muestra esta ayuda
 
 	Ejemplos:
-	axiom create unity ubuntu:24.04
-	axiom create fedora fedora:41`)
+	axiom create unity                    Te pregunta la imagen
+	axiom create unity ubuntu:24.04       Fuerza una imagen específica
+	axiom create unity fedora:latest      Cualquier imagen de Docker/Podman`)
 }

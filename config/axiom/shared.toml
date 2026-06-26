@@ -75,12 +75,32 @@ src = ".secrets"
 dst = ".secrets"
 
 [[symlinks]]
-src = ".local/bin/ollama"
-dst = "/run/host/var/usrlocal/bin/ollama"
+src = "/var/usrlocal/bin/ollama"
+dst = ".local/bin/ollama"
 
 [[symlinks]]
 src = ".gemini"
 dst = ".gemini"
+
+[[symlinks]]
+src = ".codex"
+dst = ".codex"
+
+[[symlinks]]
+src = ".pi"
+dst = ".pi"
+
+[[symlinks]]
+src = ".config/nvim"
+dst = ".config/nvim"
+
+[[symlinks]]
+src = ".local/share/nvim"
+dst = ".local/share/nvim"
+
+[[symlinks]]
+src = ".local/state/nvim"
+dst = ".local/state/nvim"
 
 [[symlinks]]
 src = ".config/Code"
@@ -89,4 +109,3 @@ dst = ".config/Code"
 [[symlinks]]
 src = ".vscode/extensions"
 dst = ".vscode/extensions"
-

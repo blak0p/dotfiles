@@ -4,7 +4,7 @@ return {
   dependencies = { "saghen/blink.compat" },
   opts = {
     sources = {
-      default = { "avante_commands", "avante_mentions", "avante_files" },
+      default = { "lsp", "path", "snippets", "buffer", "avante_commands", "avante_mentions", "avante_files" },
       compat = {
         "avante_commands",
         "avante_mentions",

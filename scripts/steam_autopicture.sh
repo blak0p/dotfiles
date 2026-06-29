@@ -6,6 +6,9 @@ LOG_FILE="$HOME/scripts/steam-autopicture.log"
 LOG_MAX_LINES=500
 LOG_KEEP_LINES=200
 
+DECKY_BIN="$HOME/homebrew/services/PluginLoader"
+DECKY_PID_FILE="/tmp/decky-loader.pid"
+
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
 
 notificar() {
@@ -38,6 +41,36 @@ nombre_dispositivo() {
         nombre=$(echo "$props" | grep -oP 'ID_MODEL=\K.*' | head -1 | tr -d '"')
     fi
     echo "${nombre:-desconocido}"
+}
+
+decky_start() {
+    if [ -f "$DECKY_PID_FILE" ] && kill -0 "$(cat "$DECKY_PID_FILE")" 2>/dev/null; then
+        log INFO "Decky Loader ya en ejecución"
+        return
+    fi
+    log INFO "Arrancando Decky Loader"
+    "$DECKY_BIN" &
+    echo $! > "$DECKY_PID_FILE"
+    sleep 1
+    if kill -0 "$(cat "$DECKY_PID_FILE")" 2>/dev/null; then
+        log INFO "Decky Loader arrancado (PID $(cat "$DECKY_PID_FILE"))"
+    else
+        log WARN "Decky Loader no pudo arrancar"
+        rm -f "$DECKY_PID_FILE"
+    fi
+}
+
+decky_stop() {
+    [ ! -f "$DECKY_PID_FILE" ] && return
+    local pid
+    pid=$(cat "$DECKY_PID_FILE")
+    if kill -0 "$pid" 2>/dev/null; then
+        log INFO "Parando Decky Loader (PID $pid)"
+        kill "$pid" 2>/dev/null
+        sleep 2
+        kill -0 "$pid" 2>/dev/null && kill -9 "$pid" 2>/dev/null
+    fi
+    rm -f "$DECKY_PID_FILE"
 }
 
 importar_entorno() {
@@ -96,10 +129,13 @@ procesar_evento() {
     if ! pgrep -x steam >/dev/null 2>&1; then
         log INFO "Steam cerrado — lanzando Steam en Big Picture"
         notificar "🎮 $nombre detectado — Abriendo Steam"
+        decky_start
         $LAUNCH_CMD &
+        (sleep 15; while pgrep -x steam >/dev/null 2>&1; do sleep 15; done; decky_stop) &
     else
         log INFO "Steam abierto — abriendo Big Picture"
         notificar "🎮 $nombre detectado — Cambiando a Big Picture"
+        decky_start
         /usr/bin/bazzite-steam steam://open/bigpicture &
     fi
 }
@@ -165,10 +201,13 @@ escanear_mandos() {
             if ! pgrep -x steam >/dev/null 2>&1; then
                 log INFO "Steam cerrado — lanzando Steam en Big Picture"
                 notificar "🎮 $nombre detectado — Abriendo Steam"
+                decky_start
                 $LAUNCH_CMD &
+                (sleep 15; while pgrep -x steam >/dev/null 2>&1; do sleep 15; done; decky_stop) &
             else
                 log INFO "Steam abierto — abriendo Big Picture"
                 notificar "🎮 $nombre detectado — Cambiando a Big Picture"
+                decky_start
                 /usr/bin/bazzite-steam steam://open/bigpicture &
             fi
             return

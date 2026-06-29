@@ -27,7 +27,7 @@
         { "type": "host", "key": "  󰌢 PC      ", "keyColor": "green" },
         { "type": "cpu", "key": "  󰻠 CPU     ", "keyColor": "green" },
         { "type": "gpu", "key": "  󰍹 GPU     ", "keyColor": "green" },
-        { "type": "memory", "key": "  󰑭 RAM     ", "keyColor": "green" },
+        { "type": "memory", "key": "  󰑭 RAM     ", "keyColor": "green", "format": "{used}/{total} ({percentage})" },
         { 
             "type": "disk", 
             "key": "  󰋊 Home    ", 

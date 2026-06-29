@@ -10,14 +10,12 @@ return {
     -- Required.
     "nvim-lua/plenary.nvim",
   },
+  keys = {
+    { "<leader>ol", "<cmd>Obsidian links<cr>", desc = "Obsidian: list links" },
+  },
   opts = {
     legacy_commands = false,
-    workspaces = {
-      {
-        name = "GentlemanNotes", -- Name of the workspace
-        path = os.getenv("HOME") .. "/.config/obsidian", -- Path to the notes directory
-      },
-    },
+    workspaces = {},
     completion = {
       cmp = true,
     },
@@ -43,6 +41,8 @@ return {
         vim.keymap.set("n", "<cr>", function()
           return require("obsidian").util.smart_action()
         end, { buffer = note.bufnr, expr = true, desc = "Obsidian smart action" })
+
+        -- <leader>ol is set globally in the plugin spec (not buffer-local)
       end,
     },
 

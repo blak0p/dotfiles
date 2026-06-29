@@ -44,8 +44,8 @@
           "powerline_symbol": "\ue0b0",
           "options": {
             "branch_icon": "\ue725 ",
-            "fetch_status": true,
-            "fetch_upstream_icon": true
+            "fetch_status": false,
+            "fetch_upstream_icon": false
           },
           "style": "powerline",
           "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }} ",
@@ -74,7 +74,7 @@
           "foreground": "#3C873A",
           "leading_diamond": "\ue0b6",
           "options": {
-            "fetch_package_manager": true,
+            "fetch_package_manager": false,
             "npm_icon": " <#cc3a3a>\ue5fa</> ",
             "yarn_icon": " <#348cba>\ue6a7</>"
           },
@@ -275,7 +275,7 @@
             "always_enabled": true
           },
           "style": "plain",
-          "template": "\ue285\ueab6 ",
+          "template": "❯ ",
           "type": "status"
         }
       ],

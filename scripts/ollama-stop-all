@@ -1,0 +1,15 @@
+#!/usr/bin/env fish
+
+set models (ollama ps | tail -n +2 | awk '{print $1}')
+
+if test (count $models) -eq 0
+    echo "No hay modelos cargados en memoria."
+    exit 0
+end
+
+for model in $models
+    echo "Descargando: $model"
+    ollama stop $model
+end
+
+echo "Listo, memoria liberada."

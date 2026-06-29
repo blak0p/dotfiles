@@ -40,12 +40,7 @@ func main() {
 			if err == nil {
 				err = internal.Enter(cfg, arg)
 			}
-		case "sync":
-			if arg == "--all" || arg == "" {
-				err = internal.SyncAll(cfg)
-			} else {
-				err = internal.Sync(cfg, arg)
-			}
+
 		case "list", "ls":
 			err = internal.List()
 		case "delete", "rm":
@@ -99,8 +94,7 @@ func usage() {
 	Uso:
 	axiom create <nombre> [imagen]   Crea el entorno (te pregunta la distro)
 	axiom enter  <nombre>            Entra al entorno
-	axiom sync <nombre>              Sincroniza symlinks de un entorno
-	axiom sync --all                 Sincroniza symlinks de todos los entornos
+
 	axiom list                       Lista los entornos
 	axiom delete <nombre>            Elimina el entorno (el código no se borra)
 	axiom help                       Muestra esta ayuda

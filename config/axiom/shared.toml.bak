@@ -1,0 +1,111 @@
+[[symlinks]]
+src = ".bashrc.d"
+dst = ".bashrc.d"
+
+[[symlinks]]
+src = ".nanorc"
+dst = ".nanorc"
+
+[[symlinks]]
+src = ".gitconfig"
+dst = ".gitconfig"
+
+[[symlinks]]
+src = ".git-credentials"
+dst = ".git-credentials"
+
+[[symlinks]]
+src = ".fzf.bash"
+dst = ".fzf.bash"
+
+[[symlinks]]
+src = ".bash"
+dst = ".bash"
+
+[[symlinks]]
+src = ".engram"
+dst = ".engram"
+
+[[symlinks]]
+src = ".config/oh-my-posh"
+dst = ".config/oh-my-posh"
+
+[[symlinks]]
+src = ".config/gh"
+dst = ".config/gh"
+
+[[symlinks]]
+src = ".config/lazygit"
+dst = ".config/lazygit"
+
+[[symlinks]]
+src = ".config/opencode"
+dst = ".config/opencode"
+
+[[symlinks]]
+src = ".config/gga"
+dst = ".config/gga"
+
+[[symlinks]]
+src = ".local/state/opencode"
+dst = ".local/state/opencode"
+
+[[symlinks]]
+src = ".local/share/opencode"
+dst = ".local/share/opencode"
+
+[[symlinks]]
+src = ".config/git-courer"
+dst = ".config/git-courer"
+
+[[symlinks]]
+src = ".ssh/known_hosts"
+dst = ".ssh/known_hosts"
+
+[[symlinks]]
+src = ".claude"
+dst = ".claude"
+
+[[symlinks]]
+src = ".claude.json"
+dst = ".claude.json"
+
+[[symlinks]]
+src = ".secrets"
+dst = ".secrets"
+
+[[symlinks]]
+src = "/var/usrlocal/bin/ollama"
+dst = ".local/bin/ollama"
+
+[[symlinks]]
+src = ".gemini"
+dst = ".gemini"
+
+[[symlinks]]
+src = ".codex"
+dst = ".codex"
+
+[[symlinks]]
+src = ".pi"
+dst = ".pi"
+
+[[symlinks]]
+src = ".config/nvim"
+dst = ".config/nvim"
+
+[[symlinks]]
+src = ".local/share/nvim"
+dst = ".local/share/nvim"
+
+[[symlinks]]
+src = ".local/state/nvim"
+dst = ".local/state/nvim"
+
+[[symlinks]]
+src = ".config/Code"
+dst = ".config/Code"
+
+[[symlinks]]
+src = ".vscode/extensions"
+dst = ".vscode/extensions"

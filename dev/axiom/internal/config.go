@@ -10,17 +10,11 @@ import (
 type Config struct {
 	BaseDir    string
 	EntornoDir string
-	SSHKey     string
 	Image      string
 }
 
-type SymlinkEntry struct {
-	Src string `toml:"src"`
-	Dst string `toml:"dst"`
-}
-
 type SharedConfig struct {
-	Symlinks []SymlinkEntry `toml:"symlinks"`
+	Symlinks []string `toml:"symlinks"`
 }
 
 func DefaultConfig() Config {
@@ -29,7 +23,6 @@ func DefaultConfig() Config {
 	return Config{
 		BaseDir:    base,
 		EntornoDir: filepath.Join(base, ".entorno"),
-		SSHKey:     filepath.Join(home, ".ssh", "id_ed25519"),
 		Image:      "archlinux:latest",
 	}
 }

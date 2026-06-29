@@ -24,7 +24,7 @@ return {
       ft = { "NvimTree", "neo-tree", "oil", "minifiles" },
     },
     -- Diff management
-    { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+    { "<leader>aA", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
     { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     -- Preserved existing keymaps
     { "<leader>at", "<cmd>ClaudeCodeContinue<cr>", desc = "Continue recent conversation" },

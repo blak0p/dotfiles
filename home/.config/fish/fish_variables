@@ -1,0 +1,5 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export VISUAL:nvim
+SETUVAR __fish_initialized:4300
+SETUVAR fish_user_paths:/home/alejandro/dev/\x2eentorno/cosa/\x2elocal/bin\x1e/home/alejandro/scripts\x1e/home/alejandro/dev/\x2eentorno/git\x2dcourer/\x2elocal/bin\x1e/home/alejandro/dev/\x2eentorno/programacion\x2dmanual/\x2elocal/bin\x1e/usr/bin\x1e/home/alejandro/\x2elocal/bin

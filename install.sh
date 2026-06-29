@@ -35,6 +35,7 @@ MODULE_NAMES=(
     "ai"
     "dev"
     "hardware"
+    "kde"
 )
 
 MODULE_DESCS=(
@@ -45,6 +46,7 @@ MODULE_DESCS=(
     "Gentle AI, Ollama"
     "LazyGit, Axiom, scripts utilitarios"
     "Deepcool AK620 + daemon"
+    "KDE Plasma — atajos, paneles, tema"
 )
 
 # --- Selección de módulos ---

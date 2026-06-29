@@ -1,0 +1,10 @@
+[General]
+rules=
+
+[Rule_1]
+blur=true
+blurrule=2
+description=Kitty blur
+windowclass=kitty
+windowclassmatch=2
+wintype=0

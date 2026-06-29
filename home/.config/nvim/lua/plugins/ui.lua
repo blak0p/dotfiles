@@ -189,7 +189,7 @@ return {
     opts = {
       plugins = {
         gitsigns = true, -- Enable gitsigns integration
-        tmux = true, -- Enable tmux integration
+        tmux = false,
         kitty = { enabled = false, font = "+2" }, -- Disable kitty integration and set font size
         twilight = { enabled = true }, -- Enable twilight integration
       },

@@ -50,17 +50,15 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
     { import = "lazyvim.plugins.extras.editor.snacks_picker" },
 
-    -- Debgugging plugins
+    -- Debugging plugins
     { import = "lazyvim.plugins.extras.dap.core" },
-
-    -- Formatting plugins
-    { import = "lazyvim.plugins.extras.lang.typescript.biome" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-
-    -- Linting plugins
-    { import = "lazyvim.plugins.extras.linting.eslint" },
+    
+    -- Testing plugins
+    { import = "lazyvim.plugins.extras.test.core" },
 
     -- Language support plugins
+    { import = "lazyvim.plugins.extras.lang.go" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
 

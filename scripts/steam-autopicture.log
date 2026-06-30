@@ -333,3 +333,34 @@
 [2026-06-30 00:29:58] [INFO] Toggle activado → daemon desactivado
 [2026-06-30 00:29:58] [INFO] Toggle desactivado → daemon activado
 [2026-06-30 00:30:00] [INFO] Toggle activado → daemon desactivado
+
+======================================
+[2026-06-30 01:11:42] [INFO] Daemon iniciado (PID 1715)
+======================================
+[2026-06-30 01:11:42] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-30 01:12:13] [WARN] No se detectó entorno gráfico después de 30 segundos. Continuando de todos modos.
+[2026-06-30 01:12:13] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-30 09:42:04] [INFO] Daemon iniciado (PID 1756)
+======================================
+[2026-06-30 09:42:04] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-30 09:42:34] [WARN] No se detectó entorno gráfico después de 30 segundos. Continuando de todos modos.
+[2026-06-30 09:42:34] [INFO] Escuchando eventos udevadm...
+[2026-06-30 10:18:21] [INFO] Toggle desactivado → daemon activado
+[2026-06-30 10:18:22] [INFO] Toggle activado → daemon desactivado
+[2026-06-30 10:18:22] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-06-30 10:18:54] [INFO] Daemon iniciado (PID 6990)
+======================================
+[2026-06-30 10:18:54] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-30 10:18:54] [INFO] Entorno gráfico detectado.
+[2026-06-30 10:18:54] [INFO] Escuchando eventos udevadm...
+
+======================================
+[2026-06-30 10:26:49] [INFO] Daemon iniciado (PID 1752)
+======================================
+[2026-06-30 10:26:49] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-06-30 10:26:50] [INFO] Entorno gráfico detectado.
+[2026-06-30 10:26:50] [INFO] Escuchando eventos udevadm...

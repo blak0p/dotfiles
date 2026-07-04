@@ -1,0 +1,6 @@
+# Hereda toda la configuración visual y colores del tema de Gentleman
+inherit_from = ["/home/alejandro/.config/starship.toml"]
+
+# Modificamos el formato principal para anteponer el emoji de caja (📦) y diferenciar la terminal de Distrobox
+format = """📦 ($directory)$os$git_branch$fill$nodejs$rust$golang$php$bun$java$c$conda$zig$cmd_duration$time
+$character"""

@@ -1,1 +1,0 @@
-/home/alejandro/dev/dotfiles/modules/prompt/bashrc.d/prompt.sh

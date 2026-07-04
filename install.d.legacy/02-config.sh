@@ -1,9 +1,0 @@
-# --- CONFIG ---
-link_file "$DOTFILES_DIR/config/btop"        "$HOME/.config/btop"
-link_file "$DOTFILES_DIR/config/fastfetch"   "$HOME/.config/fastfetch"
-link_file "$DOTFILES_DIR/config/lazygit"     "$HOME/.config/lazygit"
-link_file "$DOTFILES_DIR/config/oh-my-posh"  "$HOME/.config/oh-my-posh"
-link_file "$DOTFILES_DIR/config/superfile"   "$HOME/.config/superfile"
-link_file "$DOTFILES_DIR/config/axiom"       "$HOME/.config/axiom"
-link_file "$DOTFILES_DIR/config/starship.tom"  "$HOME/.config/starship.tom"
-link_file "$DOTFILES_DIR/config/starship.tomls" "$HOME/.config/starship.tomls"

@@ -1,5 +1,4 @@
 # --- CONFIG ---
-link_file "$DOTFILES_DIR/config/kitty"       "$HOME/.config/kitty"
 link_file "$DOTFILES_DIR/config/btop"        "$HOME/.config/btop"
 link_file "$DOTFILES_DIR/config/fastfetch"   "$HOME/.config/fastfetch"
 link_file "$DOTFILES_DIR/config/lazygit"     "$HOME/.config/lazygit"

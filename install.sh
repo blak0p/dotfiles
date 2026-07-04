@@ -41,7 +41,7 @@ MODULE_NAMES=(
 MODULE_DESCS=(
     "Shell + git + bashrc.d base (SIEMPRE RECOMENDADO)"
     "oh-my-posh + starship"
-    "kitty, btop, fastfetch"
+    "ghostty, btop, fastfetch"
     "Steam autopicture, ROM tools, auto-big-picture service"
     "Gentle AI, Ollama"
     "LazyGit, Axiom, scripts utilitarios"

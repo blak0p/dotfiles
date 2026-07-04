@@ -2,7 +2,6 @@
 # Detect package manager y auto-instala lo que falta
 
 BREW_PACKAGES=(
-    kitty         # terminal emulator
     lazygit       # git TUI
     starship      # prompt (alternativa a oh-my-posh)
     oh-my-posh    # prompt

@@ -84,10 +84,10 @@ check_prompt() {
 
 check_apps() {
     echo -e "\n${BLUE}═══ apps ═══${NC}"
-    check_symlink "$HOME/.config/kitty"     "$DOTFILES_DIR/modules/apps/config/kitty"
+    check_symlink "$HOME/.config/ghostty"   "$DOTFILES_DIR/modules/apps/config/ghostty"
     check_symlink "$HOME/.config/btop"      "$DOTFILES_DIR/modules/apps/config/btop"
     check_symlink "$HOME/.config/fastfetch" "$DOTFILES_DIR/modules/apps/config/fastfetch"
-    check_dependency kitty
+    check_dependency ghostty
     check_dependency btop
     check_dependency fastfetch
 }
@@ -134,7 +134,7 @@ check_hardware() {
 AUTO_MODULES=()
 [ -L "$HOME/.bashrc" ] && AUTO_MODULES+=("shell-core")
 [ -L "$HOME/.config/oh-my-posh" ] && AUTO_MODULES+=("prompt")
-[ -L "$HOME/.config/kitty" ] && AUTO_MODULES+=("apps")
+[ -L "$HOME/.config/ghostty" ] && AUTO_MODULES+=("apps")
 [ -L "$HOME/scripts/steam_autopicture.sh" ] && AUTO_MODULES+=("gaming")
 [ -L "$HOME/scripts/gentleai-config.sh" ] && AUTO_MODULES+=("ai")
 [ -L "$HOME/scripts/merge_md.py" ] && AUTO_MODULES+=("dev")

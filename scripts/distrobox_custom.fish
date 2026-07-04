@@ -1,3 +1,8 @@
+# Normalizar HOME al path del enlace (/home/alejandro) para que Starship renderice la tilde (~) correctamente
+if test "$HOME" = "/var/home/alejandro"
+    set -gx HOME /home/alejandro
+end
+
 # Alias d para entrar a Distrobox
 alias d="distrobox enter dev"
 

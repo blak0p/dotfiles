@@ -100,11 +100,9 @@ procesar_evento() {
         return
     fi
 
-    # Subimos un nivel para obtener el path del input padre
     local parent_path
     parent_path=$(dirname "$sysfs_path")
 
-    # Si no es /js*, verificamos que sea joystick de verdad
     if [[ ! "$sysfs_path" =~ /js[0-9] ]]; then
         local props
         props=$(udevadm info --query=property -p "$sysfs_path" 2>/dev/null)
@@ -120,10 +118,10 @@ procesar_evento() {
 
     if [ -f "$TOGGLE_FILE" ]; then
         log INFO "Toggle activo — acción ignorada"
+        notificar "Ignorado: toggle activo"
         return
     fi
 
-    # Importar entorno gráfico antes de lanzar notificaciones o Steam
     importar_entorno
 
     if ! pgrep -x steam >/dev/null 2>&1; then
@@ -146,16 +144,13 @@ escuchar() {
     stdbuf -oL udevadm monitor --subsystem-match=input --udev 2>/dev/null | \
     while read -r line; do
         if [[ "$line" =~ (add|bind) ]] && [[ "$line" =~ /input/ ]]; then
-            # Solo aplicamos cooldown si el dispositivo es realmente un joystick
             local sysfs_path=$(echo "$line" | grep -oP '(?<= )/devices/\S+')
             [ -z "$sysfs_path" ] && sysfs_path=$(echo "$line" | awk '{print $4}')
-            
-            # Si no es /js*, verificamos propiedades de udev
+
             if [[ ! "$sysfs_path" =~ /js[0-9] ]]; then
-                # Damos tiempo a udev para que asigne las propiedades al dispositivo
                 sleep 0.3
                 if ! udevadm info --query=property -p "$sysfs_path" 2>/dev/null | grep -q 'ID_INPUT_JOYSTICK=1'; then
-                    continue # Ignoramos dispositivos que no son mandos sin activar cooldown
+                    continue
                 fi
             fi
 
@@ -178,7 +173,7 @@ escanear_mandos() {
         [ -e "$ev" ] || continue
         local props
         props=$(udevadm info --query=property -n "$ev" 2>/dev/null)
-        
+
         local is_joystick=0
         if [[ "$ev" =~ /dev/input/js[0-9]+ ]]; then
             is_joystick=1
@@ -190,13 +185,13 @@ escanear_mandos() {
             local nombre
             nombre=$(echo "$props" | grep -oP 'ID_MODEL=\K.*' | head -1 | tr -d '"')
             [ -z "$nombre" ] && nombre="Mando"
-            
+
             log INFO "Joystick detectado (poll): $nombre ($ev)"
             if [ -f "$TOGGLE_FILE" ]; then
                 log INFO "Toggle activo — ignorado"
                 return
             fi
-            
+
             importar_entorno
             if ! pgrep -x steam >/dev/null 2>&1; then
                 log INFO "Steam cerrado — lanzando Steam en Big Picture"
@@ -242,7 +237,6 @@ main() {
     log INFO "Daemon iniciado (PID $$)"
     echo "======================================" >> "$LOG_FILE"
 
-    # Esperar a que el entorno gráfico esté disponible antes de escanear o escuchar
     esperar_entorno_grafico
 
     local reintentos=0
@@ -257,4 +251,3 @@ main() {
 }
 
 main
-

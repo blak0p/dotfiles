@@ -387,3 +387,45 @@
 [2026-07-04 23:06:58] [INFO] Esperando a que el entorno gráfico esté listo...
 [2026-07-04 23:06:58] [INFO] Entorno gráfico detectado.
 [2026-07-04 23:06:58] [INFO] Escuchando eventos udevadm...
+[2026-07-05 13:26:15] [INFO] Toggle activado → daemon desactivado
+[2026-07-05 13:26:16] [INFO] Toggle desactivado → daemon activado
+[2026-07-05 13:26:16] [INFO] Toggle activado → daemon desactivado
+[2026-07-05 13:30:06] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-07-05 13:32:30] [INFO] Daemon iniciado (PID 20195)
+======================================
+[2026-07-05 13:32:30] [INFO] Escuchando eventos udevadm...
+[2026-07-05 13:32:35] [INFO] Joystick detectado: desconocido (/devices/virtual/misc/uhid/0005:045E:02FD.000B/input/input31)
+[2026-07-05 13:32:35] [INFO] Entorno importado: DISPLAY=:0
+[2026-07-05 13:32:35] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-07-05 13:32:35] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_zLHEoD
+[2026-07-05 13:32:35] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-07-05 13:32:35] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-07-05 13:32:35] [INFO] Evento ignorado — cooldown activo (0 segundos transcurridos)
+[2026-07-05 13:34:33] [INFO] Toggle activado → daemon desactivado
+[2026-07-05 13:34:34] [INFO] Toggle desactivado → daemon activado
+
+======================================
+[2026-07-05 13:34:34] [INFO] Daemon iniciado (PID 22870)
+======================================
+[2026-07-05 13:34:34] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-07-05 13:34:34] [INFO] Entorno gráfico detectado.
+[2026-07-05 13:34:34] [INFO] Joystick detectado (poll): Mando (/dev/input/js1)
+[2026-07-05 13:34:34] [INFO] Entorno importado: DISPLAY=:0
+[2026-07-05 13:34:34] [INFO] Entorno importado: WAYLAND_DISPLAY=wayland-0
+[2026-07-05 13:34:34] [INFO] Entorno importado: XAUTHORITY=/run/user/1000/xauth_zLHEoD
+[2026-07-05 13:34:34] [INFO] Entorno importado: XDG_SESSION_TYPE=wayland
+[2026-07-05 13:34:34] [INFO] Steam cerrado — lanzando Steam en Big Picture
+[2026-07-05 13:34:34] [INFO] Arrancando Decky Loader
+[2026-07-05 13:34:35] [INFO] Decky Loader arrancado (PID 22924)
+[2026-07-05 13:34:35] [INFO] Escuchando eventos udevadm...
+[2026-07-05 13:34:50] [INFO] Toggle activado → daemon desactivado
+[2026-07-05 13:34:50] [INFO] Parando Decky Loader (PID 22924)
+
+======================================
+[2026-07-05 14:12:17] [INFO] Daemon iniciado (PID 1847)
+======================================
+[2026-07-05 14:12:17] [INFO] Esperando a que el entorno gráfico esté listo...
+[2026-07-05 14:12:18] [INFO] Entorno gráfico detectado.
+[2026-07-05 14:12:18] [INFO] Escuchando eventos udevadm...

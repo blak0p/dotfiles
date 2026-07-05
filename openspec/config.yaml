@@ -1,0 +1,62 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Bash/Shell, Python, Go (dev/axiom)
+  Architecture: Modular dotfiles configuration system
+  Testing: Go unit tests in dev/axiom; doctor.sh script for modular system diagnostics
+  Style: POSIX-compliant shell scripts, clean Python 3 configs, modular layout
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    - Follow existing code patterns
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: "./doctor.sh"
+    build_command: ""
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
+
+testing:
+  strict_tdd: false
+  detected: "2026-07-04"
+  runner:
+    command: "go test ./..."
+    framework: "go test"
+    available: false
+    reason: "Go compiler/toolchain is not installed on the system."
+  layers:
+    unit:
+      available: true
+      tool: "go test (dev/axiom)"
+    integration:
+      available: false
+      tool: null
+    e2e:
+      available: false
+      tool: null
+  coverage:
+    available: true
+    command: "go test -coverprofile=coverage.out ./..."
+  quality:
+    linter:
+      available: false
+      command: null
+    type_checker:
+      available: false
+      command: null
+    formatter:
+      available: false
+      command: null

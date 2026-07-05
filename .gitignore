@@ -16,3 +16,5 @@ pip-delete-this-directory.txt
 secrets/
 .secrets/
 **/github-token.sh
+# Local Pi runtime state
+.atl/

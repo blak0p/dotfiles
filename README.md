@@ -35,13 +35,17 @@ Elegís los módulos que querés. Solo eso se instala.
 Antes de migrar de SO, exportar las memorias:
 
 ```bash
-engram export ~/engram-backup.json
+engram export ~/engram-export-AAAAMMDD.json
 ```
 
-En la PC nueva, importarlas:
+Ejemplo de esta migración (Bazzite → CachyOS):
 
 ```bash
-engram import ~/engram-backup.json
+# Exportado el 2026-07-12
+engram export ~/engram-export-20260712.json
+
+# En la PC nueva
+engram import ~/engram-export-20260712.json
 ```
 
 El export vive fuera del repo (no se sube a GitHub). Llevátelo en un USB o al disco Juegos.

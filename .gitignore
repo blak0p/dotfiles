@@ -18,3 +18,6 @@ secrets/
 **/github-token.sh
 # Local Pi runtime state
 .atl/
+
+# Engram database backup
+engram-backup.db

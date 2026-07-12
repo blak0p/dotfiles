@@ -1,46 +1,45 @@
-#!/usr/bin/env fish
+#!/bin/bash
 
-set ROMS "/run/media/system/Juegos/Emulation/roms/switch"
-set UPDATES "$ROMS/updates"
-set DLC "$ROMS/dlc"
+ROMS="/run/media/system/Juegos/Emulation/roms/switch"
+UPDATES="$ROMS/updates"
+DLC="$ROMS/dlc"
 
 mkdir -p "$UPDATES"
 mkdir -p "$DLC"
 
 # 1. Reorganizar carpetas de torrents
-for dir in $ROMS/*/
-    if string match -q "*/updates/" -- "$dir"; or string match -q "*/dlc/" -- "$dir"
-        continue
-    end
-
+for dir in "$ROMS"/*/; do
+    [[ "$dir" == */updates/ ]] && continue
+    [[ "$dir" == */dlc/ ]] && continue
+    
     # Mover juego base [v0] con TitleID terminado en 000
-    for f in $dir*.nsz $dir*.nsp
-        test -e "$f"; or continue
-        if string match -q "*\[v0\]*" -- "$f"
-            set titleid (string match -r '\[([0-9A-Fa-f]{16})\]' -- (basename "$f"))[2]
-            if string match -q "*000" -- "$titleid"
-                mv "$f" "$ROMS/"
-            else
-                mv "$f" "$DLC/"
-            end
+    find "$dir" -maxdepth 1 \( -name "*.nsz" -o -name "*.nsp" \) -name "*\[v0\]*" | while read f; do
+        basename=$(basename "$f")
+        titleid=$(echo "$basename" | grep -oP '\[\K[0-9A-Fa-f]{16}(?=\])' | head -1)
+        if [[ "${titleid: -3}" == "000" ]]; then
+            mv "$f" "$ROMS/"
         else
-            mv "$f" "$UPDATES/"
-        end
-    end
-
+            mv "$f" "$DLC/"
+        fi
+    done
+    
+    # Mover actualizaciones (todo lo que no sea [v0])
+    find "$dir" -maxdepth 1 \( -name "*.nsz" -o -name "*.nsp" \) ! -name "*\[v0\]*" | while read f; do
+        mv "$f" "$UPDATES/"
+    done
+    
+    # Borrar carpeta entera
     rm -rf "$dir"
-end
+done
 
 # 2. Descomprimir NSZ
-set roms_nsz $ROMS/*.nsz
-set updates_nsz $UPDATES/*.nsz
-set dlc_nsz $DLC/*.nsz
-
-test -n "$roms_nsz"; and nsz -D $roms_nsz
-test -n "$updates_nsz"; and nsz -D $updates_nsz
-test -n "$dlc_nsz"; and nsz -D $dlc_nsz
+nsz -D "$ROMS"/*.nsz 2>/dev/null
+nsz -D "$UPDATES"/*.nsz 2>/dev/null
+nsz -D "$DLC"/*.nsz 2>/dev/null
 
 # 3. Borrar NSZ originales tras descomprimir
-test -n "$roms_nsz"; and rm -f $roms_nsz
-test -n "$updates_nsz"; and rm -f $updates_nsz
-test -n "$dlc_nsz"; and rm -f $dlc_nsz
+rm -f "$ROMS"/*.nsz
+rm -f "$UPDATES"/*.nsz
+rm -f "$DLC"/*.nsz
+
+# 4. Abrir Steam ROM Manager para añadir a Steam

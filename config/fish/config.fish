@@ -44,6 +44,11 @@ zoxide init fish | source
 atuin init fish | source
 fzf --fish | source
 
+# Fastfetch al iniciar shell interactiva
+if status is-interactive; and command -q fastfetch
+    fastfetch
+end
+
 set -x PATH $HOME/.cargo/bin $PATH
 
 # Carapace completions

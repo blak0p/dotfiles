@@ -2,9 +2,9 @@
   "version": 3,
   "workspaces": [
     {
-      "id": "wG",
+      "id": "wN",
       "custom_name": null,
-      "identity_cwd": "/home/alejndro",
+      "identity_cwd": "/home/alejndro/dev/.container",
       "public_pane_numbers": {
         "2": 1
       },
@@ -21,13 +21,7 @@
           },
           "panes": {
             "2": {
-              "cwd": "/home/alejndro",
-              "agent_session": {
-                "source": "herdr:opencode",
-                "agent": "opencode",
-                "kind": "id",
-                "value": "ses_0a4d2ff89ffeICHssmCCcfY3Gx"
-              }
+              "cwd": "/home/alejndro/dev/.container"
             }
           },
           "zoomed": false,

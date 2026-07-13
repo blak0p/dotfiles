@@ -106,9 +106,7 @@ cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
 cachyos-wallpapers
 cachyos-zsh-config
-caelestia-cli-git
-caelestia-firefox-theme
-caelestia-shell-git
+# caelestia removido
 cairo
 cairomm
 cairomm-1.16

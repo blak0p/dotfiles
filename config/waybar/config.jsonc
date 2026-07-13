@@ -59,17 +59,17 @@
     },
     "custom/logo": {
         "format": "󱄅",
-        "on-click": "qs -c caelestia ipc call drawers toggle launcher",
+        "on-click": "qs -c ii ipc call drawers toggle launcher",
         "tooltip": false
     },
     "custom/settings": {
         "format": "",
-        "on-click": "qs -c caelestia ipc call nexus open",
+        "on-click": "qs -c ii ipc call nexus open",
         "tooltip": false
     },
     "custom/power": {
         "format": "",
-        "on-click": "qs -c caelestia ipc call drawers toggle session",
+        "on-click": "qs -c ii ipc call drawers toggle session",
         "tooltip": false
     },
     "tray": {

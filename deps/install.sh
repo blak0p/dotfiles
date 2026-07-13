@@ -51,8 +51,7 @@ done < "$DEPS_DIR/pacman.txt"
 echo ""
 echo "🏗️  AUR (paru)"
 AUR_PKGS=(
-    "caelestia-shell-git"
-    "caelestia-cli-git"
+    # caelestia removido
     "qtengine-git"
     "zen-browser-bin"
     "spicetify-cli-git"

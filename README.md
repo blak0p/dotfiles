@@ -12,7 +12,6 @@ dotfiles/
 │   ├── nvim/           Neovim (LazyVim)
 │   ├── fish/           Shell
 │   ├── ghostty/        Terminal
-│   ├── caelestia/      Desktop theme/shell
 │   ├── starship.toml   Prompt
 │   ├── gtk-3.0/        GTK theme
 │   ├── gtk-4.0/        GTK theme

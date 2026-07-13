@@ -805,3 +805,847 @@
 2026-07-13T11:19:46.338653Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783941586238:668126" method="pane.report_agent"
 2026-07-13T11:19:46.347149Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783941586246:585292" method="pane.report_agent_session"
 2026-07-13T11:19:46.360549Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783941586260:575346" method="pane.report_agent"
+2026-07-13T12:18:21.686280Z  INFO herdr::api::server: api server listening path=/home/alejndro/.config/herdr/herdr.sock
+2026-07-13T12:18:21.687486Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-13T12:18:21.687494Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T12:18:21.702679Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T12:18:21.704191Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro
+2026-07-13T12:18:21.704258Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T12:18:21.704269Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/.config/herdr/herdr.sock client_socket=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T12:18:21.704274Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=2241
+2026-07-13T12:18:21.785981Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T12:18:21.954941Z  INFO herdr::server::headless: client connected client_id=2 cols=271 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T12:18:21.973555Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=56 cols=245 scrollback_limit_bytes=10000000
+2026-07-13T12:18:21.974027Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=2283
+2026-07-13T12:18:22.526535Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(2370)
+2026-07-13T12:18:23.356553Z  INFO herdr::server::headless: client resize client_id=2 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:18:26.975404Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T12:18:29.463361Z  INFO herdr::server::headless: client resize client_id=2 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:18:35.783272Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(2283)
+2026-07-13T12:18:40.482452Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T12:18:43.875461Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-13T12:18:45.886456Z  INFO herdr::server::headless: client connected client_id=4 cols=271 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T12:18:54.896453Z  INFO herdr::server::headless: client connected client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T12:20:05.616044Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T12:21:16.296082Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:22:46.558706Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:22:47.659443Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:22:47.680360Z  INFO herdr::server::headless: client connected client_id=8 cols=136 rows=58 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T12:22:52.414694Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-07-13T12:22:52.463173Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:22:53.163645Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:22:53.166709Z  INFO herdr::server::headless: client connected client_id=10 cols=136 rows=58 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T12:22:54.431274Z  INFO herdr::server::headless: client disconnected client_id=10
+2026-07-13T12:22:54.464453Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:23:20.469221Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=56 cols=245 scrollback_limit_bytes=10000000
+2026-07-13T12:23:20.469882Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=8139
+2026-07-13T12:23:20.469960Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wH" pane_id=2
+2026-07-13T12:23:20.469965Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wH"
+2026-07-13T12:23:20.469970Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wH" tab_id="wH:t1"
+2026-07-13T12:23:25.477087Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:23:28.552737Z  INFO herdr::pane: agent changed pane=2 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(8325)
+2026-07-13T12:23:37.993951Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:24:01.751115Z  INFO herdr::pane: agent changed pane=2 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(8325)
+2026-07-13T12:24:02.912726Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:24:06.130251Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wG"
+2026-07-13T12:24:06.130280Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wG" tab_id="wG:t1"
+2026-07-13T12:24:06.518562Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wH"
+2026-07-13T12:24:06.518603Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wH" tab_id="wH:t1"
+2026-07-13T12:24:08.662208Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wG"
+2026-07-13T12:24:08.662233Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wG" tab_id="wG:t1"
+2026-07-13T12:24:13.665230Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:24:30.244795Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wH"
+2026-07-13T12:24:30.244824Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wH" tab_id="wH:t1"
+2026-07-13T12:24:32.575784Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wG"
+2026-07-13T12:24:32.575810Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wG" tab_id="wG:t1"
+2026-07-13T12:24:37.579258Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:25:09.641653Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wH"
+2026-07-13T12:25:09.641680Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wH" tab_id="wH:t1"
+2026-07-13T12:25:14.644728Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:25:21.181458Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wG"
+2026-07-13T12:25:21.181486Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wG" tab_id="wG:t1"
+2026-07-13T12:25:26.195852Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:25:42.665720Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wH"
+2026-07-13T12:25:42.665756Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wH" tab_id="wH:t1"
+2026-07-13T12:25:47.669009Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:25:55.863749Z  INFO herdr::pane: agent changed pane=2 previous_agent=Some(OpenCode) agent=None pgid=Some(8139)
+2026-07-13T12:25:57.138025Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T12:25:57.138094Z  INFO herdr::pane: pane session terminated pane=2 pid=8139 signal=Hangup
+2026-07-13T12:26:02.139263Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T12:26:12.597673Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:26:30.511185Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:28:29.397252Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T12:29:08.600840Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T12:31:35.006328Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:31:38.108495Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:34:08.806060Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:36:49.629168Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:37:09.942349Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:38:38.500198Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T12:38:54.610937Z  INFO herdr::server::headless: client resize client_id=6 cols=271 rows=50 cell_width_px=0 cell_height_px=0
+2026-07-13T12:40:02.369929Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=49 cols=245 scrollback_limit_bytes=10000000
+2026-07-13T12:40:02.370694Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=26022
+2026-07-13T12:40:02.370774Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wJ" pane_id=3
+2026-07-13T12:40:02.370779Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wJ"
+2026-07-13T12:40:02.370785Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wJ" tab_id="wJ:t1"
+2026-07-13T12:40:07.379451Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:46:19.076741Z  INFO herdr::server::headless: client resize client_id=6 cols=274 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:46:28.879812Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wG"
+2026-07-13T12:46:28.879837Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wG" tab_id="wG:t1"
+2026-07-13T12:46:33.883800Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T12:46:46.193630Z  INFO herdr::server::headless: client resize client_id=6 cols=136 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T12:46:51.598549Z  INFO herdr::server::headless: client resize client_id=6 cols=274 rows=58 cell_width_px=0 cell_height_px=0
+2026-07-13T13:07:18.675089Z  INFO herdr::api::server: api server listening path=/home/alejndro/.config/herdr/herdr.sock
+2026-07-13T13:07:18.676177Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-13T13:07:18.676498Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=20401
+2026-07-13T13:07:18.676593Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=2
+2026-07-13T13:07:18.676599Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T13:07:18.687596Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T13:07:18.688137Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro
+2026-07-13T13:07:18.688238Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T13:07:18.688257Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/.config/herdr/herdr.sock client_socket=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T13:07:18.688265Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=20387
+2026-07-13T13:07:18.777093Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T13:07:18.808232Z  INFO herdr::server::headless: client connected client_id=2 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:07:18.825436Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=65 cols=108 scrollback_limit_bytes=10000000
+2026-07-13T13:07:18.825869Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=20485
+2026-07-13T13:07:19.377753Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(20595)
+2026-07-13T13:07:20.285255Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(20485)
+2026-07-13T13:07:22.893110Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:07:22.893170Z  INFO herdr::pane: pane session terminated pane=1 pid=20485 signal=Hangup
+2026-07-13T13:07:27.113222Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:07:27.113278Z  INFO herdr::pane: pane session terminated pane=2 pid=20401 signal=Hangup
+2026-07-13T13:07:27.113404Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=65 cols=108 scrollback_limit_bytes=10000000
+2026-07-13T13:07:27.113909Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=21013
+2026-07-13T13:07:27.113971Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wK" pane_id=3
+2026-07-13T13:07:27.113976Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wK"
+2026-07-13T13:07:27.113981Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wK" tab_id="wK:t1"
+2026-07-13T13:07:28.116494Z  INFO herdr::server::headless: client resize client_id=2 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:07:29.918986Z  INFO herdr::server::headless: client resize client_id=2 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:07:30.212216Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-13T13:07:32.121836Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:07:39.152449Z  INFO herdr::server::headless: client connected client_id=4 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:07:43.956192Z  INFO herdr::server::headless: client resize client_id=4 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:07:45.257616Z  INFO herdr::server::headless: client resize client_id=4 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:07:45.469148Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-07-13T13:08:05.064126Z  INFO herdr::server::headless: client connected client_id=6 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:08:06.665878Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=68 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:07.066188Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:07.366386Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=68 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:08.869638Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:09.270215Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=68 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:09.571756Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:23.089981Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:24.791173Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:08:26.496437Z  INFO herdr::server::headless: client disconnected client_id=6
+2026-07-13T13:09:45.822235Z  INFO herdr::server::headless: client connected client_id=8 cols=276 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:09:46.723264Z  INFO herdr::server::headless: client resize client_id=8 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:09:46.725358Z  INFO herdr::server::headless: client connected client_id=10 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:09:46.725932Z  INFO herdr::server::headless: client connected client_id=12 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:09:48.624397Z  INFO herdr::server::headless: client resize client_id=8 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:09:50.425617Z  INFO herdr::server::headless: client resize client_id=8 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:09:50.827034Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:09:50.828225Z  INFO herdr::server::headless: client resize client_id=12 cols=282 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:09:50.880244Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-07-13T13:09:56.530848Z  INFO herdr::server::headless: client resize client_id=12 cols=140 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:09:57.731542Z  INFO herdr::server::headless: client resize client_id=12 cols=282 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:10:29.422967Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:10:55.168273Z  INFO herdr::server::headless: client resize client_id=12 cols=140 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:10:57.870039Z  INFO herdr::server::headless: client resize client_id=12 cols=282 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:11:08.477235Z  INFO herdr::server::headless: client resize client_id=12 cols=140 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:11:10.725284Z  INFO herdr::server::headless: client disconnected client_id=12
+2026-07-13T13:11:12.279828Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:12:05.505261Z  INFO herdr::server::headless: client connected client_id=14 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:12:05.508554Z  INFO herdr::server::headless: client connected client_id=16 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:12:05.515886Z  INFO herdr::server::headless: client resize client_id=10 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:12:05.604998Z  INFO herdr::server::headless: client resize client_id=14 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:12:08.606341Z  INFO herdr::server::headless: client disconnected client_id=14
+2026-07-13T13:12:08.711048Z  INFO herdr::server::headless: client resize client_id=16 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:12:13.126031Z  INFO herdr::server::headless: client disconnected client_id=16
+2026-07-13T13:12:13.221324Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:13:03.238709Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=56 cols=256 scrollback_limit_bytes=10000000
+2026-07-13T13:13:03.239367Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=33049
+2026-07-13T13:13:03.239435Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wM" pane_id=4
+2026-07-13T13:13:03.239441Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:13:03.239447Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:13:08.087363Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:13:08.087431Z  INFO herdr::pane: pane session terminated pane=4 pid=33049 signal=Hangup
+2026-07-13T13:13:13.089469Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:13:37.277309Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=56 cell_width_px=0 cell_height_px=0
+2026-07-13T13:13:37.577566Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:05.197899Z  INFO herdr::server::headless: client resize client_id=10 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:05.213839Z  INFO herdr::server::headless: client connected client_id=18 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:14:05.214530Z  INFO herdr::server::headless: client connected client_id=20 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:14:05.313289Z  INFO herdr::server::headless: client resize client_id=18 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:07.654222Z  INFO herdr::server::headless: client disconnected client_id=20
+2026-07-13T13:14:07.815111Z  INFO herdr::server::headless: client resize client_id=18 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:13.591296Z  INFO herdr::server::headless: client disconnected client_id=18
+2026-07-13T13:14:13.703704Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:20.436898Z  INFO herdr::server::headless: client connected client_id=22 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:14:20.445921Z  INFO herdr::server::headless: client connected client_id=24 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:14:20.508314Z  INFO herdr::server::headless: client resize client_id=10 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:20.537264Z  INFO herdr::server::headless: client resize client_id=22 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:22.595309Z  INFO herdr::server::headless: client disconnected client_id=24
+2026-07-13T13:14:22.738644Z  INFO herdr::server::headless: client resize client_id=22 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:28.822107Z  INFO herdr::server::headless: client disconnected client_id=22
+2026-07-13T13:14:28.913823Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:52.329340Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=59 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:52.629520Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:53.029785Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=59 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:53.129876Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:53.730245Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=59 cell_width_px=0 cell_height_px=0
+2026-07-13T13:14:54.130540Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:17:50.247001Z  INFO herdr::server::headless: client resize client_id=10 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:17:50.249613Z  INFO herdr::server::headless: client connected client_id=26 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:17:50.250407Z  INFO herdr::server::headless: client connected client_id=28 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:17:50.348914Z  INFO herdr::server::headless: client resize client_id=26 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:17:54.284308Z  INFO herdr::server::headless: client disconnected client_id=26
+2026-07-13T13:17:54.351251Z  INFO herdr::server::headless: client resize client_id=28 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:17:58.171424Z  INFO herdr::server::headless: client disconnected client_id=28
+2026-07-13T13:17:58.255589Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:45.987345Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:47.188098Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:47.688502Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:48.088761Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:48.288915Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:48.589142Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:48.889310Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:49.089470Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:49.689899Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:50.290318Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:56.694639Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:18:57.095087Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:19:04.900416Z  INFO herdr::server::headless: client resize client_id=10 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:19:05.300718Z  INFO herdr::server::headless: client resize client_id=10 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:20:12.450886Z  INFO herdr::server::headless: client disconnected client_id=10
+2026-07-13T13:21:01.643100Z  INFO herdr::api::server: api server listening path=/home/alejndro/.config/herdr/herdr.sock
+2026-07-13T13:21:01.644614Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-13T13:21:01.644626Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T13:21:01.662601Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T13:21:01.664098Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro
+2026-07-13T13:21:01.664172Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T13:21:01.664184Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/.config/herdr/herdr.sock client_socket=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T13:21:01.664190Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=2265
+2026-07-13T13:21:01.760259Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T13:21:01.915700Z  INFO herdr::server::headless: client connected client_id=2 cols=276 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:21:01.934513Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=65 cols=250 scrollback_limit_bytes=10000000
+2026-07-13T13:21:01.935017Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=2307
+2026-07-13T13:21:02.279599Z  INFO herdr::server::headless: client connected client_id=4 cols=140 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:21:02.316512Z  INFO herdr::server::headless: client resize client_id=2 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:21:02.486638Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(2395)
+2026-07-13T13:21:03.392972Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(2307)
+2026-07-13T13:21:06.088771Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-13T13:21:06.182449Z  INFO herdr::server::headless: client resize client_id=4 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:21:08.092294Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:21:42.705180Z  INFO herdr::server::headless: client resize client_id=4 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:21:43.605759Z  INFO herdr::server::headless: client resize client_id=4 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:21:55.245471Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:21:57.514718Z  INFO herdr::server::headless: client resize client_id=4 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:01.617267Z  INFO herdr::server::headless: client resize client_id=4 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:14.427477Z  INFO herdr::server::headless: client resize client_id=4 cols=282 rows=59 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:18.830483Z  INFO herdr::server::headless: client resize client_id=4 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:29.729985Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-07-13T13:22:30.484090Z  INFO herdr::server::headless: client connected client_id=6 cols=276 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:22:31.110382Z  INFO herdr::server::headless: client connected client_id=8 cols=140 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:22:31.185041Z  INFO herdr::server::headless: client resize client_id=6 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:32.394673Z  INFO herdr::server::headless: client disconnected client_id=6
+2026-07-13T13:22:32.511495Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:49.322092Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:49.922480Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:50.222678Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:50.422807Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:50.522863Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:50.723015Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:50.823067Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:51.023197Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:52.223902Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:52.824288Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:53.324618Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:22:53.624858Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:23.345105Z  INFO herdr::server::headless: client resize client_id=8 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:23.347099Z  INFO herdr::server::headless: client connected client_id=10 cols=134 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:23:23.347709Z  INFO herdr::server::headless: client connected client_id=12 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:23:23.446629Z  INFO herdr::server::headless: client resize client_id=10 cols=134 rows=31 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:26.157116Z  INFO herdr::server::headless: client disconnected client_id=12
+2026-07-13T13:23:26.348414Z  INFO herdr::server::headless: client resize client_id=10 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:27.591891Z  INFO herdr::server::headless: client disconnected client_id=10
+2026-07-13T13:23:27.647810Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:34.152359Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:34.752755Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:35.052961Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:35.253111Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:35.353185Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:35.553327Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:35.853498Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:36.255065Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:37.154364Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:37.454572Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:37.754781Z  INFO herdr::server::headless: client resize client_id=8 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:23:38.054957Z  INFO herdr::server::headless: client resize client_id=8 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:24:05.667551Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-07-13T13:24:06.169590Z  INFO herdr::server::headless: client connected client_id=14 cols=276 rows=66 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:24:06.970872Z  INFO herdr::server::headless: client resize client_id=14 cols=134 rows=66 cell_width_px=0 cell_height_px=0
+2026-07-13T13:24:06.973353Z  INFO herdr::server::headless: client connected client_id=16 cols=140 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:24:07.816675Z  INFO herdr::server::headless: client disconnected client_id=14
+2026-07-13T13:24:07.873271Z  INFO herdr::server::headless: client resize client_id=16 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:24:51.901998Z  INFO herdr::server::headless: client resize client_id=16 cols=211 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:24:52.202211Z  INFO herdr::server::headless: client resize client_id=16 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:05.722017Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=56 cols=256 scrollback_limit_bytes=10000000
+2026-07-13T13:26:05.722665Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=10665
+2026-07-13T13:26:05.722746Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wM" pane_id=2
+2026-07-13T13:26:05.722750Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:26:05.722756Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:26:10.736594Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T13:26:13.010570Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:26:13.010625Z  INFO herdr::pane: pane session terminated pane=2 pid=10665 signal=Hangup
+2026-07-13T13:26:18.011769Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:26:35.927534Z  INFO herdr::server::headless: client connected client_id=18 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:26:36.271536Z  INFO herdr::server::headless: client resize client_id=16 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:36.272372Z  INFO herdr::server::headless: client connected client_id=20 cols=140 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:26:36.327410Z  INFO herdr::server::headless: client resize client_id=18 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:39.682856Z  INFO herdr::server::headless: client disconnected client_id=20
+2026-07-13T13:26:39.829884Z  INFO herdr::server::headless: client resize client_id=18 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:42.194540Z  INFO herdr::server::headless: client disconnected client_id=18
+2026-07-13T13:26:42.277262Z  INFO herdr::server::headless: client resize client_id=16 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:45.245352Z  INFO herdr::server::headless: client connected client_id=23 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:26:45.246267Z  INFO herdr::server::headless: client connected client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:26:45.279230Z  INFO herdr::server::headless: client resize client_id=16 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:45.345690Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:46.983341Z  INFO herdr::server::headless: client disconnected client_id=23
+2026-07-13T13:26:47.146796Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:49.763247Z  INFO herdr::server::headless: client disconnected client_id=24
+2026-07-13T13:26:49.882449Z  INFO herdr::server::headless: client resize client_id=16 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:51.714486Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=56 cols=256 scrollback_limit_bytes=10000000
+2026-07-13T13:26:51.715145Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=12309
+2026-07-13T13:26:51.715216Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wN" pane_id=3
+2026-07-13T13:26:51.715220Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wN"
+2026-07-13T13:26:51.715226Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wN" tab_id="wN:t1"
+2026-07-13T13:26:53.359110Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:26:53.359175Z  INFO herdr::pane: pane session terminated pane=3 pid=12309 signal=Hangup
+2026-07-13T13:26:55.687014Z  INFO herdr::server::headless: client resize client_id=16 cols=140 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:26:55.699148Z  INFO herdr::server::headless: client connected client_id=26 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:26:55.699654Z  INFO herdr::server::headless: client connected client_id=28 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:26:57.735275Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=27 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T13:26:57.735936Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=12637
+2026-07-13T13:26:57.735997Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wP" pane_id=4
+2026-07-13T13:26:57.736001Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wP"
+2026-07-13T13:26:57.736006Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wP" tab_id="wP:t1"
+2026-07-13T13:27:01.646646Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:27:01.646701Z  INFO herdr::pane: pane session terminated pane=4 pid=12637 signal=Hangup
+2026-07-13T13:27:05.671810Z  INFO herdr::server::headless: client disconnected client_id=28
+2026-07-13T13:27:05.805609Z  INFO herdr::server::headless: client resize client_id=26 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:06.602753Z  INFO herdr::server::headless: client disconnected client_id=26
+2026-07-13T13:27:06.647823Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:27:06.696565Z  INFO herdr::server::headless: client resize client_id=16 cols=282 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:35.055609Z  INFO herdr::server::headless: client disconnected client_id=16
+2026-07-13T13:27:35.630089Z  INFO herdr::server::headless: client connected client_id=31 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:27:35.631202Z  INFO herdr::server::headless: client connected client_id=32 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:27:35.730588Z  INFO herdr::server::headless: client resize client_id=32 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:39.735315Z  INFO herdr::server::headless: client disconnected client_id=32
+2026-07-13T13:27:39.935225Z  INFO herdr::server::headless: client resize client_id=31 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:47.668769Z  INFO herdr::server::headless: client connected client_id=34 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:27:47.740687Z  INFO herdr::server::headless: client resize client_id=31 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:47.756005Z  INFO herdr::server::headless: client connected client_id=36 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:27:47.866656Z  INFO herdr::server::headless: client resize client_id=34 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:49.331497Z  INFO herdr::server::headless: client disconnected client_id=36
+2026-07-13T13:27:49.467700Z  INFO herdr::server::headless: client resize client_id=34 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:27:50.238969Z  INFO herdr::server::headless: client disconnected client_id=34
+2026-07-13T13:27:50.342366Z  INFO herdr::server::headless: client resize client_id=31 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:25.168730Z  INFO herdr::server::headless: client resize client_id=31 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:25.170994Z  INFO herdr::server::headless: client connected client_id=39 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:28:25.171579Z  INFO herdr::server::headless: client connected client_id=40 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:28:25.270242Z  INFO herdr::server::headless: client resize client_id=40 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:26.807413Z  INFO herdr::server::headless: client disconnected client_id=39
+2026-07-13T13:28:26.971378Z  INFO herdr::server::headless: client resize client_id=40 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:27.664117Z  INFO herdr::server::headless: client disconnected client_id=40
+2026-07-13T13:28:27.770217Z  INFO herdr::server::headless: client resize client_id=31 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:33.774914Z  INFO herdr::server::headless: client connected client_id=42 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:28:33.775894Z  INFO herdr::server::headless: client connected client_id=44 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:28:33.874548Z  INFO herdr::server::headless: client resize client_id=42 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:33.874931Z  INFO herdr::server::headless: client resize client_id=31 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:34.658468Z  INFO herdr::server::headless: client disconnected client_id=44
+2026-07-13T13:28:34.775100Z  INFO herdr::server::headless: client resize client_id=42 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:35.250564Z  INFO herdr::server::headless: client disconnected client_id=42
+2026-07-13T13:28:35.375709Z  INFO herdr::server::headless: client resize client_id=31 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:28:41.537588Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=5 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:28:41.538410Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=5 pid=14877
+2026-07-13T13:28:41.538504Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wK" tab_id="wK:t2"
+2026-07-13T13:28:45.008373Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=5 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:28:45.008442Z  INFO herdr::pane: pane session terminated pane=5 pid=14877 signal=Hangup
+2026-07-13T13:28:50.010105Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:29:33.319984Z  INFO herdr::server::headless: client resize client_id=31 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:29:33.322322Z  INFO herdr::server::headless: client connected client_id=46 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:29:33.322892Z  INFO herdr::server::headless: client connected client_id=48 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:29:34.317779Z  INFO herdr::server::headless: client disconnected client_id=48
+2026-07-13T13:29:34.422250Z  INFO herdr::server::headless: client resize client_id=46 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:29:35.111852Z  INFO herdr::server::headless: client disconnected client_id=46
+2026-07-13T13:29:35.221218Z  INFO herdr::server::headless: client resize client_id=31 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:31:29.927506Z  INFO herdr::server::headless: client resize client_id=31 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:31:29.930075Z  INFO herdr::server::headless: client connected client_id=51 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:31:29.930223Z  INFO herdr::server::headless: client connected client_id=52 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:31:30.029407Z  INFO herdr::server::headless: client resize client_id=51 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:31:42.013208Z  INFO herdr::server::headless: client disconnected client_id=31
+2026-07-13T13:31:42.139546Z  INFO herdr::server::headless: client resize client_id=52 cols=283 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:31:42.140497Z  INFO herdr::server::headless: client resize client_id=51 cols=283 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:31:42.791196Z  INFO herdr::server::headless: client disconnected client_id=51
+2026-07-13T13:31:42.940008Z  INFO herdr::server::headless: client resize client_id=52 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:32:22.176274Z  INFO herdr::server::headless: client resize client_id=52 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:32:22.179033Z  INFO herdr::server::headless: client connected client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:32:26.686771Z  INFO herdr::server::headless: client disconnected client_id=54
+2026-07-13T13:32:26.883339Z  INFO herdr::server::headless: client resize client_id=52 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:33:15.331266Z  INFO herdr::server::headless: client resize client_id=52 cols=212 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:33:15.731495Z  INFO herdr::server::headless: client resize client_id=52 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:33:16.031719Z  INFO herdr::server::headless: client resize client_id=52 cols=212 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:33:16.231873Z  INFO herdr::server::headless: client resize client_id=52 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:36:09.150141Z  INFO herdr::server::headless: client disconnected client_id=52
+2026-07-13T13:37:05.229706Z  INFO herdr::api::server: api server listening path=/home/alejndro/.config/herdr/herdr.sock
+2026-07-13T13:37:05.230963Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-13T13:37:05.230974Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T13:37:05.249930Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T13:37:05.250921Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro
+2026-07-13T13:37:05.250996Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T13:37:05.251008Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/.config/herdr/herdr.sock client_socket=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T13:37:05.251014Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=2351
+2026-07-13T13:37:05.366106Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T13:37:05.502527Z  INFO herdr::server::headless: client connected client_id=3 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:37:05.502700Z  INFO herdr::server::headless: client connected client_id=4 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:37:05.522111Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:37:05.522677Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=2403
+2026-07-13T13:37:05.603045Z  INFO herdr::server::headless: client resize client_id=4 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:37:06.074910Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(2497)
+2026-07-13T13:37:06.982872Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(2403)
+2026-07-13T13:37:07.635706Z  INFO herdr::server::headless: client disconnected client_id=3
+2026-07-13T13:37:07.804758Z  INFO herdr::server::headless: client resize client_id=4 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:37:08.505118Z  INFO herdr::server::headless: client resize client_id=4 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:37:08.507300Z  INFO herdr::server::headless: client connected client_id=8 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:37:08.507452Z  INFO herdr::server::headless: client connected client_id=7 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:37:08.606838Z  INFO herdr::server::headless: client resize client_id=8 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:37:09.700859Z  INFO herdr::server::headless: client disconnected client_id=7
+2026-07-13T13:37:09.807528Z  INFO herdr::server::headless: client resize client_id=8 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:37:10.337098Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-07-13T13:37:10.506351Z  INFO herdr::server::headless: client resize client_id=4 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:37:11.240076Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-07-13T13:37:11.681446Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:37:12.183104Z  INFO herdr::server::headless: client connected client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:38:09.014476Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:39:22.460837Z  INFO herdr::server::headless: client connected client_id=12 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:39:22.512756Z  INFO herdr::server::headless: client resize client_id=10 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:39:23.932872Z  INFO herdr::server::headless: client disconnected client_id=12
+2026-07-13T13:39:24.114580Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:39:24.614844Z  INFO herdr::server::headless: client resize client_id=10 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:39:24.617081Z  INFO herdr::server::headless: client connected client_id=14 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:39:25.302298Z  INFO herdr::server::headless: client disconnected client_id=14
+2026-07-13T13:39:25.415352Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:39:28.219124Z  INFO herdr::server::headless: client resize client_id=10 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:39:28.222150Z  INFO herdr::server::headless: client connected client_id=16 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:39:31.104098Z  INFO herdr::server::headless: client disconnected client_id=16
+2026-07-13T13:39:31.221944Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:01.146813Z  INFO herdr::server::headless: client resize client_id=10 cols=212 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:01.547068Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:01.947346Z  INFO herdr::server::headless: client resize client_id=10 cols=212 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:02.247532Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:02.347596Z  INFO herdr::server::headless: client resize client_id=10 cols=212 rows=42 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:03.548420Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:31.669033Z  INFO herdr::server::headless: client resize client_id=10 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:31.671459Z  INFO herdr::server::headless: client connected client_id=18 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:40:35.374358Z  INFO herdr::server::headless: client resize client_id=18 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:35.376497Z  INFO herdr::server::headless: client connected client_id=20 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:40:37.126301Z  INFO herdr::server::headless: client disconnected client_id=20
+2026-07-13T13:40:37.276380Z  INFO herdr::server::headless: client resize client_id=18 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:37.733923Z  INFO herdr::server::headless: client disconnected client_id=18
+2026-07-13T13:40:37.876061Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:45.190913Z  INFO herdr::server::headless: client resize client_id=10 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:40:45.193279Z  INFO herdr::server::headless: client connected client_id=22 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:40:45.860282Z  INFO herdr::server::headless: client disconnected client_id=22
+2026-07-13T13:40:45.991460Z  INFO herdr::server::headless: client resize client_id=10 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:41:21.906450Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:41:21.906507Z  INFO herdr::pane: pane session terminated pane=1 pid=2403 signal=Hangup
+2026-07-13T13:41:21.906596Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:41:21.907140Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=7404
+2026-07-13T13:41:21.907190Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wM" pane_id=2
+2026-07-13T13:41:21.907192Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:41:21.907196Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:41:24.755928Z  INFO herdr::server::headless: client disconnected client_id=10
+2026-07-13T13:41:26.028480Z  INFO herdr::server::headless: client connected client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:41:26.915695Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:41:54.972034Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:43:33.116090Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:43:33.116848Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=9741
+2026-07-13T13:43:33.116950Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wN" pane_id=3
+2026-07-13T13:43:33.116955Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wN"
+2026-07-13T13:43:33.116960Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wN" tab_id="wN:t1"
+2026-07-13T13:43:36.513250Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 1, signal: None }"
+2026-07-13T13:43:36.513317Z  INFO herdr::pane: pane session terminated pane=3 pid=9741 signal=Hangup
+2026-07-13T13:43:37.947149Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:43:37.947989Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=9962
+2026-07-13T13:43:37.948048Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wP" pane_id=4
+2026-07-13T13:43:37.948052Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wP"
+2026-07-13T13:43:37.948058Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wP" tab_id="wP:t1"
+2026-07-13T13:43:40.910957Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-13T13:43:42.178202Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:43:42.178234Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:43:47.180856Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T13:44:02.579199Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=5 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:44:02.579902Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=5 pid=10357
+2026-07-13T13:44:02.579983Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wQ" pane_id=5
+2026-07-13T13:44:02.579988Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wQ"
+2026-07-13T13:44:02.579993Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wQ" tab_id="wQ:t1"
+2026-07-13T13:44:07.176333Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:44:07.176360Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:44:12.179831Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=3
+2026-07-13T13:44:15.604820Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:44:18.929022Z  INFO herdr::server::headless: client connected client_id=26 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:44:23.784809Z  INFO herdr::server::headless: client disconnected client_id=26
+2026-07-13T13:44:23.919700Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:44:25.220568Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:44:26.622579Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:45:04.265576Z  INFO herdr::logging: workspace closed event="workspace.close" subsystem="workspace" outcome="ok" workspace_id="wP"
+2026-07-13T13:45:04.267279Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 1, signal: Some(\"Hangup\") }"
+2026-07-13T13:45:04.287260Z  INFO herdr::pane: pane session terminated pane=4 pid=9962 signal=Hangup
+2026-07-13T13:45:04.289900Z  WARN herdr::app::actions: PaneDied for unknown pane pane=4
+2026-07-13T13:45:07.996848Z  INFO herdr::logging: workspace closed event="workspace.close" subsystem="workspace" outcome="ok" workspace_id="wQ"
+2026-07-13T13:45:08.001817Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=5 status="ExitStatus { code: 1, signal: Some(\"Hangup\") }"
+2026-07-13T13:45:08.018594Z  INFO herdr::pane: pane session terminated pane=5 pid=10357 signal=Hangup
+2026-07-13T13:45:08.018719Z  WARN herdr::app::actions: PaneDied for unknown pane pane=5
+2026-07-13T13:45:13.020428Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:47:13.916485Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:47:16.588333Z  INFO herdr::server::headless: client connected client_id=28 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:47:21.105929Z  INFO herdr::server::headless: client disconnected client_id=28
+2026-07-13T13:47:21.226374Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:47:29.441678Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:47:37.050186Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:47:55.163129Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:47:59.206614Z  INFO herdr::server::headless: client connected client_id=30 cols=141 rows=69 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:48:05.572283Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:48:07.073799Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:48:35.710348Z  INFO herdr::server::headless: client connected client_id=32 cols=141 rows=69 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:48:47.521792Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:50:41.865935Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=6 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:50:41.866705Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=6 pid=15759
+2026-07-13T13:50:41.866775Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wR" pane_id=6
+2026-07-13T13:50:41.866781Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wR"
+2026-07-13T13:50:41.866786Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wR" tab_id="wR:t1"
+2026-07-13T13:50:46.876620Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T13:50:47.970572Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:50:47.970613Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:50:52.974752Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T13:50:54.135038Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wR"
+2026-07-13T13:50:54.135063Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wR" tab_id="wR:t1"
+2026-07-13T13:50:55.703025Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:50:55.703050Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:51:00.707091Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T13:51:00.760616Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=7 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:51:00.761408Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=7 pid=15895
+2026-07-13T13:51:00.761479Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wS" pane_id=7
+2026-07-13T13:51:00.761487Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wS"
+2026-07-13T13:51:00.761498Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wS" tab_id="wS:t1"
+2026-07-13T13:51:02.921399Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-13T13:51:03.483717Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wM"
+2026-07-13T13:51:03.483763Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wM" tab_id="wM:t1"
+2026-07-13T13:51:08.487452Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=3
+2026-07-13T13:51:12.025971Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wS"
+2026-07-13T13:51:12.026012Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wS" tab_id="wS:t1"
+2026-07-13T13:51:13.448018Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=7 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:51:13.450346Z  INFO herdr::pane: pane session terminated pane=7 pid=15895 signal=Hangup
+2026-07-13T13:51:15.428868Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=6 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:51:15.430316Z  INFO herdr::pane: pane session terminated pane=6 pid=15759 signal=Hangup
+2026-07-13T13:51:18.557034Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:51:20.432707Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:51:31.672626Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:51:32.673297Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:11.405393Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:11.905703Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:12.506053Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:13.406647Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:13.806924Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:14.407408Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:15.207791Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:44.626758Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:52:45.527337Z  INFO herdr::server::headless: client resize client_id=24 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:53:13.654995Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=8 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T13:53:13.655719Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=8 pid=17826
+2026-07-13T13:53:13.655790Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wT" pane_id=8
+2026-07-13T13:53:13.655796Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wT"
+2026-07-13T13:53:13.655804Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wT" tab_id="wT:t1"
+2026-07-13T13:53:17.980322Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=8 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:53:17.982866Z  INFO herdr::pane: pane session terminated pane=8 pid=17826 signal=Hangup
+2026-07-13T13:53:18.657810Z  INFO herdr::server::headless: client resize client_id=24 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:53:22.984332Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:53:31.895369Z  INFO herdr::server::headless: client disconnected client_id=24
+2026-07-13T13:58:00.795088Z  INFO herdr::server::headless: client connected client_id=34 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:58:11.105176Z  INFO herdr::server::headless: client resize client_id=34 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T13:58:37.327556Z  INFO herdr::server::headless: client connected client_id=36 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:58:42.321245Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=9 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T13:58:42.322031Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=9 pid=27252
+2026-07-13T13:58:42.322099Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wV" pane_id=9
+2026-07-13T13:58:42.322105Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wV"
+2026-07-13T13:58:42.322112Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wV" tab_id="wV:t1"
+2026-07-13T13:58:44.718568Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=9 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:58:44.718640Z  INFO herdr::pane: pane session terminated pane=9 pid=27252 signal=Hangup
+2026-07-13T13:58:49.720784Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:58:50.504973Z  INFO herdr::pane::osc: restored host terminal default colors after transient override pane=2 owner_pgid=7706
+2026-07-13T13:58:51.755422Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:58:51.755494Z  INFO herdr::pane: pane session terminated pane=2 pid=7404 signal=Hangup
+2026-07-13T13:58:51.755607Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=10 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T13:58:51.756267Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=10 pid=27553
+2026-07-13T13:58:51.756332Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wW" pane_id=10
+2026-07-13T13:58:51.756343Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wW"
+2026-07-13T13:58:51.756349Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wW" tab_id="wW:t1"
+2026-07-13T13:58:52.855814Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=10 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:58:52.855869Z  INFO herdr::pane: pane session terminated pane=10 pid=27553 signal=Hangup
+2026-07-13T13:58:52.855966Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=11 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T13:58:52.856570Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=11 pid=27642
+2026-07-13T13:58:52.856630Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wX" pane_id=11
+2026-07-13T13:58:52.856635Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wX"
+2026-07-13T13:58:52.856640Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wX" tab_id="wX:t1"
+2026-07-13T13:58:57.863312Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T13:59:02.018598Z  INFO herdr::server::headless: client connected client_id=38 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:59:33.295830Z  INFO herdr::server::headless: client connected client_id=40 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T13:59:35.974190Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=11 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:59:35.974249Z  INFO herdr::pane: pane session terminated pane=11 pid=27642 signal=Hangup
+2026-07-13T13:59:35.974340Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=12 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T13:59:35.974930Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=12 pid=29805
+2026-07-13T13:59:35.974991Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wY" pane_id=12
+2026-07-13T13:59:35.974995Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wY"
+2026-07-13T13:59:35.975001Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wY" tab_id="wY:t1"
+2026-07-13T13:59:37.052343Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=12 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T13:59:37.052408Z  INFO herdr::pane: pane session terminated pane=12 pid=29805 signal=Hangup
+2026-07-13T13:59:37.052525Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=13 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T13:59:37.053287Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=13 pid=29895
+2026-07-13T13:59:37.053348Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wZ" pane_id=13
+2026-07-13T13:59:37.053353Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wZ"
+2026-07-13T13:59:37.053358Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wZ" tab_id="wZ:t1"
+2026-07-13T13:59:42.060552Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T14:00:04.564970Z  INFO herdr::server::headless: client connected client_id=42 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:00:35.978809Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=13 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:00:35.978863Z  INFO herdr::pane: pane session terminated pane=13 pid=29895 signal=Hangup
+2026-07-13T14:00:35.978953Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=14 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T14:00:35.979552Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=14 pid=31023
+2026-07-13T14:00:35.979611Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w0" pane_id=14
+2026-07-13T14:00:35.979615Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w0"
+2026-07-13T14:00:35.979620Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w0" tab_id="w0:t1"
+2026-07-13T14:00:37.561810Z  INFO herdr::server::headless: client connected client_id=44 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:00:40.988267Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T14:00:51.102038Z  INFO herdr::server::headless: client connected client_id=46 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:00:54.244914Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=14 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:00:54.244966Z  INFO herdr::pane: pane session terminated pane=14 pid=31023 signal=Hangup
+2026-07-13T14:00:54.245044Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=15 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T14:00:54.245641Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=15 pid=31886
+2026-07-13T14:00:54.245687Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w11" pane_id=15
+2026-07-13T14:00:54.245691Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w11"
+2026-07-13T14:00:54.245695Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w11" tab_id="w11:t1"
+2026-07-13T14:00:59.254490Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T14:01:25.394102Z  INFO herdr::server::headless: client connected client_id=48 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:02:16.672539Z  INFO herdr::server::headless: client connected client_id=50 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:02:20.438070Z  INFO herdr::server::headless: client connected client_id=52 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:02:52.969706Z  INFO herdr::server::headless: client connected client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:04:07.019423Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:04:21.286995Z  INFO herdr::server::headless: client connected client_id=56 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:04:25.630633Z  INFO herdr::server::headless: client resize client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:04:26.531192Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:04:26.544667Z  INFO herdr::server::headless: client connected client_id=58 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:04:31.935169Z  INFO herdr::server::headless: client resize client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:05:08.057154Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:06:54.223499Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:06:54.323558Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:06:55.132323Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:06:55.824557Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:07:05.251626Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T14:07:05.348576Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T14:07:21.546212Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:07:25.549019Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:07:35.957241Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:07:38.959131Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:08:01.673946Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:08:10.981423Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:09:25.628603Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:09:42.238816Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:10:02.052258Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:10:15.561454Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:10:43.779605Z  INFO herdr::server::headless: client resize client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:11:10.799586Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:11:25.013880Z  INFO herdr::server::headless: client resize client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:12:18.856467Z  INFO herdr::server::headless: client connected client_id=60 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:12:18.858867Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:12:22.861223Z  INFO herdr::server::headless: client resize client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:12:48.369855Z  INFO herdr::server::headless: client connected client_id=62 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:12:48.388265Z  INFO herdr::server::headless: client resize client_id=54 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:12:50.274918Z  INFO herdr::server::headless: client resize client_id=54 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:12:58.964851Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=15 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:12:58.971151Z  INFO herdr::pane: pane session terminated pane=15 pid=31886 signal=Hangup
+2026-07-13T14:12:58.971268Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=16 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T14:12:58.972037Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=16 pid=52144
+2026-07-13T14:12:58.972102Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w12" pane_id=16
+2026-07-13T14:12:58.972111Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w12"
+2026-07-13T14:12:58.972116Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w12" tab_id="w12:t1"
+2026-07-13T14:13:03.980024Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T14:13:06.908028Z  INFO herdr::server::headless: client disconnected client_id=34
+2026-07-13T14:13:06.908209Z  INFO herdr::server::headless: client disconnected client_id=30
+2026-07-13T14:13:06.909033Z  INFO herdr::server::headless: client disconnected client_id=32
+2026-07-13T14:13:06.909358Z  INFO herdr::server::headless: client disconnected client_id=36
+2026-07-13T14:13:06.909537Z  INFO herdr::server::headless: client disconnected client_id=38
+2026-07-13T14:13:06.909682Z  INFO herdr::server::headless: client disconnected client_id=40
+2026-07-13T14:13:06.909836Z  INFO herdr::server::headless: client disconnected client_id=42
+2026-07-13T14:13:06.909983Z  INFO herdr::server::headless: client disconnected client_id=44
+2026-07-13T14:13:06.910153Z  INFO herdr::server::headless: client disconnected client_id=46
+2026-07-13T14:13:06.911284Z  INFO herdr::server::headless: client disconnected client_id=48
+2026-07-13T14:13:06.911493Z  INFO herdr::server::headless: client disconnected client_id=50
+2026-07-13T14:13:06.911593Z  INFO herdr::server::headless: client disconnected client_id=52
+2026-07-13T14:13:06.911861Z  INFO herdr::server::headless: client disconnected client_id=56
+2026-07-13T14:13:06.911985Z  INFO herdr::server::headless: client disconnected client_id=54
+2026-07-13T14:13:06.916142Z  INFO herdr::server::headless: client disconnected client_id=58
+2026-07-13T14:13:06.916182Z  INFO herdr::server::headless: client disconnected client_id=60
+2026-07-13T14:13:06.916187Z  INFO herdr::server::headless: client disconnected client_id=62
+2026-07-13T14:13:09.639307Z  INFO herdr::server::headless: client connected client_id=64 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:14:13.977945Z  INFO herdr::server::headless: client connected client_id=66 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:14:14.017026Z  INFO herdr::server::headless: client resize client_id=64 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:14:16.318557Z  INFO herdr::server::headless: client resize client_id=64 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:15:18.279928Z  INFO herdr::server::headless: client resize client_id=64 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:15:18.283397Z  INFO herdr::server::headless: client connected client_id=68 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:15:19.981272Z  INFO herdr::server::headless: client resize client_id=64 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:15:24.186046Z  INFO herdr::server::headless: client resize client_id=64 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:15:24.190664Z  INFO herdr::server::headless: client connected client_id=70 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:15:30.034482Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=16 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:15:30.035172Z  INFO herdr::pane: pane session terminated pane=16 pid=52144 signal=Hangup
+2026-07-13T14:15:30.035282Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=17 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T14:15:30.036007Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=17 pid=56169
+2026-07-13T14:15:30.036082Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w13" pane_id=17
+2026-07-13T14:15:30.036084Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w13"
+2026-07-13T14:15:30.036088Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w13" tab_id="w13:t1"
+2026-07-13T14:15:31.709555Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=17 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:15:31.709601Z  INFO herdr::pane: pane session terminated pane=17 pid=56169 signal=Hangup
+2026-07-13T14:15:31.709692Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=18 rows=56 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T14:15:31.710409Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=18 pid=56257
+2026-07-13T14:15:31.710465Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w14" pane_id=18
+2026-07-13T14:15:31.710468Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w14"
+2026-07-13T14:15:31.710471Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w14" tab_id="w14:t1"
+2026-07-13T14:15:35.503144Z  INFO herdr::server::headless: client resize client_id=64 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:15:36.718636Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T14:15:36.772692Z  INFO herdr::server::headless: client connected client_id=72 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:17:00.614074Z  INFO herdr::server::headless: client connected client_id=74 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:17:00.656677Z  INFO herdr::server::headless: client resize client_id=72 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:17:02.150936Z  INFO herdr::server::headless: client resize client_id=72 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:27.525894Z  INFO herdr::server::headless: client resize client_id=72 cols=283 rows=55 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:32.929483Z  INFO herdr::server::headless: client resize client_id=72 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:34.992556Z  INFO herdr::server::headless: client connected client_id=76 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:18:35.035944Z  INFO herdr::server::headless: client resize client_id=72 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:36.431783Z  INFO herdr::server::headless: client resize client_id=72 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:47.341294Z  INFO herdr::server::headless: client resize client_id=72 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:47.351016Z  INFO herdr::server::headless: client connected client_id=78 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:18:48.341865Z  INFO herdr::server::headless: client resize client_id=72 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:18:50.963642Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=18 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:18:50.963687Z  INFO herdr::pane: pane session terminated pane=18 pid=56257 signal=Hangup
+2026-07-13T14:18:50.963804Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=19 rows=56 cols=257 scrollback_limit_bytes=10000000
+2026-07-13T14:18:50.964501Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=19 pid=61196
+2026-07-13T14:18:50.964575Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w15" pane_id=19
+2026-07-13T14:18:50.964577Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w15"
+2026-07-13T14:18:50.964581Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w15" tab_id="w15:t1"
+2026-07-13T14:18:53.794055Z  INFO herdr::server::headless: client connected client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:18:55.972286Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T14:19:42.728265Z  INFO herdr::server::headless: client connected client_id=82 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:19:42.743035Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:19:45.842198Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:20:04.857858Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:20:28.983744Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:20.428117Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:54.961947Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:55.062029Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:59.165485Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:59.265556Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:59.770824Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:21:59.865892Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:00.268268Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:00.366228Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:00.766485Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:00.866570Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:01.370924Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:01.466971Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:01.767172Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:01.967282Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:02.267496Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:02.467615Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:02.767823Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:02.967961Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:03.268141Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:03.468262Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:04.368813Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:04.468880Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:04.869130Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:04.969194Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:05.369408Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:05.769671Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:06.169912Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:06.269996Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:07.073819Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:07.170559Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:07.770931Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:07.871012Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:08.271263Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:08.371341Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:08.671535Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:08.871644Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:22.680496Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:40.393516Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:40.593624Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:40.903283Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:41.101615Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:41.997031Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:42.094713Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:42.297862Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:42.494938Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:42.595035Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:22:45.897101Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:23:16.526251Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:23:23.933258Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:24:36.796703Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:24:36.996820Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:24:37.497148Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:24:37.702812Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:24:37.997454Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:24:38.097526Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:25:07.824408Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:25:07.838833Z  INFO herdr::server::headless: client connected client_id=84 cols=141 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:25:13.531567Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:25:14.031868Z  INFO herdr::server::headless: client resize client_id=80 cols=141 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:25:15.533432Z  INFO herdr::server::headless: client resize client_id=80 cols=283 rows=57 cell_width_px=0 cell_height_px=0
+2026-07-13T14:25:17.005260Z  INFO herdr::server::headless: client connected client_id=86 cols=283 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:26:18.099632Z  INFO herdr::server::headless: client disconnected client_id=66
+2026-07-13T14:26:18.100112Z  INFO herdr::server::headless: client disconnected client_id=76
+2026-07-13T14:26:18.132554Z  INFO herdr::server::headless: client disconnected client_id=74
+2026-07-13T14:26:18.132820Z  INFO herdr::server::headless: client disconnected client_id=68
+2026-07-13T14:26:18.132975Z  INFO herdr::server::headless: client disconnected client_id=84
+2026-07-13T14:26:18.133119Z  INFO herdr::server::headless: client disconnected client_id=82
+2026-07-13T14:26:18.133249Z  INFO herdr::server::headless: client disconnected client_id=64
+2026-07-13T14:26:18.133534Z  INFO herdr::server::headless: client disconnected client_id=78
+2026-07-13T14:26:18.133721Z  INFO herdr::server::headless: client disconnected client_id=70
+2026-07-13T14:26:18.133869Z  INFO herdr::server::headless: client disconnected client_id=72
+2026-07-13T14:26:18.134358Z  INFO herdr::server::headless: client disconnected client_id=86
+2026-07-13T14:26:18.135129Z  INFO herdr::server::headless: client disconnected client_id=80
+2026-07-13T14:51:26.054265Z  INFO herdr::api::server: api server listening path=/home/alejndro/dev/.container/.config/herdr/herdr.sock
+2026-07-13T14:51:26.055486Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-13T14:51:26.055499Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T14:51:26.070404Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T14:51:26.072304Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/run/host/home/alejndro
+2026-07-13T14:51:26.072394Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/dev/.container/.config/herdr/herdr-client.sock
+2026-07-13T14:51:26.072409Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/dev/.container/.config/herdr/herdr.sock client_socket=/home/alejndro/dev/.container/.config/herdr/herdr-client.sock
+2026-07-13T14:51:26.072419Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=13853
+2026-07-13T14:51:26.196920Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T14:51:26.323974Z  INFO herdr::server::headless: client connected client_id=2 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:51:26.341003Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=27 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T14:51:26.341570Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=13907
+2026-07-13T14:51:26.893641Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(13997)
+2026-07-13T14:51:30.813126Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(13907)
+2026-07-13T14:51:35.510975Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/dev/.container/.config/herdr/session.json workspaces=1
+2026-07-13T14:55:51.302228Z  INFO herdr::server::headless: client connected client_id=4 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:55:59.498578Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T14:55:59.498639Z  INFO herdr::pane: pane session terminated pane=1 pid=13907 signal=Hangup
+2026-07-13T14:55:59.498736Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=27 cols=115 scrollback_limit_bytes=10000000
+2026-07-13T14:55:59.499318Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=22895
+2026-07-13T14:55:59.499385Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wN" pane_id=2
+2026-07-13T14:55:59.499389Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wN"
+2026-07-13T14:55:59.499397Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wN" tab_id="wN:t1"
+2026-07-13T14:56:04.507427Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/dev/.container/.config/herdr/session.json workspaces=1
+2026-07-13T14:56:35.093351Z  INFO herdr::server::headless: client connected client_id=6 cols=141 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:56:35.587826Z  INFO herdr::server::headless: client connected client_id=8 cols=70 rows=28 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T14:56:35.593941Z  INFO herdr::server::headless: client resize client_id=6 cols=69 rows=28 cell_width_px=0 cell_height_px=0
+2026-07-13T14:56:37.495178Z  INFO herdr::server::headless: client resize client_id=6 cols=141 rows=28 cell_width_px=0 cell_height_px=0

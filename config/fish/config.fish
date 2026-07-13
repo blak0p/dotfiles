@@ -38,11 +38,6 @@ if test $IS_TERMUX -eq 0; and set -q BREW_BIN; and test -f $BREW_BIN
     eval ($BREW_BIN shellenv)
 end
 
-# Start selected terminal multiplexer
-if status is-interactive; and command -q herdr; and not set -q HERDR_ENV; and not set -q TMUX; and not set -q ZELLIJ
-    herdr; or echo "⚠️  Herdr failed to start; continuing in Fish."
-end
-
 # Initialize tools
 starship init fish | source
 zoxide init fish | source

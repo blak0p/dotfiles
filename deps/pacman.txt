@@ -16,8 +16,7 @@ fuzzel
 thunar
 xsettingsd
 qtengine-git
-caelestia-shell-git
-caelestia-cli-git
+# caelestia removido
 
 # GTK / Themes
 gtk3

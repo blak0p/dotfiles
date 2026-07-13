@@ -19,64 +19,42 @@ $time\
 
 add_newline = true
 command_timeout = 3600000
-palette = "gentleman"
+palette = "ii"
 
 [fill]
 symbol = ' '
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-
-[palettes.gentleman]
-text = "#F3F6F9"
-red = "#CB7C94"
-green = "#B7CC85"
-yellow = "#FFE066"
-blue = "#7FB4CA"
-mauve = "#A3B5D6"
-pink = "#FF8DD7"
-teal = "#7AA89F"
-peach = "#DEBA87"
-subtext0 = "#5C6170"
-overlay0 = "#232A40"
-rosewater = "#E0C15A"
-flamingo = "#FF8DD7"
-maroon = "#C4746E"
-lavender = "#B99BF2"
-subtext1 = "#8A8FA3"
-overlay2 = "#313342"
-overlay1 = "#191E28"
-surface2 = "#27345C"
-surface1 = "#232A40"
-surface0 = "#191E28"
+[palettes.ii]
+# Basado en el scheme ii (violeta #c2c1ff)
+text = "#e5e1e7"          # onSurface
+subtext0 = "#918f9a"      # outline
+subtext1 = "#c8c5d1"      # onSurfaceVariant
+overlay0 = "#353438"      # surfaceContainerHighest
+overlay1 = "#2a292e"      # surfaceContainerHigh
+overlay2 = "#201f23"      # surfaceContainer
+surface0 = "#1c1b1f"      # surfaceContainerLow
+surface1 = "#131317"      # surface
+surface2 = "#0e0e12"      # surfaceContainerLowest
 base = "none"
-mantle = "#06080f"
-crust = "#06080f"
+mantle = "#131317"
+crust = "#131317"
+
+# Colores funcionales
+blue = "#c2c1ff"          # primary (violeta)
+mauve = "#c2c1ff"         # primary
+purple = "#7171ac"        # primaryContainer
+lavender = "#c6c4e0"      # secondary
+pink = "#f5b2e0"          # tertiary
+green = "#b7cc85"         # success
+red = "#ffb4ab"           # error
+yellow = "#ffe066"        # warning
+peach = "#deba87"         # warm accent
+teal = "#7aa89f"          # cool accent
+rosewater = "#e5e1e7"     # onSurface
+flamingo = "#c8c5d1"      # onSurfaceVariant
+maroon = "#47464f"        # surfaceVariant
+sapphire = "#595992"      # inversePrimary
+sky = "#45455c"           # secondaryContainer
 
 [character]
 success_symbol = "[󱗞 ](fg:green)"
@@ -96,8 +74,8 @@ show_always = true
 format = "[$path](bold $style)[$read_only]($read_only_style) "
 truncation_length = 2
 style = "fg:blue"
-read_only_style = "fg:blue"
-before_repo_root_style = "fg:blue"
+read_only_style = "fg:subtext0"
+before_repo_root_style = "fg:subtext0"
 truncation_symbol = "…/"
 truncate_to_repo = true
 read_only = "  "
@@ -120,7 +98,7 @@ symbol = " "
 
 [git_status]
 format = '[$all_status$ahead_behind ]($style)'
-style = "fg:text bg:pink"
+style = "fg:text bg:surface0"
 
 [docker_context]
 disabled = true

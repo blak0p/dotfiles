@@ -1,23 +1,16 @@
-local vars = require("variables")
+local home_dir = os.getenv("HOME")
 
--- Themes
-hl.env("QT_QPA_PLATFORMTHEME", "qtengine")
-hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
-hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
-hl.env("XCURSOR_THEME", vars.cursorTheme)
-hl.env("XCURSOR_SIZE", vars.cursorSize)
-
--- Toolkit backends
-hl.env("GDK_BACKEND", "wayland,x11")
-hl.env("QT_QPA_PLATFORM", "wayland;xcb")
-hl.env("SDL_VIDEODRIVER", "wayland,x11,windows")
-hl.env("CLUTTER_BACKEND", "wayland")
+-- Wayland
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
--- XDG specifications
-hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+-- Applications
+local xdg_data_dirs_old = os.getenv("XDG_DATA_DIRS") or ""
+hl.env("XDG_DATA_DIRS", home_dir .. "/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:" .. xdg_data_dirs_old)
 
--- Others
-hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
+-- Themes
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+hl.env("QT_QPA_PLATFORMTHEME", "kde")
+hl.env("XDG_MENU_PREFIX", "plasma-")
+
+-- Virtual environment
+hl.env("ILLOGICAL_IMPULSE_VIRTUAL_ENV", home_dir .. "/.local/state/quickshell/.venv")

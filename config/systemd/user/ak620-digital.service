@@ -3,7 +3,8 @@ Description=Controlador Pantalla DeepCool AK620 Digital
 After=network.target
 
 [Service]
-ExecStart=/var/home/alejandro/deepcool-ak620-digital-linux/venv/bin/python3 /var/home/alejandro/deepcool-ak620-digital-linux/deepcool-ak-series-digital.py
+Environment=PYTHONPATH=%h/.local/lib/python3.14/site-packages
+ExecStart=%h/.local/bin/deepcool-ak-series-digital.py
 Restart=always
 RestartSec=5
 

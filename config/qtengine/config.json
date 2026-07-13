@@ -1,6 +1,6 @@
 {
     "theme": {
-        "colorScheme": "~/.config/qtengine/caelestia.colors",
+        "colorScheme": "~/.config/qtengine/ii.colors",
         "iconTheme": "Papirus-Dark",
         "style": "Darkly",
         "font": {

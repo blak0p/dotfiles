@@ -1,66 +1,62 @@
-# Dotfiles — Host
+# dotfiles
 
-Solo servicios + symlinks. Nada de dev tools, nada de AI en el host.
-El tooling dev va adentro de un distrobox.
-
-## Instalación
-
-```bash
-git clone git@github.com:blak0p/dotfiles.git ~/dotfiles
-~/dotfiles/install.sh
-```
-
-Elegís los módulos que querés. Solo eso se instala.
-
-### Módulos
-
-| # | Módulo | Incluye |
-|---|--------|---------|
-| 1 | eden | Instala Eden (AppImage), PrismLauncher (flatpak), y crea symlinks al disco Juegos |
-| 2 | gaming | Steam autopicture, ROM tools, auto-big-picture service |
-| 3 | hardware | Deepcool AK620 + daemon |
-| 4 | shell-core | cambiar_audio, cambiar_micro |
-
-## Orden de instalación en una PC nueva
-
-```
-1. Montar disco Juegos
-2. Gentleman Dots TUI → Ghostty, Fish, Tmux, Nvim (sin AI)
-3. ~/dotfiles/install.sh → elegís "a" (todo)
-4. Crear distrobox → tooling dev adentro
-```
-
-## Engram — backup de memorias
-
-Antes de migrar de SO, exportar las memorias:
-
-```bash
-engram export ~/engram-export-AAAAMMDD.json
-```
-
-Ejemplo de esta migración (Bazzite → CachyOS):
-
-```bash
-# Exportado el 2026-07-12
-engram export ~/engram-export-20260712.json
-
-# En la PC nueva
-engram import ~/engram-export-20260712.json
-```
-
-El export vive fuera del repo (no se sube a GitHub). Llevátelo en un USB o al disco Juegos.
+Host config: servicios + symlinks. Dev tooling va dentro de Distrobox.
 
 ## Estructura
 
 ```
 dotfiles/
-├── install.sh          # Instalador con checklist de módulos
-├── INSTRUCCIONES.md    # Documentación detallada
-├── scripts/            # Scripts sueltos (cambiar_audio, steam_*, convertir-nsz)
+├── config/             → symlinks a ~/.config/<app>/
+│   ├── hypr/           Hyprland WM
+│   ├── waybar/         Barra
+│   ├── nvim/           Neovim (LazyVim)
+│   ├── fish/           Shell
+│   ├── ghostty/        Terminal
+│   ├── caelestia/      Desktop theme/shell
+│   ├── starship.toml   Prompt
+│   ├── gtk-3.0/        GTK theme
+│   ├── gtk-4.0/        GTK theme
+│   ├── spicetify/      Spotify
+│   ├── btop/           Monitor
+│   ├── cava/           Audio visualizer
+│   ├── alacritty/      Terminal (fallback)
+│   ├── foot/           Terminal (fallback)
+│   └── ...
+├── scripts/            → symlinks a ~/scripts/
+│   ├── cambiar_audio.sh
+│   ├── cambiar_micro.sh
+│   ├── steam_autopicture.sh
+│   ├── steam_toggle.sh
+│   └── convertir-nsz
+├── host/
+│   └── personal-pc/    Lo que cambia por máquina
+│       ├── audio.sh    IDs/nombres de audio
+│       ├── monitors.lua
+│       ├── env.sh
+│       └── packages.txt
 ├── modules/
-│   ├── eden/           # Symlinks al disco Juegos + instalación de emus
-│   ├── gaming/         # Steam autopicture, ROM tools, systemd
-│   ├── hardware/       # Deepcool AK620 + daemon
-│   └── shell-core/     # cambiar_audio, cambiar_micro
-└── Gentleman.Dots/     # Gentleman Dots (modificado, sin AI)
+│   ├── eden/           Emulador + symlinks al disco Juegos
+│   ├── gaming/         Steam autopicture service
+│   └── hardware/       Deepcool AK620 daemon
+├── install.sh          Deploya symlinks + módulos
+├── doctor.sh           Diagnóstico
+└── assets/
 ```
+
+## Instalación
+
+PC nueva:
+1. Instalar CachyOS + paquetes base (`host/personal-pc/packages.txt`)
+2. Clonar: `git clone https://github.com/tuuser/dotfiles ~/dev/dotfiles`
+3. `cd ~/dev/dotfiles && ./install.sh`
+4. Gentleman Dots aparte con su TUI
+5. Distrobox con herramientas dev
+
+## Mantenimiento
+
+```bash
+./install.sh --all       # Deployar todo
+./doctor.sh              # Ver qué falta/está roto
+```
+
+Las configs de `~/.config/` se manejan via symlinks: editar en el repo, se refleja automático.

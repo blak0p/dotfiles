@@ -1,8 +1,0 @@
-2026/05/15 19:33:26 Starting LLM provider...2026/05/15 19:33:30 ✓ Model ready2026/05/15 19:33:30 Starting git-courer v1.5.12026/05/15 19:33:30 Working directory: .2026/05/15 19:33:30 LLM provider: ollama2026/05/15 19:33:30 LLM model: qwen3.5:latest2026/05/15 19:33:30 Initialize: client=opencode v1.14.482026/05/15 19:33:30 Client registered: opencode v1.14.48 (sampling: false, elicitation: false)2026/05/15 19:54:19 Starting LLM provider...
-2026/05/15 19:54:21 ✓ Model ready
-2026/05/15 19:54:21 Starting git-courer v1.5.1
-2026/05/15 19:54:21 Working directory: .
-2026/05/15 19:54:21 LLM provider: ollama
-2026/05/15 19:54:21 LLM model: qwen3.5:latest
-2026/05/15 19:54:21 Initialize: client=opencode v1.14.48
-2026/05/15 19:54:21 Client registered: opencode v1.14.48 (sampling: false, elicitation: false)

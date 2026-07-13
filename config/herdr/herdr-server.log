@@ -1,0 +1,469 @@
+2026-07-13T10:06:47.553173Z  INFO herdr::api::server: api server listening path=/home/alejndro/.config/herdr/herdr.sock
+2026-07-13T10:06:47.553464Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-13T10:06:47.553792Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=108242
+2026-07-13T10:06:47.553857Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-13T10:06:47.553861Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T10:06:47.564694Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T10:06:47.565183Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro
+2026-07-13T10:06:47.565222Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T10:06:47.565232Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/.config/herdr/herdr.sock client_socket=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T10:06:47.565237Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=108228
+2026-07-13T10:06:47.651954Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T10:06:47.817123Z  INFO herdr::server::headless: client connected client_id=2 cols=271 rows=55 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:07:00.656967Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(129389)
+2026-07-13T10:07:04.272326Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(108242)
+2026-07-13T10:07:12.115978Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-13T10:09:25.195310Z  INFO herdr::server::headless: client connected client_id=4 cols=271 rows=55 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:09:28.520917Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-13T10:09:32.249747Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(133365)
+2026-07-13T10:09:37.072930Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(OpenCode) agent=None pgid=Some(108242)
+2026-07-13T10:09:39.139070Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-07-13T10:09:47.925505Z  INFO herdr::server::headless: client connected client_id=6 cols=136 rows=56 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:09:50.339471Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:09:50.339528Z  INFO herdr::pane: pane session terminated pane=1 pid=108242 signal=Hangup
+2026-07-13T10:09:50.339780Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=55 cols=110 scrollback_limit_bytes=10000000
+2026-07-13T10:09:50.340328Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=134028
+2026-07-13T10:09:50.340375Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w7" pane_id=2
+2026-07-13T10:09:50.340379Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w7"
+2026-07-13T10:09:50.340383Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-13T10:09:53.929183Z  INFO herdr::server::headless: client resize client_id=6 cols=200 rows=40 cell_width_px=0 cell_height_px=0
+2026-07-13T10:09:55.350628Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:11:38.775895Z  INFO herdr::server::headless: client connected client_id=8 cols=136 rows=27 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:11:44.410520Z  INFO herdr::server::headless: client disconnected client_id=6
+2026-07-13T10:11:46.008806Z  INFO herdr::server::headless: client disconnected client_id=8
+2026-07-13T10:11:47.263642Z  INFO herdr::server::headless: client connected client_id=10 cols=136 rows=27 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:12:00.916758Z  INFO herdr::server::headless: client disconnected client_id=10
+2026-07-13T10:12:33.049709Z  INFO herdr::server::headless: client connected client_id=12 cols=200 rows=40 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:12:38.350263Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-13T10:13:42.344922Z  INFO herdr::server::headless: client disconnected client_id=12
+2026-07-13T10:13:43.349633Z  INFO herdr::server::headless: client connected client_id=14 cols=200 rows=40 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:14:46.930136Z  INFO herdr::server::headless: client disconnected client_id=14
+2026-07-13T10:14:47.935908Z  INFO herdr::server::headless: client connected client_id=16 cols=200 rows=40 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:14:52.213436Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:14:52.213487Z  INFO herdr::pane: pane session terminated pane=2 pid=134028 signal=Hangup
+2026-07-13T10:14:52.213607Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=39 cols=174 scrollback_limit_bytes=10000000
+2026-07-13T10:14:52.214113Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=139134
+2026-07-13T10:14:52.214160Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w8" pane_id=3
+2026-07-13T10:14:52.214164Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w8"
+2026-07-13T10:14:52.214169Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w8" tab_id="w8:t1"
+2026-07-13T10:14:57.223910Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:16:52.290565Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-13T10:18:06.696296Z  INFO herdr::server::headless: client disconnected client_id=16
+2026-07-13T10:18:07.450746Z  INFO herdr::server::headless: client connected client_id=18 cols=200 rows=40 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:18:09.661074Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 127, signal: None }"
+2026-07-13T10:18:09.661127Z  INFO herdr::pane: pane session terminated pane=3 pid=139134 signal=Hangup
+2026-07-13T10:18:09.661217Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=39 cols=174 scrollback_limit_bytes=10000000
+2026-07-13T10:18:09.661739Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=140716
+2026-07-13T10:18:09.661786Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w9" pane_id=4
+2026-07-13T10:18:09.661790Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w9"
+2026-07-13T10:18:09.661794Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w9" tab_id="w9:t1"
+2026-07-13T10:18:12.391492Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:18:12.391548Z  INFO herdr::pane: pane session terminated pane=4 pid=140716 signal=Hangup
+2026-07-13T10:18:12.391640Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=5 rows=39 cols=174 scrollback_limit_bytes=10000000
+2026-07-13T10:18:12.392150Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=5 pid=140875
+2026-07-13T10:18:12.392201Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wA" pane_id=5
+2026-07-13T10:18:12.392205Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wA"
+2026-07-13T10:18:12.392209Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wA" tab_id="wA:t1"
+2026-07-13T10:18:17.405228Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:18:28.866017Z  INFO herdr::server::headless: client resize client_id=18 cols=271 rows=55 cell_width_px=0 cell_height_px=0
+2026-07-13T10:18:47.239860Z  INFO herdr::server::headless: client disconnected client_id=18
+2026-07-13T10:26:08.655813Z  INFO herdr::server::headless: client connected client_id=20 cols=136 rows=56 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:26:09.998129Z  INFO herdr::pane: agent changed pane=5 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(147378)
+2026-07-13T10:26:21.257875Z  INFO herdr::pane: agent changed pane=5 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(147378)
+2026-07-13T10:26:26.250004Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:27:15.801332Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=6 rows=55 cols=110 scrollback_limit_bytes=10000000
+2026-07-13T10:27:15.802201Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=6 pid=147965
+2026-07-13T10:27:15.802269Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wB" pane_id=6
+2026-07-13T10:27:15.802271Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wB"
+2026-07-13T10:27:15.802275Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wB" tab_id="wB:t1"
+2026-07-13T10:27:20.807560Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T10:27:24.318353Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=6 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:27:24.318406Z  INFO herdr::pane: pane session terminated pane=6 pid=147965 signal=Hangup
+2026-07-13T10:27:29.320043Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:29:24.497789Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=7 rows=55 cols=110 scrollback_limit_bytes=10000000
+2026-07-13T10:29:24.498528Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=7 pid=148648
+2026-07-13T10:29:24.498604Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wC" pane_id=7
+2026-07-13T10:29:24.498610Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wC"
+2026-07-13T10:29:24.498621Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wC" tab_id="wC:t1"
+2026-07-13T10:29:29.503482Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T10:29:37.995285Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wA"
+2026-07-13T10:29:37.995303Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wA" tab_id="wA:t1"
+2026-07-13T10:29:42.999089Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=2
+2026-07-13T10:30:15.422141Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=8 rows=55 cols=110 scrollback_limit_bytes=10000000
+2026-07-13T10:30:15.422949Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=8 pid=148928
+2026-07-13T10:30:15.423026Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wD" pane_id=8
+2026-07-13T10:30:15.423029Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wD"
+2026-07-13T10:30:15.423034Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wD" tab_id="wD:t1"
+2026-07-13T10:30:20.428060Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=3
+2026-07-13T10:30:23.625206Z  INFO herdr::server::headless: client resize client_id=20 cols=136 rows=27 cell_width_px=0 cell_height_px=0
+2026-07-13T10:30:27.227441Z  INFO herdr::server::headless: client resize client_id=20 cols=136 rows=56 cell_width_px=0 cell_height_px=0
+2026-07-13T10:30:29.149511Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wA"
+2026-07-13T10:30:29.149530Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wA" tab_id="wA:t1"
+2026-07-13T10:30:34.152737Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=3
+2026-07-13T10:34:50.478458Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=9 rows=55 cols=110 scrollback_limit_bytes=10000000
+2026-07-13T10:34:50.479430Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=9 pid=151262
+2026-07-13T10:34:50.479498Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wE" pane_id=9
+2026-07-13T10:34:50.479500Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wE"
+2026-07-13T10:34:50.479505Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wE" tab_id="wE:t1"
+2026-07-13T10:34:55.484075Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=4
+2026-07-13T10:35:21.269674Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wA"
+2026-07-13T10:35:21.269692Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wA" tab_id="wA:t1"
+2026-07-13T10:35:26.272856Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=4
+2026-07-13T10:35:29.834859Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wC"
+2026-07-13T10:35:29.834885Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wC" tab_id="wC:t1"
+2026-07-13T10:35:30.957218Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=7 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:35:30.957276Z  INFO herdr::pane: pane session terminated pane=7 pid=148648 signal=Hangup
+2026-07-13T10:35:32.042955Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=8 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:35:32.043004Z  INFO herdr::pane: pane session terminated pane=8 pid=148928 signal=Hangup
+2026-07-13T10:35:33.105537Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=9 status="ExitStatus { code: 1, signal: None }"
+2026-07-13T10:35:33.105590Z  INFO herdr::pane: pane session terminated pane=9 pid=151262 signal=Hangup
+2026-07-13T10:35:38.107089Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:36:00.554320Z  INFO herdr::server::headless: client resize client_id=20 cols=136 rows=27 cell_width_px=0 cell_height_px=0
+2026-07-13T10:36:20.167507Z  INFO herdr::server::headless: client resize client_id=20 cols=136 rows=56 cell_width_px=0 cell_height_px=0
+2026-07-13T10:36:25.871330Z  INFO herdr::server::headless: client resize client_id=20 cols=271 rows=55 cell_width_px=0 cell_height_px=0
+2026-07-13T10:36:35.155796Z  INFO herdr::pane: agent changed pane=5 previous_agent=Some(OpenCode) agent=None pgid=Some(140875)
+2026-07-13T10:36:36.635665Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=5 status="ExitStatus { code: 0, signal: None }"
+2026-07-13T10:36:36.635710Z  INFO herdr::pane: pane session terminated pane=5 pid=140875 signal=Hangup
+2026-07-13T10:36:36.635861Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=10 rows=54 cols=245 scrollback_limit_bytes=10000000
+2026-07-13T10:36:36.636419Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=10 pid=152284
+2026-07-13T10:36:36.636465Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wF" pane_id=10
+2026-07-13T10:36:36.636467Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wF"
+2026-07-13T10:36:36.636471Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wF" tab_id="wF:t1"
+2026-07-13T10:36:39.443732Z  INFO herdr::server::headless: client disconnected client_id=20
+2026-07-13T10:36:41.648285Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/.config/herdr/session.json workspaces=1
+2026-07-13T10:36:47.565546Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T10:36:47.620148Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T10:37:51.665751Z  INFO herdr::server::headless: client connected client_id=22 cols=273 rows=56 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:37:54.440631Z  INFO herdr::pane: agent changed pane=10 previous_agent=None agent=Some(OpenCode) process=opencode pgid=Some(154671)
+2026-07-13T10:37:57.307955Z  INFO herdr::server::headless: client disconnected client_id=22
+2026-07-13T10:38:00.267950Z  INFO herdr::server::headless: client connected client_id=24 cols=271 rows=55 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:38:04.084502Z  INFO herdr::pane: agent changed pane=10 previous_agent=Some(OpenCode) agent=None pgid=Some(152284)
+2026-07-13T10:38:05.991033Z  INFO herdr::server::headless: client disconnected client_id=24
+2026-07-13T10:41:13.308759Z  INFO herdr::server::headless: client connected client_id=26 cols=136 rows=58 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:41:56.080655Z  INFO herdr::server::headless: client disconnected client_id=26
+2026-07-13T10:43:12.901977Z  INFO herdr::api::server: api server listening path=/home/alejndro/.config/herdr/herdr.sock
+2026-07-13T10:43:12.903269Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-13T10:43:12.903555Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=1870
+2026-07-13T10:43:12.903616Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-13T10:43:12.903620Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-13T10:43:12.918474Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-13T10:43:12.919500Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro
+2026-07-13T10:43:12.919564Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T10:43:12.919575Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/.config/herdr/herdr.sock client_socket=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T10:43:12.919580Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=1856
+2026-07-13T10:43:12.961986Z  INFO herdr::server::headless: client connected client_id=2 cols=271 rows=55 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-13T10:43:12.985124Z  WARN herdr::detect::manifest_update: skipping unknown remote manifest agent agent="maki"
+2026-07-13T10:43:15.121325Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-13T10:46:07.619921Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939567518:645946" method="pane.report_agent"
+2026-07-13T10:46:07.623977Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939567523:707407" method="pane.report_agent_session"
+2026-07-13T10:46:07.641242Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939567540:157698" method="pane.report_agent"
+2026-07-13T10:46:11.437251Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939571336:162008" method="pane.report_agent"
+2026-07-13T10:46:11.441536Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939571341:016250" method="pane.report_agent_session"
+2026-07-13T10:46:11.460463Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939571360:567705" method="pane.report_agent"
+2026-07-13T10:46:14.936970Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939574836:210418" method="pane.report_agent"
+2026-07-13T10:46:14.941334Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939574841:783844" method="pane.report_agent_session"
+2026-07-13T10:46:14.965537Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939574865:807593" method="pane.report_agent"
+2026-07-13T10:46:19.119762Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939579019:510078" method="pane.report_agent"
+2026-07-13T10:46:21.615080Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939581514:212155" method="pane.report_agent"
+2026-07-13T10:46:21.693255Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939581592:012614" method="pane.report_agent"
+2026-07-13T10:46:21.698473Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939581598:311162" method="pane.report_agent_session"
+2026-07-13T10:46:21.728319Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939581627:273254" method="pane.report_agent"
+2026-07-13T10:46:24.910155Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939584809:101077" method="pane.report_agent"
+2026-07-13T10:46:24.914879Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939584814:536464" method="pane.report_agent_session"
+2026-07-13T10:46:24.934367Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939584834:372505" method="pane.report_agent"
+2026-07-13T10:46:30.782103Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939590681:110318" method="pane.report_agent"
+2026-07-13T10:46:30.787965Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939590687:078174" method="pane.report_agent_session"
+2026-07-13T10:46:30.814753Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939590714:507780" method="pane.report_agent"
+2026-07-13T10:46:35.940543Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939595840:523021" method="pane.report_agent"
+2026-07-13T10:46:35.945209Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939595844:298965" method="pane.report_agent_session"
+2026-07-13T10:46:35.962651Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939595862:695377" method="pane.report_agent"
+2026-07-13T10:46:40.025532Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939599925:951072" method="pane.report_agent"
+2026-07-13T10:46:40.029913Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939599929:705922" method="pane.report_agent_session"
+2026-07-13T10:46:40.047741Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939599947:082143" method="pane.report_agent"
+2026-07-13T10:46:42.528594Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939602428:162162" method="pane.report_agent"
+2026-07-13T10:46:42.532750Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939602432:816320" method="pane.report_agent"
+2026-07-13T10:46:42.532797Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939602432:449133" method="pane.report_agent"
+2026-07-13T10:46:42.534742Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939602434:960663" method="pane.report_agent_session"
+2026-07-13T10:46:44.158330Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939604157:836205" method="pane.report_agent"
+2026-07-13T10:46:44.262548Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939604162:357953" method="pane.report_agent_session"
+2026-07-13T10:46:44.263199Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939604162:451125" method="pane.report_agent"
+2026-07-13T10:46:44.286033Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939604185:197978" method="pane.report_agent_session"
+2026-07-13T10:46:44.290624Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939604190:998726" method="pane.report_agent"
+2026-07-13T10:46:45.891495Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939605791:081759" method="pane.report_agent"
+2026-07-13T10:46:45.891748Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939605791:287178" method="pane.report_agent"
+2026-07-13T10:46:45.891757Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939605791:157964" method="pane.report_agent"
+2026-07-13T10:46:45.909130Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939605808:562201" method="pane.report_agent"
+2026-07-13T10:46:45.909352Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939605809:379183" method="pane.report_agent"
+2026-07-13T10:46:51.996888Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939611996:430279" method="pane.report_agent"
+2026-07-13T10:46:52.102099Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939612001:122466" method="pane.report_agent_session"
+2026-07-13T10:46:52.102703Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939612002:977528" method="pane.report_agent"
+2026-07-13T10:46:52.128028Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939612027:186985" method="pane.report_agent_session"
+2026-07-13T10:46:52.139326Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939612038:896154" method="pane.report_agent"
+2026-07-13T10:46:58.339891Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939618239:111059" method="pane.report_agent"
+2026-07-13T10:46:58.345126Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939618244:194405" method="pane.report_agent_session"
+2026-07-13T10:46:58.363047Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939618262:988123" method="pane.report_agent"
+2026-07-13T10:47:02.797622Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939622697:435094" method="pane.report_agent"
+2026-07-13T10:47:02.801890Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939622701:127761" method="pane.report_agent_session"
+2026-07-13T10:47:02.818887Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939622718:243823" method="pane.report_agent"
+2026-07-13T10:47:08.382933Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939628282:602049" method="pane.report_agent"
+2026-07-13T10:47:08.387620Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939628287:622056" method="pane.report_agent_session"
+2026-07-13T10:47:08.415101Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939628314:377613" method="pane.report_agent"
+2026-07-13T10:47:12.213008Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939632112:525101" method="pane.report_agent"
+2026-07-13T10:47:12.217223Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939632116:661194" method="pane.report_agent_session"
+2026-07-13T10:47:12.234122Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939632133:143910" method="pane.report_agent"
+2026-07-13T10:47:16.016728Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939635916:027713" method="pane.report_agent"
+2026-07-13T10:47:16.022193Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939635921:728760" method="pane.report_agent_session"
+2026-07-13T10:47:16.041209Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939635940:293217" method="pane.report_agent"
+2026-07-13T10:47:20.898605Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939640798:595201" method="pane.report_agent"
+2026-07-13T10:47:20.898884Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939640798:823497" method="pane.report_agent"
+2026-07-13T10:47:20.898895Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939640798:432264" method="pane.report_agent"
+2026-07-13T10:47:20.919098Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939640818:845780" method="pane.report_agent"
+2026-07-13T10:47:20.919180Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939640818:496665" method="pane.report_agent"
+2026-07-13T10:47:29.780020Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939649779:585930" method="pane.report_agent"
+2026-07-13T10:47:29.884960Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939649784:374396" method="pane.report_agent_session"
+2026-07-13T10:47:29.885770Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939649785:366113" method="pane.report_agent"
+2026-07-13T10:47:29.917078Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939649816:639856" method="pane.report_agent_session"
+2026-07-13T10:47:29.931390Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939649831:098409" method="pane.report_agent"
+2026-07-13T10:47:35.532029Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939655431:970973" method="pane.report_agent"
+2026-07-13T10:47:35.536911Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939655436:855589" method="pane.report_agent_session"
+2026-07-13T10:47:35.556933Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939655456:636284" method="pane.report_agent"
+2026-07-13T10:47:41.931838Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939661831:900356" method="pane.report_agent"
+2026-07-13T10:47:41.937124Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939661836:077311" method="pane.report_agent_session"
+2026-07-13T10:47:41.956902Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939661856:373990" method="pane.report_agent"
+2026-07-13T10:47:47.865381Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939667764:460312" method="pane.report_agent"
+2026-07-13T10:47:47.870304Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939667769:698194" method="pane.report_agent_session"
+2026-07-13T10:47:47.888326Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939667787:714093" method="pane.report_agent"
+2026-07-13T10:47:54.181639Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939674081:611086" method="pane.report_agent"
+2026-07-13T10:47:54.186210Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939674085:466633" method="pane.report_agent"
+2026-07-13T10:47:54.186214Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939674086:358231" method="pane.report_agent"
+2026-07-13T10:47:54.188438Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939674088:452831" method="pane.report_agent_session"
+2026-07-13T10:48:26.274040Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939706173:050511" method="pane.report_agent"
+2026-07-13T10:48:26.379945Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939706279:834288" method="pane.report_agent_session"
+2026-07-13T10:48:26.380793Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939706280:128292" method="pane.report_agent"
+2026-07-13T10:48:26.400795Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939706300:859261" method="pane.report_agent_session"
+2026-07-13T10:48:26.412772Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939706312:188984" method="pane.report_agent"
+2026-07-13T10:48:38.188968Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939718088:364612" method="pane.report_agent"
+2026-07-13T10:48:38.194533Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939718094:971567" method="pane.report_agent_session"
+2026-07-13T10:48:38.213222Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939718112:079913" method="pane.report_agent"
+2026-07-13T10:48:43.186575Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939723086:860404" method="pane.report_agent"
+2026-07-13T10:48:43.190809Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939723090:675527" method="pane.report_agent_session"
+2026-07-13T10:48:43.207236Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939723106:601535" method="pane.report_agent"
+2026-07-13T10:48:53.156494Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939733056:254831" method="pane.report_agent"
+2026-07-13T10:48:53.161284Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939733061:387716" method="pane.report_agent_session"
+2026-07-13T10:48:53.179085Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939733078:589252" method="pane.report_agent"
+2026-07-13T10:48:58.107184Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939738006:798668" method="pane.report_agent"
+2026-07-13T10:48:58.112121Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939738011:383971" method="pane.report_agent"
+2026-07-13T10:48:58.112130Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939738011:981001" method="pane.report_agent"
+2026-07-13T10:48:58.114386Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939738014:841127" method="pane.report_agent_session"
+2026-07-13T10:49:09.672478Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939749571:612462" method="pane.report_agent"
+2026-07-13T10:49:09.779392Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939749678:181563" method="pane.report_agent_session"
+2026-07-13T10:49:09.780227Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939749680:392299" method="pane.report_agent"
+2026-07-13T10:49:09.802399Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939749702:923383" method="pane.report_agent_session"
+2026-07-13T10:49:09.814877Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939749714:619011" method="pane.report_agent"
+2026-07-13T10:49:17.727224Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939757626:199149" method="pane.report_agent"
+2026-07-13T10:49:17.731980Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939757631:106471" method="pane.report_agent_session"
+2026-07-13T10:49:17.749480Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939757649:133097" method="pane.report_agent"
+2026-07-13T10:49:31.249000Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939771148:148881" method="pane.report_agent"
+2026-07-13T10:49:31.254864Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939771154:201261" method="pane.report_agent_session"
+2026-07-13T10:49:31.273844Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939771173:473546" method="pane.report_agent"
+2026-07-13T10:49:34.066006Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939773965:395599" method="pane.report_agent"
+2026-07-13T10:49:34.075848Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939773975:328242" method="pane.report_agent_session"
+2026-07-13T10:49:34.094555Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939773994:838182" method="pane.report_agent"
+2026-07-13T10:49:38.424736Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939778324:261025" method="pane.report_agent"
+2026-07-13T10:49:38.429644Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939778329:351159" method="pane.report_agent_session"
+2026-07-13T10:49:38.449426Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939778349:128861" method="pane.report_agent"
+2026-07-13T10:49:41.256071Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939781155:806329" method="pane.report_agent"
+2026-07-13T10:49:41.260680Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939781160:542733" method="pane.report_agent_session"
+2026-07-13T10:49:41.277739Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939781177:319266" method="pane.report_agent"
+2026-07-13T10:49:44.201040Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939784100:326225" method="pane.report_agent"
+2026-07-13T10:49:44.206736Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939784106:690817" method="pane.report_agent_session"
+2026-07-13T10:49:44.231787Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939784131:871130" method="pane.report_agent"
+2026-07-13T10:49:47.616339Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939787516:825495" method="pane.report_agent"
+2026-07-13T10:49:47.620748Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939787520:933365" method="pane.report_agent_session"
+2026-07-13T10:49:47.636965Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939787536:232647" method="pane.report_agent"
+2026-07-13T10:49:53.927160Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939793826:079919" method="pane.report_agent"
+2026-07-13T10:49:53.941824Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939793841:891597" method="pane.report_agent_session"
+2026-07-13T10:49:53.961919Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939793861:169870" method="pane.report_agent"
+2026-07-13T10:49:56.588682Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939796488:060261" method="pane.report_agent"
+2026-07-13T10:49:56.594084Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939796493:909866" method="pane.report_agent_session"
+2026-07-13T10:49:56.621045Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939796520:470787" method="pane.report_agent"
+2026-07-13T10:50:01.014658Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939800914:905660" method="pane.report_agent"
+2026-07-13T10:50:01.019370Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939800919:354060" method="pane.report_agent"
+2026-07-13T10:50:01.019448Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939800919:038540" method="pane.report_agent"
+2026-07-13T10:50:01.021802Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939800921:359092" method="pane.report_agent_session"
+2026-07-13T10:50:26.866968Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939826866:225823" method="pane.report_agent"
+2026-07-13T10:50:26.961822Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939826861:465766" method="pane.report_agent_session"
+2026-07-13T10:50:26.971244Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939826870:379660" method="pane.report_agent_session"
+2026-07-13T10:50:26.972239Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939826871:826684" method="pane.report_agent"
+2026-07-13T10:50:26.990389Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939826889:439829" method="pane.report_agent_session"
+2026-07-13T10:50:27.185294Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939827084:402441" method="pane.report_agent"
+2026-07-13T10:50:30.951291Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939830850:621233" method="pane.report_agent"
+2026-07-13T10:50:30.957816Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939830857:483265" method="pane.report_agent_session"
+2026-07-13T10:50:30.969908Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939830869:775898" method="pane.report_agent"
+2026-07-13T10:50:32.318998Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939832218:470907" method="pane.report_agent_session"
+2026-07-13T10:50:37.104158Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939837003:025534" method="pane.report_agent"
+2026-07-13T10:50:37.109591Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939837009:345620" method="pane.report_agent_session"
+2026-07-13T10:50:37.118736Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939837018:913517" method="pane.report_agent"
+2026-07-13T10:50:41.479936Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939841379:469912" method="pane.report_agent"
+2026-07-13T10:50:41.481104Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939841380:822641" method="pane.report_agent"
+2026-07-13T10:50:41.481163Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939841380:091102" method="pane.report_agent"
+2026-07-13T10:50:41.482947Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939841382:919063" method="pane.report_agent_session"
+2026-07-13T10:50:49.648918Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939849648:734601" method="pane.report_agent"
+2026-07-13T10:50:49.753297Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939849653:981904" method="pane.report_agent_session"
+2026-07-13T10:50:49.754077Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939849653:322044" method="pane.report_agent"
+2026-07-13T10:50:49.759948Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939849659:312735" method="pane.report_agent_session"
+2026-07-13T10:50:49.763188Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939849662:553410" method="pane.report_agent"
+2026-07-13T10:50:54.213784Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939854113:670882" method="pane.report_agent"
+2026-07-13T10:50:54.219097Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939854118:260671" method="pane.report_agent_session"
+2026-07-13T10:50:54.228711Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939854128:331331" method="pane.report_agent"
+2026-07-13T10:50:57.414578Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939857314:554369" method="pane.report_agent"
+2026-07-13T10:50:57.419335Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939857319:545584" method="pane.report_agent_session"
+2026-07-13T10:50:57.428183Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939857327:221095" method="pane.report_agent"
+2026-07-13T10:51:00.884844Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939860784:816290" method="pane.report_agent"
+2026-07-13T10:51:00.889438Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939860789:833727" method="pane.report_agent_session"
+2026-07-13T10:51:00.898234Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939860797:828877" method="pane.report_agent"
+2026-07-13T10:51:02.601156Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939862500:450343" method="pane.report_agent"
+2026-07-13T10:51:02.606102Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939862505:053713" method="pane.report_agent_session"
+2026-07-13T10:51:02.615042Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939862514:199912" method="pane.report_agent"
+2026-07-13T10:51:13.474649Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939873374:140694" method="pane.report_agent"
+2026-07-13T10:51:13.476617Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939873376:240826" method="pane.report_agent"
+2026-07-13T10:51:13.476747Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939873376:521526" method="pane.report_agent"
+2026-07-13T10:51:13.478968Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939873378:555136" method="pane.report_agent_session"
+2026-07-13T10:51:57.770137Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939917769:623741" method="pane.report_agent"
+2026-07-13T10:51:57.875060Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939917774:460699" method="pane.report_agent_session"
+2026-07-13T10:51:57.875969Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939917775:648084" method="pane.report_agent"
+2026-07-13T10:51:57.883425Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939917783:606564" method="pane.report_agent_session"
+2026-07-13T10:51:57.887172Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939917786:084849" method="pane.report_agent"
+2026-07-13T10:52:05.453049Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939925352:452942" method="pane.report_agent"
+2026-07-13T10:52:05.458842Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939925358:739611" method="pane.report_agent_session"
+2026-07-13T10:52:05.468589Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939925368:937637" method="pane.report_agent"
+2026-07-13T10:52:08.148696Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939928048:261997" method="pane.report_agent"
+2026-07-13T10:52:08.157026Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939928056:911022" method="pane.report_agent_session"
+2026-07-13T10:52:08.167252Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939928066:437454" method="pane.report_agent"
+2026-07-13T10:52:10.713642Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939930613:716267" method="pane.report_agent"
+2026-07-13T10:52:10.718893Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939930618:116733" method="pane.report_agent_session"
+2026-07-13T10:52:10.721754Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939930621:647622" method="pane.report_agent"
+2026-07-13T10:52:17.476348Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939937375:074223" method="pane.report_agent"
+2026-07-13T10:52:17.481561Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939937381:348764" method="pane.report_agent_session"
+2026-07-13T10:52:17.491098Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939937390:336461" method="pane.report_agent"
+2026-07-13T10:52:19.841051Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939939740:543141" method="pane.report_agent"
+2026-07-13T10:52:19.846098Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939939745:407693" method="pane.report_agent_session"
+2026-07-13T10:52:19.849401Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939939749:798707" method="pane.report_agent"
+2026-07-13T10:52:21.416091Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939941315:541456" method="pane.report_agent"
+2026-07-13T10:52:21.421025Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939941320:569882" method="pane.report_agent_session"
+2026-07-13T10:52:21.430267Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939941329:794157" method="pane.report_agent"
+2026-07-13T10:52:32.011427Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783939951910:246097" method="pane.report_agent"
+2026-07-13T10:53:23.705691Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940003605:590082" method="pane.report_agent"
+2026-07-13T10:53:23.711653Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940003611:760781" method="pane.report_agent"
+2026-07-13T10:53:23.718108Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940003617:735860" method="pane.report_agent_session"
+2026-07-13T10:53:23.721319Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940003621:367557" method="pane.report_agent"
+2026-07-13T10:53:27.968050Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940007867:645697" method="pane.report_agent"
+2026-07-13T10:53:27.975229Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940007874:400334" method="pane.report_agent_session"
+2026-07-13T10:53:27.985675Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940007885:346012" method="pane.report_agent"
+2026-07-13T10:53:30.747393Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940010646:100877" method="pane.report_agent"
+2026-07-13T10:53:30.753709Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940010653:346630" method="pane.report_agent_session"
+2026-07-13T10:53:30.767543Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940010667:891269" method="pane.report_agent"
+2026-07-13T10:53:31.293544Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940011193:143065" method="pane.report_agent"
+2026-07-13T10:53:31.293788Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940011193:804138" method="pane.report_agent"
+2026-07-13T10:53:31.293796Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940011193:845964" method="pane.report_agent"
+2026-07-13T10:53:31.297709Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940011197:342056" method="pane.report_agent"
+2026-07-13T10:53:31.297794Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940011197:928932" method="pane.report_agent"
+2026-07-13T10:53:35.609845Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940015609:306866" method="pane.report_agent"
+2026-07-13T10:53:35.714278Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940015613:839800" method="pane.report_agent_session"
+2026-07-13T10:53:35.714955Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940015614:168783" method="pane.report_agent"
+2026-07-13T10:53:35.720693Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940015620:705031" method="pane.report_agent_session"
+2026-07-13T10:53:35.724136Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940015623:000818" method="pane.report_agent"
+2026-07-13T10:53:38.704005Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940018603:277608" method="pane.report_agent"
+2026-07-13T10:53:38.709418Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940018609:055809" method="pane.report_agent_session"
+2026-07-13T10:53:38.712894Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940018612:585493" method="pane.report_agent"
+2026-07-13T10:53:40.716280Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940020615:741760" method="pane.report_agent"
+2026-07-13T10:53:40.721717Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940020621:002677" method="pane.report_agent_session"
+2026-07-13T10:53:40.726113Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940020625:114762" method="pane.report_agent"
+2026-07-13T10:53:44.411645Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940024311:778685" method="pane.report_agent"
+2026-07-13T10:53:44.416866Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940024316:940444" method="pane.report_agent_session"
+2026-07-13T10:53:44.429316Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940024328:004806" method="pane.report_agent"
+2026-07-13T10:53:54.402034Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940034301:977523" method="pane.report_agent"
+2026-07-13T10:53:54.407600Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940034307:289739" method="pane.report_agent_session"
+2026-07-13T10:53:54.417250Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940034316:999433" method="pane.report_agent"
+2026-07-13T10:54:05.154369Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940045053:380810" method="pane.report_agent"
+2026-07-13T10:54:05.157815Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940045057:451813" method="pane.report_agent"
+2026-07-13T10:54:05.157834Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940045057:174252" method="pane.report_agent"
+2026-07-13T10:54:05.160211Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940045060:710758" method="pane.report_agent_session"
+2026-07-13T10:54:39.936065Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940079935:760582" method="pane.report_agent"
+2026-07-13T10:54:40.040769Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940079940:203443" method="pane.report_agent_session"
+2026-07-13T10:54:40.041584Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940079941:539870" method="pane.report_agent"
+2026-07-13T10:54:40.051202Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940079950:689387" method="pane.report_agent_session"
+2026-07-13T10:54:40.061373Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940079961:431485" method="pane.report_agent"
+2026-07-13T10:54:47.236831Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940087136:422241" method="pane.report_agent"
+2026-07-13T10:54:47.245327Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940087144:356496" method="pane.report_agent_session"
+2026-07-13T10:54:47.255419Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940087155:050299" method="pane.report_agent"
+2026-07-13T10:54:48.900004Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940088799:077679" method="pane.report_agent"
+2026-07-13T10:54:48.900007Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940088799:703740" method="pane.report_agent"
+2026-07-13T10:54:48.900294Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940088799:730580" method="pane.report_agent"
+2026-07-13T10:54:48.903685Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940088803:847313" method="pane.report_agent"
+2026-07-13T10:54:48.903723Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940088803:397221" method="pane.report_agent"
+2026-07-13T10:55:03.720664Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940103720:392765" method="pane.report_agent"
+2026-07-13T10:55:03.825413Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940103725:489270" method="pane.report_agent_session"
+2026-07-13T10:55:03.826008Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940103725:213272" method="pane.report_agent"
+2026-07-13T10:55:03.832230Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940103731:467285" method="pane.report_agent_session"
+2026-07-13T10:55:03.835963Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940103735:107222" method="pane.report_agent"
+2026-07-13T10:55:08.098558Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940107998:202139" method="pane.report_agent"
+2026-07-13T10:55:08.103223Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940108002:214620" method="pane.report_agent_session"
+2026-07-13T10:55:08.106116Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940108005:359065" method="pane.report_agent"
+2026-07-13T10:55:10.793165Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940110692:915335" method="pane.report_agent"
+2026-07-13T10:55:10.798534Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940110698:750692" method="pane.report_agent_session"
+2026-07-13T10:55:10.809122Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940110708:362092" method="pane.report_agent"
+2026-07-13T10:55:14.197694Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940114097:758081" method="pane.report_agent"
+2026-07-13T10:55:14.204420Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940114103:196739" method="pane.report_agent_session"
+2026-07-13T10:55:14.209126Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940114108:110659" method="pane.report_agent"
+2026-07-13T10:55:15.122776Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940115022:629786" method="pane.report_agent"
+2026-07-13T10:55:15.123028Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940115022:094479" method="pane.report_agent"
+2026-07-13T10:55:15.123037Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940115022:872454" method="pane.report_agent"
+2026-07-13T10:55:15.127812Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940115027:645938" method="pane.report_agent"
+2026-07-13T10:55:15.127860Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940115027:207130" method="pane.report_agent"
+2026-07-13T10:55:21.265465Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940121165:213771" method="pane.report_agent"
+2026-07-13T10:55:21.371242Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940121270:808077" method="pane.report_agent_session"
+2026-07-13T10:55:21.371891Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940121271:120660" method="pane.report_agent"
+2026-07-13T10:55:21.378823Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940121278:108824" method="pane.report_agent_session"
+2026-07-13T10:55:21.382903Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940121282:152826" method="pane.report_agent"
+2026-07-13T10:55:24.297560Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940124197:291459" method="pane.report_agent"
+2026-07-13T10:55:24.303410Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940124203:631972" method="pane.report_agent_session"
+2026-07-13T10:55:24.315595Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940124215:977759" method="pane.report_agent"
+2026-07-13T10:55:27.262451Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940127161:950387" method="pane.report_agent"
+2026-07-13T10:55:27.268006Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940127167:440871" method="pane.report_agent_session"
+2026-07-13T10:55:27.271842Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940127171:893386" method="pane.report_agent"
+2026-07-13T10:55:37.629427Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940137528:032877" method="pane.report_agent"
+2026-07-13T10:55:37.629684Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940137529:691408" method="pane.report_agent"
+2026-07-13T10:55:37.629696Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940137529:613284" method="pane.report_agent"
+2026-07-13T10:55:37.633958Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940137533:677074" method="pane.report_agent"
+2026-07-13T10:55:37.634054Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940137533:562819" method="pane.report_agent"
+2026-07-13T10:55:43.077126Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940143076:249042" method="pane.report_agent"
+2026-07-13T10:55:43.181514Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940143081:828365" method="pane.report_agent_session"
+2026-07-13T10:55:43.182224Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940143081:092888" method="pane.report_agent"
+2026-07-13T10:55:43.188415Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940143088:040662" method="pane.report_agent_session"
+2026-07-13T10:55:43.192911Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940143092:713779" method="pane.report_agent"
+2026-07-13T10:55:54.629709Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940154529:667263" method="pane.report_agent"
+2026-07-13T10:55:54.635913Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940154535:071705" method="pane.report_agent_session"
+2026-07-13T10:55:54.646097Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940154545:276327" method="pane.report_agent"
+2026-07-13T10:55:57.828298Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940157727:840132" method="pane.report_agent"
+2026-07-13T10:55:57.828557Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940157728:253073" method="pane.report_agent"
+2026-07-13T10:55:57.828566Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940157728:757335" method="pane.report_agent"
+2026-07-13T10:55:57.832614Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940157732:525181" method="pane.report_agent"
+2026-07-13T10:55:57.832647Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940157732:166307" method="pane.report_agent"
+2026-07-13T10:56:10.344831Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940170344:462576" method="pane.report_agent"
+2026-07-13T10:56:10.449035Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940170348:894899" method="pane.report_agent_session"
+2026-07-13T10:56:10.449676Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940170349:282037" method="pane.report_agent"
+2026-07-13T10:56:10.455701Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940170355:074772" method="pane.report_agent_session"
+2026-07-13T10:56:10.459362Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940170359:721228" method="pane.report_agent"
+2026-07-13T10:56:15.165573Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940175065:753549" method="pane.report_agent"
+2026-07-13T10:56:15.171377Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940175071:942782" method="pane.report_agent_session"
+2026-07-13T10:56:15.181334Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940175081:361620" method="pane.report_agent"
+2026-07-13T10:56:30.390044Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940190289:446275" method="pane.report_agent"
+2026-07-13T10:56:30.395776Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940190295:626228" method="pane.report_agent_session"
+2026-07-13T10:56:30.405598Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940190305:639917" method="pane.report_agent"
+2026-07-13T10:57:04.474740Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940224374:102603" method="pane.report_agent"
+2026-07-13T10:57:04.484136Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940224383:447312" method="pane.report_agent_session"
+2026-07-13T10:57:04.497104Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940224396:587352" method="pane.report_agent"
+2026-07-13T10:57:40.173787Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940260073:608041" method="pane.report_agent"
+2026-07-13T10:57:40.182998Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940260082:438231" method="pane.report_agent_session"
+2026-07-13T10:57:40.196953Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="error" request_id="herdr:opencode:1783940260096:428529" method="pane.report_agent"

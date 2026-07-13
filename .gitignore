@@ -1,4 +1,7 @@
+# Backups
 backups/
+
+# Python
 **/venv/
 **/__pycache__/
 *.pyc
@@ -10,14 +13,29 @@ env/
 .venv
 pip-log.txt
 pip-delete-this-directory.txt
+
+# AI tooling state
 .toast
 .lucid
 .precision
+.atl/
+
+# Secrets
 secrets/
 .secrets/
 **/github-token.sh
-# Local Pi runtime state
-.atl/
 
-# Engram database backup
+# Engram
 engram-backup.db
+
+# Host-specific overrides
+host/*/audio.local.sh
+host/*/env.local.sh
+
+# Neovim spell files (regenerados por nvim)
+config/nvim/spell/*.spl
+config/nvim/spell/*_words.txt
+
+# Node modules (gentle-magic, opencode plugins)
+node_modules/
+**/node_modules/

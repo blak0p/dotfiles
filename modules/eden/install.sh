@@ -71,11 +71,6 @@ EOF
     fi
 fi
 
-# ─── 3. Crear symlinks al disco Juegos ────────────────────────
-echo ""
-echo "  ── Symlinks al disco Juegos ──"
-bash "$SCRIPT_DIR/scripts/eden-symlinks.sh"
-
 echo ""
 echo "═══════════════════════════════════════════"
 echo "  ✅ Módulo Eden completado"

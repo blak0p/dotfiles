@@ -1,0 +1,78 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "margin-top": 8,
+    "margin-left": 8,
+    "margin-right": 8,
+    "modules-left": ["custom/logo", "hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["custom/settings", "tray", "pulseaudio", "network", "bluetooth", "battery", "clock", "custom/power"],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+        "format-icons": {
+            "1": "1","2": "2","3": "3","4": "4","5": "5",
+            "6": "6","7": "7","8": "8","9": "9","10": "10"
+        }
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 60,
+        "separate-outputs": true
+    },
+    "clock": {
+        "interval": 60,
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %d de %B de %Y}",
+        "format-alt": "{:%A, %d de %B de %Y}"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " {volume}%",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "",
+        "format-disconnected": "",
+        "on-click": "nm-connection-editor",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "on-click": "blueman-manager",
+        "tooltip-format": "Bluetooth {status}"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "tooltip-format": "{timeTo} {power}W"
+    },
+    "custom/logo": {
+        "format": "󱄅",
+        "on-click": "qs -c caelestia ipc call drawers toggle launcher",
+        "tooltip": false
+    },
+    "custom/settings": {
+        "format": "",
+        "on-click": "qs -c caelestia ipc call nexus open",
+        "tooltip": false
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "qs -c caelestia ipc call drawers toggle session",
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 10
+    }
+}

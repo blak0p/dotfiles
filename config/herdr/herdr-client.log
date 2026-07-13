@@ -40,3 +40,9 @@
 2026-07-13T10:43:12.951717Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=1855
 2026-07-13T10:43:12.952308Z  INFO herdr::client: connecting to server path=/home/alejndro/.config/herdr/herdr-client.sock
 2026-07-13T10:43:12.961797Z  INFO herdr::client: handshake succeeded version=16 encoding=SemanticFrame
+2026-07-13T11:05:05.343197Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=16262
+2026-07-13T11:05:05.343537Z  INFO herdr::client: connecting to server path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T11:05:05.526278Z  INFO herdr::client: handshake succeeded version=16 encoding=SemanticFrame
+2026-07-13T11:11:34.989778Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=22988
+2026-07-13T11:11:34.989803Z  INFO herdr::client: connecting to server path=/home/alejndro/.config/herdr/herdr-client.sock
+2026-07-13T11:11:35.045031Z  INFO herdr::client: handshake succeeded version=16 encoding=SemanticFrame

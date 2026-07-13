@@ -5,7 +5,7 @@ import Quickshell
 import qs.services
 
 Variants {
-    model: Screens.screens
+    model: Screens.screens.filter(s => s.name === "DP-2")
 
     Scope {
         id: scope

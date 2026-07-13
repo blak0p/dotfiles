@@ -16,7 +16,7 @@
   "modules": [
     {
       "type": "separator",
-      "string": "╭──────────────────────────────╮"
+      "string": "╭───── DEV ──────────────────────╮"
     },
     {
       "type": "os",
@@ -50,46 +50,13 @@
     {
       "type": "disk",
       "key": "  󰋊  Disk",
-      "keyColor": "magenta"
+      "keyColor": "magenta",
+      "folders": "/"
     },
     {
       "type": "localip",
       "key": "  󰩟  IP",
       "keyColor": "magenta"
-    },
-    {
-      "type": "separator",
-      "string": "├──────────────────────────────┤"
-    },
-    {
-      "type": "custom",
-      "key": "  󰟓  Go",
-      "keyColor": "magenta",
-      "output": "go version | awk '{print $3}'"
-    },
-    {
-      "type": "custom",
-      "key": "    Node",
-      "keyColor": "magenta",
-      "output": "node --version"
-    },
-    {
-      "type": "custom",
-      "key": "  󰣇  Rust",
-      "keyColor": "magenta",
-      "output": "rustc --version | awk '{print $2}'"
-    },
-    {
-      "type": "custom",
-      "key": "    Python",
-      "keyColor": "magenta",
-      "output": "python3 --version | awk '{print $2}'"
-    },
-    {
-      "type": "custom",
-      "key": "  󰎌  Projects",
-      "keyColor": "magenta",
-      "output": "ls -1 /home/alejndro/dev/ | wc -l | xargs -I{} echo '{} projects'"
     },
     {
       "type": "separator",

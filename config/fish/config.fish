@@ -47,6 +47,7 @@ fzf --fish | source
 # Fastfetch al iniciar shell interactiva
 if status is-interactive; and command -q fastfetch
     fastfetch
+    echo
 end
 
 set -x PATH $HOME/.cargo/bin $PATH

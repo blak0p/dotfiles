@@ -14,7 +14,6 @@
     "color": "blue"
   },
   "modules": [
-    "title",
     {
       "type": "separator",
       "string": "╭──────────────────────────────╮"

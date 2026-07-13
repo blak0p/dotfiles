@@ -44,10 +44,15 @@ zoxide init fish | source
 atuin init fish | source
 fzf --fish | source
 
-# Fastfetch al iniciar shell interactiva
+# Fastfetch al iniciar shell (se muestra después del primer prompt)
 if status is-interactive; and command -q fastfetch
-    fastfetch
-    echo
+    function __show_fastfetch --on-event fish_prompt
+        if not set -q __fastfetch_shown
+            set -g __fastfetch_shown true
+            fastfetch
+            echo
+        end
+    end
 end
 
 set -x PATH $HOME/.cargo/bin $PATH

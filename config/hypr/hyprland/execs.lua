@@ -25,8 +25,8 @@ hl.on("hyprland.start", function()
     -- Forward bluetooth media commands to MPRIS
     hl.exec_cmd("mpris-proxy")
 
-    -- Waybar (replaces native caelestia bar)
-    hl.exec_cmd("waybar")
+    -- Waybar (replaced by native caelestia bar)
+    -- hl.exec_cmd("waybar")
 
     -- Start shell
     hl.exec_cmd("caelestia shell -d")

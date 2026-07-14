@@ -93,6 +93,16 @@ end
 alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
 alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
 
+# Sync engram memories → dotfiles repo (backup del container efímero)
+alias sync-engram='/home/alejndro/dev/dotfiles/scripts/sync-engram.sh'
+
+# Auto-sync al salir del container (solo en distrobox)
+if test -n "$DISTROBOX_HOST_HOME"
+    function _sync_engram_on_exit --on-event fish_exit
+        /home/alejndro/dev/dotfiles/scripts/sync-engram.sh --no-push
+    end
+end
+
 set -l foreground F3F6F9 normal
 set -l selection 263356 normal
 set -l comment 8394A3 brblack

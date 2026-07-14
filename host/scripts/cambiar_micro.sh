@@ -1,0 +1,1 @@
+../../scripts/cambiar_micro.sh

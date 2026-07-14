@@ -93,16 +93,6 @@ end
 alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
 alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
 
-# Sync engram memories → dotfiles repo (backup del container efímero)
-alias sync-engram='/home/alejndro/dev/dotfiles/scripts/sync-engram.sh'
-
-# Auto-sync al salir del container (solo en distrobox)
-if test -n "$DISTROBOX_HOST_HOME"
-    function _sync_engram_on_exit --on-event fish_exit
-        /home/alejndro/dev/dotfiles/scripts/sync-engram.sh
-    end
-end
-
 set -l foreground F3F6F9 normal
 set -l selection 263356 normal
 set -l comment 8394A3 brblack
@@ -135,4 +125,22 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
+
+# Carga de configuraciones específicas según el dominio (Host vs Bunker)
+if set -q BUNKER
+    # Bunker: cargar todo lo que esté en config/fish/bunker/
+    for f in $HOME/.config/fish/bunker/*.fish
+        if test -f $f
+            source $f
+        end
+    end
+else
+    # Host: cargar todo lo que esté en config/fish/host/
+    for f in $HOME/.config/fish/host/*.fish
+        if test -f $f
+            source $f
+        end
+    end
+end
+
 clear

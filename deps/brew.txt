@@ -9,7 +9,7 @@ starship
 zoxide
 atuin
 fzf
-carapace-bin
+carapace
 eza
 bat
 fd

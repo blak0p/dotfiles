@@ -28,7 +28,19 @@ done
 
 cd "$DOTFILES"
 
-# ── 1. Engram sync ──────────────────────────────────────────────
+# ── 1. Limpiar chunks viejos ────────────────────────────────────
+# Solo el último chunk importa — los anteriores son redundantes
+CHUNKS_DIR="$DOTFILES/.engram/chunks"
+if [ -d "$CHUNKS_DIR" ]; then
+    echo "🧹 Limpiando chunks viejos..."
+    if $DRY_RUN; then
+        echo "  → rm -f $CHUNKS_DIR/*.jsonl.gz"
+    else
+        rm -f "$CHUNKS_DIR"/*.jsonl.gz
+    fi
+fi
+
+# ── 2. Engram sync ──────────────────────────────────────────────
 echo "📦 Exportando memorias de engram..."
 if $DRY_RUN; then
     echo "  → engram sync --all (exportaría a .engram/chunks/)"

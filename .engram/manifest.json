@@ -248,6 +248,14 @@
       "sessions": 0,
       "memories": 0,
       "prompts": 1
+    },
+    {
+      "id": "549997cd",
+      "created_by": "alejndro",
+      "created_at": "2026-07-15T12:31:18Z",
+      "sessions": 0,
+      "memories": 1,
+      "prompts": 3
     }
   ]
 }

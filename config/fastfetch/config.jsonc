@@ -16,7 +16,7 @@
   "modules": [
     {
       "type": "separator",
-      "string": "╭───── DEV ──────────────────────╮"
+      "string": "╭──────────────────────────────╮"
     },
     {
       "type": "os",
@@ -49,9 +49,26 @@
     },
     {
       "type": "disk",
-      "key": "  󰋊  Disk",
+      "key": "  󰋊  Disco",
       "keyColor": "magenta",
       "folders": "/"
+    },
+    {
+      "type": "disk",
+      "key": "  󰋊  Juegos",
+      "keyColor": "magenta",
+      "folders": "/mnt/Juegos"
+    },
+    {
+      "type": "memory",
+      "key": "  󰾆  Memoria",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "cpu",
+      "key": "    CPU",
+      "keyColor": "magenta",
+      "temp": true
     },
     {
       "type": "localip",

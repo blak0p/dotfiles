@@ -1,3 +1,41 @@
+## Mandatory Rules
+
+### 1. Worktree placement
+
+Always create Git worktrees under `../worktrees/` relative to the repository root. Never place worktrees elsewhere unless the task explicitly requires it.
+
+### 2. Commit messages
+
+Always write commit messages that explain BOTH why it changed AND what changed — in that order. The "what" alone is not enough; every commit must first carry the reasoning, context, or problem being solved.
+
+- When both fit in the subject: `type(scope): why — what`
+- When the subject would be too long: use the body for the "why"
+
+Examples:
+
+```
+# why first — both in subject
+feat(auth): prevent replay attacks — rotate refresh tokens
+
+# why too long for subject — body carries the why
+feat(auth): rotate refresh tokens on each refresh
+
+Refresh tokens were usable indefinitely after rotation, allowing replay
+attacks. Rotating invalidates the previous token on each refresh.
+WHAT
+- add `refreshToken` rotation on each `POST /auth/refresh`
+- store rotated token in `httpOnly` secure cookie
+- invalidate previous refresh token in Redis after rotation
+```
+
+Do NOT write commits that only describe the "what" without the "why".
+
+### 3. Secret delegation
+
+- Any task that involves API keys, tokens, credentials, passwords, or any other secret material MUST be delegated to the `secrets-local` subagent (local Ollama model, isolated). The orchestrator NEVER reads, prints, rotates, stores, or manipulates secrets directly.
+- If a secret-related task is mistakenly routed to the orchestrator, refuse the direct action and re-dispatch to `secrets-local` with the input contract fields filled in (goal, target, constraints, risk level, confirmation flag).
+- This rule overrides generic delegation heuristics. It is permanent and not subject to optimization.
+
 <!-- gentle-ai:codegraph-guidance -->
 ## CodeGraph
 

@@ -1,0 +1,9 @@
+{
+  "config": {
+    "default": false
+  },
+  "ignores": [
+    "node_modules",
+    "**/node_modules"
+  ]
+}

@@ -22,6 +22,17 @@ return {
     config = true, -- Use default configuration
   },
 
+  -- Desactiva markdownlint-cli2 warnings (es md, no jodamos)
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.markdown = {}
+      return opts
+    end,
+  },
+
   -- Remove inlay hints from default configuration
   {
     -- Plugin: nvim-lspconfig

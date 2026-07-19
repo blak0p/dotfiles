@@ -1690,3 +1690,29 @@
 2026-07-13T19:07:52.102537Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wR"
 2026-07-13T19:07:52.102543Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wR" tab_id="wR:t1"
 2026-07-13T19:07:57.110180Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/dev/.container/.config/herdr/session.json workspaces=1
+2026-07-17T08:18:58.400768Z  INFO herdr::api::server: api server listening path=/home/alejndro/dev/.container/.config/herdr/herdr.sock
+2026-07-17T08:18:58.401159Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-17T08:18:58.401606Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=14397
+2026-07-17T08:18:58.401728Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-17T08:18:58.401737Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-17T08:18:58.418853Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-17T08:18:58.419806Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/home/alejndro/dev
+2026-07-17T08:18:58.419914Z  INFO herdr::server::headless: client protocol socket listening path=/home/alejndro/dev/.container/.config/herdr/herdr-client.sock
+2026-07-17T08:18:58.419931Z  INFO herdr::server::headless: herdr server started api_socket=/home/alejndro/dev/.container/.config/herdr/herdr.sock client_socket=/home/alejndro/dev/.container/.config/herdr/herdr-client.sock
+2026-07-17T08:18:58.419939Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=14383
+2026-07-17T08:18:58.459249Z  INFO herdr::server::headless: client connected client_id=2 cols=140 rows=57 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-17T08:19:01.900201Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-17T08:19:01.900261Z  INFO herdr::pane: pane session terminated pane=1 pid=14397 signal=Hangup
+2026-07-17T08:19:01.900367Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=56 cols=114 scrollback_limit_bytes=10000000
+2026-07-17T08:19:01.900960Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=14624
+2026-07-17T08:19:01.901030Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wS" pane_id=2
+2026-07-17T08:19:01.901034Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wS"
+2026-07-17T08:19:01.901069Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wS" tab_id="wS:t1"
+2026-07-17T08:19:06.886460Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-17T08:19:06.886525Z  INFO herdr::pane: pane session terminated pane=2 pid=14624 signal=Hangup
+2026-07-17T08:19:06.886627Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=56 cols=114 scrollback_limit_bytes=10000000
+2026-07-17T08:19:06.887254Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=14830
+2026-07-17T08:19:06.887316Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="wT" pane_id=3
+2026-07-17T08:19:06.887320Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="wT"
+2026-07-17T08:19:06.887354Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="wT" tab_id="wT:t1"
+2026-07-17T08:19:11.903259Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/alejndro/dev/.container/.config/herdr/session.json workspaces=1

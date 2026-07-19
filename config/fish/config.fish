@@ -1,3 +1,8 @@
+# Detectar si estamos en el bunker (distrobox) y setear BUNKER
+if test -n "$DISTROBOX_HOST_HOME"
+    set -gx BUNKER 1
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     # Install Fisher if not installed

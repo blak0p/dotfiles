@@ -400,6 +400,14 @@
       "sessions": 2,
       "memories": 6,
       "prompts": 9
+    },
+    {
+      "id": "35d8eecd",
+      "created_by": "alejndro",
+      "created_at": "2026-07-19T13:40:21Z",
+      "sessions": 1,
+      "memories": 2,
+      "prompts": 4
     }
   ]
 }

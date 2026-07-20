@@ -472,6 +472,14 @@
       "sessions": 0,
       "memories": 0,
       "prompts": 0
+    },
+    {
+      "id": "f1053d0c",
+      "created_by": "alejndro",
+      "created_at": "2026-07-20T21:32:38Z",
+      "sessions": 0,
+      "memories": 0,
+      "prompts": 4
     }
   ]
 }

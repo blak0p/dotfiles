@@ -672,6 +672,14 @@
       "sessions": 4,
       "memories": 32,
       "prompts": 47
+    },
+    {
+      "id": "c06280d9",
+      "created_by": "alejndro",
+      "created_at": "2026-07-21T19:29:28Z",
+      "sessions": 1,
+      "memories": 1,
+      "prompts": 12
     }
   ]
 }

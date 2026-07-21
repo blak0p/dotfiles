@@ -664,6 +664,14 @@
       "sessions": 0,
       "memories": 0,
       "prompts": 0
+    },
+    {
+      "id": "ff0b8185",
+      "created_by": "alejndro",
+      "created_at": "2026-07-21T19:22:57Z",
+      "sessions": 4,
+      "memories": 32,
+      "prompts": 47
     }
   ]
 }

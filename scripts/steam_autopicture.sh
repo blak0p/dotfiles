@@ -6,6 +6,9 @@ LOG_FILE="$HOME/scripts/steam-autopicture.log"
 LOG_MAX_LINES=500
 LOG_KEEP_LINES=200
 
+# Patrón MAC del Mechanike G5Pro V2 — el 6to nibble cambia según el modo
+MAC_PATTERN="98:b6:e[0-9a-f]:ca:89:8e"
+
 export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
 
 notificar() {
@@ -105,7 +108,44 @@ procesar_evento() {
     fi
 }
 
-escuchar() {
+procesar_evento_hid() {
+    local sysfs_path
+    sysfs_path=$(echo "$1" | grep -oP '(?<= )/\S+')
+    [ -z "$sysfs_path" ] && return
+
+    local uniq
+    uniq=$(udevadm info -p "$sysfs_path" 2>/dev/null | grep -oP 'HID_UNIQ=\K.*')
+    [ -z "$uniq" ] && return
+
+    if ! echo "$uniq" | grep -qiE "$MAC_PATTERN"; then
+        log INFO "HID ignorado — MAC $uniq no coincide con patrón"
+        return
+    fi
+
+    local nombre
+    nombre=$(udevadm info -p "$sysfs_path" 2>/dev/null | grep -oP 'HID_NAME=\K.*')
+    log INFO "Mando Bluetooth detectado: ${nombre:-desconocido} ($uniq)"
+
+    if [ -f "$TOGGLE_FILE" ]; then
+        log INFO "Toggle activo — acción ignorada"
+        notificar "Ignorado: toggle activo"
+        return
+    fi
+
+    importar_entorno
+
+    if ! pgrep -x steam >/dev/null 2>&1; then
+        log INFO "Steam cerrado — lanzando Steam en Big Picture"
+        notificar "Mando Bluetooth — Abriendo Steam"
+        $LAUNCH_CMD &
+    else
+        log INFO "Steam abierto — abriendo Big Picture"
+        notificar "Mando Bluetooth — Abriendo Big Picture"
+        /usr/bin/steam steam://open/bigpicture &
+    fi
+}
+
+escuchar_input() {
     local last_activation=0
 
     stdbuf -oL udevadm monitor --subsystem-match=input --udev 2>/dev/null | \
@@ -123,6 +163,32 @@ escuchar() {
             procesar_evento "$line"
         fi
     done
+}
+
+escuchar_hid() {
+    local last_activation=0
+
+    stdbuf -oL udevadm monitor --subsystem-match=hid --udev 2>/dev/null | \
+    while read -t 15 -r line; do
+        if [[ "$line" =~ (add|bind) ]]; then
+            local now
+            now=$(date +%s)
+            local diff=$((now - last_activation))
+            if [ "$diff" -lt 10 ]; then
+                log INFO "HID ignorado — cooldown activo ($diff segundos transcurridos)"
+                continue
+            fi
+
+            last_activation=$now
+            procesar_evento_hid "$line"
+        fi
+    done
+}
+
+escuchar() {
+    escuchar_input &
+    escuchar_hid &
+    wait
 }
 
 escanear_mandos() {

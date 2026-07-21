@@ -2,9 +2,9 @@
   "version": 3,
   "workspaces": [
     {
-      "id": "wT",
+      "id": "wW",
       "custom_name": null,
-      "identity_cwd": "/home/alejndro/dev/.container",
+      "identity_cwd": "/home/alejndro/dev/portfolio-Alejandro.Martin.Pujalte",
       "public_pane_numbers": {
         "3": 1
       },
@@ -21,7 +21,7 @@
           },
           "panes": {
             "3": {
-              "cwd": "/home/alejndro/dev/.container"
+              "cwd": "/home/alejndro/dev/portfolio-Alejandro.Martin.Pujalte"
             }
           },
           "zoomed": false,

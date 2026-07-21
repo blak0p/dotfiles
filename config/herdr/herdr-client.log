@@ -351,3 +351,6 @@
 2026-07-17T08:18:58.450332Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=14382
 2026-07-17T08:18:58.450361Z  INFO herdr::client: connecting to server path=/home/alejndro/dev/.container/.config/herdr/herdr-client.sock
 2026-07-17T08:18:58.458994Z  INFO herdr::client: handshake succeeded version=16 encoding=SemanticFrame
+2026-07-20T16:47:53.820877Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=37455
+2026-07-20T16:47:53.821185Z  INFO herdr::client: connecting to server path=/home/alejndro/dev/.container/.config/herdr/herdr-client.sock
+2026-07-20T16:47:53.827717Z  INFO herdr::client: handshake succeeded version=16 encoding=SemanticFrame

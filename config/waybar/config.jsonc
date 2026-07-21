@@ -67,7 +67,7 @@
         "on-click": "qs -c ii ipc call nexus open",
         "tooltip": false
     },
-    "custom/power": {
+"custom/power": {
         "format": "",
         "on-click": "qs -c ii ipc call drawers toggle session",
         "tooltip": false

@@ -2,7 +2,11 @@
 
 ### 1. Worktree placement
 
-Always create Git worktrees under `../worktrees/` relative to the repository root. Never place worktrees elsewhere unless the task explicitly requires it.
+Always create Git worktrees under `../worktrees/` relative to the repository root, organized by project name. The project name is derived from the repo checkout directory name (e.g., `bunkerctl`, `hitro.es`, `relay-mcp`).
+
+Pattern: `../worktrees/<project>/<branch-or-feature>`
+
+Never place worktrees elsewhere unless the task explicitly requires it.
 
 ### 2. Commit messages
 

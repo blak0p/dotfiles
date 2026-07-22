@@ -140,7 +140,7 @@ bunker_create_container() {
     distrobox create \
         --name "$BUNKER_CONTAINER_NAME" \
         --image fedora:45 \
-        --home /home/alejndro/dev/.container
+        --home $DOTFILES_DIR
     ok "Contenedor '$BUNKER_CONTAINER_NAME' creado"
 }
 

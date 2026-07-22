@@ -12,8 +12,17 @@ hl.bind("SUPER + B", hl.dsp.exec_cmd("$HOME/scripts/steam_toggle.sh"), { descrip
 hl.bind("SUPER + S", hl.dsp.exec_cmd("$HOME/scripts/cambiar_audio.sh"), { description = "Script: Audio toggle" })
 hl.bind(
 	"SUPER + U",
-	hl.dsp.exec_cmd('/usr/bin/kitty -e /usr/bin/distrobox-enter --name bunker -- fish -C "cd /home/alejndro/dev"'),
+	function()
+		hl.dispatch(hl.dsp.exec_cmd('/usr/bin/kitty -e /usr/bin/distrobox-enter --name bunker -- fish -C "cd $HOME/dev"'))
+	end,
 	{ description = "App: Distrobox dev" }
+)
+
+-- CodexBar usage popup (distrobox codex usage)
+hl.bind(
+	"SUPER + SHIFT + U",
+	hl.dsp.global("quickshell:codexbarToggle"),
+	{ description = "CodexBar: Toggle usage popup" }
 )
 
 -- Window management

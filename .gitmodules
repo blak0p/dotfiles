@@ -1,0 +1,9 @@
+[submodule "dotfiles-hyprland"]
+	path = dotfiles-hyprland
+	url = https://github.com/blak0p/dotfiles-hyprland.git
+[submodule "dotfiles-shell"]
+	path = dotfiles-shell
+	url = https://github.com/blak0p/dotfiles-shell.git
+[submodule "dotfiles-editors"]
+	path = dotfiles-editors
+	url = https://github.com/blak0p/dotfiles-editors.git

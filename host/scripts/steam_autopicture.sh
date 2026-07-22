@@ -1,1 +1,0 @@
-../../scripts/steam_autopicture.sh

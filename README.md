@@ -1,61 +1,50 @@
 # dotfiles
 
-Host config: servicios + symlinks. Dev tooling va dentro de Distrobox.
+Umbrella repo for my public dotfiles. Each domain lives in its own repo and is wired in as a git submodule.
 
-## Estructura
+## Sub-repos
 
-```
-dotfiles/
-├── config/             → symlinks a ~/.config/<app>/
-│   ├── hypr/           Hyprland WM
-│   ├── waybar/         Barra
-│   ├── nvim/           Neovim (LazyVim)
-│   ├── fish/           Shell
-│   ├── ghostty/        Terminal
-│   ├── starship.toml   Prompt
-│   ├── gtk-3.0/        GTK theme
-│   ├── gtk-4.0/        GTK theme
-│   ├── spicetify/      Spotify
-│   ├── btop/           Monitor
-│   ├── cava/           Audio visualizer
-│   ├── alacritty/      Terminal (fallback)
-│   ├── foot/           Terminal (fallback)
-│   └── ...
-├── scripts/            → symlinks a ~/scripts/
-│   ├── cambiar_audio.sh
-│   ├── cambiar_micro.sh
-│   ├── steam_autopicture.sh
-│   ├── steam_toggle.sh
-│   └── convertir-nsz
-├── host/
-│   └── personal-pc/    Lo que cambia por máquina
-│       ├── audio.sh    IDs/nombres de audio
-│       ├── monitors.lua
-│       ├── env.sh
-│       └── packages.txt
-├── modules/
-│   ├── eden/           Emulador + symlinks al disco Juegos
-│   ├── gaming/         Steam autopicture service
-│   └── hardware/       Deepcool AK620 daemon
-├── install.sh          Deploya symlinks + módulos
-├── doctor.sh           Diagnóstico
-└── assets/
+- [`dotfiles-hyprland`](https://github.com/blak0p/dotfiles-hyprland) — Hyprland desktop stack (hypr, waybar, quickshell, fuzzel, gtk, xsettingsd, systemd, btop, cava)
+- [`dotfiles-shell`](https://github.com/blak0p/dotfiles-shell) — Shell + terminal (fish, starship, atuin, carapace, fastfetch, kitty)
+- [`dotfiles-editors`](https://github.com/blak0p/dotfiles-editors) — Neovim
+
+## Install
+
+Clone with submodules:
+```bash
+git clone --recurse-submodules https://github.com/blak0p/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./install.sh --all
 ```
 
-## Instalación
+Or, if you forgot `--recurse-submodules`, the installer will auto-init on first run.
 
-PC nueva:
-1. Instalar CachyOS + paquetes base (`host/personal-pc/packages.txt`)
-2. Clonar: `git clone https://github.com/tuuser/dotfiles ~/dev/dotfiles`
-3. `cd ~/dev/dotfiles && ./install.sh`
-4. Gentleman Dots aparte con su TUI
-5. Distrobox con herramientas dev
+## Flags
 
-## Mantenimiento
+- `--all` — deploy every sub-repo
+- `--hyprland` — only the Hyprland stack
+- `--fish` or `--kitty` — only the shell+terminal sub-repo
+- `--nvim` — only the Neovim sub-repo
+- `--help` — show usage
+
+Each sub-repo can also be cloned standalone and installed with its own `./install.sh`.
+
+## Update submodules
 
 ```bash
-./install.sh --all       # Deployar todo
-./doctor.sh              # Ver qué falta/está roto
+git pull
+git submodule update --remote --merge
 ```
 
-Las configs de `~/.config/` se manejan via symlinks: editar en el repo, se refleja automático.
+## Edit a submodule
+
+```bash
+cd dotfiles-shell
+git checkout main
+# make your changes, commit, push
+git add . && git commit -m "..." && git push
+cd ..
+# then in the umbrella:
+git add dotfiles-shell
+git commit -m "chore(submodules): bump dotfiles-shell to <sha>"
+```

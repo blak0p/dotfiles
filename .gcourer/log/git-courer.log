@@ -1,8 +1,0 @@
-2026/05/17 10:06:57 Starting LLM provider...2026/05/17 10:06:57 ✓ Model ready2026/05/17 10:06:57 Starting git-courer v1.5.12026/05/17 10:06:57 Working directory: .2026/05/17 10:06:57 LLM provider: ollama2026/05/17 10:06:57 LLM model: qwen3.5:latest2026/05/17 10:06:57 Initialize: client=gemini-cli-mcp-client v0.42.02026/05/17 10:06:57 Client registered: gemini-cli-mcp-client v0.42.0 (sampling: false, elicitation: false)2026/05/17 14:51:41 Starting LLM provider...
-2026/05/17 14:51:45 ✓ Model ready
-2026/05/17 14:51:45 Starting git-courer v1.5.1
-2026/05/17 14:51:45 Working directory: .
-2026/05/17 14:51:45 LLM provider: ollama
-2026/05/17 14:51:45 LLM model: qwen3.5:latest
-2026/05/17 14:51:45 Initialize: client=gemini-cli-mcp-client v0.42.0
-2026/05/17 14:51:45 Client registered: gemini-cli-mcp-client v0.42.0 (sampling: false, elicitation: false)

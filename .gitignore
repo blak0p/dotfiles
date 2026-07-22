@@ -1,41 +1,41 @@
-# Backups
-backups/
-
 # Python
-**/venv/
-**/__pycache__/
-*.pyc
-*.pyo
-*.pyd
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
 .Python
-env/
-.env
-.venv
-pip-log.txt
-pip-delete-this-directory.txt
 
-# AI tooling state
-.toast
-.lucid
-.precision
-.atl/
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Backups
+*.bak
+*.bak.*
+.dotfiles-backup-*/
 
 # Secrets
-secrets/
-.secrets/
-**/github-token.sh
+*.pem
+*.key
+*.secret
+.env
+.env.*
 
-# Engram
-engram-backup.db
+# Tooling caches
+.codegraph/
+.atl/
+.engram/
+.gcourer/
+.npmrc
+.markdownlint-cli2.json
+.markdownlint.json
+.markdownlintignore
 
-# Host-specific overrides
-host/*/audio.local.sh
-host/*/env.local.sh
-
-# Neovim spell files (regenerados por nvim)
-config/nvim/spell/*.spl
-config/nvim/spell/*_words.txt
-
-# Node modules (gentle-magic, opencode plugins)
-node_modules/
-**/node_modules/
+# Editor
+.vscode/
+.idea/
+*.swp
+*~

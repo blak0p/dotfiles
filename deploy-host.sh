@@ -40,7 +40,7 @@ done
 log "Verifying symlinks"
 for s in fish starship.toml atuin carapace fastfetch kitty nvim \
          hypr waybar quickshell fuzzel gtk-3.0 gtk-4.0 xsettingsd \
-         systemd btop cava; do
+          systemd btop cava qt6ct; do
     if [ -L "$HOME/.config/$s" ]; then
         echo "  OK   $s -> $(readlink "$HOME/.config/$s")"
     else

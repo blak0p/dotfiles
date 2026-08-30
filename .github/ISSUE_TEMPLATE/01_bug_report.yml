@@ -1,0 +1,77 @@
+name: Bug Report
+description: Report a bug or installation issue in dotfiles
+title: "bug: "
+labels: [bug, "status:pending-approval"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        Please ensure you test your issue with a clean submodule checkout first.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component / Submodule
+      description: Which part of the dotfiles ecosystem is affected?
+      options:
+        - "Superproject (install.sh / bootstrap scripts)"
+        - "dotfiles-hyprland (Wayland / Hyprland desktop)"
+        - "dotfiles-shell (Fish / Kitty / Starship / CLI tools)"
+        - "dotfiles-editors (Neovim / LazyVim)"
+        - "Other / Global"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System / Distribution
+      placeholder: "Arch Linux / Fedora 41 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the issue and what you expected to happen.
+      placeholder: "Tell us what went wrong"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run './install.sh --hyprland'
+        2. ...
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Paste any error messages or script output.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Search
+      options:
+        - label: |
+            I searched for existing open and closed issues before opening this
+          required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+    validations:
+      required: false

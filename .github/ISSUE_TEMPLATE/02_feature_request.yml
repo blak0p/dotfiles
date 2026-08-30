@@ -1,0 +1,57 @@
+name: Feature Request
+description: Suggest an idea or improvement for dotfiles
+title: "feature: "
+labels: [enhancement, "status:pending-approval"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature or improvement for the dotfiles ecosystem!
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Target Component / Submodule
+      description: Where does this feature belong?
+      options:
+        - "Superproject (install.sh / bootstrap scripts)"
+        - "dotfiles-hyprland (Wayland / Hyprland desktop)"
+        - "dotfiles-shell (Fish / Kitty / Starship / CLI tools)"
+        - "dotfiles-editors (Neovim / LazyVim)"
+        - "Other / Global"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem does this feature solve? What are you trying to do?
+      placeholder: "I'd like to improve..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What do you think should happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative solutions
+      description: What alternatives have you considered?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Search
+      options:
+        - label: |
+            I searched for existing open and closed issues before opening this
+          required: true

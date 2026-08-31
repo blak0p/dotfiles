@@ -14,7 +14,7 @@ err() { echo "ERR: $*" >&2; exit 1; }
 
 [ -d "$HOME" ] || err "HOME no apunta a un directorio válido"
 mkdir -p "$DOTFILES_PARENT"
-cd "$DOTFILES_PARENT"
+cd "$DOTFILES_PARENT" || exit 1
 
 if [ ! -d "$DOTFILES_DIR" ]; then
     log "Cloning umbrella to $DOTFILES_DIR"
@@ -24,7 +24,7 @@ else
     (cd "$DOTFILES_DIR" && git pull --ff-only)
 fi
 
-cd "$DOTFILES_DIR"
+cd "$DOTFILES_DIR" || exit 1
 log "Initializing submodules"
 git submodule update --init --recursive
 

@@ -62,6 +62,12 @@ dotfiles/ (Umbrella Repository)
   * Real-time screen translation (`Super + Shift + T`).
   * VM Isolation Submap (`Super + Alt + F1`) preventing keybind interception inside virtual machines.
   * Native screen recording with audio via `wf-recorder` (`Ctrl + Alt + R` / `Super + Shift + R`).
+* **Jarvis — AI Voice Assistant** (`Win + Shift + Space`): Hands-free voice interaction embedded in the Dynamic Island.
+  * Natural conversational responses — no markdown lists or headers, just plain speech.
+  * Voice Activity Detection follow-up — after a spoken question, Jarvis automatically listens for your reply without any extra hotkey.
+  * Click-to-toggle — tap the Dynamic Island pill or container to start/stop voice interaction.
+  * AI quota awareness — ask Jarvis about remaining credits for any provider (Gemini, OpenAI, Anthropic…).
+  * Desktop app launcher integration — launch apps by name or ask Jarvis to find ambiguous matches.
 
 ### 2. [`dotfiles-shell`](https://github.com/blak0p/dotfiles-shell)
 * **Terminal Emulator**: Kitty with custom theme, ligature fonts, and smooth cursor trail.

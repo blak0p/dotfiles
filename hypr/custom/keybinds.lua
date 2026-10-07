@@ -20,6 +20,9 @@ hl.bind("SUPER + SHIFT + Space", hl.dsp.exec_cmd("python3 " .. HOME .. "/.config
 -- Rename workspace: Dynamic Island modal con Win+R
 hl.bind("SUPER + R", hl.dsp.global("quickshell:workspaceRenameToggle"), { description = "Workspace: Rename active (Dynamic Island)" })
 
+-- Quick Notes / Scratchpad: Dynamic Island modal con Super + N
+hl.bind("SUPER + N", hl.dsp.global("quickshell:notesToggle"), { description = "Notes: Toggle Quick Notes in Dynamic Island" })
+
 -- Window management (pisan los de end-4)
 hl.bind("SUPER + C", hl.dsp.window.close(), { description = "Window: Close" })
 hl.bind("SUPER + F",

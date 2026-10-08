@@ -87,7 +87,7 @@ def send_notification(summary: str, body: str = "", icon: str = "dialog-informat
 
 
 def speak_feedback(text: str, wait: bool = False) -> None:
-    """Speaks feedback text via Piper TTS.
+    """Speaks feedback text via Piper TTS without triggering follow-up listening.
 
     Runs in a background daemon thread by default to keep the dispatcher responsive,
     or synchronously if wait=True.
@@ -97,11 +97,11 @@ def speak_feedback(text: str, wait: bool = False) -> None:
 
     if wait:
         try:
-            speak(text)
+            speak(text, followup=False)
         except Exception as e:
             print(f"TTS error: {e}", file=sys.stderr)
     else:
-        t = threading.Thread(target=speak, args=(text,), daemon=True)
+        t = threading.Thread(target=speak, args=(text,), kwargs={"followup": False}, daemon=True)
         t.start()
 
 

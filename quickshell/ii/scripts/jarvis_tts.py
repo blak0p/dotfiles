@@ -17,6 +17,23 @@ DEFAULT_VOLUME = float(os.environ.get("JARVIS_TTS_VOLUME", "0.25"))
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
+TTS_PID_FILE = "/tmp/jarvis_tts.pid"
+
+
+def is_farewell_text(text: str) -> bool:
+    """Detects if text contains a farewell or polite interaction closing phrase."""
+    if not text:
+        return False
+    lower = text.lower()
+    farewells = [
+        "hasta luego", "adiós", "adios", "chao", "chau",
+        "de nada", "un placer", "a tu disposición", "a tu disposicion",
+        "que tengas un buen", "que tengas un lindo", "nos vemos",
+        "hasta la próxima", "hasta la proxima", "hasta pronto",
+    ]
+    return any(f in lower for f in farewells)
+
+
 def is_question_text(text: str) -> bool:
     """Detects if text contains a question or prompts for a user answer."""
     if not text:
@@ -49,9 +66,14 @@ def speak(
     output_wav: str = None,
     speed: float = 1.0,
     volume: float = DEFAULT_VOLUME,
+    followup: bool = True,
+    followup_if_question: bool = None,
 ) -> bool:
     if not text or not text.strip():
         return False
+
+    if followup_if_question is False:
+        followup = False
 
     piper_exe = PIPER_BIN if os.path.isfile(PIPER_BIN) and os.access(PIPER_BIN, os.X_OK) else shutil.which("piper-tts")
     if not piper_exe:
@@ -102,6 +124,9 @@ def speak(
 
     try:
         notify_quickshell_ipc("speaking")
+        with open(TTS_PID_FILE, "w") as f:
+            f.write(str(os.getpid()))
+
         piper_proc = subprocess.Popen(
             piper_cmd,
             stdin=subprocess.PIPE,
@@ -120,9 +145,9 @@ def speak(
         piper_proc.communicate(input=text.encode("utf-8"))
         player_proc.wait()
 
-        # Follow-up auto listening if spoken text asks a question
+        # Follow-up auto listening: keep conversation alive unless disabled or farewell
         jarvis_audio_script = os.path.join(SCRIPT_DIR, "jarvis_audio.py")
-        if followup_if_question and is_question_text(text) and os.path.exists(jarvis_audio_script):
+        if followup and not is_farewell_text(text) and os.path.exists(jarvis_audio_script):
             subprocess.Popen(
                 [sys.executable, jarvis_audio_script, "follow-up", "--dispatch"],
                 stdout=subprocess.DEVNULL,
@@ -137,6 +162,12 @@ def speak(
         print(f"Error during TTS playback: {e}", file=sys.stderr)
         notify_quickshell_ipc("idle")
         return False
+    finally:
+        if os.path.exists(TTS_PID_FILE):
+            try:
+                os.remove(TTS_PID_FILE)
+            except OSError:
+                pass
 
 
 def main():
@@ -146,7 +177,7 @@ def main():
     parser.add_argument("-o", "--output", default=None, help="Save to WAV file instead of playing")
     parser.add_argument("-s", "--speed", type=float, default=1.0, help="Speech speed multiplier (default: 1.0)")
     parser.add_argument("--volume", type=float, default=DEFAULT_VOLUME, help="Speech volume (0.0 to 1.0, default: 0.25)")
-    parser.add_argument("--no-followup", action="store_true", help="Disable automatic follow-up listening for questions")
+    parser.add_argument("--no-followup", action="store_true", help="Disable automatic follow-up listening")
 
     args = parser.parse_args()
 
@@ -164,7 +195,7 @@ def main():
         output_wav=args.output,
         speed=args.speed,
         volume=args.volume,
-        followup_if_question=not args.no_followup,
+        followup=not args.no_followup,
     )
     sys.exit(0 if success else 1)
 

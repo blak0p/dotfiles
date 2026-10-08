@@ -25,6 +25,8 @@ import math
 import wave
 
 PID_FILE = "/tmp/jarvis_recording.pid"
+SESSION_PID_FILE = "/tmp/jarvis_session.pid"
+TTS_PID_FILE = "/tmp/jarvis_tts.pid"
 AUDIO_FILE = "/tmp/jarvis_input.wav"
 DEFAULT_SERVER_URL = "http://127.0.0.1:8085/inference"
 IDLE_STOP_UNIT = "whisper-idle-stop"
@@ -44,6 +46,89 @@ def notify_quickshell_ipc(method: str, *args: str) -> None:
         )
     except Exception:
         pass
+
+
+def get_session_pid() -> int | None:
+    if not os.path.exists(SESSION_PID_FILE):
+        return None
+    try:
+        with open(SESSION_PID_FILE, "r") as f:
+            pid = int(f.read().strip())
+        os.kill(pid, 0)
+        return pid
+    except (ValueError, OSError):
+        try:
+            os.remove(SESSION_PID_FILE)
+        except OSError:
+            pass
+        return None
+
+
+def get_tts_pid() -> int | None:
+    if not os.path.exists(TTS_PID_FILE):
+        return None
+    try:
+        with open(TTS_PID_FILE, "r") as f:
+            pid = int(f.read().strip())
+        os.kill(pid, 0)
+        return pid
+    except (ValueError, OSError):
+        try:
+            os.remove(TTS_PID_FILE)
+        except OSError:
+            pass
+        return None
+
+
+def is_active_session() -> bool:
+    return get_session_pid() is not None or get_recording_pid() is not None
+
+
+def is_active_tts() -> bool:
+    return get_tts_pid() is not None
+
+
+def cancel_all():
+    """Cancels any active recording session, TTS playback, or follow-up listener."""
+    sess_pid = get_session_pid()
+    if sess_pid and sess_pid != os.getpid():
+        try:
+            os.kill(sess_pid, signal.SIGTERM)
+        except OSError:
+            pass
+
+    rec_pid = get_recording_pid()
+    if rec_pid and rec_pid != os.getpid():
+        try:
+            os.kill(rec_pid, signal.SIGTERM)
+        except OSError:
+            pass
+
+    tts_pid = get_tts_pid()
+    if tts_pid and tts_pid != os.getpid():
+        try:
+            os.kill(tts_pid, signal.SIGTERM)
+        except OSError:
+            pass
+
+    for p in (SESSION_PID_FILE, PID_FILE, TTS_PID_FILE):
+        if os.path.exists(p):
+            try:
+                os.remove(p)
+            except OSError:
+                pass
+
+    notify_quickshell_ipc("idle")
+    if shutil.which("qs"):
+        try:
+            subprocess.Popen(
+                ["qs", "-c", "ii", "ipc", "call", "ai", "close"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        except Exception:
+            pass
+    schedule_idle_timer(IDLE_TIMEOUT_SECONDS)
 
 
 def cancel_idle_timer():
@@ -253,16 +338,16 @@ def transcribe(
             schedule_idle_timer(IDLE_TIMEOUT_SECONDS)
 
 
-def follow_up_listen(
+def listen_with_vad(
     audio_path: str = AUDIO_FILE,
     server_url: str = DEFAULT_SERVER_URL,
     language: str = "es",
     auto_stop_idle: bool = True,
-    initial_timeout: float = 6.0,
-    silence_duration: float = 1.3,
-    max_duration: float = 12.0,
+    initial_timeout: float = 5.0,
+    silence_duration: float = 1.1,
+    max_duration: float = 15.0,
 ) -> str:
-    """Listens automatically for user response with VAD (Voice Activity Detection).
+    """Listens with Voice Activity Detection (VAD) and auto-stops on silence.
 
     Arms recording immediately, waits for voice within initial_timeout.
     Once speech starts, keeps recording until silence_duration is observed or max_duration.
@@ -283,6 +368,9 @@ def follow_up_listen(
         except OSError:
             pass
 
+    with open(SESSION_PID_FILE, "w") as f:
+        f.write(str(os.getpid()))
+
     proc = subprocess.Popen(
         [
             "pw-record",
@@ -299,23 +387,21 @@ def follow_up_listen(
     with open(PID_FILE, "w") as f:
         f.write(str(proc.pid))
 
+    cancelled = False
+
+    def sig_handler(signum, frame):
+        nonlocal cancelled
+        cancelled = True
+        try:
+            proc.terminate()
+        except Exception:
+            pass
+
+    old_sigterm = signal.signal(signal.SIGTERM, sig_handler)
+    old_sigint = signal.signal(signal.SIGINT, sig_handler)
+
     pcm_buffer = bytearray()
     chunk_size = 3200  # 100ms chunks at 16kHz 16-bit mono
-
-    # 1. Calibrate ambient baseline over first 300ms
-    baseline_samples = []
-    for _ in range(3):
-        chunk = proc.stdout.read(chunk_size)
-        if not chunk:
-            break
-        pcm_buffer.extend(chunk)
-        shorts = array.array("h")
-        shorts.frombytes(chunk)
-        if shorts:
-            baseline_samples.append(math.sqrt(sum(s * s for s in shorts) / len(shorts)))
-
-    baseline = sum(baseline_samples) / max(len(baseline_samples), 1) if baseline_samples else 300.0
-    vad_threshold = max(baseline * 2.2, 850.0)
 
     has_voice = False
     voice_chunks = 0
@@ -323,7 +409,26 @@ def follow_up_listen(
     start_time = time.time()
 
     try:
-        while True:
+        # 1. Calibrate ambient baseline over first 300ms
+        baseline_samples = []
+        for _ in range(3):
+            if cancelled:
+                break
+            chunk = proc.stdout.read(chunk_size)
+            if not chunk:
+                break
+            pcm_buffer.extend(chunk)
+            shorts = array.array("h")
+            shorts.frombytes(chunk)
+            if shorts:
+                baseline_samples.append(math.sqrt(sum(s * s for s in shorts) / len(shorts)))
+
+        baseline = sum(baseline_samples) / max(len(baseline_samples), 1) if baseline_samples else 300.0
+        vad_threshold = min(max(baseline * 2.0, 750.0), 1600.0)
+        if baseline >= 700.0:
+            has_voice = True
+
+        while not cancelled:
             chunk = proc.stdout.read(chunk_size)
             if not chunk:
                 break
@@ -342,10 +447,8 @@ def follow_up_listen(
                 else:
                     voice_chunks = 0
                     if time.time() - start_time >= initial_timeout:
-                        # Timeout waiting for user to start speaking
                         break
             else:
-                # Voice was detected; now detect silence at the end
                 if rms < vad_threshold:
                     silence_time += 0.1
                     if silence_time >= silence_duration:
@@ -357,6 +460,9 @@ def follow_up_listen(
                 if time.time() - start_time >= max_duration:
                     break
     finally:
+        signal.signal(signal.SIGTERM, old_sigterm)
+        signal.signal(signal.SIGINT, old_sigint)
+
         try:
             if proc.stdout:
                 proc.stdout.close()
@@ -368,14 +474,17 @@ def follow_up_listen(
             except Exception:
                 pass
 
-        if os.path.exists(PID_FILE):
-            try:
-                os.remove(PID_FILE)
-            except OSError:
-                pass
+        for p in (PID_FILE, SESSION_PID_FILE):
+            if os.path.exists(p):
+                try:
+                    os.remove(p)
+                except OSError:
+                    pass
 
-    if not has_voice or len(pcm_buffer) < 3200 * 4:  # less than 400ms of audio
+    if cancelled or not has_voice or len(pcm_buffer) < 3200 * 4:  # less than 400ms of audio
         notify_quickshell_ipc("idle")
+        if auto_stop_idle:
+            schedule_idle_timer(IDLE_TIMEOUT_SECONDS)
         return ""
 
     # Write buffered PCM frames to WAV file
@@ -394,13 +503,34 @@ def follow_up_listen(
     return transcribe(audio_path, server_url, language, auto_stop_idle)
 
 
+def follow_up_listen(
+    audio_path: str = AUDIO_FILE,
+    server_url: str = DEFAULT_SERVER_URL,
+    language: str = "es",
+    auto_stop_idle: bool = True,
+    initial_timeout: float = 4.0,
+    silence_duration: float = 1.1,
+    max_duration: float = 15.0,
+) -> str:
+    """Listens automatically for user follow-up with VAD."""
+    return listen_with_vad(
+        audio_path=audio_path,
+        server_url=server_url,
+        language=language,
+        auto_stop_idle=auto_stop_idle,
+        initial_timeout=initial_timeout,
+        silence_duration=silence_duration,
+        max_duration=max_duration,
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description="Jarvis audio recorder & Whisper transcriber")
     parser.add_argument(
         "action",
         nargs="?",
         default="toggle",
-        choices=["toggle", "start", "stop", "status", "transcribe", "server-stop", "follow-up"],
+        choices=["toggle", "start", "stop", "status", "transcribe", "server-stop", "follow-up", "cancel"],
         help="Action to perform (default: toggle)",
     )
     parser.add_argument("-f", "--file", default=AUDIO_FILE, help="Audio file path")
@@ -416,13 +546,29 @@ def main():
     if args.follow_up:
         args.action = "follow-up"
 
+    # Fast-path cancellation: if cancel requested or toggle clicked while active
+    if args.action == "cancel":
+        cancel_all()
+        if args.json:
+            print(json.dumps({"status": "cancelled"}))
+        else:
+            print("cancelled")
+        sys.exit(0)
+
+    if args.action == "toggle" and (is_active_session() or is_active_tts()):
+        cancel_all()
+        if args.json:
+            print(json.dumps({"status": "cancelled"}))
+        else:
+            print("cancelled")
+        sys.exit(0)
+
     if args.action in ("toggle", "start", "stop", "transcribe", "follow-up"):
         try:
             import fcntl
             lock_fd = open("/tmp/jarvis_audio.lock", "w")
             fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except (BlockingIOError, OSError):
-            # Another process is already running a voice action right now
             if args.json:
                 print(json.dumps({"status": "ignored", "reason": "concurrent_action"}))
             sys.exit(0)
@@ -449,6 +595,8 @@ def main():
 
     elif args.action == "status":
         pid = get_recording_pid()
+        sess_pid = get_session_pid()
+        tts_pid = get_tts_pid()
         whisper_active = (
             subprocess.run(
                 ["systemctl", "--user", "is-active", "--quiet", "whisper-server.service"]
@@ -459,14 +607,21 @@ def main():
             print(
                 json.dumps(
                     {
-                        "recording": pid is not None,
-                        "pid": pid,
+                        "recording": pid is not None or sess_pid is not None,
+                        "session_pid": sess_pid,
+                        "recording_pid": pid,
+                        "tts_active": tts_pid is not None,
                         "whisper_active": whisper_active,
                     }
                 )
             )
         else:
-            print("recording" if pid else "idle")
+            if pid or sess_pid:
+                print("listening")
+            elif tts_pid:
+                print("speaking")
+            else:
+                print("idle")
         sys.exit(0)
 
     elif args.action == "start":
@@ -506,29 +661,24 @@ def main():
         sys.exit(0)
 
     elif args.action == "toggle":
-        pid = get_recording_pid()
-        if pid:
-            # Currently recording -> stop and transcribe
-            notify_quickshell_ipc("transcribing")
-            stop_recording(args.file)
-            text = transcribe(args.file, args.server, args.language, auto_stop)
-            dispatch_res = handle_dispatch(text)
-            notify_quickshell_ipc("idle")
-            if args.json:
-                out = {"status": "transcribed", "text": text}
-                if dispatch_res is not None:
-                    out["dispatch"] = dispatch_res
-                print(json.dumps(out))
-            else:
-                print(text)
+        text = listen_with_vad(
+            audio_path=args.file,
+            server_url=args.server,
+            language=args.language,
+            auto_stop_idle=auto_stop,
+            initial_timeout=5.0,
+            silence_duration=1.1,
+            max_duration=15.0,
+        )
+        dispatch_res = handle_dispatch(text) if text else None
+        notify_quickshell_ipc("idle")
+        if args.json:
+            out = {"status": "transcribed" if text else "timeout", "text": text}
+            if dispatch_res is not None:
+                out["dispatch"] = dispatch_res
+            print(json.dumps(out))
         else:
-            # Not recording -> start recording
-            notify_quickshell_ipc("listening")
-            new_pid = start_recording(args.file)
-            if args.json:
-                print(json.dumps({"status": "recording", "pid": new_pid}))
-            else:
-                print(f"RECORDING:{new_pid}")
+            print(text)
         sys.exit(0)
 
     elif args.action == "follow-up":

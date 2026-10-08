@@ -7,6 +7,7 @@ import urllib.parse
 import urllib.error
 import argparse
 import re
+import html
 import configparser
 import difflib
 import shlex
@@ -17,7 +18,7 @@ import unicodedata
 
 SESSION_FILE = "/tmp/quickshell_island_ai_session.json"
 ENDPOINT = "http://127.0.0.1:8090/v1/chat/completions"
-MODEL = "gemma-4"
+MODEL = "qwen3.5-4b"
 LLAMA_IDLE_STOP_UNIT = "llama-idle-stop"
 LLAMA_IDLE_TIMEOUT_SECONDS = 60
 
@@ -32,22 +33,8 @@ def cancel_llama_idle_timer():
 
 
 def schedule_llama_idle_timer(seconds: int = LLAMA_IDLE_TIMEOUT_SECONDS):
-    """Schedules automatic stop of llama-server.service after inactivity."""
+    """No-op: llama-server.service remains always running, while models unload via --sleep-idle-seconds."""
     cancel_llama_idle_timer()
-    subprocess.run(
-        [
-            "systemd-run",
-            "--user",
-            f"--unit={LLAMA_IDLE_STOP_UNIT}",
-            f"--on-active={seconds}s",
-            "systemctl",
-            "--user",
-            "stop",
-            "llama-server.service",
-        ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
 
 
 def ensure_llama_server_running(timeout: float = 5.0) -> bool:
@@ -76,28 +63,48 @@ def ensure_llama_server_running(timeout: float = 5.0) -> bool:
 
 
 SYSTEM_PROMPT = """You are Jarvis, a helpful and natural desktop assistant embedded in a Hyprland Linux Dynamic Island.
-You have access to tools for live web search, local filesystem inspection, listing desktop applications and games (list_desktop_apps), launching applications (launch_app), controlling Spotify playback, and checking remaining AI model usage quotas (check_ai_quotas).
+You have access to tools for live web search (web_search), reading full web pages by exact URL (read_url), local filesystem inspection (read_file, list_dir), listing desktop applications and games (list_desktop_apps), launching applications (launch_app), controlling Spotify playback (spotify_control), and checking remaining AI model usage quotas (check_ai_quotas).
 
 CRITICAL CONVERSATIONAL & VOICE RULES:
 1. Speak in a completely natural, human, conversational tone, as if talking directly to a friend or colleague. NEVER format responses as robotic bullet lists (- item), markdown headers (###), or key-value dumps.
-2. Formulate your answers as fluid, cohesive spoken sentences. For example, if asked about quotas for Codex ("¿cuánto le queda a codex?"), say: "A Codex le queda un 47% en la ventana de sesión y un 66% semanal."
+2. Formulate your answers as fluid, cohesive spoken sentences.
 3. If the user asks about a specific provider or application, answer ONLY about that item without dumping everything else. If asked generally, synthesize the key highlights in 1-2 natural sentences.
 4. Do NOT read out account email addresses, reset dates/times unless specifically asked, raw file paths, or technical IDs.
 5. When launching an app or game, if the user's request is ambiguous (e.g. asking for 'Zelda' or 'Mario' when multiple options exist), do NOT guess or launch one arbitrarily: check the installed options and ask the user naturally which specific one they want to open.
-6. ALWAYS detect the user's language and respond in that exact language (e.g., Spanish when addressed in Spanish). Keep answers concise (1-2 sentences) so they sound great aloud and fit the floating Dynamic Island notch."""
+6. When the user asks to open the browser ("navegador", "el navegador", "browser"), always launch Zen Browser with launch_app(app_name="zen").
+7. When you search the web, use web_search to find relevant results and exact links. If you need deep details from a specific link, use read_url.
+8. ALWAYS detect the user's language and respond in that exact language (e.g., Spanish when addressed in Spanish). Keep answers concise (1-2 sentences) so they sound great aloud and fit the floating Dynamic Island notch.
+9. Execute immediately. NEVER output internal reasoning, thought traces, or thinking tags (<think>). Answer or call functions directly without delay."""
 
 TOOLS = [
     {
         "type": "function",
         "function": {
             "name": "web_search",
-            "description": "Searches the web and returns relevant snippets.",
+            "description": "Searches the web and returns relevant results with titles, snippets, and exact URLs.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "query": {"type": "string", "description": "The search query."}
                 },
                 "required": ["query"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_url",
+            "description": "Reads and extracts clean readable text from an exact HTTP or HTTPS webpage URL.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "The exact web URL to read (e.g. 'https://kernel.org')."
+                    }
+                },
+                "required": ["url"]
             }
         }
     },
@@ -261,15 +268,14 @@ def parse_desktop_file(path: str) -> dict:
             if not name or not exec_cmd:
                 return None
 
-            generic_names = [v for k, v in data.items() if k.lower().startswith("genericname")]
-            keywords_list = [v for k, v in data.items() if k.lower().startswith("keywords") or k.lower().startswith("comment")]
             return {
                 "file": os.path.basename(path),
                 "path": path,
                 "name": name,
                 "exec": exec_cmd,
-                "generic_name": " ".join(generic_names) if generic_names else data.get("GenericName", "").strip(),
-                "keywords": " ".join(keywords_list) if keywords_list else data.get("Keywords", "").strip(),
+                "generic_name": data.get("GenericName", "").strip(),
+                "comment": data.get("Comment", "").strip(),
+                "keywords": data.get("Keywords", "").strip(),
                 "terminal": data.get("Terminal", "false").lower() == "true",
             }
         except Exception:
@@ -287,16 +293,14 @@ def parse_desktop_file(path: str) -> dict:
     if not name or not exec_cmd:
         return None
 
-    generic_names = [v for k, v in section.items() if k.startswith("genericname")]
-    keywords_list = [v for k, v in section.items() if k.startswith("keywords") or k.startswith("comment")]
-
     return {
         "file": os.path.basename(path),
         "path": path,
         "name": name,
         "exec": exec_cmd,
-        "generic_name": " ".join(generic_names) if generic_names else section.get("GenericName", "").strip(),
-        "keywords": " ".join(keywords_list) if keywords_list else section.get("Keywords", "").strip(),
+        "generic_name": section.get("GenericName", "").strip(),
+        "comment": section.get("Comment", "").strip(),
+        "keywords": section.get("Keywords", "").strip(),
         "terminal": section.getboolean("Terminal", fallback=False),
     }
 
@@ -328,13 +332,32 @@ def perform_list_desktop_apps(filter_query: str = None) -> str:
         return res
 
     norm_filter = normalize_text(filter_query) if filter_query else ""
-    matches = []
-    for app in apps:
-        if norm_filter:
-            haystack = f"{normalize_text(app['name'])} {normalize_text(app.get('generic_name', ''))} {normalize_text(app.get('comment', ''))} {normalize_text(app.get('keywords', ''))} {normalize_text(app.get('categories', ''))} {normalize_text(app['file'])}"
-            if norm_filter not in haystack:
-                continue
-        matches.append(app)
+    if norm_filter:
+        word_pattern = rf"\b{re.escape(norm_filter)}"
+        name_matches = []
+        other_matches = []
+        for app in apps:
+            norm_name = normalize_text(app["name"])
+            norm_file = normalize_text(os.path.splitext(app["file"])[0])
+            norm_generic = normalize_text(app.get("generic_name", ""))
+            norm_keywords = normalize_text(app.get("keywords", ""))
+            norm_comment = normalize_text(app.get("comment", ""))
+
+            if norm_name == norm_filter or norm_file == norm_filter:
+                name_matches.append((200, app))
+            elif re.search(word_pattern, norm_name) or re.search(word_pattern, norm_file):
+                name_matches.append((100, app))
+            elif re.search(word_pattern, norm_generic):
+                other_matches.append((60, app))
+            elif re.search(word_pattern, norm_keywords) or re.search(word_pattern, norm_comment):
+                other_matches.append((30, app))
+
+        if name_matches:
+            matches = [app for _, app in sorted(name_matches, key=lambda x: (-x[0], x[1]["name"].lower()))]
+        else:
+            matches = [app for _, app in sorted(other_matches, key=lambda x: (-x[0], x[1]["name"].lower()))]
+    else:
+        matches = apps
 
     if not matches:
         res = f"No desktop applications found matching '{filter_query}'."
@@ -370,6 +393,10 @@ def perform_launch_app(app_name: str) -> str:
         return res
 
     norm_target = normalize_text(app_name)
+    # Default aliases for generic application requests
+    if norm_target in ("navegador", "el navegador", "browser", "web browser", "internet"):
+        norm_target = "zen"
+
     apps = scan_desktop_applications()
     if not apps:
         res = f"No desktop applications found to match '{app_name}'."
@@ -654,26 +681,67 @@ def perform_web_search(query):
     emit({"type": "tool_start", "name": "web_search", "args": {"query": query}})
     try:
         url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote(query)
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"})
-        with urllib.request.urlopen(req) as response:
-            html = response.read().decode('utf-8', errors='ignore')
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as response:
+            html_text = response.read().decode('utf-8', errors='ignore')
         
-        snippets = []
-        titles = re.findall(r'<h2 class="result__title">.*?<a[^>]*>(.*?)</a>', html, re.DOTALL | re.IGNORECASE)
-        texts = re.findall(r'<a class="result__snippet[^>]*>(.*?)</a>', html, re.DOTALL | re.IGNORECASE)
-        
-        clean_re = re.compile('<.*?>')
-        for i in range(min(4, len(titles), len(texts))):
-            t = re.sub(clean_re, '', titles[i]).strip()
-            s = re.sub(clean_re, '', texts[i]).strip()
-            snippets.append(f"Title: {t}\nSnippet: {s}")
+        clean_re = re.compile(r'<[^>]+>')
+        results = []
+        t_matches = list(re.finditer(r'<h2[^>]*class=[\"\'\s]*result__title[^>]*>.*?<a[^>]*href=[\"\']([^\"\']+)[\"\'][^>]*>(.*?)</a>', html_text, re.DOTALL | re.IGNORECASE))
+        s_matches = list(re.finditer(r'<a[^>]*class=[\"\'\s]*result__snippet[^>]*>(.*?)</a>', html_text, re.DOTALL | re.IGNORECASE))
+        for i in range(min(5, len(t_matches))):
+            raw_url = t_matches[i].group(1)
+            raw_title = t_matches[i].group(2)
+            raw_snip = s_matches[i].group(1) if i < len(s_matches) else ''
             
-        res = "\n\n".join(snippets) if snippets else "No results found."
-        emit({"type": "tool_done", "name": "web_search", "preview": res[:100] + "..." if len(res)>100 else res})
+            if 'uddg=' in raw_url:
+                parsed = urllib.parse.parse_qs(urllib.parse.urlparse(raw_url).query)
+                raw_url = parsed.get('uddg', [raw_url])[0]
+            title = html.unescape(clean_re.sub('', raw_title)).strip()
+            snip = html.unescape(clean_re.sub('', raw_snip)).strip()
+            results.append(f"{i+1}. {title}\n   URL: {raw_url}\n   Snippet: {snip}")
+
+        res = "\n\n".join(results) if results else "No results found."
+        emit({"type": "tool_done", "name": "web_search", "preview": res[:100] + "..." if len(res) > 100 else res})
         return res
     except Exception as e:
         emit({"type": "tool_done", "name": "web_search", "preview": f"Error: {e}"})
         return f"Error: {e}"
+
+def perform_read_url(url: str) -> str:
+    emit({"type": "tool_start", "name": "read_url", "args": {"url": url}})
+    if not url or not url.strip():
+        res = "Error: url is required."
+        emit({"type": "tool_done", "name": "read_url", "preview": res})
+        return res
+    target_url = url.strip()
+    if not target_url.startswith(("http://", "https://")):
+        target_url = "https://" + target_url
+    try:
+        req = urllib.request.Request(
+            target_url,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            content = resp.read().decode("utf-8", errors="ignore")
+        content = re.sub(r'<script.*?</script>', '', content, flags=re.DOTALL | re.IGNORECASE)
+        content = re.sub(r'<style.*?</style>', '', content, flags=re.DOTALL | re.IGNORECASE)
+        content = re.sub(r'<head.*?</head>', '', content, flags=re.DOTALL | re.IGNORECASE)
+        text = re.sub(r'<[^>]+>', ' ', content)
+        text = html.unescape(text)
+        text = re.sub(r'[ \t]+', ' ', text)
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
+        clean = "\n".join(lines)[:3500]
+        res = clean if clean else "No readable text content extracted from page."
+        emit({"type": "tool_done", "name": "read_url", "preview": res[:100] + "..." if len(res) > 100 else res})
+        return res
+    except Exception as e:
+        res = f"Error reading URL '{target_url}': {e}"
+        emit({"type": "tool_done", "name": "read_url", "preview": res})
+        return res
 
 def perform_read_file(path):
     emit({"type": "tool_start", "name": "read_file", "args": {"path": path}})
@@ -720,7 +788,8 @@ def call_llm(messages, use_tools=True, stream=True):
     payload = {
         "model": MODEL,
         "messages": messages,
-        "stream": stream
+        "stream": stream,
+        "chat_template_kwargs": {"enable_thinking": False},
     }
     if use_tools:
         payload["tools"] = TOOLS
@@ -742,6 +811,7 @@ def call_llm(messages, use_tools=True, stream=True):
         sys.exit(1)
         
     full_text = ""
+    in_think_block = False
     for line_bytes in response:
         line = line_bytes.decode('utf-8').strip()
         if not line or not line.startswith("data: "):
@@ -755,8 +825,18 @@ def call_llm(messages, use_tools=True, stream=True):
             delta = chunk["choices"][0].get("delta", {})
             if "content" in delta and delta["content"]:
                 content = delta["content"]
-                full_text += content
-                emit({"type": "token", "content": content})
+                if "<think>" in content:
+                    in_think_block = True
+                    content = content.split("<think>")[0]
+                if "</think>" in content:
+                    in_think_block = False
+                    content = content.split("</think>")[-1]
+                elif in_think_block:
+                    continue
+
+                if content:
+                    full_text += content
+                    emit({"type": "token", "content": content})
         except json.JSONDecodeError:
             pass
             
@@ -837,6 +917,7 @@ def main():
     
     if "tool_calls" in msg and msg["tool_calls"]:
         messages.append(msg)
+        app_launched = False
         for tc in msg["tool_calls"]:
             func_name = tc["function"]["name"]
             try:
@@ -847,6 +928,8 @@ def main():
             res_str = ""
             if func_name == "web_search":
                 res_str = perform_web_search(func_args.get("query", ""))
+            elif func_name == "read_url":
+                res_str = perform_read_url(func_args.get("url", ""))
             elif func_name == "read_file":
                 res_str = perform_read_file(func_args.get("path", ""))
             elif func_name == "list_dir":
@@ -855,6 +938,8 @@ def main():
                 res_str = perform_list_desktop_apps(func_args.get("filter", None))
             elif func_name == "launch_app":
                 res_str = perform_launch_app(func_args.get("app_name", ""))
+                if res_str.startswith("Successfully launched"):
+                    app_launched = True
             elif func_name == "spotify_control":
                 res_str = perform_spotify_control(func_args.get("action", ""), func_args.get("query", None))
             elif func_name == "check_ai_quotas":
@@ -868,12 +953,27 @@ def main():
                 "content": res_str
             })
             
+        if app_launched:
+            # Silent execution: clear session so app launches never poison conversation context
+            if os.path.exists(SESSION_FILE):
+                try:
+                    os.remove(SESSION_FILE)
+                except Exception:
+                    pass
+            emit({"type": "done", "full_text": ""})
+            schedule_llama_idle_timer()
+            sys.exit(0)
+
         emit({"type": "status", "message": "Synthesizing answer..."})
         full_text, _ = call_llm(messages, use_tools=False, stream=True)
         messages.append({"role": "assistant", "content": full_text})
         emit({"type": "done", "full_text": full_text})
     else:
         content = msg.get("content", "")
+        if "</think>" in content:
+            content = content.split("</think>")[-1].strip()
+        elif "<think>" in content:
+            content = content.split("<think>")[0].strip()
         emit({"type": "token", "content": content})
         messages.append({"role": "assistant", "content": content})
         emit({"type": "done", "full_text": content})

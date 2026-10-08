@@ -66,13 +66,15 @@ def speak(
     output_wav: str = None,
     speed: float = 1.0,
     volume: float = DEFAULT_VOLUME,
-    followup: bool = True,
+    followup: bool = False,
     followup_if_question: bool = None,
 ) -> bool:
     if not text or not text.strip():
         return False
 
-    if followup_if_question is False:
+    if followup_if_question is True:
+        followup = True
+    elif followup_if_question is False:
         followup = False
 
     piper_exe = PIPER_BIN if os.path.isfile(PIPER_BIN) and os.access(PIPER_BIN, os.X_OK) else shutil.which("piper-tts")
@@ -177,7 +179,7 @@ def main():
     parser.add_argument("-o", "--output", default=None, help="Save to WAV file instead of playing")
     parser.add_argument("-s", "--speed", type=float, default=1.0, help="Speech speed multiplier (default: 1.0)")
     parser.add_argument("--volume", type=float, default=DEFAULT_VOLUME, help="Speech volume (0.0 to 1.0, default: 0.25)")
-    parser.add_argument("--no-followup", action="store_true", help="Disable automatic follow-up listening")
+    parser.add_argument("--followup", action="store_true", help="Enable automatic follow-up listening")
 
     args = parser.parse_args()
 
@@ -195,7 +197,7 @@ def main():
         output_wav=args.output,
         speed=args.speed,
         volume=args.volume,
-        followup=not args.no_followup,
+        followup=args.followup,
     )
     sys.exit(0 if success else 1)
 

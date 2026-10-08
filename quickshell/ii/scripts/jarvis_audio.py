@@ -309,8 +309,9 @@ def transcribe(
         if os.path.getsize(audio_path) < 500:
             return ""
 
-        # Ensure server is ready before posting audio
-        wait_for_whisper_ready(server_url)
+        # Ensure server is running and ready before posting audio
+        ensure_whisper_started()
+        wait_for_whisper_ready(server_url, timeout=8.0)
 
         cmd = [
             "curl", "-s",
@@ -424,8 +425,9 @@ def listen_with_vad(
                 baseline_samples.append(math.sqrt(sum(s * s for s in shorts) / len(shorts)))
 
         baseline = sum(baseline_samples) / max(len(baseline_samples), 1) if baseline_samples else 300.0
-        vad_threshold = min(max(baseline * 2.0, 750.0), 1600.0)
-        if baseline >= 700.0:
+        # Dynamic voice threshold: 25% above baseline, with sensitive floor
+        vad_threshold = max(baseline * 1.25, 420.0)
+        if baseline >= 550.0:
             has_voice = True
 
         while not cancelled:
@@ -481,7 +483,7 @@ def listen_with_vad(
                 except OSError:
                     pass
 
-    if cancelled or not has_voice or len(pcm_buffer) < 3200 * 4:  # less than 400ms of audio
+    if cancelled or not has_voice or len(pcm_buffer) < 3200 * 4:
         notify_quickshell_ipc("idle")
         if auto_stop_idle:
             schedule_idle_timer(IDLE_TIMEOUT_SECONDS)
@@ -509,7 +511,7 @@ def follow_up_listen(
     language: str = "es",
     auto_stop_idle: bool = True,
     initial_timeout: float = 4.0,
-    silence_duration: float = 1.1,
+    silence_duration: float = 0.8,
     max_duration: float = 15.0,
 ) -> str:
     """Listens automatically for user follow-up with VAD."""
@@ -666,12 +668,16 @@ def main():
             server_url=args.server,
             language=args.language,
             auto_stop_idle=auto_stop,
-            initial_timeout=5.0,
-            silence_duration=1.1,
+            initial_timeout=4.0,
+            silence_duration=0.8,
             max_duration=15.0,
         )
-        dispatch_res = handle_dispatch(text) if text else None
-        notify_quickshell_ipc("idle")
+        if text:
+            dispatch_res = handle_dispatch(text)
+        else:
+            dispatch_res = None
+            notify_quickshell_ipc("idle")
+
         if args.json:
             out = {"status": "transcribed" if text else "timeout", "text": text}
             if dispatch_res is not None:
@@ -683,8 +689,12 @@ def main():
 
     elif args.action == "follow-up":
         text = follow_up_listen(args.file, args.server, args.language, auto_stop)
-        dispatch_res = handle_dispatch(text) if text else None
-        notify_quickshell_ipc("idle")
+        if text:
+            dispatch_res = handle_dispatch(text)
+        else:
+            dispatch_res = None
+            notify_quickshell_ipc("idle")
+
         if args.json:
             out = {"status": "transcribed" if text else "timeout", "text": text}
             if dispatch_res is not None:

@@ -33,12 +33,12 @@ RowLayout {
 
     Rectangle {
         visible: notifIconRoot.unreadCount > 0
-        Layout.preferredHeight: 16
-        Layout.preferredWidth: Math.max(16, countText.implicitWidth + 8)
-        radius: 8
-        color: Qt.rgba(1, 1, 1, 0.14)
+        Layout.preferredHeight: 18
+        Layout.preferredWidth: Math.max(18, countText.implicitWidth + 8)
+        radius: 9
+        color: Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.18)
         border.width: 1
-        border.color: Qt.rgba(1, 1, 1, 0.08)
+        border.color: Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.45)
         Layout.alignment: Qt.AlignVCenter
 
         ThemedText {
@@ -47,7 +47,7 @@ RowLayout {
             text: notifIconRoot.unreadCount > 99 ? "99+" : notifIconRoot.unreadCount.toString()
             font.pixelSize: 10
             font.bold: true
-            color: Theme.fg
+            color: Theme.accent
         }
     }
 }

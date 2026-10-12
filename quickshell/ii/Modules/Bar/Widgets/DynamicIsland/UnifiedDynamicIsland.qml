@@ -17,6 +17,7 @@ import "../SystemTray" as STray
 import qs.Modules.Bar.Widgets.MainPanel.Dashboard as MainPanelDashboard
 import qs.Modules.Bar.Widgets.MainPanel.Performance as MainPanelPerformance
 import qs.Modules.ControlCenter
+import "Notes" as Notes
 
 Rectangle {
     id: root
@@ -28,6 +29,7 @@ Rectangle {
     property string currentMode: {
         if (JarvisService.status !== "idle") return "jarvis";
         if (root.isAiMode || AppState.activePopup === "ai") return "ai";
+        if (AppState.activePopup === "notes") return "notes";
         if (AppState.activePopup === "workspaceRename") return "workspaceRename";
         if (AppState.activePopup === "launcher") return "launcher";
         if (AppState.activePopup === "dashboard" || AppState.activePopup === "controlCenter") return "dashboard";
@@ -39,11 +41,11 @@ Rectangle {
     property bool isAiMode: AppState.activePopup === "ai"
     readonly property bool isNotifActive: currentMode === "notif"
     readonly property bool isCritical: isNotifActive && IslandState.isCritical(IslandState.activeNotification)
-    readonly property bool isExpanded: currentMode === "launcher" || currentMode === "dashboard" || currentMode === "notif" || currentMode === "workspaceRename" || currentMode === "volume" || currentMode === "jarvis" || currentMode === "ai" || JarvisService.isBusy
+    readonly property bool isExpanded: currentMode === "launcher" || currentMode === "dashboard" || currentMode === "notif" || currentMode === "workspaceRename" || currentMode === "volume" || currentMode === "jarvis" || currentMode === "ai" || currentMode === "notes" || JarvisService.isBusy
 
     width: implicitWidth
     height: implicitHeight
-    radius: 24
+    radius: isExpanded ? 28 : (height / 2)
     color: Theme.bg
     border.width: 1
     border.color: isCritical ? Theme.accent : (JarvisService.isListening ? Theme.accent : (JarvisService.isTranscribing ? Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.7) : (currentMode === "ai" ? Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.5) : (isNotifActive ? Qt.rgba(1, 1, 1, 0.18) : Qt.rgba(1, 1, 1, 0.08)))))
@@ -67,6 +69,7 @@ Rectangle {
             }
             return 680;
         }
+        if (currentMode === "notes") return 560;
         if (currentMode === "ai") return 720;
         if (currentMode === "launcher") return searchQuery !== "" ? 720 : 480;
         if (currentMode === "notif") return 480;
@@ -93,6 +96,7 @@ Rectangle {
 
             return 580;
         }
+        if (currentMode === "notes") return 420;
         if (currentMode === "ai") return 520;
         if (currentMode === "launcher") {
             if (searchQuery === "") return 48;
@@ -121,6 +125,13 @@ Rectangle {
         }
     }
 
+    Behavior on radius {
+        NumberAnimation {
+            duration: 250
+            easing.type: Easing.OutCubic
+        }
+    }
+
     focus: root.isExpanded
 
     Keys.onPressed: (event) => {
@@ -136,6 +147,9 @@ Rectangle {
                 AppState.activePopup = "";
                 event.accepted = true;
             } else if (root.currentMode === "dashboard" || AppState.activePopup === "dashboard" || AppState.activePopup === "controlCenter") {
+                AppState.activePopup = "";
+                event.accepted = true;
+            } else if (root.currentMode === "notes" || AppState.activePopup === "notes") {
                 AppState.activePopup = "";
                 event.accepted = true;
             }
@@ -193,19 +207,12 @@ Rectangle {
         RowLayout {
             id: idleContentRow
             anchors.centerIn: parent
-            spacing: 10
+            spacing: 12
 
             // LEFT: Workspaces (Avatar + Active Workspaces)
             BarComponents.Workspaces {
                 id: workspacesWidget
                 transparentBg: true
-                Layout.alignment: Qt.AlignVCenter
-            }
-
-            // LEFT DIVIDER
-            Divider {
-                vertical: true
-                height: 18
                 Layout.alignment: Qt.AlignVCenter
             }
 
@@ -300,6 +307,60 @@ Rectangle {
 
                 Behavior on implicitWidth {
                     NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                }
+            }
+
+            // NOTES CHIP BADGE
+            Rectangle {
+                id: notesChipBadge
+                visible: NotesService.count > 0
+                Layout.alignment: Qt.AlignVCenter
+                implicitWidth: visible ? (notesChipRow.implicitWidth + 14) : 0
+                implicitHeight: 24
+                radius: 12
+                color: notesChipMouseArea.containsMouse
+                    ? Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.24)
+                    : Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.14)
+                border.width: 1
+                border.color: notesChipMouseArea.containsMouse
+                    ? Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.6)
+                    : Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.35)
+
+                Behavior on color { ColorAnimation { duration: 150 } }
+                Behavior on border.color { ColorAnimation { duration: 150 } }
+                Behavior on implicitWidth {
+                    NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                }
+
+                RowLayout {
+                    id: notesChipRow
+                    anchors.centerIn: parent
+                    spacing: 4
+
+                    ThemedText {
+                        text: "󰎞"
+                        font.pixelSize: 11
+                        color: Theme.accent
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+
+                    ThemedText {
+                        text: NotesService.count.toString()
+                        font.pixelSize: 10
+                        font.bold: true
+                        color: Theme.accent
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+                }
+
+                MouseArea {
+                    id: notesChipMouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        AppState.togglePopup("notes");
+                    }
                 }
             }
 
@@ -419,13 +480,6 @@ Rectangle {
                 Behavior on implicitWidth {
                     NumberAnimation { duration: 220; easing.type: Easing.OutCubic }
                 }
-            }
-
-            // RIGHT DIVIDER
-            Divider {
-                vertical: true
-                height: 18
-                Layout.alignment: Qt.AlignVCenter
             }
 
             // RIGHT: Control Center + SysTray
@@ -916,11 +970,162 @@ Rectangle {
         IslandAiService.ask(queryText);
     }
 
+    function cleanMathDisplay(raw) {
+        if (!raw) return "";
+        let str = raw.trim();
+        if (str.startsWith("=")) str = str.slice(1).trim();
+        else if (str.toLowerCase().startsWith("calc ")) str = str.slice(5).trim();
+        let openCount = 0;
+        for (let ch of str) {
+            if (ch === "(") openCount++;
+            else if (ch === ")") openCount = Math.max(0, openCount - 1);
+        }
+        str += ")".repeat(openCount);
+        return str;
+    }
+
+    function evaluateMath(raw) {
+        if (!raw) return null;
+        let str = raw.trim();
+        let hasPrefix = false;
+        if (str.startsWith("=")) {
+            hasPrefix = true;
+            str = str.slice(1).trim();
+        } else if (str.toLowerCase().startsWith("calc ")) {
+            hasPrefix = true;
+            str = str.slice(5).trim();
+        }
+        if (!str) return null;
+
+        str = str.replace(/×/g, "*").replace(/÷/g, "/");
+        str = str.replace(/(\d|\))\s*[xX]\s*(\d|\()/g, "$1 * $2");
+        str = str.replace(/(\d),(\d)/g, "$1.$2");
+        str = str.replace(/(\d|\))\s*(\()/g, "$1 * $2").replace(/(\))\s*(\d)/g, "$1 * $2");
+
+        let openCount = 0;
+        for (let ch of str) {
+            if (ch === "(") openCount++;
+            else if (ch === ")") openCount = Math.max(0, openCount - 1);
+        }
+        str += ")".repeat(openCount);
+
+        const hasOperator = /[+\-*\/^%]/.test(str);
+        if (!hasPrefix && !hasOperator) return null;
+        if (!/^[0-9+\-*\/^%().\s]+$/.test(str)) return null;
+
+        const tokens = [];
+        let i = 0;
+        while (i < str.length) {
+            let ch = str[i];
+            if (/\s/.test(ch)) { i++; continue; }
+            if (/[0-9.]/.test(ch)) {
+                let numStr = "";
+                while (i < str.length && /[0-9.]/.test(str[i])) {
+                    numStr += str[i++];
+                }
+                if (numStr === "." || (numStr.match(/\./g) || []).length > 1) return null;
+                tokens.push({ type: "NUM", val: parseFloat(numStr) });
+                continue;
+            }
+            if ("+-*/^%()".indexOf(ch) !== -1) {
+                tokens.push({ type: ch });
+                i++;
+                continue;
+            }
+            return null;
+        }
+        if (tokens.length === 0) return null;
+
+        let pos = 0;
+        function peek() { return tokens[pos]; }
+        function consume(expected) {
+            const t = tokens[pos++];
+            if (expected && (!t || t.type !== expected)) throw new Error("Unexpected token");
+            return t;
+        }
+
+        function parseExpression() {
+            let node = parseTerm();
+            while (peek() && (peek().type === "+" || peek().type === "-")) {
+                let op = consume().type;
+                let right = parseTerm();
+                node = (op === "+") ? (node + right) : (node - right);
+            }
+            return node;
+        }
+
+        function parseTerm() {
+            let node = parseFactor();
+            while (peek() && (peek().type === "*" || peek().type === "/" || peek().type === "%")) {
+                let op = consume().type;
+                let right = parseFactor();
+                if (op === "*") node = node * right;
+                else if (op === "/") {
+                    if (right === 0) throw new Error("Division by zero");
+                    node = node / right;
+                } else if (op === "%") {
+                    node = node % right;
+                }
+            }
+            return node;
+        }
+
+        function parseFactor() {
+            let node = parsePrimary();
+            while (peek() && peek().type === "^") {
+                consume("^");
+                let right = parsePrimary();
+                node = Math.pow(node, right);
+            }
+            return node;
+        }
+
+        function parsePrimary() {
+            let t = peek();
+            if (!t) throw new Error("Unexpected end of input");
+            if (t.type === "+") { consume("+"); return parsePrimary(); }
+            if (t.type === "-") { consume("-"); return -parsePrimary(); }
+            if (t.type === "(") {
+                consume("(");
+                let val = parseExpression();
+                consume(")");
+                return val;
+            }
+            if (t.type === "NUM") {
+                consume("NUM");
+                return t.val;
+            }
+            throw new Error("Unexpected token: " + t.type);
+        }
+
+        try {
+            let res = parseExpression();
+            if (pos < tokens.length) return null;
+            if (!isFinite(res)) return null;
+            return parseFloat(res.toFixed(10)).toString();
+        } catch (e) {
+            return null;
+        }
+    }
+
     ListModel { id: searchModel }
 
     function updateSearchModel() {
         searchModel.clear();
         if (root.searchQuery === "") return;
+
+        const mathVal = evaluateMath(root.searchQuery);
+        if (mathVal !== null) {
+            const displayExpr = cleanMathDisplay(root.searchQuery);
+            const label = (displayExpr === mathVal) ? mathVal : `${displayExpr} = ${mathVal}`;
+            searchModel.append({
+                name: label,
+                category: Translation.tr("Math calculation • Enter to copy"),
+                iconName: Quickshell.iconPath("accessories-calculator", true) || `${Quickshell.shellDir}/assets/icons/fluent/calculator.svg` || "accessories-calculator",
+                mathValue: mathVal,
+                rawEntry: ({})
+            });
+        }
 
         const results = AppSearch.fuzzyQuery(root.searchQuery);
         for (let i = 0; i < Math.min(results.length, 12); i++) {
@@ -929,8 +1134,23 @@ Rectangle {
                 name: entry.name || "",
                 category: (entry.categories && entry.categories.length > 0) ? entry.categories[0] : (entry.comment || "Aplicación"),
                 iconName: entry.icon || "application-x-executable",
+                mathValue: "",
                 rawEntry: entry
             });
+        }
+    }
+
+    function launchItem(index) {
+        if (index < 0 || index >= searchModel.count) return;
+        const item = searchModel.get(index);
+        if (!item) return;
+        if (item.mathValue && item.mathValue !== "") {
+            Quickshell.clipboardText = item.mathValue;
+            AppState.activePopup = "";
+            return;
+        }
+        if (item.rawEntry) {
+            launchEntry(item.rawEntry);
         }
     }
 
@@ -964,7 +1184,7 @@ Rectangle {
             spacing: 12
 
             SvgIcon {
-                icon: "search"
+                icon: (evaluateMath(root.searchQuery) !== null || root.searchQuery.startsWith("=") || root.searchQuery.startsWith("calc")) ? "icons/fluent/calculator" : "search"
                 iconColor: searchInput.text !== "" ? Theme.accent : Theme.muted
                 iconSize: 20
                 flat: true
@@ -976,7 +1196,7 @@ Rectangle {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
                 focus: root.currentMode === "launcher"
-                placeholderText: "Search applications, commands (>)..."
+                placeholderText: Translation.tr("Search applications, math (=)...")
                 placeholderTextColor: Theme.muted
                 font.family: Constants.fontFamily
                 font.pixelSize: 14
@@ -1023,8 +1243,7 @@ Rectangle {
 
                 onAccepted: {
                     if (searchListView.count > 0 && root.selectedIndex >= 0 && root.selectedIndex < searchListView.count) {
-                        const item = searchModel.get(root.selectedIndex);
-                        if (item && item.rawEntry) launchEntry(item.rawEntry);
+                        launchItem(root.selectedIndex);
                     }
                 }
             }
@@ -1072,7 +1291,8 @@ Rectangle {
                 required property string name
                 required property string category
                 required property string iconName
-                required property var rawEntry
+                property var rawEntry: null
+                property string mathValue: ""
                 required property int index
 
                 width: searchListView.width
@@ -1086,7 +1306,7 @@ Rectangle {
                     hoverEnabled: true
                     onClicked: {
                         root.selectedIndex = itemDelegate.index;
-                        if (itemDelegate.rawEntry) launchEntry(itemDelegate.rawEntry);
+                        launchItem(itemDelegate.index);
                     }
                 }
 
@@ -1538,6 +1758,31 @@ Rectangle {
                     wrapMode: Text.Wrap
                     visible: IslandAiService.error !== ""
                 }
+            }
+        }
+    }
+
+    // ==========================================
+    // 4b. NOTES SCRATCHPAD VIEW
+    // ==========================================
+    Item {
+        id: notesContainer
+        anchors.fill: parent
+        opacity: root.currentMode === "notes" ? 1 : 0
+        scale: root.currentMode === "notes" ? 1 : 0.88
+        visible: opacity > 0
+        focus: root.currentMode === "notes"
+
+        Behavior on opacity { NumberAnimation { duration: 200 } }
+        Behavior on scale { NumberAnimation { duration: 240; easing.type: Easing.OutCubic } }
+
+        Notes.NotesPanel {
+            id: notesPanel
+            anchors.centerIn: parent
+            focus: root.currentMode === "notes"
+            onClosed: {
+                if (AppState.activePopup === "notes")
+                    AppState.activePopup = "";
             }
         }
     }

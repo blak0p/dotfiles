@@ -120,6 +120,17 @@ return {
         italic = true,
       })
 
+      -- Keymaps for accepting word-by-word without recalculating (like VS Code Copilot)
+      local function accept_word()
+        local ok, minuet_vt = pcall(require, "minuet.virtualtext")
+        if ok and minuet_vt.action and minuet_vt.action.is_visible() then
+          minuet_vt.action.accept_word()
+          return true
+        end
+      end
+      vim.keymap.set("i", "<M-w>", accept_word, { desc = "Minuet accept word" })
+      vim.keymap.set("i", "<M-Right>", accept_word, { desc = "Minuet accept word" })
+
       -- Automatic background preload on VimEnter / FocusGained
       local function preload_tab_model()
         pcall(vim.fn.jobstart, {

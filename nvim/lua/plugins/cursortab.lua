@@ -45,22 +45,50 @@ return {
         end
       end, { desc = "Cursortab dismiss suggestion" })
 
+      local url = (opts.provider and opts.provider.url) or "http://127.0.0.1:8090"
+      local model = (opts.provider and opts.provider.model) or "zeta-2.1"
+
+      local function preload_tab_model(notify)
+        pcall(vim.fn.jobstart, {
+          "bash",
+          "-c",
+          string.format([[
+            systemctl --user is-active --quiet llama-server.service || systemctl --user start llama-server.service
+            curl -s -X POST %s/models/load \
+              -H "Content-Type: application/json" \
+              -d '{"model":"%s"}' >/dev/null 2>&1
+          ]], url, model),
+        }, {
+          on_exit = function(_, code)
+            if notify and code == 0 then
+              vim.notify("Tab model (" .. model .. ") ready", vim.log.levels.INFO)
+            end
+          end,
+        })
+      end
+
+      -- Preload tab model immediately upon plugin configuration and on VimEnter / FocusGained
+      preload_tab_model(false)
+
+      vim.api.nvim_create_autocmd({ "VimEnter", "FocusGained" }, {
+        desc = "Preload tab model in llama-server when Neovim starts or gains focus",
+        callback = function()
+          preload_tab_model(false)
+        end,
+      })
+
+      vim.api.nvim_create_user_command("CursortabWarmup", function()
+        preload_tab_model(true)
+      end, { desc = "Preload/warmup cursortab model in llama-server" })
+
       -- Clean unload on Neovim exit
       vim.api.nvim_create_autocmd("VimLeavePre", {
         desc = "Unload tab model from llama-server on Neovim exit",
         callback = function()
-          local model = (opts.provider and opts.provider.model) or "zeta-2.1"
-          pcall(vim.fn.jobstart, {
-            "curl",
-            "-s",
-            "-X",
-            "POST",
-            "http://127.0.0.1:8090/models/unload",
-            "-H",
-            "Content-Type: application/json",
-            "-d",
-            string.format('{"model":"%s"}', model),
-          })
+          pcall(vim.fn.system, string.format([[
+            curl -s -X POST %s/models/unload -H "Content-Type: application/json" -d '{"model":"%s"}' >/dev/null 2>&1
+            curl -s -X POST %s/models/unload -H "Content-Type: application/json" -d '{"model":"zeta8b"}' >/dev/null 2>&1
+          ]], url, model, url))
         end,
       })
     end,

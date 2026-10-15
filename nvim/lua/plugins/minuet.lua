@@ -4,7 +4,7 @@ return {
     event = { "InsertEnter", "BufReadPre" },
     config = function()
       local url = "http://127.0.0.1:8090"
-      local model = "granite3b"
+      local model = "granite8b"
 
       require("minuet").setup({
         provider = "openai_fim_compatible",

@@ -13,8 +13,9 @@ return {
       ["<CR>"] = { "accept", "fallback" },
       ["<Tab>"] = {
         function(cmp)
-          local ok_ct, cursortab = pcall(require, "cursortab")
-          if ok_ct and cursortab.accept() then
+          local ok, minuet_vt = pcall(require, "minuet.virtualtext")
+          if ok and minuet_vt.action and minuet_vt.action.is_visible() then
+            minuet_vt.action.accept()
             return true
           end
         end,
@@ -24,8 +25,9 @@ return {
       },
       ["<S-Tab>"] = {
         function(cmp)
-          local ok_ct, cursortab = pcall(require, "cursortab")
-          if ok_ct and cursortab.partial_accept and cursortab.partial_accept() then
+          local ok, minuet_vt = pcall(require, "minuet.virtualtext")
+          if ok and minuet_vt.action and minuet_vt.action.is_visible() then
+            minuet_vt.action.accept_line()
             return true
           end
         end,

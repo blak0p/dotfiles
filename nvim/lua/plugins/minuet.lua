@@ -4,7 +4,7 @@ return {
     event = { "InsertEnter", "BufReadPre" },
     config = function()
       local url = "http://127.0.0.1:8090"
-      local model = "qwen3.5-4b"
+      local model = "granite3b"
 
       require("minuet").setup({
         provider = "openai_fim_compatible",
@@ -24,15 +24,14 @@ return {
             stream = true,
             optional = {
               max_tokens = 200,
-              temperature = 0.55,
+              temperature = 0.4,
               top_p = 0.95,
               stop = {
+                "<|end_of_text|>",
                 "<|endoftext|>",
-                "<|im_end|>",
                 "<|fim_prefix|>",
                 "<|fim_suffix|>",
                 "<|fim_middle|>",
-                "<|file_sep|>",
                 "\n\n\n",
               },
             },

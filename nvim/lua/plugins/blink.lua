@@ -22,7 +22,17 @@ return {
         "select_next",
         "fallback",
       },
-      ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+      ["<S-Tab>"] = {
+        function(cmp)
+          local ok_ct, cursortab = pcall(require, "cursortab")
+          if ok_ct and cursortab.partial_accept and cursortab.partial_accept() then
+            return true
+          end
+        end,
+        "snippet_backward",
+        "select_prev",
+        "fallback",
+      },
     },
     sources = {
       default = { "lsp", "snippets", "avante_commands", "avante_mentions", "avante_files" },

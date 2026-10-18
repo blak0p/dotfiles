@@ -12,6 +12,7 @@ Design goals (see CLAUDE.md performance rules):
 from __future__ import annotations
 
 import hashlib
+import json
 import shutil
 import subprocess
 from pathlib import Path
@@ -53,14 +54,39 @@ def _image_strategy(src: Path, dest: Path, size: QSize) -> bool:
     return image.save(str(dest), "JPEG", quality=85)
 
 
-def _scene_thumb_strategy(src: Path, dest: Path, size: QSize) -> bool:
-    """Use the scene's preview.gif as thumbnail source.
+def _find_scene_preview(scene_dir: Path) -> Path | None:
+    project_json = scene_dir / "project.json"
+    if project_json.is_file():
+        try:
+            data = json.loads(project_json.read_text(encoding="utf-8", errors="ignore"))
+            preview_name = data.get("preview")
+            if preview_name:
+                p = scene_dir / preview_name
+                if p.is_file():
+                    return p
+        except Exception:
+            pass
 
-    `src` is a symlink (.scene) pointing to a workshop directory
-    containing preview.gif. Delegates to _image_strategy which handles
-    decode + resize + JPEG output.
+    for name in ("preview.gif", "preview.jpg", "preview.jpeg", "preview.png", "preview.webp"):
+        p = scene_dir / name
+        if p.is_file():
+            return p
+
+    return None
+
+
+def _scene_thumb_strategy(src: Path, dest: Path, size: QSize) -> bool:
+    """Use the scene's preview image as thumbnail source.
+
+    `src` is a symlink (.scene) pointing to a workshop directory.
+    Finds preview image (from project.json or common preview extensions)
+    and delegates to _image_strategy which handles decode + resize + JPEG output.
     """
-    return _image_strategy(src.resolve() / "preview.gif", dest, size)
+    scene_dir = src.resolve()
+    preview = _find_scene_preview(scene_dir)
+    if preview is None:
+        return False
+    return _image_strategy(preview, dest, size)
 
 
 def _video_thumb_strategy(src: Path, dest: Path, size: QSize) -> bool:

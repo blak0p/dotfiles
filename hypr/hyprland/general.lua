@@ -257,7 +257,7 @@ hl.config({
     input = {
         kb_layout = "us",
         kb_variant = "intl",
-        kb_options = "lv3:lalt_switch",
+        kb_options = "lv3:switch",
         numlock_by_default = true,
         repeat_delay = 250,
         repeat_rate = 35,

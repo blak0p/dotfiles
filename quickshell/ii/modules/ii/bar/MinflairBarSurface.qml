@@ -138,9 +138,9 @@ Scope {
 
                     WlrLayershell.layer: WlrLayer.Overlay
                     WlrLayershell.exclusionMode: ExclusionMode.Ignore
-                    WlrLayershell.keyboardFocus: (unifiedIsland.currentMode === "launcher" || unifiedIsland.currentMode === "workspaceRename" || unifiedIsland.currentMode === "ai") ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+                    WlrLayershell.keyboardFocus: (unifiedIsland.currentMode === "launcher" || unifiedIsland.currentMode === "workspaceRename" || unifiedIsland.currentMode === "ai" || unifiedIsland.currentMode === "notes") ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
                     color: "transparent"
-                    focusable: (unifiedIsland.currentMode === "launcher" || unifiedIsland.currentMode === "workspaceRename" || unifiedIsland.currentMode === "ai")
+                    focusable: (unifiedIsland.currentMode === "launcher" || unifiedIsland.currentMode === "workspaceRename" || unifiedIsland.currentMode === "ai" || unifiedIsland.currentMode === "notes")
                     screen: surfaceLoader.modelData
 
                     anchors {
@@ -157,7 +157,7 @@ Scope {
                         y: surface.barMarginTop
 
                         onCurrentModeChanged: {
-                            if (currentMode === "launcher" || currentMode === "dashboard" || currentMode === "workspaceRename" || currentMode === "ai") {
+                            if (currentMode === "launcher" || currentMode === "dashboard" || currentMode === "workspaceRename" || currentMode === "ai" || currentMode === "notes") {
                                 GlobalFocusGrab.addDismissable(popupSurface);
                             } else {
                                 GlobalFocusGrab.removeDismissable(popupSurface);
@@ -168,7 +168,7 @@ Scope {
                     Connections {
                         target: GlobalFocusGrab
                         function onDismissed() {
-                            if (AppState.activePopup === "launcher" || AppState.activePopup === "dashboard" || AppState.activePopup === "workspaceRename" || AppState.activePopup === "ai") {
+                            if (AppState.activePopup === "launcher" || AppState.activePopup === "dashboard" || AppState.activePopup === "workspaceRename" || AppState.activePopup === "ai" || AppState.activePopup === "notes") {
                                 AppState.activePopup = "";
                             }
                         }
@@ -406,6 +406,31 @@ Scope {
                 AppState.openPopup("ai");
             }
         }
+    }
+
+    IpcHandler {
+        target: "notes"
+
+        function toggle(): void {
+            AppState.togglePopup("notes");
+        }
+        function open(): void {
+            AppState.openPopup("notes");
+        }
+        function close(): void {
+            if (AppState.activePopup === "notes")
+                AppState.activePopup = "";
+        }
+        function create(): void {
+            NotesService.create();
+            AppState.openPopup("notes");
+        }
+    }
+
+    GlobalShortcut {
+        name: "notesToggle"
+        description: "Toggles Notes Scratchpad in Dynamic Island"
+        onPressed: AppState.togglePopup("notes")
     }
 }
 

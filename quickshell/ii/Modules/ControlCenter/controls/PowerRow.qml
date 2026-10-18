@@ -10,6 +10,7 @@
 import QtQuick
 import QtQuick.Layouts
 
+import qs.services
 import "../theme"
 import "../services"
 import "../components"
@@ -34,7 +35,7 @@ RowLayout {
     }
 
     Repeater {
-        model: SessionService.actions.filter(a => a.id !== "logout")
+        model: SessionService.actions
 
         Rectangle {
             id: button
@@ -81,7 +82,7 @@ RowLayout {
                 Text {
                     id: label
                     visible: button.isArmed
-                    text: button.modelData.label
+                    text: Translation.tr(button.modelData.label)
                     font.family: Theme.fontFamily
                     font.pixelSize: Theme.fontSizeSmall
                     font.weight: Font.DemiBold

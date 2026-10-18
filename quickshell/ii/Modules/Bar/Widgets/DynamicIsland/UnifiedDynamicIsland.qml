@@ -2125,7 +2125,7 @@ Rectangle {
 
             ThemedTab {
                 glyph: "tune"
-                text: Translation.tr("Quick Settings")
+                text: Translation.tr("Control Center")
                 value: 3
             }
         }

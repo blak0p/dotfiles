@@ -35,7 +35,7 @@ Singleton {
     // the wallpaper. The ink is fixed.
     readonly property var tints: ["yellow", "accent", "green", "blue", "red"]
 
-    function tintColor(name: string): color {
+    function tintColor(name) {
         switch (name) {
         case "green":  return Theme.green
         case "yellow": return Theme.yellow
@@ -45,7 +45,7 @@ Singleton {
         return Theme.accent
     }
 
-    function paperOf(name: string): color {
+    function paperOf(name) {
         return Qt.tint(root.tintColor(name), Theme.paperWash)
     }
 
@@ -60,7 +60,7 @@ Singleton {
     //   archived  hidden from the deck and the desktop
     property var notes: []
 
-    function normalise(list: var): var {
+    function normalise(list) {
         const rows = []
         const length = list && typeof list.length === "number" ? list.length : 0
         for (let index = 0; index < length; index++) {
@@ -87,19 +87,19 @@ Singleton {
 
     readonly property var newest: root.live[0] ?? null
 
-    function entry(key: string): var {
+    function entry(key) {
         return root.notes.find(note => note.key === key) ?? null
     }
 
     // The note a desktop row names, if still live; otherwise the newest.
-    function noteFor(row: var): var {
+    function noteFor(row) {
         const key = row && row.note ? row.note : ""
         const named = key !== "" ? root.entry(key) : null
         return named && !named.archived ? named : root.newest
     }
 
     // Title, else first line, else "Untitled".
-    function titleOf(note: var): string {
+    function titleOf(note) {
         if (!note)
             return ""
         if (note.title && note.title.trim() !== "")
@@ -108,7 +108,7 @@ Singleton {
         return line !== "" ? line : "Untitled"
     }
 
-    function isEmpty(note: var): bool {
+    function isEmpty(note) {
         return !note || ((note.title ?? "").trim() === "" && (note.text ?? "").trim() === "")
     }
 
@@ -116,7 +116,7 @@ Singleton {
 
     signal added(string key)
 
-    function newKey(): string {
+    function newKey() {
         const stamp = Date.now().toString(36)
         let key = `note-${stamp}`
         for (let n = 2; root.entry(key); n++)
@@ -124,12 +124,12 @@ Singleton {
         return key
     }
 
-    function write(next: var): void {
+    function write(next) {
         root.notes = next
         root.saver.restart()
     }
 
-    function add(title: string, text = "", tint = "yellow"): string {
+    function add(title, text = "", tint = "yellow") {
         const now = Date.now()
         const key = root.newKey()
         root.write(root.notes.concat([{
@@ -146,7 +146,7 @@ Singleton {
     }
 
     // A blank note opened for writing; discarded if left empty (`leave`).
-    function create(tint = "yellow", fromDeck = false): string {
+    function create(tint = "yellow", fromDeck = false) {
         const key = root.add("", "", tint)
         root.opened = key
         root.direct = !fromDeck
@@ -154,7 +154,7 @@ Singleton {
     }
 
     // Only text changes bump `edited` and bring the note to the front.
-    function update(key: string, changes: var): void {
+    function update(key, changes) {
         root.write(root.notes.map(note => {
             if (note.key !== key)
                 return note
@@ -167,13 +167,13 @@ Singleton {
         }))
     }
 
-    function setTint(key: string, tint: string): void {
+    function setTint(key, tint) {
         if (root.tints.indexOf(tint) >= 0)
             root.update(key, { tint: tint })
     }
 
     // An archived note also leaves the desktop and the edge decks.
-    function archive(key: string, on = true): void {
+    function archive(key, on = true) {
         if (!root.entry(key))
             return
         root.update(key, { archived: on })
@@ -181,7 +181,7 @@ Singleton {
             DesktopService.removeNote(key)
     }
 
-    function remove(key: string): void {
+    function remove(key) {
         if (!root.entry(key))
             return
         DesktopService.removeNote(key)
@@ -192,7 +192,7 @@ Singleton {
 
     // ── READING ─────────────────────────────────────────────────────────────
 
-    function firstLine(text: string): string {
+    function firstLine(text) {
         for (const line of (text ?? "").split("\n")) {
             const trimmed = line.trim()
             if (trimmed !== "")
@@ -203,13 +203,13 @@ Singleton {
 
     // Lines starting `[ ]` or `[x]` render as checkboxes. Display only; the
     // stored text is unchanged.
-    function display(text: string): string {
+    function display(text) {
         return (text ?? "")
             .replace(/^\[x\] ?/gim, "󰄲 ")
             .replace(/^\[ \] ?/gm, "󰄱 ")
     }
 
-    function ageOf(when: real): string {
+    function ageOf(when) {
         const seconds = Math.max(0, (Date.now() - when) / 1000)
         if (seconds < 60)
             return "just now"
@@ -238,13 +238,13 @@ Singleton {
     // back then closes the island instead of returning to the deck.
     property bool direct: false
 
-    function open(key: string, fromDeck = false): void {
+    function open(key, fromDeck = false) {
         root.opened = root.entry(key) ? key : ""
         root.direct = !fromDeck
     }
 
     // Back to the deck, discarding the note if it was never written on.
-    function leave(): void {
+    function leave() {
         const note = root.entry(root.opened)
         root.opened = ""
         root.direct = false

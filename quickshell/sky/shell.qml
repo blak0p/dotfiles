@@ -5,6 +5,7 @@ import Quickshell.Io
 import Quickshell.Hyprland
 import qs
 import qs.island
+import qs.wallpaper
 
 ShellRoot {
     Variants {
@@ -39,6 +40,37 @@ ShellRoot {
         onPressed: IslandState.toggleLauncher()
     }
 
+    // Bound in Hyprland as hl.dsp.global("quickshell:wallpaperToggle").
+    GlobalShortcut {
+        name: "wallpaperToggle"
+        description: "Toggle the sky wallpaper picker"
+        onPressed: IslandState.toggleWallpaper()
+    }
+
+    // While the strip is open the shell enters the Hyprland submap
+    // "wallpapers" (hypr/custom/keybinds.lua), so these are what the arrow
+    // keys reach: the movement between wallpapers belongs to hl.
+    GlobalShortcut {
+        name: "wallpaperPrev"
+        description: "Previous wallpaper"
+        onPressed: WallpaperService.move(-1)
+    }
+    GlobalShortcut {
+        name: "wallpaperNext"
+        description: "Next wallpaper"
+        onPressed: WallpaperService.move(1)
+    }
+    GlobalShortcut {
+        name: "wallpaperApply"
+        description: "Apply the selected wallpaper"
+        onPressed: WallpaperService.apply(WallpaperService.selected)
+    }
+    GlobalShortcut {
+        name: "wallpaperClose"
+        description: "Close the wallpaper picker"
+        onPressed: IslandState.closeWallpaper()
+    }
+
     // qs -c sky ipc call island toggle|open|close|clear|dnd|update|state, or: island page wifi
     IpcHandler {
         target: "island"
@@ -48,6 +80,7 @@ ShellRoot {
         function page(name: string): void { IslandState.togglePage(name); }
         function close(): void { IslandState.closeCenter(); }
         function tray(): void { IslandState.toggleTray(); }
+        function wallpapers(): void { IslandState.toggleWallpaper(); }
         function clear(): void { Notifs.clearAll(); }
         function dnd(): void { Notifs.dnd = !Notifs.dnd; }
         function update(): void { UpdateService.applyAll(); }

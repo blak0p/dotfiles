@@ -32,7 +32,7 @@ Part of the [dotfiles umbrella](https://github.com/blak0p/dotfiles).
 
 - [What Gets Deployed](#what-gets-deployed)
 - [Quickshell Desktop Architecture](#quickshell-desktop-architecture)
-- [Wallfliper & Dynamic Theming](#wallfliper--dynamic-theming)
+- [Wallpapers & Dynamic Theming](#wallpapers--dynamic-theming)
 - [Key Features & Ergonomics](#key-features--ergonomics)
 - [Comprehensive Keybindings Matrix](#comprehensive-keybindings-matrix)
 - [Scripts & Backend Utilities](#scripts--backend-utilities)
@@ -101,13 +101,45 @@ Houses 12 Quick Toggles and 7 specialized drawers:
 
 ---
 
-## 🖼️ Wallfliper & Dynamic Theming
+## 🖼️ Wallpapers & Dynamic Theming
 
-Located at `hypr/wallfliper`, **Wallfliper** is a custom PySide6 / `wlr-layer-shell` wallpaper manager:
-* **Still Images & Looping Videos**: Renders images with `swww` and video loops with GPU-accelerated `mpvpaper`.
-* **Audition Mode (`Space`)**: Audition wallpapers directly on your live desktop while keeping the picker open.
-* **Live Video Previews**: Hovering video entries plays animated thumbnail clips right on the selector cards.
-* **Material You Sync (`switchwall.sh`)**: Automatic extraction of tonal palettes with Matugen, propagating live accent colors across Quickshell, Kitty, GTK, Qt, and Neovim.
+The wallpaper picker lives **inside the shell**, not in a separate app: it grows
+out of the clock pill in the Dynamic Island (`Ctrl + Super + T`, or click the
+pill). It is a horizontal strip of pictures that slides with `←` / `→`; `Enter`
+applies, `Esc` (or a click outside) closes it. No title bar, no tabs, no filters
+— it is only there to choose a wallpaper.
+
+Pick between two sources:
+* **Pictures in a folder** — images and videos in `~/Pictures/Wallpapers`
+  (`~/Imágenes/Wallpapers` works too; the folder is remembered in
+  `~/.config/sky/wallpaper.json`).
+* **Wallpaper Engine scenes** — the ones you already own through Steam, read
+  straight from the Workshop. Nothing is downloaded or bundled.
+
+Applying is delegated to small command-line tools, **all of them optional**:
+nothing breaks if one is missing, its wallpapers simply stop being listed.
+
+| Kind | Tool | Without it |
+|---|---|---|
+| Images | `swww` (or `awww`), daemon started on demand | no images listed |
+| Videos | `mpvpaper` (auto-pauses under a fullscreen window) | no videos listed |
+| Wallpaper Engine | `linux-wallpaperengine` | no scenes listed |
+| Video thumbnails | `ffmpeg` | the card goes flat, the video still applies |
+
+Wallpaper Engine on Linux is the `linux-wallpaperengine` CLI — it is run from a
+terminal, not the Steam client:
+
+```bash
+linux-wallpaperengine --screen-root DP-2 --bg ~/.local/share/Steam/steamapps/workshop/content/431960/<id>
+```
+
+`python3 ~/.config/quickshell/sky/scripts/sky_wallpaper.py check` prints which
+tools and sources are actually available, and `sky_wallpaper.py restore`
+re-applies the last wallpaper (it runs at login from `hypr/hyprland/execs.lua`).
+
+* **Material You Sync**: the shell regenerates its palette from the applied
+  wallpaper with Matugen (`scripts/sky_theme.py`), propagating accent colors
+  across Quickshell, Kitty, GTK, Qt, and Neovim.
 
 ---
 
@@ -261,7 +293,6 @@ The desktop features high-performance physics-based animation curves designed fo
 This configuration is a heavily customized and modularized evolution built upon outstanding work from the open-source community:
 * **[end-4 / dots-hyprland (illogical-impulse)](https://github.com/end-4/dots-hyprland)**: The foundational Hyprland structure, Lua config architecture, and shell utilities.
 * **[Minflair / Quickshell](https://github.com/Minflair)**: The visual inspiration and core components for the Quickshell desktop surface, Dynamic Island, and widget ecosystem.
-* **[Wallfliper (Roberth-Souza)](https://github.com/Roberth-Souza/wallfliper)**: PySide6 video & still wallpaper manager with layer-shell integration.
 
 ---
 

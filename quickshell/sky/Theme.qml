@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Io
 
 // Palette from ~/.local/state/sky/colors.json (written by scripts/sky_theme.py).
-// Regenerated automatically when wallfliper changes its state file.
+// Regenerated automatically when the wallpaper changes.
 Singleton {
     id: root
 
@@ -20,6 +20,7 @@ Singleton {
     property color outline: "#8b9198"
 
     readonly property string home: Quickshell.env("HOME")
+    readonly property string configHome: Quickshell.env("XDG_CONFIG_HOME") || (root.home + "/.config")
     readonly property var keys: ["accent", "secondary", "tertiary", "surface", "surface2", "widget", "muted", "outline"]
 
     Behavior on accent { ColorAnimation { duration: 600 } }
@@ -52,9 +53,9 @@ Singleton {
         onLoaded: root.apply(text())
     }
 
-    // wallfliper changed the wallpaper -> regenerate the palette.
+    // The shell's own wallpaper state changed -> regenerate the palette.
     FileView {
-        path: root.home + "/.config/wallfliper/state.json"
+        path: root.configHome + "/sky/wallpaper.json"
         watchChanges: true
         onFileChanged: debounce.restart()
     }

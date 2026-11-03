@@ -16,7 +16,7 @@ Item {
     readonly property var calc: Calc.result(input.text)
     readonly property var apps: AppModel.filter(input.text)
     readonly property var commands: [
-        { name: "Change wallpaper", hint: "Super W", icon: "wallpaper", run: () => Quickshell.execDetached(["python3", Theme.home + "/.config/hypr/wallfliper/main.py"]) },
+        { name: "Change wallpaper", hint: "Ctrl+Super+T", icon: "wallpaper", run: () => IslandState.openWallpaper() },
         { name: "Lock screen", hint: "Super L", icon: "lock", run: () => Quickshell.execDetached(["hyprlock"]) },
         { name: "Screenshot region", hint: "Super Shift S", icon: "photo_camera", run: () => Quickshell.execDetached(["sh", "-c",
             "d=\"$HOME/Imágenes/Screenshots\"; mkdir -p \"$d\"; sleep 0.3; g=$(slurp) && grim -g \"$g\" \"$d/$(date +%F_%H-%M-%S).png\""]) }

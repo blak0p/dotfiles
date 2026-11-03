@@ -18,7 +18,8 @@ Run with `qs -c sky`.
 | `UsageService.qml` / `scripts/fetch_usage.py` / `island/UsageCard.qml` | AI plan usage (Claude, Codex, Antigravity) from the [CodexBar](https://github.com/steipete/CodexBar) CLI `codexbar`; providers and refresh intervals in `Config.qml` (`usageProviders`, `usageIdleMs`, `usageOpenMs`) |
 | `island/TrayPanel.qml` | System tray panel opened by the status pill chevron: one cell per StatusNotifierItem |
 | `island/TrayIcon.qml` | One tray item: theme-icon resolution, click / middle-click / menu |
-| `Theme.qml` | Palette from `~/.local/state/sky/colors.json`; regenerates it when wallfliper changes |
+| `Theme.qml` | Palette from `~/.local/state/sky/colors.json`; regenerates it when the wallpaper changes |
+| `wallpaper/WallpaperView.qml` / `WallpaperService.qml` | Wallpaper picker: horizontal picture strip grown out of the clock pill (no chrome); the list, thumbnails and apply live in `scripts/sky_wallpaper.py` |
 | `Config.qml` / `island/IslandState.qml` | Sizes / island mode (idle, launcher, notif, volume, center) |
 
 ## IPC

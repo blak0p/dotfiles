@@ -39,8 +39,17 @@ Singleton {
     readonly property real launcherRowH: 38
     readonly property int launcherGap: 8
 
-    // System tray panel (island/TrayPanel.qml), opened from the status pill.
-    readonly property real trayItem: 28
+    // Wallpapers (wallpaper/WallpaperView.qml): a horizontal strip of pictures
+    // that grows out of the clock pill and slides with the arrow keys. It is
+    // only there to pick a wallpaper, so it is allowed to be wide.
+    readonly property real wallpaperMaxW: 1400
+    readonly property real wallpaperH: 260
+    readonly property real wallpaperPad: 16
+    readonly property real cardW: 320
+    readonly property real cardH: 180
+    readonly property int cardGap: 16
+
+    // System tray panel (island/TrayPanel.qml), opened from the status pill.    readonly property real trayItem: 28
     readonly property real trayGap: 6
     readonly property real trayPad: 12
     readonly property real trayMinW: 168

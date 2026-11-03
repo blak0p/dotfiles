@@ -4,7 +4,7 @@ hl.on("hyprland.start", function ()
     -- Bar, wallpaper
     hl.exec_cmd("$HOME/.config/hypr/hyprland/scripts/start_geoclue_agent.sh")
     hl.exec_cmd("qs -c $qsConfig")
-    hl.exec_cmd("/usr/bin/python3 $HOME/.config/hypr/wallfliper/main.py --restore")
+    hl.exec_cmd("/usr/bin/python3 $HOME/.config/quickshell/sky/scripts/sky_wallpaper.py restore")
 
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")

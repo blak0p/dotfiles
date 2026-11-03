@@ -10,7 +10,7 @@ Usage:
   sky_theme.py [WALLPAPER] [--bias 0..1] [--out PATH]
 
 WALLPAPER may be an image, a video, or a Wallpaper Engine scene directory.
-Without it, the path in wallfliper's state.json is used.
+Without it, the path saved in the shell's own wallpaper state is used.
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ STATE_HOME = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state")
 CONFIG_HOME = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
 CACHE_HOME = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
 DEFAULT_OUT = STATE_HOME / "sky/colors.json"
-WALLFLIPER_STATE = CONFIG_HOME / "wallfliper/state.json"
+SKY_STATE = CONFIG_HOME / "sky/wallpaper.json"
 
 VIDEO_EXT = {".mp4", ".mkv", ".webm", ".mov", ".avi"}
 ANIMATED_EXT = {".gif", ".webp"}
@@ -101,7 +101,7 @@ def color_source(path: Path) -> tuple[Path | None, str]:
     return path, "image"
 
 
-def current_wallpaper(state_file: Path = WALLFLIPER_STATE) -> Path | None:
+def current_wallpaper(state_file: Path = SKY_STATE) -> Path | None:
     try:
         p = json.loads(state_file.read_text()).get("path")
     except (OSError, ValueError):

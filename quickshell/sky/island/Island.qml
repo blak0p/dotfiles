@@ -5,6 +5,7 @@ import Quickshell.Wayland
 import Quickshell.Hyprland
 import qs
 import qs.launcher
+import qs.wallpaper
 
 // Top of the screen: [workspaces] [Dynamic Island] [status] as three black
 // pills. The island morphs wider and downward (notifications, volume, center,
@@ -19,8 +20,8 @@ PanelWindow {
     WlrLayershell.namespace: "sky-island"
     // Focus is needed while the center or the launcher is open so the focus
     // grab holds and the search field can take the keyboard.
-    WlrLayershell.keyboardFocus: (IslandState.centerOpen || IslandState.launcherOpen)
-        ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+    WlrLayershell.keyboardFocus: (IslandState.centerOpen || IslandState.launcherOpen
+        || IslandState.wallpaperOpen) ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
     implicitHeight: pillTop + Config.centerMaxH + shadowPad
     color: "transparent"
 
@@ -72,6 +73,7 @@ PanelWindow {
     readonly property size target: {
         switch (mode) {
         case "launcher": return Qt.size(Config.launcherW, launcher.wantedH);
+        case "wallpaper": return Qt.size(Math.min(win.width - 80, Config.wallpaperMaxW), Config.wallpaperH);
         case "center": return Qt.size(Config.centerW, center.wantedHeight);
         case "volume": return Qt.size(Config.volumeW, Config.volumeH);
         case "notif": return Qt.size(Config.notifW, popup.implicitHeight + 2 * Config.notifPad);
@@ -84,12 +86,13 @@ PanelWindow {
     HyprlandFocusGrab {
         id: grab
         windows: [win]
-        onCleared: { IslandState.closeCenter(); IslandState.closeLauncher(); }
+        onCleared: { IslandState.closeCenter(); IslandState.closeLauncher(); IslandState.closeWallpaper(); }
     }
     Connections {
         target: IslandState
-        function onCenterOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
-        function onLauncherOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
+        function onCenterOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen || IslandState.wallpaperOpen; }
+        function onLauncherOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen || IslandState.wallpaperOpen; }
+        function onWallpaperOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen || IslandState.wallpaperOpen; }
     }
 
     RectangularShadow {
@@ -225,14 +228,15 @@ PanelWindow {
 
         HoverHandler { onHoveredChanged: Notifs.hovered = hovered }
 
-        // Click opens the control center (wifi, bluetooth, volume, …) as
-        // before. The launcher is keyboard-only: Super+Space or its IPC call.
+        // The pill is the clock: clicking it grows the wallpaper grid out of
+        // it. The control center keeps its own buttons in the side pills.
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
             onClicked: {
                 if (IslandState.launcherOpen) IslandState.closeLauncher();
-                else if (win.mode !== "center") IslandState.openCenter("notifs");
+                else if (IslandState.wallpaperOpen) IslandState.closeWallpaper();
+                else if (win.mode !== "center") IslandState.openWallpaper();
             }
         }
 
@@ -263,6 +267,11 @@ PanelWindow {
             shown: win.mode === "launcher"
             width: Config.launcherW; height: launcher.wantedH
             Launcher { id: launcher; anchors.fill: parent; open: win.mode === "launcher" }
+        }
+        View {
+            shown: win.mode === "wallpaper"
+            width: Math.min(win.width - 80, Config.wallpaperMaxW); height: Config.wallpaperH
+            WallpaperView { id: wallpapers; anchors.fill: parent; open: win.mode === "wallpaper" }
         }
         View {
             shown: win.mode === "center"

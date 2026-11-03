@@ -101,11 +101,14 @@ class ColorSource(unittest.TestCase):
 
 
 class CurrentWallpaper(unittest.TestCase):
-    def test_reads_wallfliper_state(self):
+    def test_reads_the_shell_wallpaper_state(self):
         tmp = Path(tempfile.mkdtemp())
-        state = tmp / "state.json"
-        state.write_text(json.dumps({"path": "/w/a.scene", "kind": "scene"}))
-        self.assertEqual(sky_theme.current_wallpaper(state), Path("/w/a.scene"))
+        state = tmp / "wallpaper.json"
+        state.write_text(json.dumps({"path": "/w/123", "kind": "scene"}))
+        self.assertEqual(sky_theme.current_wallpaper(state), Path("/w/123"))
+
+    def test_default_state_lives_under_the_sky_config_dir(self):
+        self.assertEqual(sky_theme.SKY_STATE, sky_theme.CONFIG_HOME / "sky/wallpaper.json")
 
     def test_missing_state(self):
         self.assertIsNone(sky_theme.current_wallpaper(Path(tempfile.mkdtemp()) / "none.json"))

@@ -3,25 +3,21 @@
 -- Los binds privados se cargan desde keybinds-extra.lua si existe localmente
 
 -- Launcher
-hl.bind("SUPER + Space", hl.dsp.global("quickshell:searchToggleRelease"), { description = "Shell: Toggle search" })
+hl.bind("SUPER + Space", hl.dsp.global("quickshell:launcherToggle"), { description = "Shell: Toggle launcher" })
 
 -- Screen snip (Ctrl + Win + S)
-hl.bind("CTRL + SUPER + S", hl.dsp.global("quickshell:regionScreenshot"), { description = "Utilities: Screen snip" })
+hl.bind("CTRL + SUPER + S", hl.dsp.exec_cmd(HOME .. "/.config/hypr/scripts/screenshot-region.sh"), { description = "Utilities: Screen snip" })
 
 -- Screen record toggle (Super + Alt + R, Super + Shift + R, Ctrl + Alt + R)
-hl.bind("SUPER + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/quickshell/ii/scripts/videos/record.sh --fullscreen"), { locked = true, description = "Utilities: Record screen toggle" })
-hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/quickshell/ii/scripts/videos/record.sh"), { locked = true, description = "Utilities: Record region toggle" })
-hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/quickshell/ii/scripts/videos/record.sh --fullscreen"), { locked = true })
-hl.bind("CTRL + ALT + r", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/quickshell/ii/scripts/videos/record.sh --fullscreen"), { locked = true })
+hl.bind("SUPER + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true, description = "Utilities: Record screen toggle" })
+hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh"), { locked = true, description = "Utilities: Record region toggle" })
+hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true })
+hl.bind("CTRL + ALT + r", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true })
 
--- Jarvis Voice Assistant & Dictation toggle (Super + Shift + Space)
-hl.bind("SUPER + SHIFT + Space", hl.dsp.exec_cmd("python3 " .. HOME .. "/.config/quickshell/ii/scripts/jarvis_audio.py --dispatch"), { locked = true, description = "Voice: Jarvis toggle recording and dispatch" })
 
 -- Rename workspace: Dynamic Island modal con Win+R
 hl.bind("SUPER + R", hl.dsp.global("quickshell:workspaceRenameToggle"), { description = "Workspace: Rename active (Dynamic Island)" })
 
--- Quick Notes / Scratchpad: Dynamic Island modal con Super + N
-hl.bind("SUPER + N", hl.dsp.global("quickshell:notesToggle"), { description = "Notes: Toggle Quick Notes in Dynamic Island" })
 
 -- Window management (pisan los de end-4)
 hl.bind("SUPER + C", hl.dsp.window.close(), { description = "Window: Close" })

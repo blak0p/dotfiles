@@ -28,8 +28,8 @@ hl.config({
     general = {
         border_size = 2,
         col = {
-            active_border = "rgba(c2c1ffee)",
-            inactive_border = "rgba(47464f88)"
+            active_border = "rgba(ffffff30)",
+            inactive_border = "rgba(ffffff00)"
         }
     }
 })

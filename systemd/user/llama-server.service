@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
+Environment="LD_LIBRARY_PATH=/home/linuxbrew/.linuxbrew/lib:/usr/local/lib:/usr/lib"
 ExecStart=/usr/bin/llama-server --models-dir /home/alejandro/.models --models-preset /home/alejandro/.models/presets.ini --port 8090 --models-max 1 --sleep-idle-seconds 20
 WorkingDirectory=/home/alejandro/.models
 Restart=on-failure

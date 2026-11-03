@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Minflair Settings
-Comment=Personalization, updates, and system settings
-Exec=sh -c $HOME/.config/quickshell/Scripts/toggle_minflair_settings.sh
-Icon=$HOME/.config/quickshell/assets/settings-icon.svg
-Terminal=false
-Categories=Settings;

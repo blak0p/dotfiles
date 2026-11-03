@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Widgets
 import qs
 import qs.island
 import qs.wallpaper
@@ -72,15 +73,16 @@ Item {
                 Behavior on scale { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
                 Behavior on opacity { NumberAnimation { duration: 220; easing.type: Easing.OutCubic } }
 
-                Rectangle {
+                // A plain Rectangle's clip only cuts to the bounding box, so the
+                // picture would paint over the rounded corners; ClippingRectangle
+                // clips its content to the real rounded shape.
+                ClippingRectangle {
                     anchors.fill: parent
-                    radius: 14
-                    clip: true
+                    radius: 20
                     color: Theme.surface2
                     border.width: cell.selected || cell.applied ? 2 : 1
                     border.color: cell.selected ? Theme.accent
                         : (cell.applied ? Qt.alpha(Theme.accent, 0.55) : Qt.alpha(Theme.outline, 0.25))
-                    Behavior on border.color { ColorAnimation { duration: 120 } }
 
                     Image {
                         anchors.fill: parent

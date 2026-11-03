@@ -45,8 +45,8 @@ Singleton {
     readonly property real wallpaperMaxW: 1400
     readonly property real wallpaperH: 260
     readonly property real wallpaperPad: 16
-    readonly property real cardW: 320
-    readonly property real cardH: 180
+    readonly property real cardW: 368
+    readonly property real cardH: 207
     readonly property int cardGap: 16
 
     // System tray panel (island/TrayPanel.qml), opened from the status pill.    readonly property real trayItem: 28

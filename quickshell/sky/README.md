@@ -19,7 +19,7 @@ Run with `qs -c sky`.
 | `island/TrayPanel.qml` | System tray panel opened by the status pill chevron: one cell per StatusNotifierItem |
 | `island/TrayIcon.qml` | One tray item: theme-icon resolution, click / middle-click / menu |
 | `Theme.qml` | Palette from `~/.local/state/sky/colors.json`; regenerates it when the wallpaper changes |
-| `wallpaper/WallpaperView.qml` / `WallpaperService.qml` | Wallpaper picker: horizontal picture strip grown out of the clock pill (no chrome); the list, thumbnails and apply live in `scripts/sky_wallpaper.py` |
+| `wallpaper/WallpaperView.qml` / `WallpaperService.qml` | Wallpaper picker: horizontal picture strip grown out of the clock pill (no chrome), opened with `Ctrl+Super+T`, moved with arrows or `h`/`l`, `Enter` applies; the list, thumbnails and apply live in `scripts/sky_wallpaper.py` |
 | `Config.qml` / `island/IslandState.qml` | Sizes / island mode (idle, launcher, notif, volume, center) |
 
 ## IPC

@@ -229,15 +229,16 @@ PanelWindow {
 
         HoverHandler { onHoveredChanged: Notifs.hovered = hovered }
 
-        // The pill is the clock: clicking it grows the wallpaper grid out of
-        // it. The control center keeps its own buttons in the side pills.
+        // The pill is the clock: clicking it opens the control center (wifi,
+        // bluetooth, sound, notifications). The wallpaper strip has its own
+        // shortcut (Ctrl+Super+T); a click on the pill closes it.
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
             onClicked: {
                 if (IslandState.launcherOpen) IslandState.closeLauncher();
                 else if (IslandState.wallpaperOpen) IslandState.closeWallpaper();
-                else if (win.mode !== "center") IslandState.openWallpaper();
+                else if (win.mode !== "center") IslandState.openCenter("notifs");
             }
         }
 

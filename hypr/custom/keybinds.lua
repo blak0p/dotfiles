@@ -86,13 +86,17 @@ for i = 1, 10 do
 end
 
 -- Wallpaper picker: while the strip is open the shell enters the "wallpapers"
--- submap, so the arrows move between wallpapers instead of going to the window
+-- submap, so the arrows (and h/l) move between wallpapers instead of going to the window
 -- below. Escape is universal, so it always gets you out.
 hl.define_submap("wallpapers", function()
     hl.bind("Left", hl.dsp.global("quickshell:wallpaperPrev"),
         { repeating = true, description = "Wallpaper: Previous" })
     hl.bind("Right", hl.dsp.global("quickshell:wallpaperNext"),
         { repeating = true, description = "Wallpaper: Next" })
+    hl.bind("H", hl.dsp.global("quickshell:wallpaperPrev"),
+        { repeating = true, description = "Wallpaper: Previous (vim)" })
+    hl.bind("L", hl.dsp.global("quickshell:wallpaperNext"),
+        { repeating = true, description = "Wallpaper: Next (vim)" })
     hl.bind("Return", hl.dsp.global("quickshell:wallpaperApply"),
         { description = "Wallpaper: Apply" })
     hl.bind("Escape", hl.dsp.global("quickshell:wallpaperClose"),

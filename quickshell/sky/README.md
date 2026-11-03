@@ -7,9 +7,10 @@ Run with `qs -c sky`.
 
 | Path | Purpose |
 |---|---|
-| `shell.qml` | Entry: per screen a `ScreenFrame` + an `Island`; IPC handlers (`launcher`, `island`) |
-| `ScreenFrame.qml` | Top space reserve + auto-hiding floating dock with the launcher |
-| `island/Island.qml` | Top overlay window: `[workspaces] [Dynamic Island] [status]` pills; the island morphs for notifications, volume and the center |
+| `shell.qml` | Entry: per screen a `Reserve` + an `Island`; IPC handlers (`launcher`, `island`) |
+| `Reserve.qml` | Invisible click-through window that reserves the top bar space |
+| `island/Island.qml` | Top overlay window: `[workspaces] [Dynamic Island] [status]` pills; the island morphs for notifications, volume, center and the launcher |
+| `launcher/Launcher.qml` / `launcher/calc.js` | Launcher dropdown (an island view, not a window): app/command search plus an inline arithmetic calculator |
 | `island/Notifs.qml` | Notification daemon (`org.freedesktop.Notifications`): popup queue, history, DND |
 | `island/IslandState.qml` | Island mode (idle / notif / volume / center), center page, volume + OSD |
 | `island/Net.qml` | Wi-Fi (NetworkManager) and Bluetooth (BlueZ) state and actions |
@@ -18,7 +19,7 @@ Run with `qs -c sky`.
 | `island/TrayPanel.qml` | System tray panel opened by the status pill chevron: one cell per StatusNotifierItem |
 | `island/TrayIcon.qml` | One tray item: theme-icon resolution, click / middle-click / menu |
 | `Theme.qml` | Palette from `~/.local/state/sky/colors.json`; regenerates it when wallfliper changes |
-| `Config.qml` / `ShellState.qml` | Sizes, pinned apps / launcher state |
+| `Config.qml` / `island/IslandState.qml` | Sizes / island mode (idle, launcher, notif, volume, center) |
 
 ## IPC
 
@@ -28,6 +29,8 @@ Run with `qs -c sky`.
 
 ## Notes
 
+- No dock: the launcher is a compact dropdown that grows out of the island pill. It is **keyboard-only** (`Super+Space`, or `qs -c sky ipc call launcher toggle`); clicking the island still opens the control center (wifi, bluetooth, volume, notifications).
+- The launcher doubles as a calculator: typing `2+2`, `sqrt(16)`, `200*15%` or `1,5*2` puts the result in the first row, and Enter copies it to the clipboard. `launcher/calc.js` is a small parser (no `eval`); its tests run with `node --test tests/calc.test.mjs`.
 - AI usage needs `codexbar` on `PATH` (or `/home/linuxbrew/.linuxbrew/bin`); without it the status-pill button stays hidden and the page says so. A provider whose login expired keeps its card with "Session expired, sign in again" instead of disappearing. Tests: `python3 -m unittest discover -s tests`.
 
 - Workspace switching uses the Hyprland 0.57 Lua dispatcher (`hl.dsp.focus({ workspace = N })`); the old `workspace N` syntax fails.

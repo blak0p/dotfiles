@@ -16,24 +16,27 @@ ShellRoot {
         Scope {
             id: perScreen
             required property var modelData
-            ScreenFrame { modelData: perScreen.modelData }
+            // Top space reserve for the pills; the launcher and the dock-free
+            // frame live in the island overlay.
+            Reserve { screen: perScreen.modelData; edge: "top"; zone: Config.barHeight }
             Island { screen: perScreen.modelData }
             MiniToast { screen: perScreen.modelData }
         }
     }
 
+    // qs -c sky ipc call launcher toggle|open|close
     IpcHandler {
         target: "launcher"
-        function toggle(): void { ShellState.toggleLauncher(); }
-        function open(): void { ShellState.openLauncher(); }
-        function close(): void { ShellState.closeLauncher(); }
+        function toggle(): void { IslandState.toggleLauncher(); }
+        function open(): void { IslandState.openLauncher(); }
+        function close(): void { IslandState.closeLauncher(); }
     }
 
     // Bound in Hyprland as hl.dsp.global("quickshell:launcherToggle").
     GlobalShortcut {
         name: "launcherToggle"
         description: "Toggle the sky launcher"
-        onPressed: ShellState.toggleLauncher()
+        onPressed: IslandState.toggleLauncher()
     }
 
     // qs -c sky ipc call island toggle|open|close|clear|dnd|update|state, or: island page wifi

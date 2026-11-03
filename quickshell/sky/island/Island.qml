@@ -4,11 +4,12 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import qs
+import qs.launcher
 
 // Top of the screen: [workspaces] [Dynamic Island] [status] as three black
-// pills. The island morphs wider and downward (notifications, volume, center)
-// over windows only while shown; the side pills slide aside to follow it.
-// It reserves no space (Reserve.qml does), so windows never resize.
+// pills. The island morphs wider and downward (notifications, volume, center,
+// launcher) over windows only while shown; the side pills slide aside to
+// follow it. It reserves no space (Reserve.qml does), so windows never resize.
 PanelWindow {
     id: win
 
@@ -16,8 +17,10 @@ PanelWindow {
     exclusionMode: ExclusionMode.Ignore
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.namespace: "sky-island"
-    // Focus is needed while the center is open so the focus grab holds.
-    WlrLayershell.keyboardFocus: IslandState.centerOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+    // Focus is needed while the center or the launcher is open so the focus
+    // grab holds and the search field can take the keyboard.
+    WlrLayershell.keyboardFocus: (IslandState.centerOpen || IslandState.launcherOpen)
+        ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
     implicitHeight: pillTop + Config.centerMaxH + shadowPad
     color: "transparent"
 
@@ -68,6 +71,7 @@ PanelWindow {
 
     readonly property size target: {
         switch (mode) {
+        case "launcher": return Qt.size(Config.launcherW, launcher.wantedH);
         case "center": return Qt.size(Config.centerW, center.wantedHeight);
         case "volume": return Qt.size(Config.volumeW, Config.volumeH);
         case "notif": return Qt.size(Config.notifW, popup.implicitHeight + 2 * Config.notifPad);
@@ -76,15 +80,16 @@ PanelWindow {
         }
     }
 
-    // Click outside the expanded center closes it.
+    // Click outside the expanded island closes whatever is open.
     HyprlandFocusGrab {
         id: grab
         windows: [win]
-        onCleared: IslandState.closeCenter()
+        onCleared: { IslandState.closeCenter(); IslandState.closeLauncher(); }
     }
     Connections {
         target: IslandState
-        function onCenterOpenChanged() { grab.active = IslandState.centerOpen; }
+        function onCenterOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
+        function onLauncherOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
     }
 
     RectangularShadow {
@@ -208,15 +213,27 @@ PanelWindow {
         clip: true
 
         Behavior on width { enabled: !popOut.running && !swallow.running; NumberAnimation { duration: Config.morphMs; easing.type: Easing.OutBack; easing.overshoot: 1.1 } }
-        Behavior on height { NumberAnimation { duration: Config.morphMs; easing.type: Easing.OutBack; easing.overshoot: 0.9 } }
+        Behavior on height {
+            NumberAnimation {
+                // The launcher resizes while typing: keep it calm instead of
+                // the island's overshooting morph.
+                duration: win.mode === "launcher" ? 220 : Config.morphMs
+                easing.type: win.mode === "launcher" ? Easing.OutCubic : Easing.OutBack
+                easing.overshoot: 0.9
+            }
+        }
 
         HoverHandler { onHoveredChanged: Notifs.hovered = hovered }
 
-        // Background tap opens the center.
+        // Click opens the control center (wifi, bluetooth, volume, …) as
+        // before. The launcher is keyboard-only: Super+Space or its IPC call.
         MouseArea {
             anchors.fill: parent
-            cursorShape: win.mode === "center" ? Qt.ArrowCursor : Qt.PointingHandCursor
-            onClicked: if (win.mode !== "center") IslandState.openCenter("notifs")
+            cursorShape: Qt.PointingHandCursor
+            onClicked: {
+                if (IslandState.launcherOpen) IslandState.closeLauncher();
+                else if (win.mode !== "center") IslandState.openCenter("notifs");
+            }
         }
 
         // Each view is laid out at its final size and centred at the top of the
@@ -241,6 +258,11 @@ PanelWindow {
                 anchors.leftMargin: Config.notifPad + 2
                 notif: win.shownNotif
             }
+        }
+        View {
+            shown: win.mode === "launcher"
+            width: Config.launcherW; height: launcher.wantedH
+            Launcher { id: launcher; anchors.fill: parent; open: win.mode === "launcher" }
         }
         View {
             shown: win.mode === "center"

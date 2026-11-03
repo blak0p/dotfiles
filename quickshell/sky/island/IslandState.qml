@@ -4,10 +4,12 @@ import Quickshell
 import Quickshell.Services.Pipewire
 import qs
 
-// What the island shows. Priority: center (user opened) > volume > notification > idle.
+// What the island shows. Priority: launcher > center (user opened) > volume
+// > notification > idle.
 Singleton {
     id: root
 
+    property bool launcherOpen: false
     property bool centerOpen: false
     property bool trayOpen: false
     property bool osdVisible: false
@@ -15,10 +17,23 @@ Singleton {
     // the top pills hide and only critical notifications / volume pop up.
     property bool fullscreen: false
 
-    readonly property string mode: centerOpen ? "center"
+    readonly property string mode: launcherOpen ? "launcher"
+        : centerOpen ? "center"
         : osdVisible ? "volume"
         : Notifs.current ? "notif"
         : "idle"
+
+    // ---- Launcher ----
+    // Keyboard-only: Super+Space (Hyprland global shortcut) or the `launcher`
+    // IPC call. The island pill keeps opening the control center.
+    function toggleLauncher() { launcherOpen ? closeLauncher() : openLauncher(); }
+    function openLauncher() {
+        launcherOpen = true;
+        centerOpen = false;
+        trayOpen = false;
+        osdVisible = false;
+    }
+    function closeLauncher() { launcherOpen = false; }
 
     // Center page: "notifs" | "wifi" | "bluetooth" | "power" | "updates".
     property string page: "notifs"
@@ -27,6 +42,7 @@ Singleton {
     function openCenter(p) {
         page = p || "notifs";
         centerOpen = true;
+        launcherOpen = false;
         trayOpen = false;
         osdVisible = false;
         if (page === "notifs") Notifs.markRead();
@@ -41,6 +57,7 @@ Singleton {
     function openTray() {
         trayOpen = true;
         centerOpen = false;
+        launcherOpen = false;
         osdVisible = false;
     }
     function closeTray() { trayOpen = false; }
@@ -62,7 +79,7 @@ Singleton {
     function toggleMute() { if (audio) audio.muted = !audio.muted; }
 
     function showOsd() {
-        if (!armed.done || centerOpen) return;
+        if (!armed.done || centerOpen || launcherOpen) return;
         trayOpen = false;
         osdVisible = true;
         osdTimer.restart();

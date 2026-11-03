@@ -1,32 +1,53 @@
 import QtQuick
-import Quickshell.Widgets
 import Quickshell
+import Quickshell.Widgets
 import qs
+import qs.island
+import "calc.js" as Calc
 
+// Compact launcher: it is the island's "launcher" view, so the pill itself
+// grows into this dropdown (no dock, no separate window). Search apps and
+// commands, and type an arithmetic expression to get the result inline.
 Item {
     id: root
     property bool open: false
 
-    signal itemContextRequested(var delegateItem, var item)
-
-    property string query: ""
-    property int sel: 0
-    readonly property var apps: AppModel.filter(query)
+    // Result of evaluating the query as an expression, or null.
+    readonly property var calc: Calc.result(input.text)
+    readonly property var apps: AppModel.filter(input.text)
     readonly property var commands: [
-        { name: "Change wallpaper", hint: "Super W", run: () => Quickshell.execDetached(["python3", Theme.home + "/.config/hypr/wallfliper/main.py"]) },
-        { name: "Lock screen", hint: "Super L", run: () => Quickshell.execDetached(["hyprlock"]) },
-        { name: "Screenshot region", hint: "Super Shift S", run: () => Quickshell.execDetached(["sh", "-c",
+        { name: "Change wallpaper", hint: "Super W", icon: "wallpaper", run: () => Quickshell.execDetached(["python3", Theme.home + "/.config/hypr/wallfliper/main.py"]) },
+        { name: "Lock screen", hint: "Super L", icon: "lock", run: () => Quickshell.execDetached(["hyprlock"]) },
+        { name: "Screenshot region", hint: "Super Shift S", icon: "photo_camera", run: () => Quickshell.execDetached(["sh", "-c",
             "d=\"$HOME/Imágenes/Screenshots\"; mkdir -p \"$d\"; sleep 0.3; g=$(slurp) && grim -g \"$g\" \"$d/$(date +%F_%H-%M-%S).png\""]) }
-    ].filter(c => c.name.toLowerCase().includes(query.trim().toLowerCase()))
-    readonly property int total: apps.length + commands.length
+    ].filter(c => c.name.toLowerCase().indexOf(input.text.trim().toLowerCase()) !== -1)
+
+    readonly property var rows: {
+        const out = [];
+        if (calc) out.push({ kind: "calc", icon: "calculate", text: calc.text });
+        for (const a of apps) out.push({ kind: "app", icon: a.icon, text: a.name, entry: a });
+        for (const c of commands) out.push({ kind: "cmd", icon: c.icon, text: c.name, hint: c.hint, run: c.run });
+        return out;
+    }
+    // Rows that fit before the list scrolls.
+    readonly property int fit: Math.max(1, Math.floor(
+        (Config.launcherMaxH - 2 * Config.launcherPad - Config.launcherInputH - Config.launcherGap) / Config.launcherRowH))
+    readonly property int shownRows: Math.max(1, Math.min(rows.length, fit))
+    readonly property real wantedH: 2 * Config.launcherPad + Config.launcherInputH + Config.launcherGap
+        + shownRows * Config.launcherRowH
+
+    property int sel: 0
 
     onOpenChanged: {
-        if (open) { query = ""; sel = 0; input.text = ""; focusRetry.restart(); }
+        if (!open) return;
+        input.text = "";
+        sel = 0;
+        focusRetry.restart();
     }
-    onQueryChanged: sel = 0
+    onRowsChanged: if (sel >= rows.length) sel = Math.max(0, rows.length - 1)
 
     // The layer surface only receives keyboard focus after the compositor
-    // applies the new keyboard mode, so retry until the field really has it.
+    // applies the keyboard mode, so retry until the field really has it.
     Timer {
         id: focusRetry
         interval: 30; repeat: true
@@ -37,187 +58,154 @@ Item {
         }
     }
 
+    function move(delta) {
+        if (!rows.length) return;
+        sel = Math.max(0, Math.min(rows.length - 1, sel + delta));
+        list.positionViewAtIndex(sel, ListView.Contain);
+    }
+
     function activate(i) {
-        ShellState.closeLauncher();
-        if (i < apps.length) apps[i].execute();
-        else if (i - apps.length < commands.length) commands[i - apps.length].run();
-    }
-    function move(key) {
-        const n = apps.length;
-        if (total === 0) return;
-        if (key === Qt.Key_Left) sel = Math.max(0, sel - 1);
-        else if (key === Qt.Key_Right) sel = Math.min(total - 1, sel + 1);
-        else if (key === Qt.Key_Down) {
-            if (sel < n) sel = (sel + 5 < n) ? sel + 5 : (commands.length ? n : sel);
-            else sel = Math.min(total - 1, sel + 1);
-        } else if (key === Qt.Key_Up) {
-            if (sel >= n) sel = (sel > n) ? sel - 1 : Math.max(0, n - 1);
-            else sel = Math.max(0, sel - 5);
+        const row = rows[i];
+        if (!row) return;
+        if (row.kind === "calc") {
+            Quickshell.clipboardText = row.text;
+            IslandState.closeLauncher();
+            return;
         }
-        if (sel < n) grid.positionViewAtIndex(sel, GridView.Contain);
+        IslandState.closeLauncher();
+        if (row.kind === "app") row.entry.execute();
+        else if (row.run) row.run();
     }
 
-    Column {
-        anchors.fill: parent
-        anchors.margins: 20
-        anchors.topMargin: 12
-        anchors.bottomMargin: 16
-        spacing: 12
+    // Clicks on the dropdown body never fall through to the pill (which would
+    // toggle the launcher closed again).
+    MouseArea { anchors.fill: parent; onClicked: {} }
 
-        Rectangle {
-            width: parent.width; height: 44; radius: 14
-            color: Theme.surface2
-            Icon { x: 14; anchors.verticalCenter: parent.verticalCenter; text: "search"; color: Theme.muted; font.pixelSize: 20 }
-            TextInput {
-                id: input
-                x: 46
-                width: parent.width - 62
-                anchors.verticalCenter: parent.verticalCenter
-                color: Theme.fg
-                selectionColor: Theme.accent
-                selectedTextColor: Theme.accentText
-                font.family: "Google Sans Flex"; font.pixelSize: 15
-                clip: true
-                onTextChanged: root.query = text
-                Keys.onEscapePressed: ShellState.closeLauncher()
-                Keys.onReturnPressed: root.activate(root.sel)
-                Keys.onEnterPressed: root.activate(root.sel)
-                Keys.onPressed: e => {
-                    if ([Qt.Key_Left, Qt.Key_Right, Qt.Key_Up, Qt.Key_Down].includes(e.key)) {
-                        // Left/Right move the cursor only when the field is empty-of-grid-intent.
-                        root.move(e.key);
-                        e.accepted = true;
-                    }
-                }
-                Text {
-                    visible: !input.text
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "Search apps, commands…"
-                    color: Theme.muted
-                    font: input.font
-                }
-            }
+    Rectangle {
+        id: field
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.topMargin: Config.launcherPad
+        anchors.leftMargin: Config.launcherPad
+        anchors.rightMargin: Config.launcherPad
+        height: Config.launcherInputH
+        radius: 12
+        color: Qt.alpha(Theme.fg, 0.08)
+
+        Icon {
+            x: 14
+            anchors.verticalCenter: parent.verticalCenter
+            text: "search"; color: Theme.muted; font.pixelSize: 19
         }
-
-        Text {
-            text: "APPS"
-            color: Theme.muted
-            font.family: "Google Sans Flex"; font.pixelSize: 12; font.weight: Font.DemiBold; font.letterSpacing: 1
-        }
-
-        GridView {
-            id: grid
-            width: parent.width
-            height: 2 * 96
-            cellWidth: width / 5
-            cellHeight: 96
+        TextInput {
+            id: input
+            x: 44
+            width: parent.width - 60
+            anchors.verticalCenter: parent.verticalCenter
+            color: Theme.fg
+            selectionColor: Theme.accent
+            selectedTextColor: Theme.accentText
+            font.family: "Google Sans Flex"; font.pixelSize: 15
             clip: true
-            boundsBehavior: Flickable.StopAtBounds
-            model: root.apps
-            delegate: Rectangle {
-                required property var modelData
-                required property int index
-                readonly property bool selected: root.sel === index
-                width: grid.cellWidth - 6; height: grid.cellHeight - 6
-                radius: 14
-                color: selected ? Qt.alpha(Theme.accent, 0.16) : (ma.containsMouse ? Theme.surface2 : "transparent")
-                border.width: selected ? 1 : 0
-                border.color: Qt.alpha(Theme.accent, 0.4)
-                Column {
-                    anchors.centerIn: parent
-                    spacing: 6
-                    width: parent.width - 8
-                    IconImage {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        implicitSize: 36
-                        source: AppModel.iconSource(modelData.icon)
-                    }
-                    Text {
-                        width: parent.width
-                        horizontalAlignment: Text.AlignHCenter
-                        elide: Text.ElideRight
-                        text: modelData.name
-                        color: Theme.fg
-                        font.family: "Google Sans Flex"; font.pixelSize: 13; font.weight: Font.DemiBold
-                    }
-                }
-                MouseArea {
-                    id: ma
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    onClicked: (mouse) => {
-                        if (mouse.button === Qt.RightButton) {
-                            root.itemContextRequested(ma, {
-                                key: modelData.id,
-                                entry: modelData,
-                                name: modelData.name,
-                                icon: modelData.icon,
-                                toplevels: []
-                            });
-                        } else {
-                            root.activate(index);
-                        }
-                    }
-                }
-                // Pin badge
-                Icon {
-                    visible: DockPins.has(modelData.id)
-                    anchors.top: parent.top; anchors.right: parent.right
-                    anchors.topMargin: 4; anchors.rightMargin: 4
-                    text: "push_pin"; fill: 1; color: Theme.muted; font.pixelSize: 12
-                    z: 2
-                }
+            onTextChanged: root.sel = 0
+            Keys.onEscapePressed: IslandState.closeLauncher()
+            Keys.onReturnPressed: root.activate(root.sel)
+            Keys.onEnterPressed: root.activate(root.sel)
+            Keys.onUpPressed: root.move(-1)
+            Keys.onDownPressed: root.move(1)
+            Text {
+                visible: !input.text
+                anchors.verticalCenter: parent.verticalCenter
+                text: "Search apps, commands, or 2+2…"
+                color: Theme.muted
+                font: input.font
             }
         }
+    }
 
-        Text {
-            text: "COMMANDS"
-            visible: root.commands.length > 0
-            color: Theme.muted
-            font.family: "Google Sans Flex"; font.pixelSize: 12; font.weight: Font.DemiBold; font.letterSpacing: 1
-        }
+    ListView {
+        id: list
+        anchors.top: field.bottom
+        anchors.topMargin: Config.launcherGap
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: Config.launcherPad
+        anchors.rightMargin: Config.launcherPad
+        anchors.bottomMargin: Config.launcherPad
+        clip: true
+        model: root.rows
+        boundsBehavior: Flickable.StopAtBounds
 
-        Column {
-            width: parent.width
-            spacing: 2
-            Repeater {
-                model: root.commands
-                delegate: Rectangle {
-                    required property var modelData
-                    required property int index
-                    readonly property bool selected: root.sel === root.apps.length + index
-                    width: parent.width; height: 36; radius: 10
-                    color: selected ? Qt.alpha(Theme.accent, 0.16) : (cma.containsMouse ? Theme.surface2 : "transparent")
-                    Text {
-                        x: 12; anchors.verticalCenter: parent.verticalCenter
-                        text: modelData.name
-                        color: Theme.fg
-                        font.family: "Google Sans Flex"; font.pixelSize: 14
-                    }
-                    Rectangle {
-                        anchors.right: parent.right; anchors.rightMargin: 12
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: kbd.width + 14; height: 20; radius: 6
-                        color: Theme.surface2
-                        Text {
-                            id: kbd
-                            anchors.centerIn: parent
-                            text: modelData.hint
-                            color: Theme.muted
-                            font.family: "Google Sans Flex"; font.pixelSize: 11
-                        }
-                    }
-                    MouseArea {
-                        id: cma
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: root.activate(root.apps.length + index)
-                    }
-                }
+        delegate: Rectangle {
+            required property var modelData
+            required property int index
+            readonly property bool selected: root.sel === index
+            width: list.width
+            height: Config.launcherRowH
+            radius: 10
+            color: selected ? Qt.alpha(Theme.accent, 0.18)
+                : (rowMa.containsMouse ? Qt.alpha(Theme.fg, 0.06) : "transparent")
+            Behavior on color { ColorAnimation { duration: 120 } }
+
+            Icon {
+                visible: modelData.kind !== "app"
+                x: 12
+                anchors.verticalCenter: parent.verticalCenter
+                text: modelData.kind === "calc" ? "calculate" : modelData.icon
+                color: modelData.kind === "calc" ? Theme.accent : Theme.fg
+                font.pixelSize: 18
+            }
+            IconImage {
+                visible: modelData.kind === "app"
+                x: 8
+                anchors.verticalCenter: parent.verticalCenter
+                implicitSize: 22
+                source: modelData.kind === "app" ? AppModel.iconSource(modelData.icon) : ""
+            }
+            Text {
+                id: main
+                x: 44
+                width: parent.width - 44 - (tail.width + 20)
+                anchors.verticalCenter: parent.verticalCenter
+                elide: Text.ElideRight
+                text: modelData.kind === "calc" ? "= " + modelData.text : modelData.text
+                color: Theme.fg
+                font.family: "Google Sans Flex"
+                font.pixelSize: 14
+                font.weight: modelData.kind === "calc" ? Font.Bold : Font.Normal
+            }
+            Text {
+                id: tail
+                anchors.right: parent.right
+                anchors.rightMargin: 12
+                anchors.verticalCenter: parent.verticalCenter
+                text: modelData.kind === "calc" ? "↵ copy" : (modelData.hint || "")
+                color: modelData.kind === "calc" ? Qt.alpha(Theme.accent, 0.9) : Theme.muted
+                font.family: "Google Sans Flex"; font.pixelSize: 11
+                font.weight: modelData.kind === "calc" ? Font.DemiBold : Font.Normal
+            }
+
+            MouseArea {
+                id: rowMa
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onEntered: root.sel = index
+                onClicked: root.activate(index)
             }
         }
+    }
+
+    // Empty state: still one row tall, so the pill does not collapse.
+    Text {
+        visible: root.rows.length === 0
+        anchors.top: field.bottom
+        anchors.topMargin: Config.launcherGap + 10
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "No results"
+        color: Theme.muted
+        font.family: "Google Sans Flex"; font.pixelSize: 13
     }
 }

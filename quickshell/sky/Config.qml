@@ -30,12 +30,14 @@ Singleton {
     readonly property real toastMargin: 14
     readonly property int toastMs: 3500
 
-    readonly property real dockMargin: 8
-    readonly property real dockH: 48          // dock height when revealed (items + padding)
-    readonly property real dockPadX: 14
-    readonly property real dockOpenW: 700
-    readonly property real launcherH: 452     // extra height when the launcher is open
-    readonly property real itemSize: 36
+    // Launcher (launcher/Launcher.qml): compact dropdown that grows out of the
+    // island pill. Search + result rows + an inline calculator.
+    readonly property real launcherW: 520
+    readonly property real launcherMaxH: 372     // list is capped and scrolls past this
+    readonly property real launcherPad: 10
+    readonly property real launcherInputH: 42
+    readonly property real launcherRowH: 38
+    readonly property int launcherGap: 8
 
     // System tray panel (island/TrayPanel.qml), opened from the status pill.
     readonly property real trayItem: 28
@@ -44,8 +46,6 @@ Singleton {
     readonly property real trayMinW: 168
     readonly property int trayCols: 6            // cells per row before wrapping
     readonly property int trayInline: 3          // tray apps shown in the pill; the rest go behind the chevron
-    readonly property real dockHotZone: 6     // hover strip at the bottom edge that reveals the dock
-    readonly property int dockHideMs: 400
 
     // AI plan usage (UsageService.qml, needs the `codexbar` CLI): providers in
     // display order, background refresh, and refresh while the page is open.
@@ -55,8 +55,4 @@ Singleton {
 
     readonly property int animMs: 450
     readonly property list<real> bezier: [0.2, 0.9, 0.25, 1.0, 1, 1]
-
-    // Desktop-entry ids pinned in the dock, in order. This is only the seed used
-    // when no persisted list exists yet; runtime edits live in DockPins.
-    readonly property var defaultPinned: ["org.kde.dolphin", "kitty", "zen", "firefox", "steam", "vesktop", "spotify", "obsidian"]
 }

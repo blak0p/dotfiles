@@ -19,9 +19,10 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.namespace: "sky-island"
     // Focus is needed while the center or the launcher is open so the focus
-    // grab holds and the search field can take the keyboard.
-    WlrLayershell.keyboardFocus: (IslandState.centerOpen || IslandState.launcherOpen
-        || IslandState.wallpaperOpen) ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
+    // grab holds and the search field can take the keyboard. The wallpaper
+    // strip does not need it: its keys come from the Hyprland submap.
+    WlrLayershell.keyboardFocus: (IslandState.centerOpen || IslandState.launcherOpen)
+        ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
     implicitHeight: pillTop + Config.centerMaxH + shadowPad
     color: "transparent"
 
@@ -90,9 +91,9 @@ PanelWindow {
     }
     Connections {
         target: IslandState
-        function onCenterOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen || IslandState.wallpaperOpen; }
-        function onLauncherOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen || IslandState.wallpaperOpen; }
-        function onWallpaperOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen || IslandState.wallpaperOpen; }
+        function onCenterOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
+        function onLauncherOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
+        function onWallpaperOpenChanged() { grab.active = IslandState.centerOpen || IslandState.launcherOpen; }
     }
 
     RectangularShadow {

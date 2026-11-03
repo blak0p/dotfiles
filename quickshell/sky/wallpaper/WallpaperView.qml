@@ -21,27 +21,16 @@ Item {
         submap.run(open ? "wallpapers" : "reset");
         if (!open) return;
         WallpaperService.refresh();
-        focusRetry.restart();
     }
     Component.onDestruction: submap.run("reset")
 
     Process {
         id: submap
+        // Hyprland 0.57 routes dispatchers through Lua, so a bare
+        // `submap <name>` does not parse: it has to be hl.dsp.submap("name").
         function run(name) {
-            command = ["hyprctl", "dispatch", "submap", name];
+            command = ["hyprctl", "dispatch", "hl.dsp.submap(\"" + name + "\")"];
             running = true;
-        }
-    }
-
-    // The layer surface only takes keyboard focus after the compositor applies
-    // the keyboard mode, so retry until the strip really has it.
-    Timer {
-        id: focusRetry
-        interval: 30; repeat: true
-        property int tries: 0
-        onTriggered: {
-            strip.forceActiveFocus();
-            if (strip.activeFocus || ++tries > 20) { stop(); tries = 0; }
         }
     }
 
@@ -66,14 +55,6 @@ Item {
             boundsBehavior: Flickable.StopAtBounds
 
             onCurrentIndexChanged: if (currentIndex !== WallpaperService.selected) WallpaperService.selected = currentIndex
-
-            Keys.onEscapePressed: IslandState.closeWallpaper()
-            Keys.onReturnPressed: WallpaperService.apply(WallpaperService.selected)
-            Keys.onEnterPressed: WallpaperService.apply(WallpaperService.selected)
-            Keys.onLeftPressed: WallpaperService.move(-1)
-            Keys.onRightPressed: WallpaperService.move(1)
-            Keys.onUpPressed: WallpaperService.move(-1)
-            Keys.onDownPressed: WallpaperService.move(1)
 
             delegate: Item {
                 id: cell

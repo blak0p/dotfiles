@@ -36,7 +36,7 @@ Singleton {
         const entry = root.entries[index];
         if (!entry || applyProc.running) return;
         root.selected = index;
-        applyProc.command = ["python3", root.script, "apply", entry.path];
+        applyProc.command = ["python3", root.script, "apply", entry.path, entry.kind];
         applyProc.running = true;
     }
 

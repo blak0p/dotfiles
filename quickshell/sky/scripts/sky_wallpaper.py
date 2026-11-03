@@ -24,6 +24,7 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import signal
 import subprocess
 import sys
 import time
@@ -80,6 +81,10 @@ def default_dir(home: Path | None = None) -> Path | None:
 
 
 def kind_of(path: Path) -> str | None:
+    # A Wallpaper Engine scene is a directory (the workshop item), so it has no
+    # extension to look at.
+    if path.is_dir():
+        return "scene"
     ext = path.suffix.lower().lstrip(".")
     if ext in IMAGE_EXTENSIONS:
         return "image"
@@ -405,14 +410,41 @@ def monitors() -> list[str]:
         return []
 
 
+def _kill_by_program(basenames: set[str], proc: Path = Path("/proc")) -> None:
+    """SIGTERM processes whose executed program is one of `basenames`.
+
+    Matched on argv[0] instead of `pkill -f`: a full-command-line match also
+    hits any shell, editor or log tailer that merely mentions the name, which
+    is how `pkill -f linux-wallpaperengine` kills its own caller.
+    """
+    me = os.getpid()
+    for entry in proc.iterdir():
+        if not entry.name.isdigit():
+            continue
+        pid = int(entry.name)
+        if pid == me:
+            continue
+        try:
+            argv = (entry / "cmdline").read_bytes().split(b"\0")
+        except OSError:
+            continue
+        if not argv or not argv[0]:
+            continue
+        name = os.path.basename(argv[0].decode(errors="replace")).lower()
+        if name not in basenames:
+            continue
+        try:
+            os.kill(pid, signal.SIGTERM)
+        except OSError:
+            pass
+
+
 def _stop_video() -> None:
-    _run(["pkill", "-x", "mpvpaper"])
+    _kill_by_program({"mpvpaper"})
 
 
 def _stop_scene() -> None:
-    # -f: the binary name is longer than the 15-char kernel process name, so
-    # `pkill -x` can never match it.
-    _run(["pkill", "-f", "linux-wallpaperengine"])
+    _kill_by_program({"linux-wallpaperengine"})
 
 
 def _ensure_swww(tool: str) -> bool:
@@ -578,7 +610,8 @@ def main(argv: list[str] | None = None) -> int:
         if not args:
             print("sky_wallpaper: apply needs a path", file=sys.stderr)
             return 2
-        return apply(Path(args[0]))
+        # The picker knows the kind from the scan; passing it avoids guessing.
+        return apply(Path(args[0]), args[1] if len(args) > 1 else None)
     if command == "restore":
         state = read_state()
         saved = state.get("path")

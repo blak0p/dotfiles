@@ -34,6 +34,10 @@ class Kinds(unittest.TestCase):
         self.assertIsNone(wp.kind_of(Path("notes.txt")))
         self.assertIsNone(wp.kind_of(Path("scene.pkg")))
 
+    def test_a_directory_is_a_wallpaper_engine_scene(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(wp.kind_of(Path(tmp)), "scene")
+
 
 class ScanFolder(unittest.TestCase):
     def test_lists_images_and_videos_sorted_by_title(self):
@@ -203,6 +207,21 @@ class Dependencies(unittest.TestCase):
         self.assertTrue(report["tools"]["swww"])
         self.assertFalse(report["tools"]["mpvpaper"])
         self.assertIn("sources", report)
+
+
+class Stopping(unittest.TestCase):
+    def test_matches_the_program_and_not_a_command_line_that_names_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = Path(tmp)
+            (proc / "101").mkdir()
+            (proc / "101" / "cmdline").write_bytes(b"/usr/bin/linux-wallpaperengine\0--bg\0/w/1\0")
+            (proc / "202").mkdir()
+            (proc / "202" / "cmdline").write_bytes(
+                b"/usr/bin/bash\0-c\0pgrep -af linux-wallpaperengine\0")
+            killed = []
+            with unittest.mock.patch.object(wp.os, "kill", lambda pid, sig: killed.append(pid)):
+                wp._kill_by_program({"linux-wallpaperengine"}, proc)
+            self.assertEqual(killed, [101])
 
 
 if __name__ == "__main__":

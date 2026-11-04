@@ -71,7 +71,7 @@ Rectangle {
                 }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: !card.status ? "" : card.status.indicator === "none" ? "Operational" : card.status.description
+                    text: !card.status ? "" : card.status.indicator === "none" ? I18n.t("Operational") : card.status.description
                     color: Theme.muted
                     font.family: "Google Sans Flex"; font.pixelSize: 10
                 }
@@ -112,7 +112,7 @@ Rectangle {
                     Text {
                         anchors.right: parent.right
                         readonly property string reset: UsageService.resetsIn(win.modelData.resetsAt)
-                        text: Math.round(win.remaining) + "% left" + (reset ? "  ·  " + reset : "")
+                        text: I18n.t("%1% left", Math.round(win.remaining)) + (reset ? "  ·  " + reset : "")
                         color: Theme.muted
                         font.family: "Google Sans Flex"; font.pixelSize: 11
                         font.features: { "tnum": 1 }

@@ -109,7 +109,7 @@ Singleton {
         const d = n ? times[n.id] : null;
         if (!d) return "";
         const s = Math.floor((clock.date - d) / 1000);
-        if (s < 60) return "now";
+        if (s < 60) return I18n.t("now");
         if (s < 3600) return Math.floor(s / 60) + "m";
         if (s < 86400) return Math.floor(s / 3600) + "h";
         return Qt.formatDate(d, "dd/MM");

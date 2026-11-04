@@ -69,14 +69,14 @@ Item {
             Tile {
                 width: tiles.tileW
                 icon: Notifs.dnd ? "notifications_off" : "notifications"
-                label: "Silent"; sub: Notifs.list.length ? Notifs.list.length + " notifs" : "None"
+                label: I18n.t("Silent"); sub: Notifs.list.length ? I18n.t("%1 notifs", Notifs.list.length) : I18n.t("None")
                 on: Notifs.dnd; current: root.page === "notifs"
                 onToggled: Notifs.dnd = !Notifs.dnd
                 onOpened: IslandState.page = "notifs"
             }
             Tile {
                 width: tiles.tileW
-                icon: "power_settings_new"; label: "Power"; sub: "Session"
+                icon: "power_settings_new"; label: I18n.t("Power"); sub: I18n.t("Session")
                 on: false; current: root.page === "power"
                 onToggled: IslandState.page = "power"
                 onOpened: IslandState.page = "power"
@@ -160,7 +160,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     visible: !Net.wifiOn || Net.networks.length === 0
-                    text: !Net.wifiOn ? "Wi-Fi is off" : "Searching…"
+                    text: !Net.wifiOn ? I18n.t("Wi-Fi is off") : I18n.t("Searching…")
                     color: Theme.muted
                     font.family: "Google Sans Flex"; font.pixelSize: 12
                 }
@@ -192,7 +192,7 @@ Item {
                         Connections {
                             target: row.n
                             function onConnectionFailed(reason) {
-                                row.error = reason === ConnectionFailReason.NoSecrets ? "Wrong password" : "Could not connect";
+                                row.error = reason === ConnectionFailReason.NoSecrets ? I18n.t("Wrong password") : I18n.t("Could not connect");
                                 wifiPage.selected = row.n.name;
                             }
                             function onConnectedChanged() { if (row.n.connected) row.error = ""; }
@@ -237,9 +237,9 @@ Item {
                             anchors.right: lock.left; anchors.rightMargin: 8
                             y: 12
                             text: row.error !== "" ? row.error
-                                : row.n.stateChanging ? "Connecting…"
-                                : row.n.connected ? "Connected"
-                                : row.n.known ? "Saved" : ""
+                                : row.n.stateChanging ? I18n.t("Connecting…")
+                                : row.n.connected ? I18n.t("Connected")
+                                : row.n.known ? I18n.t("Saved") : ""
                             color: row.error !== "" ? "#ff8a80" : Theme.muted
                             font.family: "Google Sans Flex"; font.pixelSize: 11
                         }
@@ -287,7 +287,7 @@ Item {
                                     Text {
                                         anchors.verticalCenter: parent.verticalCenter
                                         visible: !pass.text
-                                        text: "Password"
+                                        text: I18n.t("Password")
                                         color: Theme.muted
                                         font: pass.font
                                     }
@@ -311,18 +311,18 @@ Item {
                                 ActionButton {
                                     visible: !row.n.connected
                                     primary: true
-                                    icon: "link"; label: "Connect"
+                                    icon: "link"; label: I18n.t("Connect")
                                     onClicked: row.join()
                                 }
                                 ActionButton {
                                     visible: row.n.connected
-                                    icon: "link_off"; label: "Disconnect"
+                                    icon: "link_off"; label: I18n.t("Disconnect")
                                     onClicked: row.n.disconnect()
                                 }
                                 ActionButton {
                                     visible: row.n.known
                                     danger: true
-                                    icon: "delete"; label: "Forget"
+                                    icon: "delete"; label: I18n.t("Forget")
                                     onClicked: { row.n.forget(); wifiPage.selected = ""; }
                                 }
                             }
@@ -343,7 +343,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     visible: !Net.btOn || Net.btDevices.length === 0
-                    text: !Net.adapter ? "No Bluetooth adapter" : !Net.btOn ? "Bluetooth is off" : "Searching…"
+                    text: !Net.adapter ? I18n.t("No Bluetooth adapter") : !Net.btOn ? I18n.t("Bluetooth is off") : I18n.t("Searching…")
                     color: Theme.muted
                     font.family: "Google Sans Flex"; font.pixelSize: 12
                 }
@@ -404,10 +404,10 @@ Item {
                             id: bstate
                             anchors.right: bchev.left; anchors.rightMargin: 8
                             y: 12
-                            text: brow.d.pairing ? "Pairing…"
-                                : brow.d.state === BluetoothDeviceState.Connecting ? "Connecting…"
-                                : brow.d.connected ? (brow.d.batteryAvailable ? Math.round(brow.d.battery * 100) + "%" : "Connected")
-                                : brow.d.paired ? "Paired" : "New"
+                            text: brow.d.pairing ? I18n.t("Pairing…")
+                                : brow.d.state === BluetoothDeviceState.Connecting ? I18n.t("Connecting…")
+                                : brow.d.connected ? (brow.d.batteryAvailable ? Math.round(brow.d.battery * 100) + "%" : I18n.t("Connected"))
+                                : brow.d.paired ? I18n.t("Paired") : I18n.t("New")
                             color: Theme.muted
                             font.family: "Google Sans Flex"; font.pixelSize: 11
                         }
@@ -430,25 +430,25 @@ Item {
                                 visible: !brow.d.connected
                                 primary: true
                                 icon: brow.d.paired ? "link" : "add_link"
-                                label: brow.d.paired ? "Connect" : "Pair"
+                                label: brow.d.paired ? I18n.t("Connect") : I18n.t("Pair")
                                 onClicked: brow.d.paired ? brow.d.connect() : brow.d.pair()
                             }
                             ActionButton {
                                 visible: brow.d.connected
-                                icon: "link_off"; label: "Disconnect"
+                                icon: "link_off"; label: I18n.t("Disconnect")
                                 onClicked: brow.d.disconnect()
                             }
                             ActionButton {
                                 visible: brow.d.paired
                                 icon: brow.d.trusted ? "verified" : "shield"
-                                label: brow.d.trusted ? "Trusted" : "Trust"
+                                label: brow.d.trusted ? I18n.t("Trusted") : I18n.t("Trust")
                                 onClicked: brow.d.trusted = !brow.d.trusted
                             }
                             ActionButton {
                                 visible: brow.d.paired || brow.d.pairing
                                 danger: true
                                 icon: brow.d.pairing ? "close" : "delete"
-                                label: brow.d.pairing ? "Cancel" : "Forget"
+                                label: brow.d.pairing ? I18n.t("Cancel") : I18n.t("Forget")
                                 onClicked: { if (brow.d.pairing) brow.d.cancelPair(); else { brow.d.forget(); btPage.selected = ""; } }
                             }
                         }
@@ -474,8 +474,8 @@ Item {
                     }
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: !UsageService.available ? "Install codexbar to see AI usage"
-                            : UsageService.loading || !UsageService.loaded ? "Loading usage…" : "No providers"
+                        text: !UsageService.available ? I18n.t("Install codexbar to see AI usage")
+                            : UsageService.loading || !UsageService.loaded ? I18n.t("Loading usage…") : I18n.t("No providers")
                         color: Theme.muted; font.family: "Google Sans Flex"; font.pixelSize: 12
                     }
                 }
@@ -514,12 +514,12 @@ Item {
                 readonly property real cellW: (width - 5 * spacing) / 6
                 Repeater {
                     model: [
-                        { icon: "system_update", label: UpdateService.totalCount > 0 ? ("Update (" + UpdateService.totalCount + ")") : "Update", action: () => UpdateService.applyAll() },
-                        { icon: "lock", label: "Lock", cmd: ["hyprlock"] },
-                        { icon: "bedtime", label: "Suspend", cmd: ["sh", "-c", "systemctl suspend || loginctl suspend"] },
-                        { icon: "logout", label: "Log out", cmd: ["sh", "-c", "loginctl terminate-session \"$XDG_SESSION_ID\""] },
-                        { icon: "restart_alt", label: "Reboot", cmd: ["sh", "-c", "systemctl reboot || loginctl reboot"] },
-                        { icon: "power_settings_new", label: "Shut down", cmd: ["sh", "-c", "systemctl poweroff || loginctl poweroff"] }
+                        { icon: "system_update", label: UpdateService.totalCount > 0 ? I18n.t("Update (%1)", UpdateService.totalCount) : I18n.t("Update"), action: () => UpdateService.applyAll() },
+                        { icon: "lock", label: I18n.t("Lock"), cmd: ["hyprlock"] },
+                        { icon: "bedtime", label: I18n.t("Suspend"), cmd: ["sh", "-c", "systemctl suspend || loginctl suspend"] },
+                        { icon: "logout", label: I18n.t("Log out"), cmd: ["sh", "-c", "loginctl terminate-session \"$XDG_SESSION_ID\""] },
+                        { icon: "restart_alt", label: I18n.t("Reboot"), cmd: ["sh", "-c", "systemctl reboot || loginctl reboot"] },
+                        { icon: "power_settings_new", label: I18n.t("Shut down"), cmd: ["sh", "-c", "systemctl poweroff || loginctl poweroff"] }
                     ]
                     delegate: Rectangle {
                         required property var modelData
@@ -573,7 +573,7 @@ Item {
             anchors.left: back.right
             anchors.leftMargin: back.visible ? 8 : 4
             anchors.verticalCenter: parent.verticalCenter
-            text: ({ notifs: "Notifications", wifi: "Wi-Fi", bluetooth: "Bluetooth", power: "Power", usage: "AI usage", sound: "Sound" })[root.page] || ""
+            text: I18n.t(({ notifs: "Notifications", wifi: "Wi-Fi", bluetooth: "Bluetooth", power: "Power", usage: "AI usage", sound: "Sound" })[root.page] || "")
             color: Theme.fg
             font.family: "Google Sans Flex"; font.pixelSize: 14; font.weight: Font.Bold
         }
@@ -583,7 +583,7 @@ Item {
             spacing: 6
             Pill {
                 visible: root.page === "notifs" && Notifs.list.length > 0
-                icon: "clear_all"; label: "Clear"
+                icon: "clear_all"; label: I18n.t("Clear")
                 onClicked: Notifs.clearAll()
             }
             Text {
@@ -595,12 +595,12 @@ Item {
             }
             Pill {
                 visible: root.page === "usage" && UsageService.available
-                icon: "refresh"; label: UsageService.loading ? "Updating" : "Refresh"
+                icon: "refresh"; label: UsageService.loading ? I18n.t("Updating") : I18n.t("Refresh")
                 onClicked: UsageService.refresh()
             }
             Pill {
                 visible: root.page === "wifi" || root.page === "bluetooth" || root.page === "sound"
-                icon: "settings"; label: "Settings"
+                icon: "settings"; label: I18n.t("Settings")
                 onClicked: {
                     Quickshell.execDetached(root.page === "wifi" ? ["nm-connection-editor"]
                         : root.page === "sound" ? ["pavucontrol"] : ["blueman-manager"]);

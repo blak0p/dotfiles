@@ -52,7 +52,7 @@ Flickable {
         width: root.width
         spacing: 6
 
-        Section { label: "Output" }
+        Section { label: I18n.t("Output") }
         Repeater {
             model: root.outputs
             delegate: MixerRow {
@@ -67,7 +67,7 @@ Flickable {
             }
         }
 
-        Section { label: "Apps"; visible: root.playing.length > 0 }
+        Section { label: I18n.t("Apps"); visible: root.playing.length > 0 }
         Repeater {
             model: root.playing
             delegate: MixerRow {
@@ -80,9 +80,9 @@ Flickable {
                 subtitle: root.appMedia(modelData)
             }
         }
-        Empty { visible: root.playing.length === 0; text: "No apps playing audio" }
+        Empty { visible: root.playing.length === 0; text: I18n.t("No apps playing audio") }
 
-        Section { label: "Microphone"; visible: root.inputs.length > 0 }
+        Section { label: I18n.t("Microphone"); visible: root.inputs.length > 0 }
         Repeater {
             model: root.inputs
             delegate: MixerRow {
@@ -97,7 +97,7 @@ Flickable {
             }
         }
 
-        Section { label: "Recording"; visible: root.recording.length > 0 }
+        Section { label: I18n.t("Recording"); visible: root.recording.length > 0 }
         Repeater {
             model: root.recording
             delegate: MixerRow {

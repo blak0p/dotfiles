@@ -32,8 +32,8 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             elide: Text.ElideRight
             textFormat: Text.StyledText
-            text: !root.p ? "Nothing playing"
-                : "<b>" + (root.p.trackTitle || "Unknown") + "</b>"
+            text: !root.p ? I18n.t("Nothing playing")
+                : "<b>" + (root.p.trackTitle || I18n.t("Unknown")) + "</b>"
                   + ((root.p.trackArtist || root.p.identity) ? "<font color=\"" + Theme.muted + "\">  " + (root.p.trackArtist || root.p.identity) + "</font>" : "")
             color: Theme.fg
             font.family: "Google Sans Flex"; font.pixelSize: 13

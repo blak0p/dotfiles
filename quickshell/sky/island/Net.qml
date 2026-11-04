@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Networking
 import Quickshell.Bluetooth
+import qs
 
 // Wifi (NetworkManager) and Bluetooth (BlueZ) state for the bar and the center.
 Singleton {
@@ -31,7 +32,7 @@ Singleton {
         : !wifiOn ? "wifi_off"
         : active ? signalIcon(active.signalStrength)
         : "signal_wifi_0_bar"
-    readonly property string netLabel: wired ? "Ethernet" : !wifiOn ? "Off" : active ? active.name : "Not connected"
+    readonly property string netLabel: wired ? "Ethernet" : !wifiOn ? I18n.t("Off") : active ? active.name : I18n.t("Not connected")
 
     function secured(n) { return n && n.security !== WifiSecurityType.Open && n.security !== WifiSecurityType.Unknown; }
 
@@ -52,6 +53,6 @@ Singleton {
         else d.connect();
     }
     readonly property string btIcon: !btOn ? "bluetooth_disabled" : (btConnected.length ? "bluetooth_connected" : "bluetooth")
-    readonly property string btLabel: !adapter ? "No adapter" : !btOn ? "Off"
-        : btConnected.length ? (btConnected[0].name || btConnected[0].deviceName) : "On"
+    readonly property string btLabel: !adapter ? I18n.t("No adapter") : !btOn ? I18n.t("Off")
+        : btConnected.length ? (btConnected[0].name || btConnected[0].deviceName) : I18n.t("On")
 }

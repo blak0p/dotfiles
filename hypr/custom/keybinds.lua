@@ -100,5 +100,5 @@ hl.define_submap("wallpapers", function()
     hl.bind("Return", hl.dsp.global("quickshell:wallpaperApply"),
         { description = "Wallpaper: Apply" })
     hl.bind("Escape", hl.dsp.global("quickshell:wallpaperClose"),
-        { submap_universal = true, description = "Wallpaper: Close" })
+        { description = "Wallpaper: Close" })
 end)

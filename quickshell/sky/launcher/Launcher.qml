@@ -16,8 +16,8 @@ Item {
     readonly property var calc: Calc.result(input.text)
     readonly property var apps: AppModel.filter(input.text)
     readonly property var commands: [
-        { name: "Change wallpaper", hint: "Ctrl+Super+T", icon: "wallpaper", run: () => IslandState.openWallpaper() },
-        { name: "Lock screen", hint: "Super L", icon: "lock", run: () => Quickshell.execDetached(["hyprlock"]) },
+        { name: I18n.t("Change wallpaper"), hint: "Ctrl+Super+T", icon: "wallpaper", run: () => IslandState.openWallpaper() },
+        { name: I18n.t("Lock screen"), hint: "Super L", icon: "lock", run: () => Quickshell.execDetached(["hyprlock"]) },
         { name: "Screenshot region", hint: "Super Shift S", icon: "photo_camera", run: () => Quickshell.execDetached(["sh", "-c",
             "d=\"$HOME/Imágenes/Screenshots\"; mkdir -p \"$d\"; sleep 0.3; g=$(slurp) && grim -g \"$g\" \"$d/$(date +%F_%H-%M-%S).png\""]) }
     ].filter(c => c.name.toLowerCase().indexOf(input.text.trim().toLowerCase()) !== -1)
@@ -117,7 +117,7 @@ Item {
             Text {
                 visible: !input.text
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Search apps, commands, or 2+2…"
+                text: I18n.t("Search apps, commands, or 2+2…")
                 color: Theme.muted
                 font: input.font
             }
@@ -181,7 +181,7 @@ Item {
                 anchors.right: parent.right
                 anchors.rightMargin: 12
                 anchors.verticalCenter: parent.verticalCenter
-                text: modelData.kind === "calc" ? "↵ copy" : (modelData.hint || "")
+                text: modelData.kind === "calc" ? I18n.t("↵ copy") : (modelData.hint || "")
                 color: modelData.kind === "calc" ? Qt.alpha(Theme.accent, 0.9) : Theme.muted
                 font.family: "Google Sans Flex"; font.pixelSize: 11
                 font.weight: modelData.kind === "calc" ? Font.DemiBold : Font.Normal
@@ -204,7 +204,7 @@ Item {
         anchors.top: field.bottom
         anchors.topMargin: Config.launcherGap + 10
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "No results"
+        text: I18n.t("No results")
         color: Theme.muted
         font.family: "Google Sans Flex"; font.pixelSize: 13
     }

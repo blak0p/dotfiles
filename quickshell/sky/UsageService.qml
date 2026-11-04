@@ -46,7 +46,7 @@ Singleton {
         if (!iso) return "";
         const ms = new Date(iso).getTime() - root.now;
         if (isNaN(ms)) return "";
-        if (ms <= 0) return "resetting";
+        if (ms <= 0) return I18n.t("resetting");
         const mins = Math.floor(ms / 60000);
         const d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
         if (d > 0) return d + "d " + h + "h";
@@ -57,7 +57,7 @@ Singleton {
     function agoText() {
         if (!root.updatedAt) return "";
         const mins = Math.floor((root.now - root.updatedAt) / 60000);
-        return mins < 1 ? "just now" : mins + "m ago";
+        return mins < 1 ? I18n.t("just now") : I18n.t("%1m ago", mins);
     }
 
     Process {

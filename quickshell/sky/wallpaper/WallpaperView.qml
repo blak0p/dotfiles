@@ -157,7 +157,7 @@ Item {
     Text {
         visible: WallpaperService.entries.length === 0
         anchors.centerIn: parent
-        text: "No wallpapers found"
+        text: I18n.t("No wallpapers found")
         color: Theme.muted
         font.family: "Google Sans Flex"
         font.pixelSize: 13

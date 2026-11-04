@@ -50,7 +50,7 @@ Item {
             x: Config.trayPad
             y: Config.trayPad
             width: card.width - Config.trayPad * 2
-            text: root.hovered !== "" ? root.hovered : "System tray"
+            text: root.hovered !== "" ? root.hovered : I18n.t("System tray")
             color: root.hovered !== "" ? Theme.fg : Theme.muted
             font.family: "Google Sans Flex"
             font.pixelSize: 12

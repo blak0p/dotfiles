@@ -20,6 +20,7 @@ Run with `qs -c sky`.
 | `island/TrayIcon.qml` | One tray item: theme-icon resolution, click / middle-click / menu |
 | `Theme.qml` | Palette from `~/.local/state/sky/colors.json`; regenerates it when the wallpaper changes |
 | `wallpaper/WallpaperView.qml` / `WallpaperService.qml` | Wallpaper picker: horizontal picture strip grown out of the clock pill (no chrome), opened with `Ctrl+Super+T`, moved with arrows or `h`/`l`, `Enter` applies; the list, thumbnails and apply live in `scripts/sky_wallpaper.py` |
+| `I18n.qml` / `i18n.js` | UI language: English plus Spanish (Spain). `Config.language` is `"auto"` (follows `LANG`), `"en"` or `"es"`; wrap new UI text in `I18n.t("…")` and add its translation to `i18n.js` (tests: `node --test tests/i18n.test.mjs`) |
 | `Config.qml` / `island/IslandState.qml` | Sizes / island mode (idle, launcher, notif, volume, center) |
 
 ## IPC

@@ -51,7 +51,7 @@ Item {
             width: parent.width
             spacing: 6
             Text {
-                text: root.notif ? (root.notif.appName || "Notification") : ""
+                text: root.notif ? (root.notif.appName || I18n.t("Notification")) : ""
                 color: Theme.muted
                 font.family: "Google Sans Flex"; font.pixelSize: 11
                 elide: Text.ElideRight

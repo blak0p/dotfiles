@@ -5,6 +5,9 @@ Singleton {
     // Monitor that hosts the shell; falls back to every screen if it is absent.
     readonly property string screen: "DP-2"
 
+    // UI language (I18n.qml): "auto" follows LANG, or force "en" / "es".
+    readonly property string language: "auto"
+
     readonly property real barHeight: 38
 
     // Dynamic Island (island/): its own overlay window. Idle it is a pill of

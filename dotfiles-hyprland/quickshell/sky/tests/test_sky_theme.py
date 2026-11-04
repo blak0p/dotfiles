@@ -121,19 +121,77 @@ class Renderers(unittest.TestCase):
         self.assertIn('theme[main_bg]=""', out)
 
 
+class Vivid(unittest.TestCase):
+    def test_ansi_colors_are_saturated_enough_to_tell_apart(self):
+        import colorsys
+        ansi = sky_theme.build_palette(matugen_dump(**WALL))["ansi"]
+        for slot in range(1, 7):
+            c = ansi[slot].lstrip("#")
+            r, g, b = (int(c[i:i + 2], 16) / 255 for i in (0, 2, 4))
+            self.assertGreaterEqual(colorsys.rgb_to_hls(r, g, b)[2], 0.7, slot)
+
+
+STARSHIP_BASE = """format = "$directory$character"
+palette = "ii"
+
+[directory]
+style = "fg:blue bold"
+
+[palettes.ii]
+blue = "blue"
+green = "green"
+"""
+
+
+class Starship(unittest.TestCase):
+    def setUp(self):
+        self.p = sky_theme.build_palette(matugen_dump(**WALL))
+
+    def test_switches_to_a_generated_palette_with_the_accent(self):
+        import tomllib
+        out = sky_theme.render_starship(STARSHIP_BASE, self.p)
+        d = tomllib.loads(out)
+        self.assertEqual(d["palette"], "sky")
+        sky = d["palettes"]["sky"]
+        self.assertEqual(sky["blue"], "#ffb59a")
+        self.assertEqual(sky["mauve"], "#d5c68e")
+        self.assertEqual(sky["text"], "#f1dfd9")
+        # Success and error keep their meaning.
+        self.assertEqual(sky["green"], "green")
+        self.assertEqual(sky["red"], "red")
+        # The rest of the user's config is untouched.
+        self.assertEqual(d["directory"]["style"], "fg:blue bold")
+        self.assertEqual(d["palettes"]["ii"]["blue"], "blue")
+
+    def test_base_without_palette_line_still_selects_sky(self):
+        import tomllib
+        out = sky_theme.render_starship('format = "$character"\n', self.p)
+        self.assertEqual(tomllib.loads(out)["palette"], "sky")
+
+
 class Apply(unittest.TestCase):
     def test_writes_every_target_and_runs_reload_hooks(self):
         out = Path(tempfile.mkdtemp())
         btop = Path(tempfile.mkdtemp()) / "themes" / "sky.theme"
         ran = []
         p = sky_theme.build_palette(matugen_dump(**WALL))
-        sky_theme.apply(p, out, btop_theme=btop, run=ran.append)
+        base = Path(tempfile.mkdtemp()) / "starship.toml"
+        base.write_text(STARSHIP_BASE)
+        sky_theme.apply(p, out, btop_theme=btop, starship_base=base, run=ran.append)
         self.assertEqual(sorted(os.listdir(out)),
-                         ["colors.json", "gtk.css", "hyprland.lua", "hyprlock.conf", "kitty.conf"])
+                         ["colors.json", "gtk.css", "hyprland.lua", "hyprlock.conf", "kitty.conf",
+                          "starship.toml"])
         self.assertEqual(json.loads((out / "colors.json").read_text())["accent"], "#ffb59a")
         self.assertTrue(btop.is_file())
         self.assertIn(["pkill", "-USR1", "-x", "kitty"], ran)
         self.assertIn(["hyprctl", "reload"], ran)
+
+    def test_missing_starship_base_is_skipped(self):
+        out = Path(tempfile.mkdtemp())
+        p = sky_theme.build_palette(matugen_dump(**WALL))
+        sky_theme.apply(p, out, btop_theme=out / "b.theme", starship_base=out / "none.toml",
+                        run=lambda _a: None)
+        self.assertNotIn("starship.toml", os.listdir(out))
 
 
 class ColorSource(unittest.TestCase):

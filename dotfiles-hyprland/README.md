@@ -139,10 +139,11 @@ re-applies the last wallpaper (it runs at login from `hypr/hyprland/execs.lua`).
 
 * **Wallpaper colors everywhere**: every wallpaper change runs
   `scripts/sky_theme.py`, which extracts a scheme with Matugen and writes
-  `~/.local/state/sky/{colors.json,kitty.conf,hyprland.lua,hyprlock.conf,gtk.css}`
+  `~/.local/state/sky/{colors.json,kitty.conf,hyprland.lua,hyprlock.conf,gtk.css,starship.toml}`
   plus `~/.config/btop/themes/sky.theme`, then reloads Kitty and Hyprland. The sky
-  shell and the Neovim `sky` colorscheme watch `colors.json`. Fish and Starship use
-  ANSI color names, so they follow Kitty's generated palette. Backgrounds are never
+  shell and the Neovim `sky` colorscheme watch `colors.json`. Fish uses ANSI color
+  names, so it follows Kitty's generated palette; Starship loads the generated copy
+  of `starship.toml` (accent for path and git) through `STARSHIP_CONFIG`. Backgrounds are never
   generated: Kitty keeps its own transparent background and Neovim stays transparent.
   Run it by hand with `python3 ~/.config/quickshell/sky/scripts/sky_theme.py`.
 

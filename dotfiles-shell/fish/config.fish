@@ -54,6 +54,9 @@ if test $IS_TERMUX -eq 0; and set -q BREW_BIN; and test -f $BREW_BIN
 end
 
 # Initialize tools
+# Starship palette generated from the wallpaper by sky_theme.py, when present.
+set -l sky_starship (set -q XDG_STATE_HOME; and echo $XDG_STATE_HOME; or echo $HOME/.local/state)/sky/starship.toml
+test -f $sky_starship; and set -gx STARSHIP_CONFIG $sky_starship
 starship init fish | source
 zoxide init fish | source
 atuin init fish | source

@@ -33,13 +33,19 @@ local hl = function(name, val)
   vim.api.nvim_set_hl(0, name, val)
 end
 
--- Transparent: never paint the editor background.
-for _, group in ipairs({
-  "Normal", "NormalNC", "SignColumn", "LineNr", "LineNrAbove", "LineNrBelow", "FoldColumn",
-  "EndOfBuffer", "CursorLineNr", "CursorLineSign", "CursorLineFold", "StatusLine", "StatusLineNC",
-  "TabLine", "TabLineFill", "WinBar", "WinBarNC", "WinSeparator", "VertSplit", "NormalFloat",
-  "FloatBorder", "FloatTitle", "MsgArea", "MiniStatuslineInactive",
-}) do
+-- Transparent everywhere: drop the background of every group painted with a
+-- palette surface (editor, floats, completion menu, pickers, statusline...).
+local surfaces = {}
+for _, key in ipairs({ "base00", "base01", "base02" }) do
+  surfaces[tonumber(p.base16[key]:sub(2), 16)] = true
+end
+for name, val in pairs(vim.api.nvim_get_hl(0, {})) do
+  if not val.link and val.bg and surfaces[val.bg] then
+    val.bg, val.ctermbg = nil, nil
+    hl(name, val)
+  end
+end
+for _, group in ipairs({ "Normal", "NormalNC", "NormalFloat", "SignColumn", "EndOfBuffer", "Pmenu" }) do
   local cur = vim.api.nvim_get_hl(0, { name = group, link = false })
   cur.bg, cur.ctermbg = nil, nil
   hl(group, cur)
@@ -49,7 +55,14 @@ hl("Cursor", { fg = p.onAccent, bg = p.accent })
 hl("lCursor", { link = "Cursor" })
 hl("TermCursor", { link = "Cursor" })
 hl("CursorLineNr", { fg = p.accent, bold = true })
-hl("CursorLine", { bg = p.widget })
+hl("CursorLine", {})
+-- Menus: no background; the selected entry is marked by color, not a block.
+hl("PmenuSel", { fg = p.accent, bold = true })
+hl("PmenuKind", { fg = p.secondary })
+hl("PmenuExtra", { fg = p.outline })
+hl("PmenuSbar", {})
+hl("PmenuThumb", { bg = p.outlineVariant })
+hl("BlinkCmpMenuSelection", { link = "PmenuSel" })
 hl("Visual", { bg = p.surface2 })
 hl("FloatBorder", { fg = p.outline })
 hl("FloatTitle", { fg = p.accent, bold = true })

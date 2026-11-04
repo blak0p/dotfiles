@@ -45,3 +45,10 @@ end
 
 -- Shell overrides --
 require("hyprland.shellOverrides.main")
+
+-- Wallpaper colors from sky_theme.py, last so they win over custom/ --
+local sky_colors = (os.getenv("XDG_STATE_HOME") or (HOME .. "/.local/state")) .. "/sky/hyprland.lua"
+if is_file_exists(sky_colors) then
+    local ok, err = pcall(dofile, sky_colors)
+    if not ok then print("sky colors: " .. tostring(err)) end
+end

@@ -99,8 +99,10 @@ class Renderers(unittest.TestCase):
 
     def test_hyprland_borders_use_the_accent(self):
         out = sky_theme.render_hyprland(self.p)
-        self.assertIn('active_border = "rgba(ffb59aee)"', out)
-        self.assertIn('inactive_border = "rgba(53433e88)"', out)
+        self.assertIn('active_border = "rgba(ffb59aaa)"', out)
+        # Inactive borders and the background stay as the user's config sets them.
+        self.assertNotIn("inactive_border", out)
+        self.assertNotIn("background_color", out)
 
     def test_hyprlock_variables(self):
         out = sky_theme.render_hyprlock(self.p)

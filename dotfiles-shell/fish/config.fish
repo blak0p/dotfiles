@@ -108,16 +108,17 @@ end
 alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
 alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
 
-set -l foreground F3F6F9 normal
-set -l selection 263356 normal
-set -l comment 8394A3 brblack
-set -l red CB7C94 red
-set -l orange DEBA87 orange
-set -l yellow FFE066 yellow
-set -l green B7CC85 green
-set -l purple A3B5D6 purple
-set -l cyan 7AA89F cyan
-set -l pink FF8DD7 magenta
+# ANSI names only: kitty's palette (generated from the wallpaper) decides the color.
+set -l foreground normal
+set -l selection brblack
+set -l comment brblack
+set -l red red
+set -l orange bryellow
+set -l yellow yellow
+set -l green green
+set -l purple blue
+set -l cyan cyan
+set -l pink magenta
 
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground

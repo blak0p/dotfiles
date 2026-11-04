@@ -18,7 +18,7 @@ Run with `qs -c sky`.
 | `UsageService.qml` / `scripts/fetch_usage.py` / `island/UsageCard.qml` | AI plan usage (Claude, Codex, Antigravity) from the [CodexBar](https://github.com/steipete/CodexBar) CLI `codexbar`; providers and refresh intervals in `Config.qml` (`usageProviders`, `usageIdleMs`, `usageOpenMs`) |
 | `island/TrayPanel.qml` | System tray panel opened by the status pill chevron: one cell per StatusNotifierItem |
 | `island/TrayIcon.qml` | One tray item: theme-icon resolution, click / middle-click / menu |
-| `Theme.qml` | Palette from `~/.local/state/sky/colors.json`; regenerates it when the wallpaper changes |
+| `Theme.qml` / `scripts/sky_theme.py` | Palette from `~/.local/state/sky/colors.json`; when the wallpaper changes it reruns `sky_theme.py`, which also recolors Hyprland borders, hyprlock, Kitty, GTK, btop and the Neovim `sky` colorscheme (tests: `python3 -m unittest discover -s tests`) |
 | `wallpaper/WallpaperView.qml` / `WallpaperService.qml` | Wallpaper picker: horizontal picture strip grown out of the clock pill (no chrome), opened with `Ctrl+Super+T`, moved with arrows or `h`/`l`, `Enter` applies; the list, thumbnails and apply live in `scripts/sky_wallpaper.py` |
 | `I18n.qml` / `i18n.js` | UI language: English plus Spanish (Spain). `Config.language` is `"auto"` (follows `LANG`), `"en"` or `"es"`; wrap new UI text in `I18n.t("…")` and add its translation to `i18n.js` (tests: `node --test tests/i18n.test.mjs`) |
 | `Config.qml` / `island/IslandState.qml` | Sizes / island mode (idle, launcher, notif, volume, center) |

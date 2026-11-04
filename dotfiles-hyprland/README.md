@@ -137,9 +137,14 @@ linux-wallpaperengine --screen-root DP-2 --bg ~/.local/share/Steam/steamapps/wor
 tools and sources are actually available, and `sky_wallpaper.py restore`
 re-applies the last wallpaper (it runs at login from `hypr/hyprland/execs.lua`).
 
-* **Material You Sync**: the shell regenerates its palette from the applied
-  wallpaper with Matugen (`scripts/sky_theme.py`), propagating accent colors
-  across Quickshell, Kitty, GTK, Qt, and Neovim.
+* **Wallpaper colors everywhere**: every wallpaper change runs
+  `scripts/sky_theme.py`, which extracts a scheme with Matugen and writes
+  `~/.local/state/sky/{colors.json,kitty.conf,hyprland.lua,hyprlock.conf,gtk.css}`
+  plus `~/.config/btop/themes/sky.theme`, then reloads Kitty and Hyprland. The sky
+  shell and the Neovim `sky` colorscheme watch `colors.json`. Fish and Starship use
+  ANSI color names, so they follow Kitty's generated palette. Backgrounds are never
+  generated: Kitty keeps its own transparent background and Neovim stays transparent.
+  Run it by hand with `python3 ~/.config/quickshell/sky/scripts/sky_theme.py`.
 
 ---
 

@@ -12,25 +12,11 @@ return {
       ["<C-k>"] = { "select_prev", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
       ["<Tab>"] = {
-        function(cmp)
-          local ok, minuet_vt = pcall(require, "minuet.virtualtext")
-          if ok and minuet_vt.action and minuet_vt.action.is_visible() then
-            minuet_vt.action.accept()
-            return true
-          end
-        end,
         "snippet_forward",
         "select_next",
         "fallback",
       },
       ["<S-Tab>"] = {
-        function(cmp)
-          local ok, minuet_vt = pcall(require, "minuet.virtualtext")
-          if ok and minuet_vt.action and minuet_vt.action.is_visible() then
-            minuet_vt.action.accept_line()
-            return true
-          end
-        end,
         "snippet_backward",
         "select_prev",
         "fallback",

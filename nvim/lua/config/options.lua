@@ -5,3 +5,4 @@
 vim.opt.relativenumber = false
 vim.opt.number = true
 vim.opt.fillchars:append({ eob = " " })
+vim.opt.hlsearch = false

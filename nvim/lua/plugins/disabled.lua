@@ -39,4 +39,12 @@ return {
     "coder/claudecode.nvim",
     enabled = false,
   },
+  {
+    "milanglacier/minuet-ai.nvim",
+    enabled = false,
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    enabled = false,
+  },
 }

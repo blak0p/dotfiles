@@ -7,8 +7,8 @@
 -- Map Ctrl+b in insert mode to delete to the end of the word without leaving insert mode
 vim.keymap.set("i", "<C-b>", "<C-o>de")
 
--- Map jk to escape in insert mode
-vim.keymap.set("i", "jk", "<Esc>")
+-- Map jk to escape in insert mode (also clears search highlight)
+vim.keymap.set("i", "jk", "<Esc><cmd>noh<CR>", { desc = "Exit insert mode and clear search highlight" })
 
 -- Map Ctrl+c to escape from other modes
 vim.keymap.set({ "i", "n", "v" }, "<C-c>", [[<C-\><C-n>]])
@@ -138,9 +138,6 @@ vim.keymap.set("n", "<leader>md", function()
   vim.cmd("delmarks A-Z0-9")
   vim.notify("All marks deleted")
 end, { desc = "Delete all marks" })
-
--- AI Inline Edit
-vim.keymap.set({ "n", "v" }, "<leader>ai", "<cmd>CodeCompanion<CR>", { desc = "AI [I]nline Edit" })
 
 -- Custom save function
 function SaveFile()

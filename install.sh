@@ -17,22 +17,35 @@ err()   { echo -e "${RED}✗${NC} $1"; }
 
 deploy_symlink() {
     local src="$1" dst="$2"
-    if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-        warn "Backing up $dst → $BACKUP_DIR/"
-        mkdir -p "$BACKUP_DIR/$(dirname "${dst#"$HOME"/}")"
-        mv "$dst" "$BACKUP_DIR/$(dirname "${dst#"$HOME"/}")/"
-    fi
-    if [ -L "$dst" ]; then
-        local current
-        current="$(readlink "$dst")"
-        if [ "$current" = "$src" ]; then
-            return 0  # Already correct — idempotent
+    local backup_parent backup_target current
+    if [ -e "$dst" ] || [ -L "$dst" ]; then
+        if [ ! -L "$dst" ]; then
+            warn "Backing up $dst -> $BACKUP_DIR/"
+            backup_parent="$BACKUP_DIR/$(dirname "${dst#"$HOME"/}")"
+            mkdir -p -- "$backup_parent"
+            backup_target="$backup_parent/$(basename "$dst")"
+            if [ -e "$backup_target" ] || [ -L "$backup_target" ]; then
+                backup_target="$backup_target.$(date +%s%N)"
+            fi
+            mv -- "$dst" "$backup_target"
+        else
+            current="$(readlink "$dst")"
+            if [ "$current" = "$src" ]; then
+                return 0
+            fi
+            backup_parent="$BACKUP_DIR/$(dirname "${dst#"$HOME"/}")"
+            mkdir -p -- "$backup_parent"
+            backup_target="$backup_parent/$(basename "$dst").symlink"
+            if [ -e "$backup_target" ] || [ -L "$backup_target" ]; then
+                backup_target="$backup_target.$(date +%s%N)"
+            fi
+            ln -s -- "$current" "$backup_target" 2>/dev/null || true
+            rm -f -- "$dst"
         fi
-        rm -f "$dst"
     fi
-    mkdir -p "$(dirname "$dst")"
-    ln -sf "$src" "$dst"
-    ok "Symlink: $dst → $src"
+    mkdir -p -- "$(dirname "$dst")"
+    ln -sf -- "$src" "$dst"
+    ok "Symlink: $dst -> $src"
 }
 
 deploy_configs() {

@@ -1,6 +1,7 @@
 return {
-   "olimorris/codecompanion.nvim",
-   lazy = true,
+  "olimorris/codecompanion.nvim",
+  enabled = false,
+  lazy = true,
    init = function()
     require("plugins.codecompanion.codecompanion-notifier"):init()
     local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})

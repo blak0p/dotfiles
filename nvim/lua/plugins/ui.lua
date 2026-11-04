@@ -25,8 +25,12 @@ local mode = {
 }
 
 local function codecompanion_adapter_name()
-  local chat = require("codecompanion").buf_get_chat(vim.api.nvim_get_current_buf())
-  if not chat then
+  local ok, cc = pcall(require, "codecompanion")
+  if not ok then
+    return nil
+  end
+  local chat = cc.buf_get_chat(vim.api.nvim_get_current_buf())
+  if not chat or not chat.adapter then
     return nil
   end
 
@@ -34,8 +38,12 @@ local function codecompanion_adapter_name()
 end
 
 local function codecompanion_current_model_name()
-  local chat = require("codecompanion").buf_get_chat(vim.api.nvim_get_current_buf())
-  if not chat then
+  local ok, cc = pcall(require, "codecompanion")
+  if not ok then
+    return nil
+  end
+  local chat = cc.buf_get_chat(vim.api.nvim_get_current_buf())
+  if not chat or not chat.settings then
     return nil
   end
 

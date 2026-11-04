@@ -108,7 +108,7 @@ The installer symlinks this repository directly into `~/.config/nvim`:
 
 | Component | Technology | Description |
 |---|---|---|
-| **Theme** | `gentleman-kanagawa-blur` | Deep dark palette inspired by Kanagawa Wave with full transparency support |
+| **Theme** | `sky` (`colors/sky.lua`) | Generated from the wallpaper (`~/.local/state/sky/colors.json`, via mini.base16), transparent background, reloads live; falls back to `gentleman-kanagawa-blur` when there is no palette |
 | **Breadcrumbs** | `b0o/incline.nvim` | Floating pills in the top-right corner of active splits showing devicon, filename, and `[+]` modified state |
 | **Statusline** | `nvim-lualine/lualine.nvim` | Minimalist status bar displaying mode badges, git status, and Oil.nvim paths |
 | **Dashboard** | `folke/snacks.nvim` | ASCII header with quick project jumpers and plugin statistics |

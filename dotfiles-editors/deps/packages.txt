@@ -1,0 +1,37 @@
+# Packages for the editor domain (Arch Linux / AUR).
+# Consume with: pacman -S --needed - < deps/packages.txt (or paru/yay)
+
+# Core Editor & Runtimes
+neovim
+git
+curl
+nodejs
+npm
+python
+python-pip
+python-virtualenv
+go
+rust
+
+# Search & File Navigation
+ripgrep
+fd
+fzf
+
+# Git Tools
+lazygit
+
+# Clipboard Integration
+wl-clipboard
+xclip
+
+# Build Tools & Compilers (Treesitter parsers, LuaSnip jsregexp, native extensions)
+gcc
+make
+cmake
+unzip
+tar
+gzip
+
+# Fonts
+ttf-jetbrains-mono-nerd

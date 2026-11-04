@@ -1,0 +1,39 @@
+# Packages for the editor domain on Fedora.
+# Consume with: grep -vE '^\s*(#|$)' deps/packages.dnf.txt | xargs sudo dnf install -y
+
+# Core Editor & Runtimes
+neovim
+git
+curl
+nodejs
+npm
+python3
+python3-pip
+python3-virtualenv
+golang
+cargo
+rustc
+
+# Search & File Navigation
+ripgrep
+fd-find
+fzf
+
+# Git Tools
+lazygit
+
+# Clipboard Integration
+wl-clipboard
+xclip
+
+# Build Tools & Compilers (Treesitter parsers, LuaSnip jsregexp, native extensions)
+gcc
+gcc-c++
+make
+cmake
+unzip
+tar
+gzip
+
+# Fonts
+jetbrains-mono-fonts-all

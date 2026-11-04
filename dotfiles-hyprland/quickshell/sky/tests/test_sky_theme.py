@@ -16,25 +16,24 @@ def matugen_dump(**colors):
                        for k, v in colors.items()}}
 
 
-class SkyAccentHue(unittest.TestCase):
-    def test_blue_wallpaper_keeps_its_hue_with_zero_bias(self):
-        self.assertAlmostEqual(sky_theme.sky_accent_hue(215, 0.0), 215)
+WALL = dict(primary="#ffb59a", on_primary="#552000", secondary="#e7bdb0", tertiary="#d5c68e",
+            surface="#1a110e", surface_container="#271d1a", surface_container_high="#322824",
+            on_surface="#f1dfd9", on_surface_variant="#d8c2bb", outline="#a08d86",
+            outline_variant="#53433e", source_color="#c4501d")
 
-    def test_full_bias_is_always_sky(self):
-        for wall in (0, 18, 120, 215, 300):
-            self.assertAlmostEqual(sky_theme.sky_accent_hue(wall, 1.0), sky_theme.SKY_HUE)
 
-    def test_orange_wallpaper_is_pulled_at_most_40_degrees(self):
-        # 18 is 173deg above 205 going up through 360, clamped to +40
-        self.assertAlmostEqual(sky_theme.sky_accent_hue(18, 0.0), 245)
-        self.assertAlmostEqual(sky_theme.sky_accent_hue(18, 0.7), 217)
+def hue_gap(a, b):
+    return abs(((a - b + 540) % 360) - 180)
 
-    def test_green_wallpaper_pulls_down(self):
-        self.assertAlmostEqual(sky_theme.sky_accent_hue(120, 0.0), 165)
 
-    def test_bias_is_clamped(self):
-        self.assertAlmostEqual(sky_theme.sky_accent_hue(120, 3), sky_theme.SKY_HUE)
-        self.assertAlmostEqual(sky_theme.sky_accent_hue(120, -1), 165)
+class Harmonize(unittest.TestCase):
+    def test_moves_toward_the_wallpaper_at_most_15_degrees(self):
+        self.assertAlmostEqual(sky_theme.harmonize(120, 300), 105)
+        self.assertAlmostEqual(sky_theme.harmonize(120, 20), 105)
+
+    def test_close_hues_move_half_way(self):
+        self.assertAlmostEqual(sky_theme.harmonize(0, 10), 5)
+        self.assertAlmostEqual(sky_theme.harmonize(350, 10), 0)
 
 
 class HexHue(unittest.TestCase):
@@ -43,30 +42,96 @@ class HexHue(unittest.TestCase):
         self.assertAlmostEqual(sky_theme.hex_hue("#00ff00"), 120)
         self.assertAlmostEqual(sky_theme.hex_hue("#0000ff"), 240)
 
-    def test_seed_has_the_requested_hue(self):
-        self.assertAlmostEqual(sky_theme.hex_hue(sky_theme.seed_for_hue(205)), 205, delta=1)
-
 
 class BuildPalette(unittest.TestCase):
-    def test_roles_come_from_accent_scheme_and_wall_scheme(self):
-        accent = matugen_dump(primary="#8fcff3", on_primary="#003548", secondary="#b4cad6",
-                              on_surface="#dfe3e7", on_surface_variant="#c0c8cd", outline="#8a9297",
-                              surface_container_high="#262b2e")
-        wall = matugen_dump(primary="#ffb59a", surface="#1a110e", surface_container="#271d1a",
-                            source_color="#c4501d")
-        p = sky_theme.build_palette(accent, wall, wall_hue=18, accent_hue=217)
-        self.assertEqual(p["accent"], "#8fcff3")
-        self.assertEqual(p["onAccent"], "#003548")
-        self.assertEqual(p["secondary"], "#b4cad6")
-        self.assertEqual(p["tertiary"], "#ffb59a")
+    def setUp(self):
+        self.p = sky_theme.build_palette(matugen_dump(**WALL))
+
+    def test_accent_follows_the_wallpaper_scheme(self):
+        p = self.p
+        self.assertEqual(p["accent"], "#ffb59a")
+        self.assertEqual(p["onAccent"], "#552000")
+        self.assertEqual(p["secondary"], "#e7bdb0")
+        self.assertEqual(p["tertiary"], "#d5c68e")
         self.assertEqual(p["surface"], "#1a110e")
-        self.assertEqual(p["surface2"], "#262b2e")
+        self.assertEqual(p["surface2"], "#322824")
         self.assertEqual(p["widget"], "#271d1a")
-        self.assertEqual(p["on"], "#dfe3e7")
-        self.assertEqual(p["muted"], "#c0c8cd")
-        self.assertEqual(p["outline"], "#8a9297")
+        self.assertEqual(p["on"], "#f1dfd9")
+        self.assertEqual(p["muted"], "#d8c2bb")
+        self.assertEqual(p["outline"], "#a08d86")
+        self.assertEqual(p["outlineVariant"], "#53433e")
         self.assertEqual(p["wallHue"], 18)
-        self.assertEqual(p["accentHue"], 217)
+
+    def test_ansi_has_16_colors_with_semantic_hues_near_the_wallpaper(self):
+        ansi = self.p["ansi"]
+        self.assertEqual(len(ansi), 16)
+        for c in ansi:
+            self.assertRegex(c, r"^#[0-9a-f]{6}$")
+        for slot, base in ((1, 0), (2, 120), (3, 50), (4, 215), (5, 300), (6, 180)):
+            self.assertLessEqual(hue_gap(sky_theme.hex_hue(ansi[slot]), base), 16, slot)
+            self.assertLessEqual(hue_gap(sky_theme.hex_hue(ansi[slot + 8]), base), 16, slot)
+        self.assertEqual(ansi[15], "#f1dfd9")
+
+    def test_base16_uses_the_wallpaper_for_functions_keywords_and_text(self):
+        b = self.p["base16"]
+        self.assertEqual(sorted(b), [f"base0{d}" for d in "0123456789ABCDEF"])
+        self.assertEqual(b["base00"], "#1a110e")
+        self.assertEqual(b["base05"], "#f1dfd9")
+        self.assertEqual(b["base0D"], "#ffb59a")
+        self.assertEqual(b["base0E"], "#d5c68e")
+        self.assertEqual(b["base0C"], "#e7bdb0")
+        self.assertEqual(b["base0B"], self.p["ansi"][2])
+
+
+class Renderers(unittest.TestCase):
+    def setUp(self):
+        self.p = sky_theme.build_palette(matugen_dump(**WALL))
+
+    def test_kitty_never_sets_the_background(self):
+        out = sky_theme.render_kitty(self.p)
+        keys = [line.split()[0] for line in out.splitlines() if line and not line.startswith("#")]
+        self.assertNotIn("background", keys)
+        self.assertNotIn("background_opacity", keys)
+        self.assertIn("foreground #f1dfd9", out)
+        self.assertIn("cursor #ffb59a", out)
+        for i in range(16):
+            self.assertIn(f"color{i} {self.p['ansi'][i]}", out)
+
+    def test_hyprland_borders_use_the_accent(self):
+        out = sky_theme.render_hyprland(self.p)
+        self.assertIn('active_border = "rgba(ffb59aee)"', out)
+        self.assertIn('inactive_border = "rgba(53433e88)"', out)
+
+    def test_hyprlock_variables(self):
+        out = sky_theme.render_hyprlock(self.p)
+        self.assertIn("$text_color = rgba(f1dfd9ff)", out)
+        self.assertIn("$entry_border_color = rgba(ffb59a88)", out)
+        self.assertNotIn("background_image", out)
+
+    def test_gtk_accent(self):
+        out = sky_theme.render_gtk(self.p)
+        self.assertIn("@define-color accent_color #ffb59a;", out)
+        self.assertIn("@define-color window_bg_color #1a110e;", out)
+
+    def test_btop_theme(self):
+        out = sky_theme.render_btop(self.p)
+        self.assertIn('theme[hi_fg]="#ffb59a"', out)
+        self.assertIn('theme[main_bg]=""', out)
+
+
+class Apply(unittest.TestCase):
+    def test_writes_every_target_and_runs_reload_hooks(self):
+        out = Path(tempfile.mkdtemp())
+        btop = Path(tempfile.mkdtemp()) / "themes" / "sky.theme"
+        ran = []
+        p = sky_theme.build_palette(matugen_dump(**WALL))
+        sky_theme.apply(p, out, btop_theme=btop, run=ran.append)
+        self.assertEqual(sorted(os.listdir(out)),
+                         ["colors.json", "gtk.css", "hyprland.lua", "hyprlock.conf", "kitty.conf"])
+        self.assertEqual(json.loads((out / "colors.json").read_text())["accent"], "#ffb59a")
+        self.assertTrue(btop.is_file())
+        self.assertIn(["pkill", "-USR1", "-x", "kitty"], ran)
+        self.assertIn(["hyprctl", "reload"], ran)
 
 
 class ColorSource(unittest.TestCase):

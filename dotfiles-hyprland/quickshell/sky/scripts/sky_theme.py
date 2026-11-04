@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
-"""Generate the sky shell palette from the current wallpaper.
+"""Generate the desktop palette from the current wallpaper and apply it.
 
-The accent stays sky blue: matugen extracts the wallpaper's source color, the
-wallpaper hue may pull the accent at most 40 degrees, scaled by (1 - bias).
-Surfaces and the tertiary tone come from the wallpaper's own scheme, so the
-frame blends with the background while the accent stays recognisable.
+matugen extracts a Material scheme from the wallpaper; every role (accent
+included) follows it. On top of that, a 16-color ANSI set keeps semantic hues
+(red, green, ...) harmonized toward the wallpaper, and a base16 set feeds nvim.
+
+Outputs (in --out-dir, default ~/.local/state/sky):
+  colors.json     sky shell + nvim (palette, ansi, base16)
+  kitty.conf      foreground, cursor, selection, ANSI (never the background)
+  hyprland.lua    window borders
+  hyprlock.conf   lock screen color variables
+  gtk.css         GTK 3/4 named colors
+plus ~/.config/btop/themes/sky.theme. Kitty and Hyprland are reloaded.
 
 Usage:
-  sky_theme.py [WALLPAPER] [--bias 0..1] [--out PATH]
+  sky_theme.py [WALLPAPER] [--out-dir DIR] [--no-reload]
 
 WALLPAPER may be an image, a video, or a Wallpaper Engine scene directory.
 Without it, the path saved in the shell's own wallpaper state is used.
@@ -24,27 +31,27 @@ import sys
 import tempfile
 from pathlib import Path
 
-SKY_HUE = 205.0
-MAX_PULL = 40.0
-DEFAULT_BIAS = 0.7
 FALLBACK_SEED = "#5cb8f0"
+MAX_HARMONIZE = 15.0
+# ANSI slots 1..6 and their reference hues: red, green, yellow, blue, magenta, cyan.
+ANSI_HUES = {1: 0.0, 2: 120.0, 3: 50.0, 4: 215.0, 5: 300.0, 6: 180.0}
 
 STATE_HOME = Path(os.environ.get("XDG_STATE_HOME", Path.home() / ".local/state"))
 CONFIG_HOME = Path(os.environ.get("XDG_CONFIG_HOME", Path.home() / ".config"))
 CACHE_HOME = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
-DEFAULT_OUT = STATE_HOME / "sky/colors.json"
+DEFAULT_OUT_DIR = STATE_HOME / "sky"
+BTOP_THEME = CONFIG_HOME / "btop/themes/sky.theme"
 SKY_STATE = CONFIG_HOME / "sky/wallpaper.json"
 
 VIDEO_EXT = {".mp4", ".mkv", ".webm", ".mov", ".avi"}
 ANIMATED_EXT = {".gif", ".webp"}
 
 
-def sky_accent_hue(wall_hue: float, bias: float) -> float:
-    """Accent hue: SKY_HUE pulled toward wall_hue by at most MAX_PULL, scaled by 1 - bias."""
-    bias = min(max(bias, 0.0), 1.0)
-    delta = ((wall_hue - SKY_HUE + 540) % 360) - 180
-    delta = min(max(delta, -MAX_PULL), MAX_PULL)
-    return (SKY_HUE + delta * (1 - bias)) % 360
+def harmonize(hue: float, wall_hue: float) -> float:
+    """Rotate `hue` halfway toward `wall_hue`, at most MAX_HARMONIZE degrees."""
+    delta = ((wall_hue - hue + 540) % 360) - 180
+    shift = min(max(delta / 2, -MAX_HARMONIZE), MAX_HARMONIZE)
+    return (hue + shift) % 360
 
 
 def hex_hue(color: str) -> float:
@@ -53,31 +60,142 @@ def hex_hue(color: str) -> float:
     return colorsys.rgb_to_hls(r, g, b)[0] * 360
 
 
-def seed_for_hue(hue: float) -> str:
-    r, g, b = colorsys.hls_to_rgb(hue / 360, 0.6, 0.8)
+def hls_hex(hue: float, light: float, sat: float) -> str:
+    r, g, b = colorsys.hls_to_rgb(hue / 360, light, sat)
     return "#{:02x}{:02x}{:02x}".format(round(r * 255), round(g * 255), round(b * 255))
 
 
 def _role(dump: dict, name: str) -> str:
-    return dump["colors"][name]["dark"]["color"]
+    return dump["colors"][name]["dark"]["color"].lower()
 
 
-def build_palette(accent: dict, wall: dict, wall_hue: float, accent_hue: float) -> dict:
-    """Merge the accent scheme (from the biased seed) with the wallpaper scheme."""
-    return {
-        "accent": _role(accent, "primary"),
-        "onAccent": _role(accent, "on_primary"),
-        "secondary": _role(accent, "secondary"),
-        "tertiary": _role(wall, "primary"),
-        "surface": _role(wall, "surface"),
-        "surface2": _role(accent, "surface_container_high"),
-        "widget": _role(wall, "surface_container"),
-        "on": _role(accent, "on_surface"),
-        "muted": _role(accent, "on_surface_variant"),
-        "outline": _role(accent, "outline"),
-        "wallHue": round(wall_hue),
-        "accentHue": round(accent_hue),
+def build_ansi(wall: dict, wall_hue: float) -> list[str]:
+    """16 terminal colors: Material neutrals plus harmonized semantic hues."""
+    ansi = [""] * 16
+    ansi[0] = _role(wall, "surface_container_high")
+    ansi[7] = _role(wall, "on_surface_variant")
+    ansi[8] = _role(wall, "outline")
+    ansi[15] = _role(wall, "on_surface")
+    for slot, ref in ANSI_HUES.items():
+        hue = harmonize(ref, wall_hue)
+        ansi[slot] = hls_hex(hue, 0.70, 0.55)
+        ansi[slot + 8] = hls_hex(hue, 0.80, 0.60)
+    return ansi
+
+
+def build_palette(wall: dict) -> dict:
+    """Every role comes from the wallpaper scheme."""
+    wall_hue = hex_hue(_role(wall, "source_color"))
+    ansi = build_ansi(wall, wall_hue)
+    r = lambda name: _role(wall, name)  # noqa: E731
+    base16 = {
+        "base00": r("surface"), "base01": r("surface_container"),
+        "base02": r("surface_container_high"), "base03": r("outline"),
+        "base04": r("on_surface_variant"), "base05": r("on_surface"),
+        "base06": r("on_surface"), "base07": ansi[15],
+        "base08": ansi[1], "base09": hls_hex(harmonize(30, wall_hue), 0.72, 0.60),
+        "base0A": ansi[3], "base0B": ansi[2],
+        "base0C": r("secondary"), "base0D": r("primary"), "base0E": r("tertiary"),
+        "base0F": hls_hex(harmonize(20, wall_hue), 0.55, 0.40),
     }
+    return {
+        "accent": r("primary"),
+        "onAccent": r("on_primary"),
+        "secondary": r("secondary"),
+        "tertiary": r("tertiary"),
+        "surface": r("surface"),
+        "surface2": r("surface_container_high"),
+        "widget": r("surface_container"),
+        "on": r("on_surface"),
+        "muted": r("on_surface_variant"),
+        "outline": r("outline"),
+        "outlineVariant": r("outline_variant"),
+        "wallHue": round(wall_hue),
+        "ansi": ansi,
+        "base16": base16,
+    }
+
+
+def _h(color: str) -> str:
+    return color.lstrip("#")
+
+
+def render_kitty(p: dict) -> str:
+    lines = ["# Generated by sky_theme.py from the wallpaper. Background is left to kitty.conf.",
+             f"foreground {p['on']}",
+             f"cursor {p['accent']}",
+             f"cursor_text_color {p['onAccent']}",
+             f"selection_foreground {p['on']}",
+             f"selection_background {p['surface2']}",
+             f"url_color {p['secondary']}",
+             f"active_border_color {p['accent']}",
+             f"inactive_border_color {p['outlineVariant']}",
+             f"active_tab_foreground {p['onAccent']}",
+             f"active_tab_background {p['accent']}",
+             f"inactive_tab_foreground {p['muted']}",
+             f"inactive_tab_background {p['widget']}"]
+    lines += [f"color{i} {c}" for i, c in enumerate(p["ansi"])]
+    return "\n".join(lines) + "\n"
+
+
+def render_hyprland(p: dict) -> str:
+    return f"""-- Generated by sky_theme.py from the wallpaper.
+hl.config({{
+    general = {{
+        col = {{
+            active_border = "rgba({_h(p['accent'])}ee)",
+            inactive_border = "rgba({_h(p['outlineVariant'])}88)",
+        }},
+    }},
+    misc = {{
+        background_color = "rgba({_h(p['surface'])}ff)",
+    }},
+}})
+"""
+
+
+def render_hyprlock(p: dict) -> str:
+    return f"""# Generated by sky_theme.py from the wallpaper.
+$text_color = rgba({_h(p['on'])}ff)
+$entry_background_color = rgba({_h(p['surface'])}66)
+$entry_border_color = rgba({_h(p['accent'])}88)
+$entry_color = rgba({_h(p['on'])}ff)
+"""
+
+
+def render_gtk(p: dict) -> str:
+    pairs = [("accent_color", p["accent"]), ("accent_fg_color", p["onAccent"]),
+             ("accent_bg_color", p["accent"])]
+    for name in ("window", "headerbar", "popover", "view", "card", "dialog"):
+        pairs += [(f"{name}_bg_color", p["surface"]), (f"{name}_fg_color", p["on"])]
+    lines = ["/* Generated by sky_theme.py from the wallpaper. */"]
+    lines += [f"@define-color {k} {v};" for k, v in pairs]
+    lines += ["@define-color sidebar_bg_color @window_bg_color;",
+              "@define-color sidebar_fg_color @window_fg_color;"]
+    return "\n".join(lines) + "\n"
+
+
+def render_btop(p: dict) -> str:
+    a = p["ansi"]
+    theme = {
+        "main_bg": "", "main_fg": p["on"], "title": p["on"], "hi_fg": p["accent"],
+        "selected_bg": p["surface2"], "selected_fg": p["on"], "inactive_fg": p["outline"],
+        "graph_text": p["muted"], "meter_bg": p["surface2"], "proc_misc": p["secondary"],
+        "cpu_box": p["accent"], "mem_box": p["secondary"], "net_box": p["tertiary"],
+        "proc_box": p["outline"], "div_line": p["outlineVariant"],
+        "temp_start": a[2], "temp_mid": a[3], "temp_end": a[1],
+        "cpu_start": p["accent"], "cpu_mid": p["tertiary"], "cpu_end": a[1],
+        "free_start": a[2], "free_mid": a[10], "free_end": a[10],
+        "cached_start": p["secondary"], "cached_mid": p["secondary"], "cached_end": p["secondary"],
+        "available_start": p["tertiary"], "available_mid": p["tertiary"], "available_end": p["tertiary"],
+        "used_start": a[3], "used_mid": a[9], "used_end": a[1],
+        "download_start": p["accent"], "download_mid": p["accent"], "download_end": p["tertiary"],
+        "upload_start": p["secondary"], "upload_mid": p["secondary"], "upload_end": p["tertiary"],
+        "process_start": p["accent"], "process_mid": p["tertiary"], "process_end": a[1],
+    }
+    lines = ["# Generated by sky_theme.py from the wallpaper."]
+    lines += [f'theme[{k}]="{v}"' for k, v in theme.items()]
+    return "\n".join(lines) + "\n"
 
 
 def color_source(path: Path) -> tuple[Path | None, str]:
@@ -109,12 +227,38 @@ def current_wallpaper(state_file: Path = SKY_STATE) -> Path | None:
     return Path(p) if p else None
 
 
-def write_palette(out: Path, palette: dict) -> None:
+def write_atomic(out: Path, text: str) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp = tempfile.mkstemp(dir=out.parent, prefix=".colors-", suffix=".json")
+    fd, tmp = tempfile.mkstemp(dir=out.parent, prefix=f".{out.name}-")
     with os.fdopen(fd, "w") as f:
-        json.dump(palette, f, indent=2)
+        f.write(text)
     os.replace(tmp, out)
+
+
+def write_palette(out: Path, palette: dict) -> None:
+    write_atomic(out, json.dumps(palette, indent=2))
+
+
+def _run_quiet(argv: list[str]) -> None:
+    try:
+        subprocess.run(argv, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                       check=False, timeout=10)
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+
+
+def apply(palette: dict, out_dir: Path = DEFAULT_OUT_DIR, btop_theme: Path = BTOP_THEME,
+          run=_run_quiet) -> None:
+    """Write every target, then ask the running programs to reload."""
+    write_atomic(out_dir / "kitty.conf", render_kitty(palette))
+    write_atomic(out_dir / "hyprland.lua", render_hyprland(palette))
+    write_atomic(out_dir / "hyprlock.conf", render_hyprlock(palette))
+    write_atomic(out_dir / "gtk.css", render_gtk(palette))
+    write_atomic(btop_theme, render_btop(palette))
+    # colors.json last: the sky shell and nvim watch it.
+    write_palette(out_dir / "colors.json", palette)
+    run(["pkill", "-USR1", "-x", "kitty"])
+    run(["hyprctl", "reload"])
 
 
 def _still_frame(src: Path, kind: str, workdir: Path) -> Path:
@@ -135,7 +279,7 @@ def _matugen(*args: str) -> dict:
     return json.loads(out.stdout)
 
 
-def generate(wallpaper: Path | None, bias: float) -> dict:
+def generate(wallpaper: Path | None) -> dict:
     src, kind = color_source(wallpaper) if wallpaper else (None, "none")
     with tempfile.TemporaryDirectory() as tmp:
         if src is None:
@@ -144,10 +288,7 @@ def generate(wallpaper: Path | None, bias: float) -> dict:
             img = src if kind == "image" else _still_frame(src, kind, Path(tmp))
             wall = _matugen("image", str(img), "--prefer", "saturation",
                             "--fallback-color", FALLBACK_SEED)
-    wall_hue = hex_hue(_role(wall, "source_color"))
-    accent_hue = sky_accent_hue(wall_hue, bias)
-    accent = _matugen("color", "hex", seed_for_hue(accent_hue))
-    palette = build_palette(accent, wall, wall_hue, accent_hue)
+    palette = build_palette(wall)
     palette["wallpaper"] = str(wallpaper) if wallpaper else ""
     return palette
 
@@ -155,15 +296,15 @@ def generate(wallpaper: Path | None, bias: float) -> dict:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("wallpaper", nargs="?", type=Path)
-    ap.add_argument("--bias", type=float, default=DEFAULT_BIAS)
-    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
+    ap.add_argument("--no-reload", action="store_true", help="write files only")
     args = ap.parse_args(argv)
     if not shutil.which("matugen"):
         print("sky_theme: matugen not found", file=sys.stderr)
         return 1
     wallpaper = args.wallpaper or current_wallpaper()
-    palette = generate(wallpaper, args.bias)
-    write_palette(args.out, palette)
+    palette = generate(wallpaper)
+    apply(palette, args.out_dir, run=(lambda _argv: None) if args.no_reload else _run_quiet)
     print(json.dumps(palette))
     return 0
 

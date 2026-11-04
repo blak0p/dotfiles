@@ -1,0 +1,34 @@
+# Packages for the shell + terminal domain on Arch Linux.
+# Official packages consume with: sudo pacman -S --needed - < deps/packages.txt
+# AUR packages consume with: paru -S --needed or yay -S --needed
+
+# Core Shell & Terminal
+fish
+kitty
+starship
+atuin
+fastfetch
+
+# CLI Utilities & Navigation
+fzf
+eza
+bat
+zoxide
+fd
+ripgrep
+jq
+curl
+git
+procps-ng
+
+# Clipboard
+wl-clipboard
+xclip
+
+# Typography / Nerd Fonts
+ttf-jetbrains-mono-nerd
+
+# AUR Packages (auto-detected and installed by install-deps.sh):
+# - carapace-bin (multi-shell completion engine for 2,380+ tools)
+# - fisher (fish plugin manager, or bootstrapped via curl fallback)
+

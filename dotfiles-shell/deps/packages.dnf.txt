@@ -1,0 +1,35 @@
+# Packages for the shell + terminal domain on Fedora.
+# Consume with: grep -vE '^\s*(#|$)' deps/packages.dnf.txt | xargs sudo dnf install -y
+
+# Core Shell & Terminal
+fish
+kitty
+atuin
+fastfetch
+
+# CLI Utilities & Navigation
+fzf
+eza
+bat
+zoxide
+fd-find
+ripgrep
+jq
+curl
+git
+procps-ng
+# Clipboard
+wl-clipboard
+xclip
+
+# Typography / Nerd Fonts
+jetbrains-mono-fonts-all
+
+# Notes:
+# - starship is available via Fedora COPR (auto-handled by install-deps.sh):
+#     sudo dnf copr enable -y atim/starship && sudo dnf install -y starship
+# - carapace is available via GitHub releases (auto-handled by install-deps.sh):
+#     https://github.com/carapace-sh/carapace-bin/releases
+# - fisher (fish plugin manager) is installed via curl:
+#     fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
+

@@ -1,0 +1,116 @@
+# starship.toml — dotfiles-shell's prompt config
+#
+# Original upstream: https://github.com/Gentleman-Programming/Gentleman.Dots
+# The palette name 'ii' and the overall styling are inspired by
+# Gentleman.Dots' Hyprland preset. This file is a minimal rewrite
+# that keeps only the modules actually used here.
+#
+# Layout (left to right):
+#   <username>@  <directory>  <git_branch><git_status>  <cmd_duration>
+#   <󱗞 >
+#
+# The 󱗞 character is a Nerd Font glyph (white heavy check mark). It
+# requires a Nerd Font in your terminal to render correctly. Change
+# to ●, ➜, or ❯ in the [character] section if you prefer something
+# else.
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration
+$character"""
+
+add_newline = true
+command_timeout = 1000
+palette = "ii"
+
+# ─── Character ─────────────────────────────────────────────────
+[character]
+success_symbol = "[❯](fg:green bold) "
+error_symbol = "[❯](fg:red bold) "
+
+# ─── OS (disabled — uses Nerd Font glyphs that not all fonts have) ─
+[os]
+disabled = true
+
+# ─── Username (only on remote or non-default user) ──────────────
+[username]
+show_always = false
+format = "[$user]($style)@"
+style_user = "blue"
+style_root = "red bold"
+
+# ─── Directory ─────────────────────────────────────────────────
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+home_symbol = "~"
+truncation_length = 5
+truncation_symbol = "…/"
+style = "fg:blue bold"
+read_only_style = "fg:red"
+read_only = " 󰌾 "
+truncate_to_repo = false
+
+# ─── Git ──────────────────────────────────────────────────────
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "fg:mauve bold"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style)"
+style = "fg:red"
+modified = "!"
+staged = "+"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+
+# ─── Command duration (only when > 2s) ────────────────────────
+[cmd_duration]
+format = "[$duration]($style) "
+style = "fg:yellow"
+min_time = 2_000
+
+# ─── Time (right-aligned via $fill) ───────────────────────────
+[time]
+disabled = false
+format = "[$time]($style) "
+time_format = "%R"
+style = "fg:subtext1"
+
+# ─── Palette (matches kanagawa-wave) ───────────────────────────
+[palettes.ii]
+text          = "#dcd7ba"
+subtext0      = "#727169"
+subtext1      = "#a6a69c"
+overlay0      = "#363646"
+overlay1      = "#43436c"
+overlay2      = "#2a2a3a"
+surface0      = "#1f1f28"
+surface1      = "#16161d"
+surface2      = "#0e0e14"
+base          = "#1f1f28"
+mantle        = "#16161d"
+crust         = "#0e0e14"
+
+blue          = "#7fb4ca"
+mauve         = "#957fb8"
+purple        = "#b48ead"
+lavender      = "#9c89c8"
+pink          = "#c6797e"
+green         = "#98bb6c"
+red           = "#f7768e"
+yellow        = "#e0af68"
+orange        = "#ff9e64"
+peach         = "#e8a96a"
+teal          = "#7dc4c4"
+cyan          = "#7fb4ca"
+sapphire      = "#7aa2f7"
+sky           = "#a4d2eb"
+rosewater     = "#dcd7ba"
+flamingo      = "#e29d96"
+maroon        = "#7a5252"
+maroon_dark   = "#5a3a3a"

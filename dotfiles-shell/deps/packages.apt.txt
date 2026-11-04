@@ -1,0 +1,43 @@
+# Packages for the shell + terminal domain on Debian/Ubuntu.
+# Consume with: grep -vE '^\s*(#|$)' deps/packages.apt.txt | xargs sudo apt install -y
+
+# Core Shell & Terminal
+fish
+kitty
+
+# CLI Utilities & Navigation
+fzf
+bat
+zoxide
+fd-find
+ripgrep
+jq
+curl
+git
+procps
+# Clipboard
+wl-clipboard
+xclip
+
+# Typography / Nerd Fonts
+fonts-jetbrains-mono
+fonts-font-awesome
+
+# Notes:
+# - fastfetch is in Debian 13+ / Ubuntu 24.04+. On older releases:
+#     sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch && sudo apt install -y fastfetch
+# - starship is in Debian 13+ / Ubuntu 24.04+. On older releases:
+#     curl -sS https://starship.rs/install.sh | sh -s -- -y
+# - atuin is in Ubuntu 24.10+ / Debian testing. On older releases:
+#     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+# - eza is in Debian 13+ / Ubuntu 24.10+. On older releases:
+#     https://github.com/eza-community/eza/blob/main/INSTALL.md
+# - carapace is available via GitHub releases (.deb or binary):
+#     https://github.com/carapace-sh/carapace-bin/releases
+# - bat is installed as 'batcat' on Debian/Ubuntu. Create symlink:
+#     mkdir -p ~/.local/bin && ln -sf $(which batcat) ~/.local/bin/bat
+# - fd-find is installed as 'fdfind' on Debian/Ubuntu. Create symlink:
+#     mkdir -p ~/.local/bin && ln -sf $(which fdfind) ~/.local/bin/fd
+# - fisher (fish plugin manager) is installed via curl:
+#     fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
+

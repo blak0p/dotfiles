@@ -1,0 +1,68 @@
+# herdr configuration managed by Gentleman.Dots, merged with local tweaks.
+# This file is copied/linked into ~/.config/herdr/config.toml.
+
+onboarding = false
+
+[theme]
+name = "one-dark"
+
+[theme.custom]
+panel_bg = "#06080f"
+accent = "#6FA0AF"
+green = "#B7CC85"
+blue = "#6FA0AF"
+red = "#CB7C94"
+yellow = "#DEBA87"
+
+[ui]
+accent = "#6FA0AF"
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "spaces"
+status_indicators = "symbols"
+sidebar_width = 34
+sidebar_max_width = 44
+
+# Mostrar en la barra lateral en dos líneas limpias:
+# Línea 1: [icono] agente
+# Línea 2: workspace (proyecto)
+[ui.sidebar.agents]
+row_gap = 0
+rows = [["state_icon", "agent"], ["workspace"]]
+
+[ui.sound]
+enabled = true
+
+[ui.toast]
+delivery = "herdr"
+
+[keys]
+prefix = "ctrl+space"
+
+# Navegación rápida de agentes: h (anterior) y l (siguiente) estilo nvim (prefijo + 1 tecla)
+previous_agent = "prefix+h"
+next_agent = "prefix+l"
+focus_agent = "prefix+1..9"
+
+# Barra lateral y workspaces
+toggle_sidebar = "prefix+b"
+workspace_picker = "prefix+w"
+
+# Movimiento en modo navegación (Ctrl+Espacio w): usar j/k en vez de las flechas
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+# Control de paneles
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+zoom = "prefix+z"
+close_pane = "prefix+x"
+focus_pane_left = "prefix+left"
+focus_pane_down = "prefix+down"
+focus_pane_up = "prefix+up"
+focus_pane_right = "prefix+right"
+
+[session]
+resume_agents_on_restore = true
+
+[experimental]
+pane_history = true

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# bootstrap-host.sh — One-shot setup for the dotfiles umbrella on a fresh host.
+# bootstrap-host.sh — One-shot setup for the dotfiles monorepo on a fresh host.
 #
-# Clones the umbrella + 3 public submodules, then runs each sub-repo installer.
-# This is the same as `git clone --recurse-submodules && ./install.sh --all` but
-# works for hosts that don't have the umbrella cloned yet.
+# Clones the monorepo, then runs each component installer.
+# This is the same as `git clone && ./install.sh --all` but
+# works for hosts that don't have the repository cloned yet.
 #
 # Usage:
 #   bash bootstrap-host.sh              # full setup
@@ -40,12 +40,9 @@ if [ -d "$DOTFILES_DIR" ]; then
     exit 1
 fi
 
-echo "==> Cloning umbrella to $DOTFILES_DIR"
+echo "==> Cloning dotfiles to $DOTFILES_DIR"
 git clone "git@github.com:$REPO_OWNER/dotfiles.git" "$DOTFILES_DIR"
 cd "$DOTFILES_DIR"
-
-echo "==> Initializing submodules"
-git submodule update --init --recursive
 
 if $INSTALL; then
     for repo in "${REPOS[@]}"; do

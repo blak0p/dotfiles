@@ -34,10 +34,10 @@
 
 ## 🏗️ Architecture & Organization
 
-This repository is designed following a **modular multi-repo umbrella architecture**. Each domain is completely decoupled and wired into this umbrella as an independent Git submodule.
+This repository is a **modular monorepo**. Each domain lives in its own top-level directory with its own installer, and everything is versioned and released together.
 
 ```
-dotfiles/ (Umbrella Repository)
+dotfiles/ (Monorepo)
 ├── dotfiles-hyprland/   ──> Hyprland WM, Quickshell UI Stack, GTK Themes, Keybinds
 ├── dotfiles-shell/      ──> Fish Shell, Starship Prompt, Atuin History, Carapace, Kitty
 ├── dotfiles-editors/    ──> Neovim (LazyVim, Snacks, Oil, Blink, LSPs)
@@ -49,9 +49,9 @@ dotfiles/ (Umbrella Repository)
 
 ---
 
-## 📦 Sub-Repositories Overview
+## 📦 Components Overview
 
-### 1. [`dotfiles-hyprland`](https://github.com/blak0p/dotfiles-hyprland)
+### 1. [`dotfiles-hyprland/`](dotfiles-hyprland/)
 * **Window Manager**: Hyprland with custom Minflair-inspired overshot bezier animations and crisp window borders.
 * **Desktop Shell**: Quickshell (`ii` panel family) featuring a Dynamic Island, unified Control Center, App Launcher (`Super + Space`), Workspace Overview (`Super + Tab`), and notification center.
 * **Dual-Monitor Workspace Sync**: Custom `ws_both(i)` implementation syncing both monitors simultaneously.
@@ -69,7 +69,7 @@ dotfiles/ (Umbrella Repository)
   * AI quota awareness — ask Jarvis about remaining credits for any provider (Gemini, OpenAI, Anthropic…).
   * Desktop app launcher integration — launch apps by name or ask Jarvis to find ambiguous matches.
 
-### 2. [`dotfiles-shell`](https://github.com/blak0p/dotfiles-shell)
+### 2. [`dotfiles-shell/`](dotfiles-shell/)
 * **Terminal Emulator**: Kitty with custom theme, ligature fonts, and smooth cursor trail.
 * **Shell**: Fish shell optimized for instant startup.
 * **Prompt**: Starship with custom palette and git status integration.
@@ -77,7 +77,7 @@ dotfiles/ (Umbrella Repository)
 * **Completions**: Carapace multi-shell completion engine with rich argument descriptions.
 * **System Fetch**: Fastfetch configured with custom logos and hardware diagnostics.
 
-### 3. [`dotfiles-editors`](https://github.com/blak0p/dotfiles-editors)
+### 3. [`dotfiles-editors/`](dotfiles-editors/)
 * **Core**: Neovim on top of [LazyVim](https://www.lazyvim.org/).
 * **Floating Terminal**: Integrated Snacks popup terminal (`<leader>ft` / `Space + f + t`).
 * **File Management**: Oil.nvim buffer-based file editor (`-`).
@@ -88,9 +88,9 @@ dotfiles/ (Umbrella Repository)
 
 ## ⚡ Installation & Quick Start
 
-### 1. Clone with Submodules
+### 1. Clone
 ```bash
-git clone --recurse-submodules https://github.com/blak0p/dotfiles.git ~/dotfiles
+git clone https://github.com/blak0p/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
@@ -112,7 +112,7 @@ You can install only specific components without affecting the rest of your syst
 
 | Flag | Target Domain | Symlinks Created |
 | :--- | :--- | :--- |
-| `./install.sh --all` | Full Ecosystem | All sub-repos |
+| `./install.sh --all` | Full Ecosystem | All components |
 | `./install.sh --hyprland` | Desktop Stack | `hypr/`, `waybar/`, `quickshell/`, `fuzzel/`, `gtk-3.0/`, `gtk-4.0/`, `btop/`, `cava/` |
 | `./install.sh --fish` | Shell & Terminal | `fish/`, `starship.toml`, `atuin/`, `carapace/`, `fastfetch/`, `kitty/` |
 | `./install.sh --nvim` | Editor | `nvim/` |
@@ -171,29 +171,13 @@ You can install only specific components without affecting the rest of your syst
 
 ---
 
-## 🔄 Updating & Submodule Maintenance
+## 🔄 Updating
 
-### Update Everything
 ```bash
 git pull
-git submodule update --remote --merge
 ```
 
-### Developing on a Submodule
-```bash
-cd dotfiles-shell
-git checkout main
-# Make edits, commit and push to submodule origin:
-git add .
-git commit -m "feat(fish): add custom alias"
-git push
-
-# Bump the reference in the umbrella repo:
-cd ..
-git add dotfiles-shell
-git commit -m "chore(submodules): bump dotfiles-shell to latest commit"
-git push
-```
+Every component lives in this one repository, so a single commit or PR can change Hyprland, shell and editor configs together. There are no submodule pointers to bump.
 
 ---
 
@@ -214,4 +198,4 @@ cp -a "$BACKUP"/.config/. ~/.config/
 
 ## 📄 License
 
-This repository is licensed under the [MIT License](LICENSE). Individual submodules maintain their respective open-source licenses.
+This repository is licensed under the [MIT License](LICENSE).

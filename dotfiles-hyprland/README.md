@@ -15,7 +15,7 @@
   A state-of-the-art, aesthetic, and modular <b>Hyprland</b> desktop environment powered by <b>Quickshell UI</b> (Unified Dynamic Island, Control Center, Multi-Distro Package Manager, Dashboard & Performance telemetry), <b>Wallfliper</b> video wallpapers, synchronized dual-monitor workspaces, and comprehensive screen intelligence utilities.
 </p>
 
-Part of the [dotfiles umbrella](https://github.com/blak0p/dotfiles).
+Part of the [dotfiles monorepo](https://github.com/blak0p/dotfiles), in the `dotfiles-hyprland/` directory.
 
 ---
 
@@ -236,19 +236,11 @@ re-applies the last wallpaper (it runs at login from `hypr/hyprland/execs.lua`).
 
 ## ⚡ Installation & Setup
 
-### Via the Umbrella Repository (Recommended)
 ```bash
-git clone --recurse-submodules https://github.com/blak0p/dotfiles.git ~/dotfiles
+git clone https://github.com/blak0p/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+bash dotfiles-hyprland/deps/install-deps.sh
 ./install.sh --hyprland
-```
-
-### Standalone Installation
-```bash
-git clone https://github.com/blak0p/dotfiles-hyprland.git ~/.config/dotfiles-hyprland
-cd ~/.config/dotfiles-hyprland
-bash deps/install-deps.sh
-./install.sh
 ```
 
 ---

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# deploy-host.sh — Deploy dotfiles sub-repos to the current $HOME.
+# deploy-host.sh — Deploy dotfiles components to the current $HOME.
 # Run from the host (not inside a container).
 # Usage: bash deploy-host.sh
 # Or:    curl -sL .../deploy-host.sh | bash
@@ -17,16 +17,14 @@ mkdir -p "$DOTFILES_PARENT"
 cd "$DOTFILES_PARENT" || exit 1
 
 if [ ! -d "$DOTFILES_DIR" ]; then
-    log "Cloning umbrella to $DOTFILES_DIR"
+    log "Cloning dotfiles to $DOTFILES_DIR"
     git clone "git@github.com:$REPO_OWNER/dotfiles.git" "$DOTFILES_DIR"
 else
-    log "Umbrella already cloned at $DOTFILES_DIR — pulling latest"
+    log "Dotfiles already cloned at $DOTFILES_DIR — pulling latest"
     (cd "$DOTFILES_DIR" && git pull --ff-only)
 fi
 
 cd "$DOTFILES_DIR" || exit 1
-log "Initializing submodules"
-git submodule update --init --recursive
 
 for repo in "${REPOS[@]}"; do
     if [ -f "$repo/install.sh" ]; then

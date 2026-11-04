@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Umbrella installer — delegates to per-sub-repo installers.
+# Monorepo installer — delegates to each component's install.sh.
 set -eEuo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,12 +13,12 @@ err()   { echo -e "${RED}✗${NC} $1"; }
 
 show_help() {
     cat <<HELP
-Dotfiles — umbrella installer
+Dotfiles — monorepo installer
 
 Usage:
   ./install.sh              Show this help
   ./install.sh --help       Show this help
-  ./install.sh --all        Deploy all public sub-repos
+  ./install.sh --all        Deploy all components
   ./install.sh --hyprland   Deploy Hyprland desktop configs
   ./install.sh --fish       Deploy fish shell + tooling
   ./install.sh --kitty      Deploy kitty terminal (alias for --fish)
@@ -26,22 +26,10 @@ Usage:
 HELP
 }
 
-ensure_submodule() {
-    local name="$1"
-    if [ -d "$DOTFILES_DIR/$name" ] && [ -z "$(find "$DOTFILES_DIR/$name" -mindepth 1 -maxdepth 1 2>/dev/null)" ]; then
-        info "Initializing submodule: $name"
-        git -C "$DOTFILES_DIR" submodule update --init --recursive "$name" || {
-            err "Failed to init submodule $name"
-            return 1
-        }
-    fi
-}
-
 run_installer() {
     local repo="$1"
-    ensure_submodule "$repo"
     if [ ! -f "$DOTFILES_DIR/$repo/install.sh" ]; then
-        err "$repo/install.sh not found — is the submodule initialized?"
+        err "$repo/install.sh not found — is the checkout complete?"
         return 1
     fi
     info "Running $repo/install.sh..."

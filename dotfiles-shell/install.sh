@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # dotfiles-shell installer — symlinks fish starship.toml atuin carapace fastfetch kitty herdr to ~/.config/.
-# Run standalone (clone this repo + ./install.sh) or via the umbrella.
+# Run directly (./dotfiles-shell/install.sh) or via the root ./install.sh.
 set -eEuo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

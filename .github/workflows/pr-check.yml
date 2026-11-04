@@ -113,7 +113,7 @@ jobs:
             if (typeLabels.length === 0) {
               core.setFailed(
                 '❌ PR is missing a `type:*` label.\n' +
-                'Please add exactly ONE type label (e.g., type:bug, type:feature, type:submodule, type:docs, type:refactor, type:chore).'
+                'Please add exactly ONE type label (e.g., type:bug, type:feature, type:docs, type:refactor, type:chore).'
               );
             } else if (typeLabels.length > 1) {
               core.setFailed(

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # dotfiles-hyprland installer — symlinks desktop and Hyprland configs to ~/.config/.
-# Run standalone (clone this repo + ./install.sh) or via the umbrella.
+# Run directly (./dotfiles-hyprland/install.sh) or via the root ./install.sh.
 set -eEuo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

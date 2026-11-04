@@ -1,32 +1,18 @@
 # Contributing to Dotfiles
 
-Thanks for contributing to the dotfiles ecosystem. We enforce a strict **issue-first workflow** and a structured **multi-repo submodule lifecycle** — every change starts with an approved issue.
+Thanks for contributing to the dotfiles ecosystem. We enforce a strict **issue-first workflow** in a single **monorepo** — every change starts with an approved issue.
 
 ---
 
-## 🏗️ Architecture & Multi-Repo Model
+## 🏗️ Architecture
 
-This repository is an **umbrella / superproject** containing git submodules:
+This repository is a **monorepo**. Each component is a top-level directory with its own installer:
 
-- [`dotfiles-hyprland`](https://github.com/blak0p/dotfiles-hyprland) — Wayland & Hyprland desktop environment
-- [`dotfiles-shell`](https://github.com/blak0p/dotfiles-shell) — Shell configurations (Fish, Kitty, Starship, CLI tools)
-- [`dotfiles-editors`](https://github.com/blak0p/dotfiles-editors) — Editor configurations (Neovim / LazyVim)
+- `dotfiles-hyprland/` — Wayland & Hyprland desktop environment (incl. the Quickshell `sky` shell)
+- `dotfiles-shell/` — Shell configurations (Fish, Kitty, Starship, CLI tools)
+- `dotfiles-editors/` — Editor configurations (Neovim / LazyVim)
 
-### Bottom-Up PR Lifecycle
-
-Git submodules store a commit pointer (SHA), not actual code inside the superproject tree. Therefore, changes must follow a bottom-up order:
-
-```
-1. Child Repo Issue & PR  ──► Merge into child main
-                                      │
-2. Superproject PR        ◄───────────┘
-   (updates submodule SHA pointer)
-```
-
-1. **Child Repo PR**: Open and merge PRs in the respective child repository first (e.g. `dotfiles-shell`).
-2. **Superproject PR**: Update the submodule pointer in this superproject repository (`git submodule update --remote <submodule>`), commit with `chore(submodules): update <submodule> pointer`, and open a PR here.
-
-> ⚠️ **Critical Rule**: Never submit a superproject PR pointing to an unmerged commit on a personal branch in a child repo. The commit MUST already exist on the child's `main` branch.
+A change that touches several components ships in one PR. Keep the directory names stable: deployed `~/.config` symlinks point into them.
 
 ---
 
@@ -60,7 +46,7 @@ Branch names are validated and must follow the format:
 |------|---------------|---------|
 | Feature | `feat/<description>` | `feat/add-waybar-custom-modules` |
 | Bug fix | `fix/<description>` | `fix/install-deps-arch` |
-| Chore | `chore/<description>` | `chore/bump-hyprland-submodule` |
+| Chore | `chore/<description>` | `chore/update-ci-actions` |
 | Docs | `docs/<description>` | `docs/update-keybindings-guide` |
 | Refactor | `refactor/<description>` | `refactor/modularize-bootstrap-host` |
 
@@ -78,7 +64,7 @@ Branch names are validated and must follow the format:
 
 Once the issue is approved:
 1. Fork or branch from `master` / `main`.
-2. Implement your changes or bump submodules.
+2. Implement your changes.
 3. Open a PR using the PR template — **link the approved issue** with `Closes #N`.
 4. Add exactly **one `type:*` label** to the PR.
 
@@ -94,7 +80,7 @@ Every PR triggers automated GitHub Actions checks:
 | **Check Issue Has status:approved** | The linked issue has the `status:approved` label |
 | **Check PR Has type:* Label** | PR has exactly one `type:*` label |
 | **ShellCheck Lint** | All `.sh` scripts pass `shellcheck` without warnings |
-| **Submodules Integrity** | All submodules initialize and checkout cleanly |
+| **Installer Smoke Check** | `./install.sh --help` runs cleanly |
 
 All checks must pass before a PR can be merged.
 
@@ -108,7 +94,6 @@ All checks must pass before a PR can be merged.
 |-------|-------|---------|
 | `type:bug` | 🔴 | Bug fixes |
 | `type:feature` | 🔵 | New features or configurations |
-| `type:submodule` | 🟣 | Submodule pointer updates |
 | `type:docs` | 🔵 | Documentation changes |
 | `type:refactor` | 🟣 | Refactoring without behavior change |
 | `type:chore` | ⚪ | Maintenance, scripts, tooling |

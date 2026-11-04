@@ -11,10 +11,10 @@ body:
   - type: dropdown
     id: component
     attributes:
-      label: Target Component / Submodule
+      label: Target Component
       description: Where does this feature belong?
       options:
-        - "Superproject (install.sh / bootstrap scripts)"
+        - "Root (install.sh / bootstrap scripts)"
         - "dotfiles-hyprland (Wayland / Hyprland desktop)"
         - "dotfiles-shell (Fish / Kitty / Starship / CLI tools)"
         - "dotfiles-editors (Neovim / LazyVim)"

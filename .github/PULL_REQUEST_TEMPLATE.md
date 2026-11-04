@@ -7,7 +7,7 @@
   3. Pass all automated checks
   4. Follow Conventional Commits (no Co-Authored-By trailers)
   
-  See CONTRIBUTING.md for the full multi-repo workflow.
+  See CONTRIBUTING.md for the full workflow.
 -->
 
 ## 🔗 Linked Issue
@@ -27,7 +27,6 @@ Closes #
 
 - [ ] `type:bug` — Bug fix
 - [ ] `type:feature` — New feature or module support
-- [ ] `type:submodule` — Submodule pointer update (e.g. hyprland, shell, editors)
 - [ ] `type:docs` — Documentation only
 - [ ] `type:refactor` — Code refactoring (no behavior change)
 - [ ] `type:chore` — Maintenance, scripts, tooling
@@ -43,7 +42,7 @@ Closes #
 
 ## 📂 Changes
 
-<!-- Key files changed or submodules updated. -->
+<!-- Key files changed. -->
 
 | Component / File | Change |
 |------------------|--------|
@@ -54,7 +53,6 @@ Closes #
 <!-- How did you verify this works? -->
 
 - [ ] Shell scripts validated with `make lint` / `shellcheck`
-- [ ] Submodules initialize cleanly: `git submodule update --init --recursive`
 - [ ] Tested installation script (`./install.sh --help` or specific flags)
 
 <!-- Describe any manual testing steps: -->
@@ -71,7 +69,7 @@ These run automatically and **all must pass** before merge:
 | **Check Issue Has status:approved** | Linked issue has `status:approved` label | ⏳ |
 | **Check PR Has type:\* Label** | PR has exactly one `type:*` label | ⏳ |
 | **ShellCheck & Lint** | `shellcheck` passes on all `.sh` scripts | ⏳ |
-| **Submodules Integrity** | All submodules resolve and checkout cleanly | ⏳ |
+| **Installer Smoke Check** | `./install.sh --help` runs cleanly | ⏳ |
 
 ---
 
@@ -79,7 +77,6 @@ These run automatically and **all must pass** before merge:
 
 - [ ] I linked an approved issue above (`Closes #N`)
 - [ ] I added exactly **one** `type:*` label to this PR
-- [ ] If updating submodules, child repository PRs have already been merged into `main`
 - [ ] Ran linter/checks locally: `make check`
 - [ ] Commits follow [conventional commits](https://www.conventionalcommits.org/) format
 - [ ] No `Co-Authored-By` or AI attribution trailers in commits

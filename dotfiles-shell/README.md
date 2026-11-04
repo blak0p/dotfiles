@@ -16,7 +16,7 @@
   A high-performance, ergonomic, and modular CLI stack built on <b>Fish Shell</b>, <b>Starship 2-Line Prompt</b>, <b>Atuin</b> encrypted SQLite history, <b>Carapace</b> lazy multi-shell completions (2,380+ tools), and <b>Kitty Terminal</b> with Ghostty-style shader cursor trails.
 </p>
 
-Part of the [dotfiles umbrella](https://github.com/blak0p/dotfiles).
+Part of the [dotfiles monorepo](https://github.com/blak0p/dotfiles), in the `dotfiles-shell/` directory.
 
 ---
 
@@ -151,21 +151,11 @@ alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")
 
 ## ⚡ Installation & Setup
 
-### Via the Umbrella Repository (Recommended)
-
 ```bash
-git clone --recurse-submodules https://github.com/blak0p/dotfiles.git ~/dotfiles
+git clone https://github.com/blak0p/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+bash dotfiles-shell/deps/install-deps.sh
 ./install.sh --fish
-```
-
-### Standalone Installation
-
-```bash
-git clone https://github.com/blak0p/dotfiles-shell.git ~/.config/dotfiles-shell
-cd ~/.config/dotfiles-shell
-bash deps/install-deps.sh
-./install.sh
 ```
 
 ---

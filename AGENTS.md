@@ -1,12 +1,13 @@
 # Dotfiles — Agent Guidelines & Skills Index
 
-When working on this repository or any of its submodules, follow these core principles and workflows:
+When working on this repository, follow these core principles and workflows:
 
 ## Core Rules for Agents
 
-1. **Multi-Repo / Submodule Integrity**:
-   - Never commit child submodule changes directly into the superproject root.
-   - When modifying submodule configs, commit in the child repository first (`dotfiles-hyprland`, `dotfiles-shell`, `dotfiles-editors`), then update the pointer in this superproject.
+1. **Monorepo Layout**:
+   - `dotfiles-hyprland/`, `dotfiles-shell/` and `dotfiles-editors/` are plain directories of this repository, not submodules.
+   - Keep these directory names stable: deployed `~/.config` symlinks point into them.
+   - A change that spans components goes in one commit or PR here.
 2. **Issue-First Workflow**:
    - Every change must reference an approved GitHub issue (`status:approved`).
 3. **Commit Hygiene**:

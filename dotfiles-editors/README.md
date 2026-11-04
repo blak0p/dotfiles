@@ -14,7 +14,7 @@
   A blazing fast, modular, and production-grade <b>Neovim (v0.10+)</b> IDE built on <b>LazyVim</b>. Tailored for Fullstack engineering (TypeScript, React, Angular monorepos, Go workspaces, Rust, Python, Nix), featuring floating terminal integration, universal project execution, AI coding assistants, and seamless container/Tmux navigation.
 </p>
 
-Part of the [dotfiles umbrella](https://github.com/blak0p/dotfiles).
+Part of the [dotfiles monorepo](https://github.com/blak0p/dotfiles), in the `dotfiles-editors/` directory.
 
 ---
 
@@ -171,18 +171,11 @@ The installer symlinks this repository directly into `~/.config/nvim`:
 
 ## ⚡ Installation & Setup
 
-### Via the Umbrella Repository (Recommended)
 ```bash
-git clone --recurse-submodules https://github.com/blak0p/dotfiles.git ~/dotfiles
+git clone https://github.com/blak0p/dotfiles.git ~/dotfiles
 cd ~/dotfiles
+bash dotfiles-editors/deps/install-deps.sh
 ./install.sh --nvim
-```
-
-### Standalone Installation
-```bash
-git clone https://github.com/blak0p/dotfiles-editors.git ~/.config/nvim
-bash deps/install-deps.sh
-nvim
 ```
 
 ---

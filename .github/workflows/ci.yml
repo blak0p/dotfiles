@@ -23,18 +23,12 @@ jobs:
             dotfiles-hyprland
             dotfiles-shell
 
-  submodules-check:
-    name: Submodules Integrity Check
+  installer-check:
+    name: Installer Smoke Check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository with submodules
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
-      - name: Verify submodules status
-        run: |
-          git submodule status
-          # Verify installer help command executes cleanly
-          bash ./install.sh --help
+      - name: Verify installer help command executes cleanly
+        run: bash ./install.sh --help

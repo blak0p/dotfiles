@@ -15,6 +15,6 @@ Open Issue → Get status:approved → Open PR → Add type:* label → Review &
 3. **Commit Hygiene**: Conventional Commits only (`feat:`, `fix:`, `chore:`, etc.). **No** `Co-Authored-By` trailers.
 4. **ShellCheck**: All scripts in `deps/` or `install.sh` must pass ShellCheck.
 
-### PR Lifecycle in Multi-Repo
+### Where to Contribute
 
-When your PR is merged into `main` here, update the submodule pointer in the umbrella [`dotfiles`](https://github.com/blak0p/dotfiles) repository.
+This component lives in the [`dotfiles`](https://github.com/blak0p/dotfiles) monorepo. Open issues and PRs there; changes to `dotfiles-hyprland/` ship in the same PR as any related root changes.

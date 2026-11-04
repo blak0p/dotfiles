@@ -7,15 +7,15 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
-        Please ensure you test your issue with a clean submodule checkout first.
+        Please ensure you test your issue with a clean checkout first.
 
   - type: dropdown
     id: component
     attributes:
-      label: Affected Component / Submodule
+      label: Affected Component
       description: Which part of the dotfiles ecosystem is affected?
       options:
-        - "Superproject (install.sh / bootstrap scripts)"
+        - "Root (install.sh / bootstrap scripts)"
         - "dotfiles-hyprland (Wayland / Hyprland desktop)"
         - "dotfiles-shell (Fish / Kitty / Starship / CLI tools)"
         - "dotfiles-editors (Neovim / LazyVim)"

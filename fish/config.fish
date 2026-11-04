@@ -41,6 +41,16 @@ end
 # Only eval brew shellenv if brew is installed (not on Termux)
 if test $IS_TERMUX -eq 0; and set -q BREW_BIN; and test -f $BREW_BIN
     eval ($BREW_BIN shellenv)
+    # Ensure system and user binaries (/usr/bin, ~/.local/bin) take precedence over Homebrew
+    if set -q HOMEBREW_PREFIX
+        set -l path_no_brew
+        for p in $PATH
+            if not string match -q "$HOMEBREW_PREFIX*" $p
+                set -a path_no_brew $p
+            end
+        end
+        set -gx PATH $path_no_brew $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin
+    end
 end
 
 # Initialize tools

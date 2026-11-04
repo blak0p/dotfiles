@@ -1,0 +1,104 @@
+# Packages for the Hyprland desktop stack on Arch Linux (Pacman & AUR).
+# One package per line. Comments with #. Blank lines are ignored.
+
+# --- Core Hyprland & Wayland Stack ---
+hyprland
+hyprlock
+hypridle
+hyprpicker
+hyprshot
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xdg-desktop-portal-kde
+xsettingsd
+wlogout
+
+# --- Shell, Panels & Launchers ---
+quickshell
+waybar
+fuzzel
+
+# --- Audio Stack & Utilities ---
+pipewire
+pipewire-pulse
+pipewire-alsa
+pipewire-audio
+wireplumber
+pamixer
+pavucontrol
+playerctl
+easyeffects
+cava
+libpulse
+
+# --- Screen Capture, Recording & OCR ---
+grim
+slurp
+wf-recorder
+tesseract
+tesseract-data-eng
+imagemagick
+ffmpeg
+
+# --- Clipboard, Hardware & Input ---
+wl-clipboard
+cliphist
+ydotool
+brightnessctl
+ddcutil
+
+# --- System Utilities, Daemons & Keyring ---
+polkit-gnome
+gnome-keyring
+libsecret
+libnotify
+geoclue
+gvfs
+dolphin
+btop
+jq
+curl
+bc
+pciutils
+rclone
+fuse3
+network-manager-applet
+networkmanager
+blueman
+bluez
+bluez-utils
+
+# --- Wallfliper (Wallpaper Management) ---
+python-pyside6
+layer-shell-qt
+mpvpaper
+swww
+
+# --- Python Runtimes & Helper Dependencies ---
+python-pillow
+python-gobject
+python-numpy
+python-opencv
+python-pam
+python-click
+python-loguru
+python-tqdm
+
+# --- Theming, Icons, Cursors & Fonts ---
+gtk3
+gtk4
+qt6-wayland
+qt6-declarative
+qt6-svg
+qt6ct
+plasma-integration
+papirus-icon-theme
+breeze-icons
+bibata-cursor-theme
+sound-theme-freedesktop
+matugen-bin
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-emoji
+ttf-font-awesome
+ttf-dejavu

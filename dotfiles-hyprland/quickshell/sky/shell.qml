@@ -1,0 +1,92 @@
+//@ pragma UseQApplication
+// QApplication mode is required for the tray's QsMenuAnchor (native menus).
+import Quickshell
+import Quickshell.Io
+import Quickshell.Hyprland
+import qs
+import qs.island
+import qs.wallpaper
+
+ShellRoot {
+    Variants {
+        // Only the configured monitor gets the shell.
+        model: {
+            const main = Quickshell.screens.filter(s => s.name === Config.screen);
+            return main.length ? main : Quickshell.screens;
+        }
+        Scope {
+            id: perScreen
+            required property var modelData
+            // Top space reserve for the pills; the launcher and the dock-free
+            // frame live in the island overlay.
+            Reserve { screen: perScreen.modelData; edge: "top"; zone: Config.barHeight }
+            Island { screen: perScreen.modelData }
+            MiniToast { screen: perScreen.modelData }
+        }
+    }
+
+    // qs -c sky ipc call launcher toggle|open|close
+    IpcHandler {
+        target: "launcher"
+        function toggle(): void { IslandState.toggleLauncher(); }
+        function open(): void { IslandState.openLauncher(); }
+        function close(): void { IslandState.closeLauncher(); }
+    }
+
+    // Bound in Hyprland as hl.dsp.global("quickshell:launcherToggle").
+    GlobalShortcut {
+        name: "launcherToggle"
+        description: "Toggle the sky launcher"
+        onPressed: IslandState.toggleLauncher()
+    }
+
+    // Bound in Hyprland as hl.dsp.global("quickshell:wallpaperToggle").
+    GlobalShortcut {
+        name: "wallpaperToggle"
+        description: "Toggle the sky wallpaper picker"
+        onPressed: IslandState.toggleWallpaper()
+    }
+
+    // While the strip is open the shell enters the Hyprland submap
+    // "wallpapers" (hypr/custom/keybinds.lua), so these are what the arrow
+    // keys reach: the movement between wallpapers belongs to hl.
+    GlobalShortcut {
+        name: "wallpaperPrev"
+        description: "Previous wallpaper"
+        onPressed: WallpaperService.move(-1)
+    }
+    GlobalShortcut {
+        name: "wallpaperNext"
+        description: "Next wallpaper"
+        onPressed: WallpaperService.move(1)
+    }
+    GlobalShortcut {
+        name: "wallpaperApply"
+        description: "Apply the selected wallpaper"
+        onPressed: WallpaperService.apply(WallpaperService.selected)
+    }
+    GlobalShortcut {
+        name: "wallpaperClose"
+        description: "Close the wallpaper picker"
+        onPressed: IslandState.closeWallpaper()
+    }
+
+    // qs -c sky ipc call island toggle|open|close|clear|dnd|update|state, or: island page wifi
+    IpcHandler {
+        target: "island"
+        function toggle(): void { IslandState.toggleCenter(); }
+        function open(): void { IslandState.openCenter("notifs"); }
+        // notifs | wifi | bluetooth | sound | power | usage
+        function page(name: string): void { IslandState.togglePage(name); }
+        function close(): void { IslandState.closeCenter(); }
+        function tray(): void { IslandState.toggleTray(); }
+        function wallpapers(): void { IslandState.toggleWallpaper(); }
+        function clear(): void { Notifs.clearAll(); }
+        function dnd(): void { Notifs.dnd = !Notifs.dnd; }
+        function update(): void { UpdateService.applyAll(); }
+        function state(): string {
+            return JSON.stringify({ mode: IslandState.mode, queue: Notifs.queue.length, unread: Notifs.unread,
+                history: Notifs.list.length, hovered: Notifs.hovered, dnd: Notifs.dnd, osd: IslandState.osdVisible, fullscreen: IslandState.fullscreen });
+        }
+    }
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=Whisper.cpp ROCm HTTP Server
+After=network.target sound.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/whisper-server --host 127.0.0.1 --port 8085 --inference-path /inference --language es -m /home/alejandro/.models/whisper/ggml-large-v3-turbo.bin
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+ProtectHome=false
+ProtectSystem=full
+PrivateTmp=yes
+
+[Install]
+WantedBy=default.target

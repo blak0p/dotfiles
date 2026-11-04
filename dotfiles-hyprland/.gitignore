@@ -1,0 +1,24 @@
+# herdr runtime artifacts
+*.sock
+*.log
+session.json.atl/
+
+.atl/
+
+# Private skins / backups (local reference only, never public)
+*.backup-*/
+*.minflair-*/
+quickshell/Scripts/
+quickshell/modules/
+quickshell/services/
+quickshell/ii/Scripts/*
+!quickshell/ii/Scripts/localsend.py
+!quickshell/ii/Scripts/system_update.sh
+quickshell/ii/services/CodexBar.qml
+quickshell/ii/Modules/Bar/Widgets/MainPanel/Dashboard/CodexBarCard.qml
+quickshell/ii/modules/ii/bar/CodexBarWidget.qml
+quickshell/ii/modules/ii/bar/CodexBarPopup.qml
+
+.codegraph/
+__pycache__/
+*.pyc

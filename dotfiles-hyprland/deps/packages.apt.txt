@@ -1,0 +1,102 @@
+# Packages for the Hyprland desktop stack on Debian/Ubuntu (apt).
+# One package per line. Comments with #. Blank lines are ignored.
+# Consume with: grep -vE '^\s*(#|$)' deps/packages.apt.txt | xargs sudo apt install -y
+
+# --- Core Hyprland & Wayland Stack ---
+hyprland
+hyprlock
+hypridle
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xdg-desktop-portal-kde
+xsettingsd
+wlogout
+
+# --- Shell, Panels & Launchers ---
+waybar
+fuzzel
+
+# --- Audio Stack & Utilities ---
+pipewire
+pipewire-pulse
+pipewire-audio-client-libraries
+wireplumber
+pamixer
+pavucontrol
+playerctl
+easyeffects
+cava
+pulseaudio-utils
+
+# --- Screen Capture, Recording & OCR ---
+grim
+slurp
+wf-recorder
+tesseract-ocr
+tesseract-ocr-eng
+imagemagick
+ffmpeg
+
+# --- Clipboard, Hardware & Input ---
+wl-clipboard
+cliphist
+ydotool
+brightnessctl
+ddcutil
+
+# --- System Utilities, Daemons & Keyring ---
+polkit-gnome
+gnome-keyring
+libsecret-tools
+libnotify-bin
+geoclue-2.0
+gvfs
+dolphin
+btop
+jq
+curl
+bc
+pciutils
+rclone
+fuse3
+network-manager-gnome
+blueman
+bluez
+
+# --- Wallfliper (Wallpaper Management) ---
+python3-pyside6
+qml6-module-org-kde-layershell
+
+# --- Python Runtimes & Helper Dependencies ---
+python3-pil
+python3-gi
+python3-numpy
+python3-opencv
+python3-pam
+python3-click
+python3-loguru
+python3-tqdm
+
+# --- Theming, Icons, Cursors & Fonts ---
+libgtk-3-0
+libgtk-4-1
+qt6-wayland
+qml6-module-qtquick
+qml6-module-qtquick-layouts
+qml6-module-qtquick-shapes
+qt6-svg
+qt6ct
+papirus-icon-theme
+breeze-icon-theme
+sound-theme-freedesktop
+fonts-jetbrains-mono
+fonts-noto-core
+fonts-noto-color-emoji
+fonts-font-awesome
+fonts-dejavu-core
+
+# Notes:
+# - Hyprland: Available in Debian 13 (Trixie)+ and Ubuntu 24.10+. Older versions need a PPA or building from source.
+# - quickshell: Not yet packaged in official Debian/Ubuntu repos. Build from source (https://github.com/quickshell-mirror/quickshell).
+# - swww, mpvpaper, hyprpicker, hyprshot, matugen: Install via cargo / GitHub releases / PPA.
+# - bibata-cursor-theme: Available in Debian Sid/Ubuntu or via GitHub releases.

@@ -1,0 +1,26 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Zen-A522U3.desktop
+x-scheme-handler/https=userapp-Zen-A522U3.desktop
+x-scheme-handler/chrome=userapp-Zen-A522U3.desktop
+text/html=userapp-Zen-A522U3.desktop
+application/x-extension-htm=userapp-Zen-A522U3.desktop
+application/x-extension-html=userapp-Zen-A522U3.desktop
+application/x-extension-shtml=userapp-Zen-A522U3.desktop
+application/xhtml+xml=userapp-Zen-A522U3.desktop
+application/x-extension-xhtml=userapp-Zen-A522U3.desktop
+application/x-extension-xht=userapp-Zen-A522U3.desktop
+x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/curseforge=curseforge.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Zen-A522U3.desktop;zen.desktop;
+x-scheme-handler/https=userapp-Zen-A522U3.desktop;zen.desktop;
+x-scheme-handler/chrome=userapp-Zen-A522U3.desktop;zen.desktop;
+text/html=zen.desktop;userapp-Zen-A522U3.desktop;
+application/x-extension-htm=zen.desktop;userapp-Zen-A522U3.desktop;
+application/x-extension-html=zen.desktop;userapp-Zen-A522U3.desktop;
+application/x-extension-shtml=zen.desktop;userapp-Zen-A522U3.desktop;
+application/xhtml+xml=zen.desktop;userapp-Zen-A522U3.desktop;
+application/x-extension-xhtml=zen.desktop;userapp-Zen-A522U3.desktop;
+application/x-extension-xht=zen.desktop;userapp-Zen-A522U3.desktop;
+x-scheme-handler/curseforge=curseforge.desktop;

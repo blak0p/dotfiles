@@ -1,0 +1,100 @@
+# Packages for the Hyprland desktop stack on Fedora (dnf).
+# One package per line. Comments with #. Blank lines are ignored.
+# Consume with: grep -vE '^\s*(#|$)' deps/packages.dnf.txt | xargs sudo dnf install -y
+
+# --- Core Hyprland & Wayland Stack ---
+hyprland
+hyprlock
+hypridle
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xsettingsd
+wlogout
+
+# --- Shell, Panels & Launchers ---
+waybar
+fuzzel
+
+# --- Audio Stack & Utilities ---
+pipewire
+pipewire-pulseaudio
+wireplumber
+pamixer
+pavucontrol
+playerctl
+easyeffects
+cava
+pulseaudio-utils
+
+# --- Screen Capture, Recording & OCR ---
+grim
+slurp
+wf-recorder
+tesseract
+tesseract-langpack-eng
+ImageMagick
+ffmpeg
+
+# --- Clipboard, Hardware & Input ---
+wl-clipboard
+ydotool
+brightnessctl
+ddcutil
+
+# --- System Utilities, Daemons & Keyring ---
+polkit-gnome
+gnome-keyring
+libsecret
+libnotify
+geoclue2
+gvfs
+dolphin
+btop
+jq
+curl
+bc
+pciutils
+rclone
+fuse3
+network-manager-applet
+NetworkManager-tui
+blueman
+bluez
+
+# --- Wallfliper (Wallpaper Management) ---
+python3-pyside6
+layer-shell-qt
+
+# --- Python Runtimes & Helper Dependencies ---
+python3-pillow
+python3-gobject
+python3-numpy
+python3-opencv
+python3-pam
+python3-click
+python3-loguru
+python3-tqdm
+
+# --- Theming, Icons, Cursors & Fonts ---
+gtk3
+gtk4
+qt6-qtwayland
+qt6-qtdeclarative
+qt6-qtsvg
+qt6ct
+papirus-icon-theme
+breeze-icon-theme
+sound-theme-freedesktop
+matugen
+jetbrains-mono-fonts
+google-noto-sans-fonts
+google-noto-color-emoji-fonts
+fontawesome-fonts
+dejavu-sans-fonts
+
+# Notes for tools not in standard Fedora official repos:
+# - quickshell: Build from source (https://github.com/quickshell-mirror/quickshell) or check COPR.
+# - cliphist, swww, mpvpaper, hyprpicker, hyprshot:
+#   Available via COPR repositories (e.g. solopasha/hyprland) or cargo / release binaries.
+# - bibata-cursor-theme:
+#   Available via COPR (e.g. peterwu/rendezvous) or GitHub releases.

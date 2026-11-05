@@ -106,6 +106,15 @@ Singleton {
         }
     }
 
+    // First check shortly after login, once the network is usually up;
+    // until then the pill shows the cached result.
+    Timer {
+        id: startupTimer
+        interval: 45000
+        running: true
+        onTriggered: root.checkUpdates()
+    }
+
     // Periodic check every hour
     Timer {
         id: periodicTimer

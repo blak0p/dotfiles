@@ -15,6 +15,8 @@ CACHE_FILE = os.path.join(STATE_DIR, "updates.json")
 
 
 def get_updates():
+    # A failed source (offline at boot, locked db) must not read as "no updates".
+    errors = []
     pkgs = []
     pacman_count = 0
     aur_count = 0
@@ -26,6 +28,9 @@ def get_updates():
             res = subprocess.run(
                 ["checkupdates"], capture_output=True, text=True, timeout=15
             )
+            # checkupdates: 0 = updates, 2 = none, anything else = error.
+            if res.returncode not in (0, 2):
+                errors.append(f"pacman: {res.stderr.strip() or res.returncode}")
             if res.stdout:
                 for line in res.stdout.strip().split("\n"):
                     parts = line.split()
@@ -42,7 +47,7 @@ def get_updates():
                         )
                         pacman_count += 1
         except Exception as e:
-            print(f"Error checking pacman: {e}", file=sys.stderr)
+            errors.append(f"pacman: {e}")
 
     # 2. aur (paru or yay)
     aur_bin = shutil.which("paru") or shutil.which("yay")
@@ -54,6 +59,9 @@ def get_updates():
                 text=True,
                 timeout=15,
             )
+            # -Qua exits 1 with no output when nothing is outdated.
+            if res.returncode != 0 and res.stderr.strip():
+                errors.append(f"aur: {res.stderr.strip()}")
             if res.stdout:
                 for line in res.stdout.strip().split("\n"):
                     parts = line.split()
@@ -72,7 +80,7 @@ def get_updates():
                             )
                             aur_count += 1
         except Exception as e:
-            print(f"Error checking aur: {e}", file=sys.stderr)
+            errors.append(f"aur: {e}")
 
     # 3. brew
     brew_bin = shutil.which("brew")
@@ -118,7 +126,7 @@ def get_updates():
                     )
                     brew_count += 1
         except Exception as e:
-            print(f"Error checking brew: {e}", file=sys.stderr)
+            errors.append(f"brew: {e}")
 
     # Descriptions for pacman packages (fast batch)
     pacman_names = [p["name"] for p in pkgs if p["source"] == "pacman"]
@@ -187,12 +195,17 @@ def get_updates():
         },
         "packages": pkgs,
     }
-    return output
+    return output, errors
 
 
 def main():
     os.makedirs(STATE_DIR, exist_ok=True)
-    data = get_updates()
+    data, errors = get_updates()
+    if errors:
+        # Keep the previous cache; the next periodic check retries.
+        for err in errors:
+            print(f"Error checking {err}", file=sys.stderr)
+        return 1
 
     # Save to updates.json atomically
     temp_fd, temp_path = tempfile.mkstemp(dir=STATE_DIR, prefix="updates_", suffix=".tmp")
@@ -202,7 +215,8 @@ def main():
 
     # Print to stdout
     print(json.dumps(data))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

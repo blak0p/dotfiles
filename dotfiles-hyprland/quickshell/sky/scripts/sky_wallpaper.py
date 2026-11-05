@@ -551,26 +551,19 @@ def scene_still(scene_dir: Path) -> Path | None:
 
 
 def sync_hyprlock(still: Path, home: Path | None = None) -> bool:
-    """Point hyprlock's $background_image at `still` (its own config reloads)."""
-    conf = Path(os.environ.get("XDG_CONFIG_HOME") or (home or Path.home()) / ".config")
-    conf = conf / "hypr" / "hyprlock" / "colors.conf"
-    if not conf.is_file():
-        return False
+    """Point hyprlock's $background_image at `still`.
+
+    Written to local state, sourced by hyprlock.conf, so the machine-specific
+    path never lands in the tracked config.
+    """
+    state = Path(os.environ.get("XDG_STATE_HOME") or (home or Path.home()) / ".local" / "state")
+    conf = state / "sky" / "hyprlock-background.conf"
+    wanted = f"$background_image = {still}\n"
     try:
-        lines = conf.read_text().splitlines()
-    except OSError:
-        return False
-    wanted = f"$background_image = {still}"
-    for index, line in enumerate(lines):
-        if line.startswith("$background_image"):
-            if line == wanted:
-                return False
-            lines[index] = wanted
-            break
-    else:
-        lines.append(wanted)
-    try:
-        conf.write_text("\n".join(lines) + "\n")
+        if conf.is_file() and conf.read_text() == wanted:
+            return False
+        conf.parent.mkdir(parents=True, exist_ok=True)
+        conf.write_text(wanted)
     except OSError:
         return False
     return True

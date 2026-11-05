@@ -226,3 +226,29 @@ class Stopping(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SyncHyprlock(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.home = Path(self.tmp.name)
+        self.colors = touch(self.home / ".config/hypr/hyprlock/colors.conf", b"$text_color = rgba(5e5e5eFF)\n")
+        self.state = self.home / ".local/state/sky/hyprlock-background.conf"
+        env = {k: v for k, v in os.environ.items() if k not in ("XDG_CONFIG_HOME", "XDG_STATE_HOME")}
+        patcher = unittest.mock.patch.dict(os.environ, env, clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_writes_the_still_to_local_state_not_the_tracked_config(self):
+        still = self.home / ".cache/sky/scene-stills/1.png"
+        self.assertTrue(wp.sync_hyprlock(still, home=self.home))
+        self.assertEqual(self.state.read_text(), f"$background_image = {still}\n")
+        self.assertEqual(self.colors.read_text(), "$text_color = rgba(5e5e5eFF)\n")
+
+    def test_unchanged_still_is_not_rewritten(self):
+        still = self.home / "a.png"
+        wp.sync_hyprlock(still, home=self.home)
+        self.assertFalse(wp.sync_hyprlock(still, home=self.home))
+        self.assertTrue(wp.sync_hyprlock(self.home / "b.png", home=self.home))
+        self.assertEqual(self.state.read_text(), f"$background_image = {self.home / 'b.png'}\n")

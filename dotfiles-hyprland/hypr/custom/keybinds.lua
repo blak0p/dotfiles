@@ -15,8 +15,6 @@ hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scri
 hl.bind("CTRL + ALT + r", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true })
 
 
--- Rename workspace: Dynamic Island modal con Win+R
-hl.bind("SUPER + R", hl.dsp.global("quickshell:workspaceRenameToggle"), { description = "Workspace: Rename active (Dynamic Island)" })
 
 
 -- Window management (pisan los de end-4)

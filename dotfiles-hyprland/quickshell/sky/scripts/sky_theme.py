@@ -13,8 +13,10 @@ Outputs (in --out-dir, default ~/.local/state/sky):
   gtk.css         GTK 3/4 named colors
   starship.toml   the user's starship.toml with a `sky` palette (accent for path/git)
   qt6ct-colors.conf  Qt palette for qt6ct (Qt apps, Dolphin included)
-plus ~/.config/btop/themes/sky.theme and the `[Colors:*]` groups of
-~/.config/kdeglobals (KDE Frameworks apps such as Dolphin read them). Kitty and Hyprland are reloaded.
+plus ~/.config/btop/themes/sky.theme, the `[Colors:*]` groups of
+~/.config/kdeglobals and the scheme file ~/.local/share/color-schemes/Sky.colors
+(KDE Frameworks apps such as Dolphin read them; without the file they fall back
+to light Breeze). Kitty and Hyprland are reloaded.
 
 Usage:
   sky_theme.py [WALLPAPER] [--out-dir DIR] [--no-reload]
@@ -47,6 +49,8 @@ BTOP_THEME = CONFIG_HOME / "btop/themes/sky.theme"
 STARSHIP_BASE = CONFIG_HOME / "starship.toml"
 SKY_STATE = CONFIG_HOME / "sky/wallpaper.json"
 KDEGLOBALS = CONFIG_HOME / "kdeglobals"
+DATA_HOME = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local/share"))
+KDE_SCHEME = DATA_HOME / "color-schemes/Sky.colors"
 
 VIDEO_EXT = {".mp4", ".mkv", ".webm", ".mov", ".avi"}
 ANIMATED_EXT = {".gif", ".webp"}
@@ -241,11 +245,12 @@ def _kde_colors(p: dict) -> dict[str, dict[str, str]]:
 
 
 def render_kdeglobals(base: str, p: dict) -> str:
-    """The user's kdeglobals with our `[Colors:*]` groups and `ColorScheme=Sky`.
+    """The user's kdeglobals with our `[Colors:*]` groups and the `Sky` scheme selected.
 
     Every other group and key is kept as written; old color groups are replaced.
     """
-    colors = _kde_colors(p)
+    # UiSettings holds the explicit scheme choice KColorSchemeManager reads.
+    colors = {**_kde_colors(p), "UiSettings": {"ColorScheme": "Sky"}}
     out, section, seen_general = [], None, False
     for line in base.splitlines():
         stripped = line.strip()
@@ -268,6 +273,20 @@ def render_kdeglobals(base: str, p: dict) -> str:
     for name, keys in colors.items():
         out += ["", f"[{name}]"] + [f"{k}={v}" for k, v in keys.items()]
     return "\n".join(out).lstrip("\n") + "\n"
+
+
+def render_kde_scheme(p: dict) -> str:
+    """A KDE color scheme file (`Sky.colors`) so KColorSchemeManager finds `ColorScheme=Sky`."""
+    effects = {"ColorEffects:Disabled": {"Color": "56,56,56", "ColorAmount": "0",
+                                         "ColorEffect": "0", "ContrastAmount": "0.65",
+                                         "ContrastEffect": "1", "IntensityAmount": "0.1",
+                                         "IntensityEffect": "2"},
+               "ColorEffects:Inactive": {"ChangeSelectionColor": "false", "Enable": "false"}}
+    sections = {"General": {"Name": "Sky", "ColorScheme": "Sky"}, **_kde_colors(p), **effects}
+    out = []
+    for name, keys in sections.items():
+        out += [f"[{name}]"] + [f"{k}={v}" for k, v in keys.items()] + [""]
+    return "\n".join(out)
 
 
 def color_source(path: Path) -> tuple[Path | None, str]:
@@ -352,7 +371,7 @@ def _run_quiet(argv: list[str]) -> None:
 
 def apply(palette: dict, out_dir: Path = DEFAULT_OUT_DIR, btop_theme: Path = BTOP_THEME,
           starship_base: Path = STARSHIP_BASE, kdeglobals: Path = KDEGLOBALS,
-          run=_run_quiet) -> None:
+          kde_scheme: Path = KDE_SCHEME, run=_run_quiet) -> None:
     """Write every target, then ask the running programs to reload."""
     write_atomic(out_dir / "kitty.conf", render_kitty(palette))
     write_atomic(out_dir / "hyprland.lua", render_hyprland(palette))
@@ -365,6 +384,7 @@ def apply(palette: dict, out_dir: Path = DEFAULT_OUT_DIR, btop_theme: Path = BTO
     except OSError:
         kde_base = ""
     write_atomic(kdeglobals, render_kdeglobals(kde_base, palette))
+    write_atomic(kde_scheme, render_kde_scheme(palette))
     if starship_base.is_file():
         write_atomic(out_dir / "starship.toml", render_starship(starship_base.read_text(), palette))
     # colors.json last: the sky shell and nvim watch it.

@@ -151,6 +151,9 @@ BackgroundNormal=255,255,255
 
 [KDE]
 SingleClick=false
+
+[UiSettings]
+ColorScheme=BreezeLight
 """
 
 
@@ -172,6 +175,9 @@ class KdeGlobals(unittest.TestCase):
         # The Breeze scheme hash would make KDE re-apply the old scheme.
         self.assertNotIn("ColorSchemeHash", cp["General"])
         self.assertEqual(cp["KDE"]["SingleClick"], "false")
+        # KColorSchemeManager (Dolphin and other KF6 apps outside Plasma) reads
+        # the explicit choice from UiSettings; without it, it falls back to Breeze.
+        self.assertEqual(cp["UiSettings"]["ColorScheme"], "Sky")
         self.assertEqual(cp["Colors:View"]["BackgroundNormal"], "26,17,14")
         self.assertEqual(cp["Colors:Window"]["ForegroundNormal"], "241,223,217")
         self.assertEqual(cp["Colors:Selection"]["BackgroundNormal"], "255,181,154")
@@ -183,12 +189,31 @@ class KdeGlobals(unittest.TestCase):
     def test_is_idempotent_and_writes_the_scheme_once(self):
         once = sky_theme.render_kdeglobals(KDEGLOBALS_BASE + "[General]\nextra=1\n", self.p)
         self.assertEqual(sky_theme.render_kdeglobals(once, self.p), once)
-        self.assertEqual(once.count("ColorScheme=Sky"), 1)
+        # Once in [General] and once in [UiSettings], even with repeated [General] groups.
+        self.assertEqual(once.count("ColorScheme=Sky"), 2)
+        self.assertEqual(once.count("[UiSettings]"), 1)
 
     def test_empty_file_gets_general_and_colors(self):
         cp = self.parse(sky_theme.render_kdeglobals("", self.p))
         self.assertEqual(cp["General"]["ColorScheme"], "Sky")
         self.assertEqual(cp["Colors:Button"]["BackgroundNormal"], "39,29,26")
+
+
+class KdeScheme(unittest.TestCase):
+    def test_is_a_complete_dark_color_scheme_file(self):
+        import configparser
+        p = sky_theme.build_palette(matugen_dump(**WALL))
+        cp = configparser.ConfigParser(interpolation=None)
+        cp.optionxform = str
+        cp.read_string(sky_theme.render_kde_scheme(p))
+        self.assertEqual(cp["General"]["Name"], "Sky")
+        self.assertEqual(cp["General"]["ColorScheme"], "Sky")
+        self.assertEqual(cp["Colors:View"]["BackgroundNormal"], "26,17,14")
+        for g in ("Window", "View", "Button", "Selection", "Tooltip", "Header", "Complementary"):
+            self.assertIn(f"Colors:{g}", cp)
+        self.assertEqual(cp["ColorEffects:Inactive"]["Enable"], "false")
+        self.assertEqual(cp["ColorEffects:Inactive"]["ChangeSelectionColor"], "false")
+        self.assertIn("ColorEffects:Disabled", cp)
 
 
 class Vivid(unittest.TestCase):
@@ -249,8 +274,11 @@ class Apply(unittest.TestCase):
         base.write_text(STARSHIP_BASE)
         kdeglobals = Path(tempfile.mkdtemp()) / "kdeglobals"
         kdeglobals.write_text(KDEGLOBALS_BASE)
+        scheme = Path(tempfile.mkdtemp()) / "color-schemes" / "Sky.colors"
         sky_theme.apply(p, out, btop_theme=btop, starship_base=base, kdeglobals=kdeglobals,
-                        run=ran.append)
+                        kde_scheme=scheme, run=ran.append)
+        self.assertIn("Name=Sky", scheme.read_text())
+        self.assertIn("[Colors:View]", scheme.read_text())
         self.assertEqual(sorted(os.listdir(out)),
                          ["colors.json", "gtk.css", "hyprland.lua", "hyprlock.conf", "kitty.conf",
                           "qt6ct-colors.conf", "starship.toml"])
@@ -265,7 +293,8 @@ class Apply(unittest.TestCase):
         out = Path(tempfile.mkdtemp())
         p = sky_theme.build_palette(matugen_dump(**WALL))
         sky_theme.apply(p, out, btop_theme=out / "b.theme", starship_base=out / "none.toml",
-                        kdeglobals=out / "kdeglobals", run=lambda _a: None)
+                        kdeglobals=out / "kdeglobals", kde_scheme=out / "Sky.colors",
+                        run=lambda _a: None)
         self.assertNotIn("starship.toml", os.listdir(out))
 
 

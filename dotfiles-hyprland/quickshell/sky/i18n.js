@@ -16,6 +16,12 @@ var es = {
     "Nothing playing": "No se está reproduciendo nada",
     "Unknown": "Desconocido",
 
+    // Polkit
+    "Authentication required": "Se requiere autenticación",
+    "Password": "Contraseña",
+    "Wrong password, try again": "Contraseña incorrecta, inténtalo de nuevo",
+    "Authenticate": "Autenticar",
+
     // Notifications
     "Notification": "Notificación",
     "now": "ahora",

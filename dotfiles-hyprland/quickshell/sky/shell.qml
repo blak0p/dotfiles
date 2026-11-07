@@ -25,6 +25,9 @@ ShellRoot {
         }
     }
 
+    // Our polkit agent (admin password dialog).
+    PolkitDialog {}
+
     // qs -c sky ipc call launcher toggle|open|close
     IpcHandler {
         target: "launcher"

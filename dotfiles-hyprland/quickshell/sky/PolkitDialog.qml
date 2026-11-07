@@ -16,8 +16,11 @@ Scope {
     readonly property var flow: agent.flow
     readonly property bool shown: agent.isActive && flow !== null && !flow.isCompleted
 
+    // Never carry a typed password over to another request.
+    onShownChanged: if (!shown) pass.text = ""
+
     function submit() {
-        if (!flow || !flow.isResponseRequired) return;
+        if (!flow || !flow.isResponseRequired || pass.text === "") return;
         flow.submit(pass.text);
         pass.text = "";
     }
@@ -50,6 +53,14 @@ Scope {
         visible: root.shown || card.opacity > 0
 
         onVisibleChanged: if (visible) pass.forceActiveFocus()
+
+        // Window-wide, so Esc still cancels while the field is disabled
+        // (PAM is checking the password).
+        Shortcut {
+            sequence: "Escape"
+            enabled: root.shown
+            onActivated: root.cancel()
+        }
 
         Rectangle {
             anchors.fill: parent
@@ -133,11 +144,11 @@ Scope {
                         color: Theme.fg
                         font.pixelSize: 14
                         clip: true
+                        inputMethodHints: Qt.ImhSensitiveData | Qt.ImhNoPredictiveText
                         enabled: root.flow !== null && root.flow.isResponseRequired
                         echoMode: root.flow && root.flow.responseVisible ? TextInput.Normal : TextInput.Password
                         Keys.onReturnPressed: root.submit()
                         Keys.onEnterPressed: root.submit()
-                        Keys.onEscapePressed: root.cancel()
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter

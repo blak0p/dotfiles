@@ -83,7 +83,6 @@ qt6-qtdeclarative
 qt6-qtsvg
 qt6ct
 papirus-icon-theme
-breeze-icon-theme
 sound-theme-freedesktop
 matugen
 jetbrains-mono-fonts

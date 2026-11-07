@@ -9,6 +9,5 @@ hl.env("XDG_DATA_DIRS", home_dir .. "/.local/share/flatpak/exports/share:/var/li
 
 -- Themes
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
-hl.env("QT_QPA_PLATFORMTHEME", "kde")
-hl.env("XDG_MENU_PREFIX", "plasma-")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 

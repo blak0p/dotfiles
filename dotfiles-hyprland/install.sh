@@ -49,7 +49,7 @@ deploy_symlink() {
 }
 
 deploy_configs() {
-    local entries=(hypr waybar quickshell fuzzel gtk-3.0 gtk-4.0 xsettingsd systemd btop cava qt6ct)
+    local entries=(hypr waybar quickshell fuzzel gtk-3.0 gtk-4.0 xsettingsd systemd btop cava qt6ct xdg-desktop-portal)
     for name in "${entries[@]}"; do
         if [ -e "$REPO_ROOT/$name" ]; then
             deploy_symlink "$REPO_ROOT/$name" "$HOME/.config/$name"

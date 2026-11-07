@@ -9,7 +9,6 @@ hyprpicker
 hyprshot
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
-xdg-desktop-portal-kde
 xsettingsd
 wlogout
 
@@ -91,9 +90,7 @@ qt6-wayland
 qt6-declarative
 qt6-svg
 qt6ct
-plasma-integration
 papirus-icon-theme
-breeze-icons
 bibata-cursor-theme
 sound-theme-freedesktop
 matugen-bin

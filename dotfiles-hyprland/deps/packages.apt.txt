@@ -8,7 +8,6 @@ hyprlock
 hypridle
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
-xdg-desktop-portal-kde
 xsettingsd
 wlogout
 
@@ -87,7 +86,6 @@ qml6-module-qtquick-shapes
 qt6-svg
 qt6ct
 papirus-icon-theme
-breeze-icon-theme
 sound-theme-freedesktop
 fonts-jetbrains-mono
 fonts-noto-core

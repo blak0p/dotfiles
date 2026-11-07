@@ -12,7 +12,9 @@ Outputs (in --out-dir, default ~/.local/state/sky):
   hyprlock.conf   lock screen color variables
   gtk.css         GTK 3/4 named colors
   starship.toml   the user's starship.toml with a `sky` palette (accent for path/git)
-plus ~/.config/btop/themes/sky.theme. Kitty and Hyprland are reloaded.
+  qt6ct-colors.conf  Qt palette for qt6ct (Qt apps, Dolphin included)
+plus ~/.config/btop/themes/sky.theme and the `[Colors:*]` groups of
+~/.config/kdeglobals (KDE Frameworks apps such as Dolphin read them). Kitty and Hyprland are reloaded.
 
 Usage:
   sky_theme.py [WALLPAPER] [--out-dir DIR] [--no-reload]
@@ -44,6 +46,7 @@ DEFAULT_OUT_DIR = STATE_HOME / "sky"
 BTOP_THEME = CONFIG_HOME / "btop/themes/sky.theme"
 STARSHIP_BASE = CONFIG_HOME / "starship.toml"
 SKY_STATE = CONFIG_HOME / "sky/wallpaper.json"
+KDEGLOBALS = CONFIG_HOME / "kdeglobals"
 
 VIDEO_EXT = {".mp4", ".mkv", ".webm", ".mov", ".avi"}
 ANIMATED_EXT = {".gif", ".webp"}
@@ -197,6 +200,76 @@ def render_btop(p: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+def render_qt6ct(p: dict) -> str:
+    """qt6ct color scheme: one color per QPalette::ColorRole, in enum order."""
+    def roles(text: str) -> list[str]:
+        return [text, p["widget"], p["surface2"], p["surface2"], p["surface"], p["outlineVariant"],
+                text, p["on"], text, p["surface"], p["surface"], "#000000", p["accent"],
+                p["onAccent"], p["accent"], p["tertiary"], p["widget"], p["surface"],
+                p["surface2"], p["on"], p["muted"], p["accent"]]
+    groups = {"active_colors": roles(p["on"]), "disabled_colors": roles(p["outline"]),
+              "inactive_colors": roles(p["on"])}
+    lines = ["[ColorScheme]"] + [f"{k}={', '.join(v)}" for k, v in groups.items()]
+    return "\n".join(lines) + "\n"
+
+
+def _rgb(color: str) -> str:
+    c = _h(color)
+    return ",".join(str(int(c[i:i + 2], 16)) for i in (0, 2, 4))
+
+
+def _kde_colors(p: dict) -> dict[str, dict[str, str]]:
+    a = p["ansi"]
+
+    def group(bg: str, alt: str, fg: str) -> dict[str, str]:
+        return {"BackgroundNormal": _rgb(bg), "BackgroundAlternate": _rgb(alt),
+                "ForegroundNormal": _rgb(fg), "ForegroundInactive": _rgb(p["muted"]),
+                "ForegroundActive": _rgb(p["accent"]), "ForegroundLink": _rgb(p["accent"]),
+                "ForegroundVisited": _rgb(p["tertiary"]), "ForegroundNegative": _rgb(a[1]),
+                "ForegroundNeutral": _rgb(a[3]), "ForegroundPositive": _rgb(a[2]),
+                "DecorationFocus": _rgb(p["accent"]), "DecorationHover": _rgb(p["accent"])}
+
+    selection = group(p["accent"], p["accent"], p["onAccent"])
+    selection["ForegroundInactive"] = _rgb(p["onAccent"])
+    return {"Colors:Window": group(p["surface"], p["widget"], p["on"]),
+            "Colors:View": group(p["surface"], p["widget"], p["on"]),
+            "Colors:Button": group(p["widget"], p["surface2"], p["on"]),
+            "Colors:Selection": selection,
+            "Colors:Tooltip": group(p["surface2"], p["widget"], p["on"]),
+            "Colors:Header": group(p["widget"], p["surface"], p["on"]),
+            "Colors:Complementary": group(p["surface"], p["widget"], p["on"])}
+
+
+def render_kdeglobals(base: str, p: dict) -> str:
+    """The user's kdeglobals with our `[Colors:*]` groups and `ColorScheme=Sky`.
+
+    Every other group and key is kept as written; old color groups are replaced.
+    """
+    colors = _kde_colors(p)
+    out, section, seen_general = [], None, False
+    for line in base.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("[") and stripped.endswith("]"):
+            section = stripped[1:-1]
+            if section == "General":
+                seen_general = True
+                out.append(line)
+                out.append("ColorScheme=Sky")
+                continue
+        if section in colors:
+            continue
+        if section == "General" and stripped.split("=")[0].strip() in ("ColorScheme", "ColorSchemeHash"):
+            continue
+        out.append(line)
+    if not seen_general:
+        out = ["[General]", "ColorScheme=Sky", ""] + out
+    while out and not out[-1].strip():
+        out.pop()
+    for name, keys in colors.items():
+        out += ["", f"[{name}]"] + [f"{k}={v}" for k, v in keys.items()]
+    return "\n".join(out).lstrip("\n") + "\n"
+
+
 def color_source(path: Path) -> tuple[Path | None, str]:
     """Return (file to extract colors from, kind) for an image, video or scene dir."""
     if path.is_dir():
@@ -278,13 +351,20 @@ def _run_quiet(argv: list[str]) -> None:
 
 
 def apply(palette: dict, out_dir: Path = DEFAULT_OUT_DIR, btop_theme: Path = BTOP_THEME,
-          starship_base: Path = STARSHIP_BASE, run=_run_quiet) -> None:
+          starship_base: Path = STARSHIP_BASE, kdeglobals: Path = KDEGLOBALS,
+          run=_run_quiet) -> None:
     """Write every target, then ask the running programs to reload."""
     write_atomic(out_dir / "kitty.conf", render_kitty(palette))
     write_atomic(out_dir / "hyprland.lua", render_hyprland(palette))
     write_atomic(out_dir / "hyprlock.conf", render_hyprlock(palette))
     write_atomic(out_dir / "gtk.css", render_gtk(palette))
+    write_atomic(out_dir / "qt6ct-colors.conf", render_qt6ct(palette))
     write_atomic(btop_theme, render_btop(palette))
+    try:
+        kde_base = kdeglobals.read_text()
+    except OSError:
+        kde_base = ""
+    write_atomic(kdeglobals, render_kdeglobals(kde_base, palette))
     if starship_base.is_file():
         write_atomic(out_dir / "starship.toml", render_starship(starship_base.read_text(), palette))
     # colors.json last: the sky shell and nvim watch it.

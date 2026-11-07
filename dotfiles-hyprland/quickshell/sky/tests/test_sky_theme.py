@@ -120,6 +120,71 @@ class Renderers(unittest.TestCase):
         self.assertIn('theme[hi_fg]="#ffb59a"', out)
         self.assertIn('theme[main_bg]=""', out)
 
+    def test_qt6ct_scheme_maps_qt_palette_roles(self):
+        out = sky_theme.render_qt6ct(self.p)
+        self.assertTrue(out.startswith("[ColorScheme]\n"))
+        lines = dict(line.split("=", 1) for line in out.splitlines()[1:])
+        self.assertEqual(sorted(lines), ["active_colors", "disabled_colors", "inactive_colors"])
+        roles = [c.strip() for c in lines["active_colors"].split(",")]
+        # QPalette::ColorRole order: WindowText, Button, Light, Midlight, Dark, Mid, Text,
+        # BrightText, ButtonText, Base, Window, Shadow, Highlight, HighlightedText, Link,
+        # LinkVisited, AlternateBase, NoRole, ToolTipBase, ToolTipText, PlaceholderText, Accent.
+        self.assertEqual(len(roles), 22)
+        self.assertEqual(roles[0], "#f1dfd9")   # WindowText
+        self.assertEqual(roles[6], "#f1dfd9")   # Text
+        self.assertEqual(roles[9], "#1a110e")   # Base
+        self.assertEqual(roles[10], "#1a110e")  # Window
+        self.assertEqual(roles[12], "#ffb59a")  # Highlight
+        self.assertEqual(roles[13], "#552000")  # HighlightedText
+        self.assertEqual(roles[21], "#ffb59a")  # Accent
+        disabled = [c.strip() for c in lines["disabled_colors"].split(",")]
+        self.assertEqual(disabled[0], "#a08d86")  # disabled text uses the outline
+
+
+KDEGLOBALS_BASE = """[General]
+ColorScheme=BreezeDark
+ColorSchemeHash=27363f57
+fixed=Hack,10
+
+[Colors:View]
+BackgroundNormal=255,255,255
+
+[KDE]
+SingleClick=false
+"""
+
+
+class KdeGlobals(unittest.TestCase):
+    def setUp(self):
+        self.p = sky_theme.build_palette(matugen_dump(**WALL))
+
+    def parse(self, text):
+        import configparser
+        cp = configparser.ConfigParser(interpolation=None)
+        cp.optionxform = str
+        cp.read_string(text)
+        return cp
+
+    def test_sets_sky_colors_and_keeps_the_rest(self):
+        cp = self.parse(sky_theme.render_kdeglobals(KDEGLOBALS_BASE, self.p))
+        self.assertEqual(cp["General"]["ColorScheme"], "Sky")
+        self.assertEqual(cp["General"]["fixed"], "Hack,10")
+        # The Breeze scheme hash would make KDE re-apply the old scheme.
+        self.assertNotIn("ColorSchemeHash", cp["General"])
+        self.assertEqual(cp["KDE"]["SingleClick"], "false")
+        self.assertEqual(cp["Colors:View"]["BackgroundNormal"], "26,17,14")
+        self.assertEqual(cp["Colors:Window"]["ForegroundNormal"], "241,223,217")
+        self.assertEqual(cp["Colors:Selection"]["BackgroundNormal"], "255,181,154")
+        self.assertEqual(cp["Colors:Selection"]["ForegroundNormal"], "85,32,0")
+        for group in ("Window", "View", "Button", "Selection", "Tooltip", "Header",
+                      "Complementary"):
+            self.assertIn(f"Colors:{group}", cp)
+
+    def test_empty_file_gets_general_and_colors(self):
+        cp = self.parse(sky_theme.render_kdeglobals("", self.p))
+        self.assertEqual(cp["General"]["ColorScheme"], "Sky")
+        self.assertEqual(cp["Colors:Button"]["BackgroundNormal"], "39,29,26")
+
 
 class Vivid(unittest.TestCase):
     def test_ansi_colors_are_saturated_enough_to_tell_apart(self):
@@ -177,10 +242,15 @@ class Apply(unittest.TestCase):
         p = sky_theme.build_palette(matugen_dump(**WALL))
         base = Path(tempfile.mkdtemp()) / "starship.toml"
         base.write_text(STARSHIP_BASE)
-        sky_theme.apply(p, out, btop_theme=btop, starship_base=base, run=ran.append)
+        kdeglobals = Path(tempfile.mkdtemp()) / "kdeglobals"
+        kdeglobals.write_text(KDEGLOBALS_BASE)
+        sky_theme.apply(p, out, btop_theme=btop, starship_base=base, kdeglobals=kdeglobals,
+                        run=ran.append)
         self.assertEqual(sorted(os.listdir(out)),
                          ["colors.json", "gtk.css", "hyprland.lua", "hyprlock.conf", "kitty.conf",
-                          "starship.toml"])
+                          "qt6ct-colors.conf", "starship.toml"])
+        self.assertIn("SingleClick=false", kdeglobals.read_text())
+        self.assertIn("ColorScheme=Sky", kdeglobals.read_text())
         self.assertEqual(json.loads((out / "colors.json").read_text())["accent"], "#ffb59a")
         self.assertTrue(btop.is_file())
         self.assertIn(["pkill", "-USR1", "-x", "kitty"], ran)
@@ -190,7 +260,7 @@ class Apply(unittest.TestCase):
         out = Path(tempfile.mkdtemp())
         p = sky_theme.build_palette(matugen_dump(**WALL))
         sky_theme.apply(p, out, btop_theme=out / "b.theme", starship_base=out / "none.toml",
-                        run=lambda _a: None)
+                        kdeglobals=out / "kdeglobals", run=lambda _a: None)
         self.assertNotIn("starship.toml", os.listdir(out))
 
 

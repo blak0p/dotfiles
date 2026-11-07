@@ -42,13 +42,15 @@ brightnessctl
 ddcutil
 
 # --- System Utilities, Daemons & Keyring ---
-polkit-gnome
 gnome-keyring
 libsecret
 libnotify
 geoclue2
 gvfs
 dolphin
+file-roller
+mpv
+baobab
 btop
 jq
 curl

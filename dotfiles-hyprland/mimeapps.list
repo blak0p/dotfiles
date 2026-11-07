@@ -11,6 +11,24 @@ application/x-extension-xhtml=userapp-Zen-A522U3.desktop
 application/x-extension-xht=userapp-Zen-A522U3.desktop
 x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/curseforge=curseforge.desktop
+inode/directory=org.kde.dolphin.desktop
+application/zip=org.gnome.FileRoller.desktop
+application/x-7z-compressed=org.gnome.FileRoller.desktop
+application/x-rar=org.gnome.FileRoller.desktop
+application/vnd.rar=org.gnome.FileRoller.desktop
+application/x-tar=org.gnome.FileRoller.desktop
+application/x-compressed-tar=org.gnome.FileRoller.desktop
+application/x-xz-compressed-tar=org.gnome.FileRoller.desktop
+application/x-zstd-compressed-tar=org.gnome.FileRoller.desktop
+application/gzip=org.gnome.FileRoller.desktop
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop
+video/quicktime=mpv.desktop
+video/x-msvideo=mpv.desktop
+audio/mpeg=mpv.desktop
+audio/flac=mpv.desktop
+audio/ogg=mpv.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Zen-A522U3.desktop;zen.desktop;

@@ -251,7 +251,7 @@ def render_kdeglobals(base: str, p: dict) -> str:
         stripped = line.strip()
         if stripped.startswith("[") and stripped.endswith("]"):
             section = stripped[1:-1]
-            if section == "General":
+            if section == "General" and not seen_general:
                 seen_general = True
                 out.append(line)
                 out.append("ColorScheme=Sky")

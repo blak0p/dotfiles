@@ -180,6 +180,11 @@ class KdeGlobals(unittest.TestCase):
                       "Complementary"):
             self.assertIn(f"Colors:{group}", cp)
 
+    def test_is_idempotent_and_writes_the_scheme_once(self):
+        once = sky_theme.render_kdeglobals(KDEGLOBALS_BASE + "[General]\nextra=1\n", self.p)
+        self.assertEqual(sky_theme.render_kdeglobals(once, self.p), once)
+        self.assertEqual(once.count("ColorScheme=Sky"), 1)
+
     def test_empty_file_gets_general_and_colors(self):
         cp = self.parse(sky_theme.render_kdeglobals("", self.p))
         self.assertEqual(cp["General"]["ColorScheme"], "Sky")

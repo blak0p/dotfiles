@@ -79,7 +79,7 @@ ShellRoot {
         target: "island"
         function toggle(): void { IslandState.toggleCenter(); }
         function open(): void { IslandState.openCenter("notifs"); }
-        // notifs | wifi | bluetooth | sound | power | usage
+        // notifs | perf | music | wifi | bluetooth | sound | power | usage
         function page(name: string): void { IslandState.togglePage(name); }
         function close(): void { IslandState.closeCenter(); }
         function tray(): void { IslandState.toggleTray(); }

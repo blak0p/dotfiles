@@ -78,7 +78,7 @@ PanelWindow {
         case "center": return Qt.size(Config.centerW, center.wantedHeight);
         case "volume": return Qt.size(Config.volumeW, Config.volumeH);
         case "notif": return Qt.size(Config.notifW, popup.implicitHeight + 2 * Config.notifPad);
-        default: return Qt.size((Media.playing ? Config.notchClosedW : Config.clockW) + (Notifs.unread > 0 ? 18 : 0) + win.stretch,
+        default: return Qt.size((idleView.music ? Config.notchMusicW : Config.clockW) + (Notifs.unread > 0 ? 18 : 0) + win.stretch,
                                 Config.islandH);
         }
     }
@@ -229,15 +229,17 @@ PanelWindow {
 
         HoverHandler { onHoveredChanged: Notifs.hovered = hovered }
 
-        // The pill is the clock: clicking it opens the control center (wifi,
-        // bluetooth, sound, notifications). The wallpaper strip has its own
+        // The pill is the clock: clicking it opens the control center on its
+        // quick settings tab; while music plays, clicking the cover or title
+        // opens the Music tab instead. The wallpaper strip has its own
         // shortcut (Ctrl+Super+T); a click on the pill closes it.
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
-            onClicked: {
+            onClicked: mouse => {
                 if (IslandState.launcherOpen) IslandState.closeLauncher();
                 else if (IslandState.wallpaperOpen) IslandState.closeWallpaper();
+                else if (win.mode === "idle" && mouse.x < idleView.musicZoneW) IslandState.openCenter("music");
                 else if (win.mode !== "center") IslandState.openCenter("notifs");
             }
         }

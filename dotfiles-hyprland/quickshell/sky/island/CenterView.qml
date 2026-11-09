@@ -4,33 +4,40 @@ import Quickshell.Networking
 import Quickshell.Bluetooth
 import qs
 
-// Expanded island. Opened from the island itself ("notifs") it is the full
-// control center: quick tiles, media, volume and notifications. Opened from a
-// side-pill button it shows only that button's page (wifi, bluetooth, sound,
-// power or AI usage), so each one has its own panel.
+// Expanded island. Opened from the island itself it shows three modules behind
+// tabs: quick settings ("notifs": tiles, volume and notifications), performance
+// ("perf") and music ("music"). Opened from a side-pill button it shows only
+// that button's page (wifi, bluetooth, sound, power or AI usage), so each one
+// has its own panel.
 Item {
     id: root
 
     readonly property string page: IslandState.page
     readonly property bool full: page === "notifs"
+    readonly property bool tabbed: full || page === "perf" || page === "music"
     readonly property bool showVol: full
     readonly property real pageWanted: page === "wifi" ? wifiPage.wanted
         : page === "bluetooth" ? btPage.wanted
         : page === "power" ? powerPage.wanted
         : page === "usage" ? usagePage.wanted
         : page === "sound" ? soundPage.wanted
+        : page === "perf" ? perfPage.wanted
+        : page === "music" ? musicPage.wanted
         : notifPage.wanted
     // Island height needed to show everything (lists scroll past the cap).
     readonly property real wantedHeight: Math.min(Config.centerMaxH,
-        (full ? tiles.height + col.spacing : 0)
+        (tabbed ? tabs.height + col.spacing : 0)
+        + (full ? tiles.height + col.spacing : 0)
         + (media.visible ? media.height + col.spacing : 0)
         + (showVol ? vol.height + col.spacing : 0)
-        + pageHeader.height + col.spacing + pageWanted + 2 * col.anchors.margins)
+        + (tabbed && !full ? 0 : pageHeader.height + col.spacing) + pageWanted + 2 * col.anchors.margins)
 
     // Scan only while the matching page is visible.
     readonly property bool shown: IslandState.centerOpen
     // Faster usage polling only while its page is on screen.
     Binding { target: UsageService; property: "pageOpen"; value: root.shown && root.page === "usage" }
+    // Sensors are sampled only while the Performance tab is on screen.
+    Binding { target: PerfService; property: "active"; value: root.shown && root.page === "perf" }
     onShownChanged: syncScan()
     onPageChanged: syncScan()
     function syncScan() {
@@ -44,7 +51,62 @@ Item {
         anchors.margins: 14
         spacing: 10
 
-        PageHeader { visible: !root.full }
+        PageHeader { visible: !root.tabbed }
+
+        // Module tabs: quick settings, performance, music.
+        Rectangle {
+            id: tabs
+            visible: root.tabbed
+            width: parent.width
+            height: 40
+            radius: 16
+            color: Qt.alpha(Theme.fg, 0.06)
+            Row {
+                id: tabRow
+                anchors.fill: parent
+                anchors.margins: 4
+                spacing: 4
+                Repeater {
+                    model: [
+                        { page: "notifs", icon: "tune", label: "Quick settings" },
+                        { page: "perf", icon: "monitoring", label: "Performance" },
+                        { page: "music", icon: "music_note", label: "Music" }
+                    ]
+                    delegate: Rectangle {
+                        required property var modelData
+                        readonly property bool current: root.page === modelData.page
+                        width: (tabRow.width - 2 * tabRow.spacing) / 3
+                        height: tabRow.height
+                        radius: 12
+                        color: current ? Theme.accent : (tabMa.containsMouse ? Qt.alpha(Theme.fg, 0.08) : "transparent")
+                        Behavior on color { ColorAnimation { duration: 150 } }
+                        Row {
+                            anchors.centerIn: parent
+                            spacing: 6
+                            Icon {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: modelData.icon
+                                fill: parent.parent.current ? 1 : 0
+                                color: parent.parent.current ? Theme.accentText : Theme.muted
+                            }
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: I18n.t(modelData.label)
+                                color: parent.parent.current ? Theme.accentText : Theme.muted
+                                font.family: "Google Sans Flex"; font.pixelSize: 13; font.weight: Font.DemiBold
+                            }
+                        }
+                        MouseArea {
+                            id: tabMa
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: IslandState.openCenter(modelData.page)
+                        }
+                    }
+                }
+            }
+        }
 
         Row {
             id: tiles
@@ -87,7 +149,7 @@ Item {
             id: media
             width: parent.width
             height: 40
-            visible: !!Media.player && (root.full || root.page === "sound")
+            visible: !!Media.player && root.page === "sound"
             radius: 20
             color: Qt.alpha(Theme.fg, 0.06)
             MediaView { anchors.fill: parent }
@@ -494,6 +556,20 @@ Item {
                         provider: modelData
                     }
                 }
+            }
+
+            // ---- Performance ----
+            PerfPage {
+                id: perfPage
+                anchors.fill: parent
+                visible: root.page === "perf"
+            }
+
+            // ---- Music ----
+            MusicPage {
+                id: musicPage
+                anchors.fill: parent
+                visible: root.page === "music"
             }
 
             // ---- Sound mixer ----

@@ -51,7 +51,8 @@ Singleton {
     }
     function closeWallpaper() { wallpaperOpen = false; }
 
-    // Center page: "notifs" | "wifi" | "bluetooth" | "power" | "updates".
+    // Center page. Tabbed modules: "notifs" (quick settings), "perf", "music";
+    // single pages: "wifi" | "bluetooth" | "sound" | "power" | "usage".
     property string page: "notifs"
 
     function toggleCenter() { centerOpen ? closeCenter() : openCenter("notifs"); }

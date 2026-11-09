@@ -96,7 +96,17 @@ var es = {
 
     // Tray and wallpapers
     "System tray": "Bandeja del sistema",
-    "No wallpapers found": "No se han encontrado fondos de pantalla"
+    "No wallpapers found": "No se han encontrado fondos de pantalla",
+
+    // Island modules
+    "Quick settings": "Ajustes rápidos",
+    "Performance": "Rendimiento",
+    "Music": "Música",
+    "Reading sensors…": "Leyendo sensores…",
+    "RAM": "RAM",
+    "%1 / %2 GB used": "%1 / %2 GB usados",
+    "Disks": "Discos",
+    "No AMD GPU found": "No se ha encontrado una GPU AMD"
 };
 
 var tables = { es: es };

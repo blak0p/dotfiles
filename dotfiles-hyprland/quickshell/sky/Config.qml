@@ -16,7 +16,7 @@ Singleton {
     readonly property real islandRadius: 26
     readonly property real pillGap: 8          // between the island and the side pills
     readonly property real clockW: 96
-    readonly property real notchClosedW: 140
+    readonly property real notchMusicW: 220     // idle with music: cover + title + clock
     readonly property real volumeW: 340
     readonly property real volumeH: 44
     readonly property real notifW: 440

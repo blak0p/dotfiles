@@ -16,7 +16,7 @@ Run with `qs -c sky`.
 | `island/Net.qml` | Wi-Fi (NetworkManager) and Bluetooth (BlueZ) state and actions |
 | `island/CenterView.qml` | Control center: module tabs (Quick settings, Performance, Music) plus single pages (wifi, bluetooth, sound, power, usage) |
 | `PerfService.qml` / `scripts/sys_stats.py` / `island/PerfPage.qml` / `island/Spark.qml` | Performance tab: CPU (usage, temp, GHz), RAM, AMD GPU (usage, VRAM, temp, watts) and disks (space, read/write); the sampler runs only while the tab is open (tests: `python3 -m unittest discover -s tests`) |
-| `island/Media.qml` / `island/MusicPage.qml` | Music tab (MPRIS): cover, seekable progress, shuffle/repeat, player volume and a chip per player; the idle island shows cover + title while playing, and clicking them opens this tab |
+| `island/Media.qml` / `island/MusicPage.qml` | Music tab (MPRIS): cover, seekable progress, shuffle/repeat, player volume and a chip per player; the idle island shows cover + title while playing, and clicking them opens this tab. Quick settings no longer has the media strip (it stays on the sound page) |
 | `UsageService.qml` / `scripts/fetch_usage.py` / `island/UsageCard.qml` | AI plan usage (Claude, Codex, Antigravity) from the [CodexBar](https://github.com/steipete/CodexBar) CLI `codexbar`; providers and refresh intervals in `Config.qml` (`usageProviders`, `usageIdleMs`, `usageOpenMs`) |
 | `island/TrayPanel.qml` | System tray panel opened by the status pill chevron: one cell per StatusNotifierItem |
 | `island/TrayIcon.qml` | One tray item: theme-icon resolution, click / middle-click / menu |

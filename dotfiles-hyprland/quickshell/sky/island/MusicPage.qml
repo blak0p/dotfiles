@@ -6,12 +6,12 @@ import qs
 // player's own volume and a chip per MPRIS player to switch between them.
 Item {
     id: root
-    readonly property var p: Media.player
+    readonly property var p: Media.current
     readonly property real wanted: p ? body.implicitHeight : 60
 
     // MprisPlayer.position only updates when positionChanged() is emitted.
     Timer {
-        running: root.visible && Media.playing
+        running: root.visible && !!root.p && root.p.isPlaying
         interval: 1000
         repeat: true
         onTriggered: if (root.p) root.p.positionChanged()
@@ -103,11 +103,11 @@ Item {
                 anchors.left: posT.right; anchors.leftMargin: 10
                 anchors.right: lenT.left; anchors.rightMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
-                enabled: !!root.p && root.p.canSeek
+                enabled: !!root.p && root.p.canSeek && root.p.positionSupported
                 property real dragPos: 0
                 value: root.p && root.p.length > 0 ? (dragging ? dragPos : root.p.position) / root.p.length : 0
                 onMoved: f => dragPos = f * root.p.length
-                onReleased: f => { if (root.p) root.p.position = f * root.p.length; }
+                onReleased: f => { if (root.p) { root.p.position = f * root.p.length; root.p.positionChanged(); } }
             }
         }
 
@@ -125,7 +125,7 @@ Item {
                 width: 44; height: 44; radius: 22
                 anchors.verticalCenter: parent.verticalCenter
                 color: playMa.containsMouse ? Qt.lighter(Theme.accent, 1.1) : Theme.accent
-                Icon { anchors.centerIn: parent; text: Media.playing ? "pause" : "play_arrow"; fill: 1; color: Theme.accentText; font.pixelSize: 24 }
+                Icon { anchors.centerIn: parent; text: root.p && root.p.isPlaying ? "pause" : "play_arrow"; fill: 1; color: Theme.accentText; font.pixelSize: 24 }
                 MouseArea { id: playMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: if (root.p) root.p.togglePlaying() }
             }
             CtrlButton { icon: "skip_next"; big: true; enabled: !!root.p && root.p.canGoNext; onClicked: root.p.next() }

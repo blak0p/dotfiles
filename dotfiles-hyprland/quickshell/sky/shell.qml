@@ -9,8 +9,9 @@ import qs.wallpaper
 import qs.settings
 
 ShellRoot {
-    // Singletons load on first use; this binding starts the instant replay
-    // service (ReplayService.qml) with the shell, with no visible indicator.
+    // Singletons load on first use; this binding loads the instant replay
+    // service (ReplayService.qml) with the shell. It does NOT start recording:
+    // the buffer stays off until the user turns it on (Super+Alt+D).
     readonly property bool replayActive: ReplayService.active
 
     Variants {

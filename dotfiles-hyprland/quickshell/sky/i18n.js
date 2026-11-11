@@ -284,7 +284,7 @@ var es = {
     "Instant replay on": "Repetición instantánea activada",
     "Instant replay off": "Repetición instantánea desactivada",
     "Replay buffer": "Búfer de repetición",
-    "Recording the last %1 seconds · Alt+F10 saves a clip": "Grabando los últimos %1 segundos · Alt+F10 guarda un clip",
+    "Recording the last %1 seconds · Super+Alt+S saves a clip": "Grabando los últimos %1 segundos · Super+Alt+S guarda un clip",
     "Starting…": "Iniciando…",
     "Main screen (%1)": "Pantalla principal (%1)",
     "Clip length": "Duración del clip",

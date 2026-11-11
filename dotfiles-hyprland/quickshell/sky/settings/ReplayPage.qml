@@ -77,7 +77,7 @@ Page {
             current: ReplayService.active
             title: I18n.t("Instant replay")
             sub: !ReplayService.available ? I18n.t("gpu-screen-recorder is not installed")
-                : ReplayService.active ? I18n.t("Recording the last %1 seconds · Alt+F10 saves a clip", [page.opts.seconds])
+                : ReplayService.active ? I18n.t("Recording the last %1 seconds · Super+Alt+S saves a clip", [page.opts.seconds])
                 : ReplayService.enabled && ReplayService.error ? ReplayService.error
                 : ReplayService.enabled ? I18n.t("Starting…") : I18n.t("Off")
             Toggle {

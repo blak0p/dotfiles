@@ -16,7 +16,10 @@ Singleton {
 
     readonly property string script: Quickshell.shellDir + "/scripts/sky_replay.py"
     readonly property var opts: Config.user.replay && typeof Config.user.replay === "object" ? Config.user.replay : ({})
-    readonly property bool enabled: opts.enabled === true
+    // Session only: the recorder never starts at login, whatever the settings
+    // file says. The user turns it on with Super+Alt+D (or the settings switch)
+    // and it stays off until then.
+    property bool enabled: false
     readonly property string optsKey: JSON.stringify(opts) + "|" + Config.screen
 
     // gpu-screen-recorder is installed (checked at startup, and again on enable
@@ -44,10 +47,9 @@ Singleton {
     function setEnabled(on) {
         // Installed after the shell started? Probe again so it starts now.
         if (!root.available) probe.running = true;
+        root.enabled = on;
         IslandState.showClip("", on ? I18n.t("Instant replay on") : I18n.t("Instant replay off"),
             on ? "fiber_manual_record" : "videocam_off");
-        setter.command = ["python3", root.script, "set", Config.userFile, "enabled", on ? "true" : "false"];
-        setter.running = true;
     }
     function toggle() { setEnabled(!root.enabled); }
 
@@ -167,5 +169,4 @@ Singleton {
 
     Process { id: signaller }
     Process { id: remover; onExited: root.savedCount++ }
-    Process { id: setter }
 }

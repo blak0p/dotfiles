@@ -47,8 +47,8 @@ test("every Spanish entry keeps the placeholders of its English key", () => {
 test("instant replay strings are translated", () => {
     assert.equal(I18n.t("es", "Clip saved"), "Clip guardado");
     assert.equal(I18n.t("es", "Instant replay"), "Repetición instantánea");
-    assert.equal(I18n.t("es", "Recording the last %1 seconds · Alt+F10 saves a clip", [30]),
-        "Grabando los últimos 30 segundos · Alt+F10 guarda un clip");
+    assert.equal(I18n.t("es", "Recording the last %1 seconds · Super+Alt+S saves a clip", [30]),
+        "Grabando los últimos 30 segundos · Super+Alt+S guarda un clip");
 });
 
 test("instant replay UI strings all have a Spanish entry", () => {

@@ -162,6 +162,16 @@ class Clips(Base):
         self.assertTrue(err.startswith("sky_replay: "))
         self.assertTrue(outside.exists())
 
+    def test_delete_tilde_dir_through_symlinked_videos_folder(self):
+        real = self.home / "Vídeos" / "Clips"
+        real.mkdir(parents=True)
+        (self.home / "Videos").symlink_to(self.home / "Vídeos")
+        clip = real / "a.mp4"
+        clip.write_bytes(b"v")
+        code, out, err = run_cli("delete", "~/Videos/Clips", self.home / "Videos" / "Clips" / "a.mp4")
+        self.assertEqual((code, out, err), (0, "", ""))
+        self.assertFalse(clip.exists())
+
     def test_uri_is_percent_encoded(self):
         code, out, _ = run_cli("uri", self.clips / "Replay new.mp4")
         self.assertEqual(code, 0)

@@ -24,6 +24,8 @@ Singleton {
           keys: "appearance wallpaper colors theme apariencia fondo colores tema" },
         { id: "keyboard", icon: "keyboard", label: "Keyboard and language", file: "KeyboardPage.qml",
           keys: "keyboard layout language input teclado distribución idioma" },
+        { id: "shortcuts", icon: "keyboard_command_key", label: "Shortcuts", file: "ShortcutsPage.qml",
+          keys: "shortcuts keybinds hotkeys keys bind atajos teclas combinaciones" },
         { id: "time", icon: "schedule", label: "Date and time", file: "TimePage.qml",
           keys: "date time timezone clock ntp fecha hora zona horaria reloj" },
         { id: "apps", icon: "apps", label: "Default apps", file: "DefaultAppsPage.qml",

@@ -266,7 +266,38 @@ var es = {
     "RAM": "RAM",
     "%1 / %2 GB used": "%1 / %2 GB usados",
     "Disks": "Discos",
-    "No AMD GPU found": "No se ha encontrado una GPU AMD"
+    "No AMD GPU found": "No se ha encontrado una GPU AMD",
+
+    // Instant replay (ReplayService, settings/ReplayPage.qml)
+    "Instant replay": "Repetición instantánea",
+    "Replay is starting": "La repetición se está iniciando",
+    "Replay is off": "La repetición está desactivada",
+    "gpu-screen-recorder is not installed": "gpu-screen-recorder no está instalado",
+    "Clip saved": "Clip guardado",
+    "Replay buffer": "Búfer de repetición",
+    "Recording the last %1 seconds · Alt+F10 saves a clip": "Grabando los últimos %1 segundos · Alt+F10 guarda un clip",
+    "Starting…": "Iniciando…",
+    "Clip length": "Duración del clip",
+    "Seconds kept in memory": "Segundos que se guardan en memoria",
+    "%1 seconds": "%1 segundos",
+    "%1 min": "%1 min",
+    "Frame rate": "Fotogramas por segundo",
+    "Quality": "Calidad",
+    "Medium": "Media",
+    "High": "Alta",
+    "Very high": "Muy alta",
+    "Ultra": "Ultra",
+    "Audio": "Audio",
+    "No audio": "Sin audio",
+    "Desktop audio": "Audio del escritorio",
+    "Desktop and microphone": "Escritorio y micrófono",
+    "Clips folder": "Carpeta de clips",
+    "Type a path and press Enter": "Escribe una ruta y pulsa Intro",
+    "Open folder": "Abrir carpeta",
+    "Clips": "Clips",
+    "No clips yet": "Todavía no hay clips",
+    "Copy to clipboard": "Copiar al portapapeles",
+    "Delete": "Eliminar"
 };
 
 var tables = { es: es };

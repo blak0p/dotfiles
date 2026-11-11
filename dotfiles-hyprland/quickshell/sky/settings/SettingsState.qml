@@ -26,6 +26,8 @@ Singleton {
           keys: "keyboard layout language input teclado distribución idioma" },
         { id: "shortcuts", icon: "keyboard_command_key", label: "Shortcuts", file: "ShortcutsPage.qml",
           keys: "shortcuts keybinds hotkeys keys bind atajos teclas combinaciones" },
+        { id: "replay", icon: "movie", label: "Instant replay", file: "ReplayPage.qml",
+          keys: "instant replay clips record recording medal gallery video grabar grabación clips repetición galería vídeo" },
         { id: "time", icon: "schedule", label: "Date and time", file: "TimePage.qml",
           keys: "date time timezone clock ntp fecha hora zona horaria reloj" },
         { id: "apps", icon: "apps", label: "Default apps", file: "DefaultAppsPage.qml",

@@ -9,7 +9,7 @@ import qs
 Item {
     id: root
 
-    readonly property var items: SystemTray.items.values.slice(Config.trayInline)
+    readonly property var items: Config.trayVisible(SystemTray.items.values).slice(Config.trayInline)
     readonly property int cols: Math.min(items.length, Config.trayCols)
     readonly property real contentW: Config.trayPad * 2
         + cols * Config.trayItem + Math.max(0, cols - 1) * Config.trayGap
@@ -32,7 +32,7 @@ Item {
     Connections {
         target: SystemTray.items
         function onValuesChanged() {
-            if (SystemTray.items.values.length <= Config.trayInline) IslandState.closeTray();
+            if (Config.trayVisible(SystemTray.items.values).length <= Config.trayInline) IslandState.closeTray();
         }
     }
 

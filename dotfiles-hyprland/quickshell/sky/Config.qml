@@ -87,6 +87,13 @@ Singleton {
     readonly property real trayMinW: 168
     readonly property int trayCols: 6            // cells per row before wrapping
     readonly property int trayInline: 3          // tray apps shown in the pill; the rest go behind the chevron
+    // StatusNotifierItem ids never shown in the tray. The app keeps running
+    // (e.g. blueman-applet still handles pairing prompts and notifications);
+    // only its icon is dropped. Bluetooth already lives in the system pill.
+    readonly property var trayHidden: ["blueman"]
+    function trayVisible(items) {
+        return items.filter(it => !trayHidden.includes(it.id));
+    }
 
     // AI plan usage (UsageService.qml, needs the `codexbar` CLI): providers in
     // display order, background refresh, and refresh while the page is open.

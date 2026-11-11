@@ -19,7 +19,7 @@ Row {
         : section === "usage" ? UsageService.available
         : true
 
-    readonly property var trayItems: SystemTray.items.values
+    readonly property var trayItems: Config.trayVisible(SystemTray.items.values)
     readonly property int inlineCount: Math.min(trayItems.length, Config.trayInline)
     readonly property int hiddenCount: Math.max(0, trayItems.length - Config.trayInline)
 

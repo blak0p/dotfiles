@@ -23,7 +23,7 @@ Quickshell shell, a save-clip shortcut, island feedback, a settings page and a c
 - T4 [S1-S5] verify: unit tests, i18n tests, qmllint/qs load check, live check if gpu-screen-recorder is installed — inline — commit: ec9f47d (verification only)
 - T5 [S6,S7] Island clip card (thumbnail, actions, hover hold, two-click delete), re-probe recorder after install, verifier advisories (intentional stop is not a crash, stable reset, symlink delete test) — inline — commit: f720409
 - T6 [S8] set the user's replay quality to medium in ~/.config/sky/settings.json (user layer, not the repo) — inline — commit: n/a (user config)
-- T7 [S9] `monitor` option: sky_replay.py (+tests), ReplayService.qml resolution, ReplayPage.qml "Screen" selector, i18n es, README — inline (worker unavailable) — commit: pending
+- T7 [S9] `monitor` option: sky_replay.py (+tests), ReplayService.qml resolution, ReplayPage.qml "Screen" selector, i18n es, README — inline (worker unavailable) — commit: da0029d
 
 ## Log
 

@@ -33,6 +33,13 @@ var es = {
     "Disconnected": "Desconectada",
     "Turn it on to see networks": "Actívalo para ver las redes",
     "Password for %1": "Contraseña de %1",
+    "My devices": "Mis dispositivos",
+    "Nearby devices": "Dispositivos cercanos",
+    "Battery %1": "Batería %1",
+    "Ready to pair": "Listo para emparejar",
+    "Turn it on to see devices": "Actívalo para ver los dispositivos",
+    "No paired devices": "Sin dispositivos emparejados",
+    "Connect a Bluetooth adapter": "Conecta un adaptador Bluetooth",
     // Launcher
     "Change wallpaper": "Cambiar fondo de pantalla",
     "Lock screen": "Bloquear pantalla",

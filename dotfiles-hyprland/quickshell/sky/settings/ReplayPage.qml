@@ -122,6 +122,7 @@ Page {
             divider: true
             icon: "high_quality"
             title: I18n.t("Quality")
+            sub: I18n.t("Compression, not resolution: lower is lighter but blurrier in motion")
             Select {
                 model: page.qualityModel
                 currentIndex: page.qualityModel.findIndex(x => x.value === page.opts.quality)

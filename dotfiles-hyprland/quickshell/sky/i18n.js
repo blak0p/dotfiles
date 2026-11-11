@@ -293,6 +293,7 @@ var es = {
     "%1 min": "%1 min",
     "Frame rate": "Fotogramas por segundo",
     "Quality": "Calidad",
+    "Compression, not resolution: lower is lighter but blurrier in motion": "Compresión, no resolución: más baja pesa menos pero se ve peor al moverse",
     "Medium": "Media",
     "High": "Alta",
     "Very high": "Muy alta",

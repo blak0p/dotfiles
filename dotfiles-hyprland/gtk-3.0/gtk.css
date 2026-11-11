@@ -1,2 +1,4 @@
 /* Wallpaper colors from sky_theme.py (~/.local/state/sky/gtk.css). */
 @import url("../../.local/state/sky/gtk.css");
+/* GTK 3 ignores the libadwaita role names above; these rules carry the colors. */
+@import url("../../.local/state/sky/gtk3.css");

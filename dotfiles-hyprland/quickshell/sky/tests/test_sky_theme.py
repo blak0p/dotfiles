@@ -115,6 +115,16 @@ class Renderers(unittest.TestCase):
         self.assertIn("@define-color accent_color #ffb59a;", out)
         self.assertIn("@define-color window_bg_color #1a110e;", out)
 
+    def test_gtk3_rules_use_literal_colors(self):
+        out = sky_theme.render_gtk3(self.p)
+        # GTK3 knows no libadwaita role names, and a theme that ships no widget
+        # CSS leaves every window transparent: only literal rules paint it.
+        self.assertNotIn("@define-color", out)
+        self.assertIn("window, .background {", out)
+        self.assertIn("background-color: #1a110e;", out)
+        self.assertIn("color: #f1dfd9;", out)
+        self.assertIn("headerbar {", out)
+
     def test_btop_theme(self):
         out = sky_theme.render_btop(self.p)
         self.assertIn('theme[hi_fg]="#ffb59a"', out)
@@ -280,7 +290,7 @@ class Apply(unittest.TestCase):
         self.assertIn("Name=Sky", scheme.read_text())
         self.assertIn("[Colors:View]", scheme.read_text())
         self.assertEqual(sorted(os.listdir(out)),
-                         ["colors.json", "gtk.css", "hyprland.lua", "hyprlock.conf", "kitty.conf",
+                         ["colors.json", "gtk.css", "gtk3.css", "hyprland.lua", "hyprlock.conf", "kitty.conf",
                           "qt6ct-colors.conf", "starship.toml"])
         self.assertIn("SingleClick=false", kdeglobals.read_text())
         self.assertIn("ColorScheme=Sky", kdeglobals.read_text())

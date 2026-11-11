@@ -6,7 +6,6 @@ end
 
 local hyprScripts = HOME .. "/.config/hypr/hyprland/scripts"
 
-hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("pkill wlogout || wlogout -p layer-shell"))
 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl s 5%+"),
     { locked = true, repeating = true })
@@ -24,12 +23,6 @@ hl.bind("CTRL + SUPER + R", hl.dsp.exec_cmd("killall ydotool qs quickshell; qs -
 
 --##! Utilities
 --# Screenshot, Record, OCR, Color picker, Clipboard history
-hl.bind("SUPER + V", hl.dsp.exec_cmd(
-        "pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy"),
-    { description = "Utilities: Clipboard history >> clipboard" })
-hl.bind("SUPER + Period", hl.dsp.exec_cmd(
-        "pkill fuzzel || " .. hyprScripts .. "/fuzzel-emoji.sh copy"),
-    { description = "Utilities: Emoji >> clipboard" })
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(HOME .. "/.config/hypr/scripts/screenshot-region.sh"),
     { description = "Utilities: Screen snip" })
 hl.bind("SUPER + SHIFT + A", hl.dsp.exec_cmd("pidof slurp || " .. hyprScripts .. "/snip_to_search.sh"),
@@ -50,11 +43,6 @@ hl.bind("CTRL + Print", hl.dsp.exec_cmd(
     grimhyprctl .. " $(xdg-user-dir PICTURES)/Screenshots/Screenshot_\"$(date '+%Y-%m-%d_%H.%M.%S')\".png"
 ), { locked = true, non_consuming = true, description = "Utilities: Screenshot >> clipboard & file" })
 hl.bind("CTRL + Print", hl.dsp.exec_cmd(grimhyprctl .. " - | wl-copy"), { locked = true, non_consuming = true })
---# AI
-hl.bind("SUPER + SHIFT + ALT + mouse:273", hl.dsp.exec_cmd(hyprScripts .. "/ai/primary-buffer-query.sh"),
-    { description = "Utilities: Generate AI summary for selected text" })
--- (requires a running ollama model)
-
 --##! Screen
 --# Zoom
 local function zoomfunction(value)
@@ -269,18 +257,6 @@ end)
 
 
 --#!
---# Testing
-hl.bind("SUPER + ALT + F11",
-    hl.dsp.exec_cmd(
-        "bash -c 'RANDOM_IMAGE=$(find ~/Pictures -type f | shuf -n 1); ACTION=$(notify-send \"Test notification with body image\" \"This notification should contain your user account <b>image</b> and <a href=\\\"https://discord.com/app\\\">Discord</a> <b>icon</b>. Oh and here is a random image in your Pictures folder: <img src=\\\"$RANDOM_IMAGE\\\" alt=\\\"Testing image\\\"/>\" -a \"Hyprland\" -p -h \"string:image-path:/var/lib/AccountsService/icons/$USER\" -t 6000 -i \"discord\" -A \"openImage=Profile image\" -A \"action2=Open the random image\" -A \"action3=Useless button\"); [[ $ACTION == *openImage ]] && xdg-open \"/var/lib/AccountsService/icons/$USER\"; [[ $ACTION == *action2 ]] && xdg-open \"$RANDOM_IMAGE\"'")
-) -- # [hidden]
-hl.bind("SUPER + ALT + F12",
-    hl.dsp.exec_cmd(
-        "bash -c 'RANDOM_IMAGE=$(find ~/Pictures -type f | shuf -n 1); ACTION=$(notify-send \"Test notification\" \"This notification should contain a random image in your <b>Pictures</b> folder and <a href=\\\"https://discord.com/app\\\">Discord</a> <b>icon</b>.\n<i>Flick right to dismiss!</i>\" -a \"Discord (fake)\" -p -h \"string:image-path:$RANDOM_IMAGE\" -t 6000 -i \"discord\" -A \"openImage=Profile image\" -A \"action2=Useless button\"); [[ $ACTION == *openImage ]] && xdg-open \"/var/lib/AccountsService/icons/$USER\"'")
-)                                                                                                        -- # [hidden]
-hl.bind("SUPER + ALT + Equal",
-    hl.dsp.exec_cmd("notify-send 'Urgent notification' 'Ah hell no' -u critical -a 'Hyprland keybind'")) -- # [hidden]
-
 --##! Session
 hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session"), { description = "Session: Lock" })
 hl.bind("SUPER + SHIFT + L", hl.dsp.exec_cmd("systemctl suspend || loginctl suspend"),
@@ -303,10 +279,3 @@ hl.bind("SUPER + X", hl.dsp.exec_cmd(textEditor), { description = "App: Text edi
 hl.bind("CTRL + SUPER + V", hl.dsp.exec_cmd(volumeMixer), { description = "App: Volume mixer" })
 hl.bind("SUPER + I", hl.dsp.global("quickshell:settingsToggle"), { description = "Shell: Toggle settings" })
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(taskManager), { description = "App: Task manager" })
-
---# Cursed stuff
---## Make window not amogus large
-hl.bind("CTRL + SUPER + Backslash", hl.dsp.window.resize({ x = 640, y = 480, "exact" }))
-
--- Cargar keybinds personalizados al final para pisar los de end-4
--- (también se carga desde hyprland.lua, pero por si acaso)

@@ -80,6 +80,8 @@ var es = {
     "Video": "Vídeo",
     "Wallpaper": "Fondo de pantalla",
     "Web browser": "Navegador web",
+    "Position": "Posición",
+    "Drag a monitor to move it, or use the arrow keys": "Arrastra un monitor para moverlo, o usa las flechas",
     "Couldn't apply this mode": "No se pudo aplicar este modo",
     "Couldn't restore the previous mode": "No se pudo restaurar el modo anterior",
     "Couldn't save the settings": "No se pudieron guardar los ajustes",

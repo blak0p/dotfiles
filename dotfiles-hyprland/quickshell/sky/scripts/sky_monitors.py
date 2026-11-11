@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Monitor settings helper for the sky settings Displays page.
 
-Reads and rewrites hypr/monitors.lua (hl.monitor({...}) blocks), keeping every
+Reads and rewrites the user layer file ~/.config/sky/hypr/monitors.lua (hl.monitor({...}) blocks), keeping every
 field and line it does not change, and builds the Lua call used to apply a mode
 live through `hyprctl eval`.
 
   sky_monitors.py modes  <availableModes...>                      -> JSON grouped modes
   sky_monitors.py eval   FILE OUTPUT MODE SCALE [POSITION]        -> Lua to pass to hyprctl eval
-  sky_monitors.py save   FILE OUTPUT MODE SCALE [--dry-run]       -> rewrite FILE (keeps FILE.bak)
+  sky_monitors.py save   FILE OUTPUT MODE SCALE [POSITION] [--dry-run]  -> rewrite/create FILE (keeps FILE.bak)
+  sky_monitors.py save   FILE --json '[{"output":..,"mode":..,"scale":..,"position":..}]'  -> several at once
 """
 import json
 import math
@@ -112,16 +113,31 @@ def validate(output: str, mode: str, scale, position: str = "0x0") -> float:
     return sc
 
 
-def rewrite(text: str, output: str, mode: str, scale, position: str = "0x0") -> str:
-    scale = validate(output, mode, scale, position)
+def rewrite(text: str, output: str, mode: str, scale, position=None) -> str:
+    """Set mode/scale (and position when given) of OUTPUT; append a block when absent."""
+    scale = validate(output, mode, scale, position or "0x0")
     masked = _mask(text)
     b = _span(masked, output)
     if b is None:
-        raise ValueError("output %s not found in the monitors file" % output)
+        blk = 'hl.monitor({ output = "%s", mode = "%s", position = "%s", scale = %s })\n' % (
+            output, mode, position or "0x0", fmt_num(scale))
+        sep = "" if not text or text.endswith("\n") else "\n"
+        return text + sep + ("\n" if text.strip() else "") + blk
     blk = text[b.start():b.end()]
     blk = _set(blk, _mask(blk), "mode", '"%s"' % mode)
     blk = _set(blk, _mask(blk), "scale", fmt_num(scale))
+    if position:
+        blk = _set(blk, _mask(blk), "position", '"%s"' % position)
     return text[:b.start()] + blk + text[b.end():]
+
+
+def rewrite_many(text: str, changes) -> str:
+    """Apply every change ({output, mode, scale[, position]}); all validated first."""
+    for c in changes:
+        validate(c.get("output"), c.get("mode"), c.get("scale"), c.get("position") or "0x0")
+    for c in changes:
+        text = rewrite(text, c["output"], c["mode"], c["scale"], c.get("position"))
+    return text
 
 
 def group_modes(modes) -> list:
@@ -170,18 +186,29 @@ def _atomic_write(target: Path, data: str):
         raise
 
 
-def save(path, output: str, mode: str, scale, position: str = "0x0", dry_run: bool = False) -> str:
+def _only_monitor_blocks(text: str) -> bool:
+    """True when TEXT is comments, whitespace and hl.monitor blocks only."""
+    return not BLOCK.sub("", _mask(text)).strip()
+
+
+def save_many(path, changes, dry_run: bool = False) -> str:
+    """Write CHANGES into PATH (the user layer file), creating it when missing."""
     real = Path(path).resolve()
-    if not real.is_file():
-        raise ValueError("monitors file not found: %s" % path)
-    old = real.read_text()
-    if not parse_monitors(old):
-        raise ValueError("no hl.monitor block found in %s" % path)
-    new = rewrite(old, output, mode, scale, position)
+    exists = real.is_file()
+    old = real.read_text() if exists else ""
+    if not _only_monitor_blocks(old):
+        raise ValueError("%s has content that is not an hl.monitor block; not touching it" % path)
+    new = rewrite_many(old, changes)
     if not dry_run:
-        _atomic_write(real.with_name(real.name + ".bak"), old)
+        real.parent.mkdir(parents=True, exist_ok=True)
+        if exists:
+            _atomic_write(real.with_name(real.name + ".bak"), old)
         _atomic_write(real, new)
     return new
+
+
+def save(path, output: str, mode: str, scale, position=None, dry_run: bool = False) -> str:
+    return save_many(path, [{"output": output, "mode": mode, "scale": scale, "position": position}], dry_run)
 
 
 def main(argv) -> int:
@@ -202,10 +229,20 @@ def _run(cmd, args) -> int:
     elif cmd == "eval" and len(args) >= 4:
         f = Path(args[0])
         print(eval_call(f.read_text() if f.exists() else "", args[1], args[2], args[3], args[4] if len(args) > 4 and args[4] else None))
+    elif cmd == "save" and len(args) >= 3 and args[1] == "--json":
+        try:
+            changes = json.loads(args[2])
+        except ValueError:
+            raise ValueError("invalid JSON")
+        if not isinstance(changes, list) or not all(isinstance(c, dict) for c in changes):
+            raise ValueError("expected a JSON list of monitor objects")
+        out = save_many(args[0], changes, "--dry-run" in args)
+        if "--dry-run" in args:
+            print(out, end="")
     elif cmd == "save" and len(args) >= 4:
         dry = "--dry-run" in args
         args = [a for a in args if a != "--dry-run"]
-        out = save(args[0], args[1], args[2], args[3], args[4] if len(args) > 4 else "0x0", dry)
+        out = save(args[0], args[1], args[2], args[3], args[4] if len(args) > 4 else None, dry)
         if dry:
             print(out, end="")
     else:

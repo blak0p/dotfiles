@@ -64,9 +64,16 @@ class Rewrite(unittest.TestCase):
         out = mon.rewrite(ONE_LINE, "DP-2", mode="1920x1080@60", scale=2)
         self.assertEqual(out, 'hl.monitor({ output="DP-2", mode="1920x1080@60", position="1920x0", scale=2, bitdepth=10 })\n')
 
-    def test_missing_output_is_rejected(self):
-        with self.assertRaises(ValueError):
-            mon.rewrite(SAMPLE, "eDP-1", mode="1920x1080@60", scale=1, position="0x0")
+    def test_unknown_output_is_appended_as_new_block(self):
+        out = mon.rewrite(SAMPLE, "eDP-1", mode="1920x1080@60", scale=1, position="3840x0")
+        self.assertTrue(out.startswith(SAMPLE))
+        self.assertEqual(mon.parse_monitors(out)["eDP-1"],
+                         {"output": "eDP-1", "mode": "1920x1080@60", "position": "3840x0", "scale": 1})
+
+    def test_position_is_written_when_given(self):
+        out = mon.rewrite(SAMPLE, "DP-2", mode="2560x1440@180", scale=1, position="0x1080")
+        self.assertEqual(mon.parse_monitors(out)["DP-2"]["position"], "0x1080")
+        self.assertEqual(mon.parse_monitors(out)["DP-2"]["bitdepth"], 10)
 
     def test_scale_without_existing_field_is_added(self):
         text = 'hl.monitor({ output = "X-1", mode = "800x600@60", position = "0x0" })\n'
@@ -118,6 +125,54 @@ class Save(unittest.TestCase):
             self.assertIn("1920x1080@60", out)
             self.assertEqual(f.read_text(), SAMPLE)
             self.assertFalse((Path(d) / "monitors.lua.bak").exists())
+
+
+TEMPLATE = "-- Your monitors.\n-- hl.monitor({ output = \"DP-1\", mode = \"1x1@1\" })\n"
+CHANGES = [{"output": "HDMI-A-2", "mode": "1920x1080@100", "scale": 1, "position": "0x1440"},
+           {"output": "DP-2", "mode": "2560x1440@180", "scale": 1, "position": "0x0"}]
+
+
+class UserLayer(unittest.TestCase):
+    def test_create_when_file_and_directory_missing(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "sky" / "hypr" / "monitors.lua"
+            mon.save_many(f, CHANGES[:1])
+            m = mon.parse_monitors(f.read_text())
+            self.assertEqual(m["HDMI-A-2"]["position"], "0x1440")
+            self.assertFalse((f.parent / "monitors.lua.bak").exists())
+
+    def test_template_only_file_keeps_comments_and_appends(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "monitors.lua"
+            f.write_text(TEMPLATE)
+            mon.save_many(f, CHANGES[:1])
+            t = f.read_text()
+            self.assertTrue(t.startswith(TEMPLATE))
+            self.assertEqual(list(mon.parse_monitors(t)), ["HDMI-A-2"])
+            self.assertEqual((Path(d) / "monitors.lua.bak").read_text(), TEMPLATE)
+
+    def test_save_many_changes_all_and_keeps_other_fields(self):
+        out = mon.rewrite_many(SAMPLE, CHANGES)
+        m = mon.parse_monitors(out)
+        self.assertEqual(m["HDMI-A-2"]["position"], "0x1440")
+        self.assertEqual(m["DP-2"]["position"], "0x0")
+        self.assertEqual(m["DP-2"]["bitdepth"], 10)
+
+    def test_save_many_is_all_or_nothing(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "monitors.lua"
+            f.write_text(SAMPLE)
+            with self.assertRaises(ValueError):
+                mon.save_many(f, [CHANGES[0], {"output": "DP-2", "mode": "bad", "scale": 1}])
+            self.assertEqual(f.read_text(), SAMPLE)
+
+    def test_unparsable_content_is_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "monitors.lua"
+            f.write_text("local x = 1\n")
+            with self.assertRaises(ValueError):
+                mon.save_many(f, CHANGES[:1])
+            self.assertEqual(f.read_text(), "local x = 1\n")
 
 
 if __name__ == "__main__":

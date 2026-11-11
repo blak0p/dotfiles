@@ -176,7 +176,9 @@ for i = 1, 4 do
     hl.bind(keycombos[i], hl.dsp.window.move({ workspace = prefix[i] .. "1" })) -- # [hidden]
 end
 
-hl.bind("SUPER + ALT + S",
+-- Super+Alt+S is the sky save-clip shortcut (quickshell:replaySave); the
+-- scratchpad send lives on Super+Alt+X so the two do not fire together.
+hl.bind("SUPER + ALT + X",
     hl.dsp.window.move({ workspace = "special:special", follow = false }), { description = "Window: Send to scratchpad" })
 hl.bind("CTRL + SUPER + S", hl.dsp.workspace.toggle_special("special"))
 

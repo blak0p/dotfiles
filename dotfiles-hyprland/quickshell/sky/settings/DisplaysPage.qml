@@ -22,6 +22,11 @@ Page {
     // Live state before an unconfirmed apply (null when nothing is pending).
     property var pending: null
     property int countdown: 0
+    // True once the applied mode was confirmed live (the 15 s prompt is shown).
+    property bool confirming: false
+    // Requested mode/scale being verified after hyprctl eval; null otherwise.
+    property var verify: null
+    property string error: ""
     property bool identifying: false
 
     readonly property string script: Qt.resolvedUrl("../scripts/sky_monitors.py").toString().replace("file://", "")
@@ -60,6 +65,7 @@ Page {
     }
     function select(name) {
         if (pending) return;
+        error = "";
         selected = name;
         resetDraft();
     }
@@ -70,7 +76,10 @@ Page {
     }
 
     Component.onCompleted: load()
-    Component.onDestruction: if (pending) revert()
+    Component.onDestruction: if (pending && confirming) {
+        const p = pending;
+        Quickshell.execDetached(liveCmd(p.name, p.mode, p.scale, p.pos));
+    }
 
     Process {
         id: list
@@ -84,39 +93,92 @@ Page {
                 if (!arr.some(m => m.name === page.selected))
                     page.selected = (arr.find(m => m.name === Config.screen) || arr[0] || { name: "" }).name;
                 if (!page.pending) page.resetDraft();
+                page.checkVerify();
             }
         }
     }
 
     // Live apply: the script builds the hl.monitor call (keeping bitdepth etc.
-    // from monitors.lua) and hyprctl eval runs it.
-    function live(output, mode, scale, position) {
-        Quickshell.execDetached(["sh", "-c",
-            "hyprctl eval \"$(python3 \"$1\" eval \"$2\" \"$3\" \"$4\" \"$5\" \"$6\")\"",
-            "sh", script, file, output, mode, String(scale), position]);
-        reload.restart();
+    // from monitors.lua) and hyprctl eval runs it; hyprctl prints "ok" on success.
+    function liveCmd(output, mode, scale, position) {
+        return ["sh", "-c",
+            "lua=$(python3 \"$1\" eval \"$2\" \"$3\" \"$4\" \"$5\" \"$6\") || exit 2; " +
+            "out=$(hyprctl eval \"$lua\") || exit 3; [ \"$out\" = ok ] || exit 4",
+            "sh", script, file, output, mode, String(scale), position];
+    }
+    Process {
+        id: applier
+        property bool isRevert: false
+        onExited: code => {
+            if (code !== 0) {
+                if (!applier.isRevert) { page.clearPending(); }
+                page.error = I18n.t(applier.isRevert ? "Couldn't restore the previous mode" : "Couldn't apply this mode");
+                page.load();
+            } else {
+                reload.restart();
+            }
+        }
+    }
+    function live(output, mode, scale, position, isRevert) {
+        applier.isRevert = !!isRevert;
+        applier.command = liveCmd(output, mode, scale, position);
+        applier.running = true;
     }
     Timer { id: reload; interval: 900; onTriggered: page.load() }
 
+    function clearPending() {
+        tick.stop();
+        verify = null;
+        confirming = false;
+        pending = null;
+        resetDraft();
+    }
+    // Called after every monitor reload: shows the prompt only if the compositor
+    // really runs the requested mode and scale.
+    function checkVerify() {
+        const v = verify;
+        if (!v) return;
+        verify = null;
+        const m = monitors.find(x => x.name === v.name);
+        if (m && curRes(m) === v.res && Math.abs(curRate(m) - v.rate) < 0.02 && Math.abs(m.scale - v.scale) < 0.01) {
+            confirming = true;
+            countdown = 15;
+            tick.restart();
+        } else {
+            clearPending();
+            error = I18n.t("Couldn't apply this mode");
+        }
+    }
+
     function apply() {
         const m = cur;
+        error = "";
         pending = { name: m.name, mode: modeStr(curRes(m), curRate(m)), scale: m.scale, pos: m.x + "x" + m.y };
-        live(m.name, modeStr(dRes, dRate), dScale, pending.pos);
-        countdown = 15;
-        tick.restart();
+        verify = { name: m.name, res: dRes, rate: dRate, scale: dScale };
+        live(m.name, modeStr(dRes, dRate), dScale, pending.pos, false);
+    }
+    Process {
+        id: saver
+        onExited: code => {
+            if (code !== 0) page.error = I18n.t("Couldn't save the settings");
+            reload.restart();
+        }
     }
     function keep() {
         tick.stop();
         const p = pending;
+        confirming = false;
         pending = null;
-        Quickshell.execDetached(["python3", script, "save", file, p.name, modeStr(dRes, dRate), String(dScale), p.pos]);
-        reload.restart();
+        saver.command = ["python3", script, "save", file, p.name, modeStr(dRes, dRate), String(dScale), p.pos];
+        saver.running = true;
     }
     function revert() {
         tick.stop();
         const p = pending;
+        confirming = false;
+        verify = null;
         pending = null;
-        if (p) live(p.name, p.mode, p.scale, p.pos);
+        if (p) live(p.name, p.mode, p.scale, p.pos, true);
         resetDraft();
     }
     Timer {
@@ -281,9 +343,16 @@ Page {
     }
 
     // ---- Apply / confirm ----
-    Section { visible: page.pending !== null; text: I18n.t("Confirm") }
     Card {
-        visible: page.pending !== null
+        visible: page.error !== ""
+        SettingRow {
+            icon: "error"
+            title: page.error
+        }
+    }
+    Section { visible: page.confirming; text: I18n.t("Confirm") }
+    Card {
+        visible: page.confirming
         SettingRow {
             current: true
             icon: "timer"

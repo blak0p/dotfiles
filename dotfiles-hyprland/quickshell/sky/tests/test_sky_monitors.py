@@ -64,11 +64,9 @@ class Rewrite(unittest.TestCase):
         out = mon.rewrite(ONE_LINE, "DP-2", mode="1920x1080@60", scale=2)
         self.assertEqual(out, 'hl.monitor({ output="DP-2", mode="1920x1080@60", position="1920x0", scale=2, bitdepth=10 })\n')
 
-    def test_missing_output_appends_a_block(self):
-        out = mon.rewrite(SAMPLE, "eDP-1", mode="1920x1080@60", scale=1, position="0x0")
-        self.assertTrue(out.startswith(SAMPLE))
-        self.assertIn('output = "eDP-1"', out)
-        self.assertEqual(mon.parse_monitors(out)["eDP-1"]["mode"], "1920x1080@60")
+    def test_missing_output_is_rejected(self):
+        with self.assertRaises(ValueError):
+            mon.rewrite(SAMPLE, "eDP-1", mode="1920x1080@60", scale=1, position="0x0")
 
     def test_scale_without_existing_field_is_added(self):
         text = 'hl.monitor({ output = "X-1", mode = "800x600@60", position = "0x0" })\n'
@@ -94,9 +92,9 @@ class Modes(unittest.TestCase):
 
 
 class Lua(unittest.TestCase):
-    def test_eval_keeps_extra_fields_from_the_file(self):
+    def test_eval_prefers_live_position_and_keeps_extra_fields(self):
         s = mon.eval_call(SAMPLE, "DP-2", mode="1920x1080@60", scale=1.25, position="9x9")
-        self.assertEqual(s, 'hl.monitor({ output = "DP-2", mode = "1920x1080@60", position = "1920x0", scale = 1.25, bitdepth = 10 })')
+        self.assertEqual(s, 'hl.monitor({ output = "DP-2", mode = "1920x1080@60", position = "9x9", scale = 1.25, bitdepth = 10 })')
 
     def test_eval_uses_given_position_when_not_in_file(self):
         s = mon.eval_call("", "DP-3", mode="800x600@60", scale=1, position="5x6")

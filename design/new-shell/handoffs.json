@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "chosen": "04-continuous-frame.html",
+  "handoffs": {
+    "04-continuous-frame.html": {
+      "status": "in_progress",
+      "queued": false,
+      "sentAt": "2026-11-02T11:42:00.124Z",
+      "startedAt": "2026-11-02T11:50:51.841Z",
+      "implementedAt": null,
+      "feature": "odd/tasks/new-shell.md",
+      "note": "sky renders on both monitors (frame, glow, bar, notch, dock, launcher). Pending: test without ii overlapping, launcher keyboard nav."
+    }
+  }
+}

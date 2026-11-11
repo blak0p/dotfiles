@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "chosen": "01-sidebar-window.html",
+  "handoffs": {
+    "01-sidebar-window.html": {
+      "status": "implemented",
+      "queued": false,
+      "sentAt": "2026-11-11T11:02:00.054Z",
+      "startedAt": "2026-11-11T11:02:21.637Z",
+      "implementedAt": "2026-11-11T11:15:51.394Z",
+      "feature": "odd/tasks/remove-kde.md",
+      "note": "Implemented in quickshell/sky/settings (branch feat/sky-settings: df8e947, 93c9cfc, a9ad244, 456a58c, 931caae). Open with Super+I."
+    }
+  }
+}

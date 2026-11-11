@@ -1,0 +1,35 @@
+{
+  "title": "New shell",
+  "brief": "Hyprland + Quickshell desktop redesign: top bar with an extensible center pill, bottom dock whose launcher rises from it, desktop widgets, colors generated from the wallpaper by matugen with a sky-blue bias",
+  "feature": "odd/tasks/new-shell.md",
+  "artboards": [
+    {
+      "file": "01-fused-frame.html",
+      "title": "Fused frame",
+      "tradeoff": "Closest to the reference and very cohesive; the solid frame costs screen space and blocks the wallpaper edges",
+      "width": 1920,
+      "height": 1200
+    },
+    {
+      "file": "02-floating-islands.html",
+      "title": "Floating islands",
+      "tradeoff": "Light and modern with full wallpaper; blur costs GPU and contrast depends on the wallpaper",
+      "width": 1920,
+      "height": 1200
+    },
+    {
+      "file": "03-edge-minimal.html",
+      "title": "Edge minimal",
+      "tradeoff": "Maximum wallpaper and focus; hidden dock is slower to reach and text widgets can lose legibility",
+      "width": 1920,
+      "height": 1200
+    },
+    {
+      "file": "04-continuous-frame.html",
+      "title": "Continuous frame",
+      "tradeoff": "Everything is one shape attached to the monitor edge (thin top bar through the notch, dock carved into the bottom with flared curves); matches the reference best, costs a thin border on every edge",
+      "width": 1920,
+      "height": 1200
+    }
+  ]
+}

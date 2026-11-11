@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1440">
+<title>Ajustes · Buscar primero + tarjetas</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark;--accent:#8fcff3;--onAccent:#003549;--secondary:#b5c9d7;--tertiary:#cac1ea;--surface:#0f1417;--surface2:#262b2e;--widget:#1c2023;--on:#dfe3e7;--muted:#c0c7cd;--outline:#8a9297;--outlineVariant:#41484d;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{width:1440px;height:900px;overflow:hidden;color:var(--on);background:#05070b}
+button,select,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+svg{width:1em;height:1em;display:block;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.wall{position:fixed;inset:0;z-index:0;background:
+ radial-gradient(60% 40% at 55% 95%,hsl(200 75% 42% / .6),transparent 70%),
+ radial-gradient(40% 30% at 18% 25%,hsl(262 40% 40% / .35),transparent 70%),
+ linear-gradient(180deg,hsl(205 50% 7%) 0%,hsl(204 45% 14%) 50%,hsl(200 62% 30%) 100%)}
+.wall::before{content:"";position:absolute;left:61%;top:0;width:40px;height:100%;background:linear-gradient(90deg,transparent,hsl(200 80% 80% / .45),transparent);filter:blur(8px)}
+.dim{position:fixed;inset:0;z-index:1;background:rgba(5,8,11,.62);backdrop-filter:blur(14px)}
+main{position:relative;z-index:2;width:1440px;height:900px;padding:36px 120px 28px;display:flex;flex-direction:column;gap:22px}
+.search{display:flex;align-items:center;gap:16px;height:64px;padding:0 26px;border-radius:32px;background:rgba(28,32,35,.82);border:1px solid var(--outlineVariant);font-size:20px}
+.search:focus-within{border-color:var(--accent)}
+.search svg{font-size:24px;color:var(--accent)}
+.search input{flex:1;background:none;border:0;outline:0;font-size:20px;color:var(--on)}
+.search input::placeholder{color:var(--muted)}
+.search kbd{font:600 12px inherit;padding:4px 10px;border-radius:10px;background:var(--surface2);color:var(--muted)}
+.rail{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:17px;background:rgba(38,43,46,.75);color:var(--muted);font-size:13px;font-weight:600}
+.chip:hover{color:var(--on)}.chip[aria-current=true]{background:var(--accent);color:var(--onAccent)}
+.chip svg{font-size:16px}
+.stage{flex:1;min-height:0;position:relative}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:16px}
+.card{display:flex;flex-direction:column;justify-content:space-between;text-align:left;padding:20px 22px;border-radius:24px;background:rgba(28,32,35,.82);border:1px solid var(--outlineVariant);transition:transform .2s,border-color .2s,background .2s}
+.card:hover{transform:translateY(-2px);border-color:var(--accent);background:rgba(38,43,46,.9)}
+.card .ic{width:40px;height:40px;border-radius:20px;background:var(--surface2);display:grid;place-items:center;font-size:20px;color:var(--accent)}
+.card:nth-child(3n) .ic{color:var(--tertiary)}
+.card h2{font-size:17px;font-weight:700}
+.card p{font-size:13px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .top{display:flex;justify-content:space-between;align-items:center}
+.dot{width:8px;height:8px;border-radius:4px;background:var(--accent)}
+.rows{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.rows h3{font-size:12px;font-weight:600;color:var(--accent);margin-bottom:2px}
+.row{display:flex;align-items:center;gap:14px;height:56px;padding:0 20px;border-radius:20px;background:rgba(28,32,35,.82);border:1px solid var(--outlineVariant);text-align:left;width:100%}
+.row:hover{border-color:var(--accent)}
+.row b{font-size:15px;font-weight:600}.row span{color:var(--muted);font-size:13px}.row .cat{margin-left:auto;font-size:12px;color:var(--secondary)}
+.row svg{font-size:20px;color:var(--accent)}
+mark{background:none;color:var(--accent);font-weight:700}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.panel{height:100%;border-radius:26px;background:rgba(15,20,23,.9);border:1px solid var(--outlineVariant);padding:26px 30px;display:flex;flex-direction:column;gap:20px;animation:grow .28s cubic-bezier(.2,.9,.25,1.1)}
+@keyframes grow{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.ph{display:flex;align-items:center;gap:14px}
+.ph h2{font-size:26px;font-weight:700;letter-spacing:-.01em}.ph p{color:var(--muted);font-size:13px}
+.back{width:40px;height:40px;border-radius:20px;background:var(--surface2);display:grid;place-items:center;font-size:20px}
+.cols{display:grid;grid-template-columns:1fr 340px;gap:24px;flex:1;min-height:0}
+.box{border-radius:22px;background:var(--widget);padding:20px;display:flex;flex-direction:column;gap:14px}
+.box h3{font-size:12px;font-weight:600;color:var(--accent)}
+.arr{position:relative;flex:1;border-radius:16px;background:var(--surface);border:1px dashed var(--outlineVariant);overflow:hidden;touch-action:none}
+.mon{position:absolute;border-radius:12px;background:var(--surface2);border:2px solid var(--outline);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:grab;user-select:none;text-align:center;padding:4px}
+.mon:active{cursor:grabbing}
+.mon[aria-pressed=true]{border-color:var(--accent);background:#17313f}
+.mon b{font-size:15px}.mon span{font-size:11px;color:var(--muted)}
+.mon .tag{background:var(--tertiary);color:#111;border-radius:8px;padding:1px 8px;font-size:10px;font-weight:700}
+.hint{font-size:12px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
+select{height:44px;border-radius:22px;padding:0 18px;background:var(--surface2);border:1px solid var(--outlineVariant);color:var(--on);font-size:14px}
+select:hover{border-color:var(--outline)}
+.seg{display:flex;padding:4px;border-radius:24px;background:var(--surface2);gap:4px}
+.seg button{flex:1;height:38px;border-radius:19px;font-size:14px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--onAccent)}
+.actions{display:flex;gap:10px;margin-top:auto}
+.btn{height:46px;padding:0 24px;border-radius:23px;font-weight:700;font-size:14px;background:var(--surface2);color:var(--on)}
+.btn.pri{background:var(--accent);color:var(--onAccent);flex:1}
+.btn:disabled{color:var(--muted);cursor:default;opacity:.8}
+.btn.warn{background:var(--tertiary);color:#1c1633}
+.toast{font-size:13px;color:var(--tertiary);min-height:18px}
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.sw div{height:72px;border-radius:18px;display:flex;align-items:flex-end;padding:8px 10px;font-size:11px;font-weight:700}
+.wp{height:140px;border-radius:18px;background:radial-gradient(60% 60% at 55% 100%,hsl(200 75% 42% / .7),transparent 70%),linear-gradient(180deg,hsl(205 50% 7%),hsl(204 45% 16%) 55%,hsl(200 62% 32%));display:flex;align-items:flex-end;padding:12px;font-size:12px;color:var(--on)}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;font-size:14px}
+.tog small{display:block;color:var(--muted);font-size:12px}
+.sw-t{width:48px;height:28px;border-radius:14px;background:var(--surface2);border:1px solid var(--outline);position:relative;flex:none}
+.sw-t::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:10px;background:var(--outline);transition:transform .2s}
+.sw-t[aria-checked=true]{background:var(--accent);border-color:var(--accent)}
+.sw-t[aria-checked=true]::after{transform:translateX(20px);background:var(--onAccent)}
+input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.pv{border-radius:16px;background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:6px}
+.pv .t{font-weight:700}.pv .i{display:flex;gap:10px;font-size:22px;color:var(--accent)}
+footer{display:flex;gap:18px;justify-content:center;font-size:12px;color:var(--muted)}
+footer kbd{background:var(--surface2);border-radius:8px;padding:2px 8px;font:600 11px inherit;color:var(--on)}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-bt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7l12 10-6 5V2l6 5L6 17"/></symbol>
+<symbol id="i-mon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+<symbol id="i-snd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+<symbol id="i-pal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+<symbol id="i-kb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+<symbol id="i-clk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+<symbol id="i-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+<symbol id="i-b" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+</defs></svg>
+<div class="wall" aria-hidden="true"></div><div class="dim" aria-hidden="true"></div>
+<main>
+ <header>
+  <form class="search" role="search" onsubmit="return false"><svg aria-hidden="true"><use href="#i-s"/></svg>
+   <label class="sr" for="q">Buscar ajustes</label>
+   <input id="q" type="search" autocomplete="off" placeholder="Buscar ajustes… wifi, hz, idioma"><kbd>Esc</kbd></form>
+ </header>
+ <nav class="rail" aria-label="Categorías" id="rail"></nav>
+ <section class="stage" aria-label="Ajustes" aria-live="polite" id="stage"></section>
+ <footer><span><kbd>Super</kbd> + <kbd>I</kbd> abrir</span><span><kbd>Tab</kbd> moverse</span><span><kbd>Intro</kbd> abrir tarjeta</span><span><kbd>Esc</kbd> cerrar</span></footer>
+</main>
+<script>
+const C=[
+{id:'wifi',n:'Wi-Fi',s:'MOVISTAR_5G_A3F2',i:'wifi',k:'wifi red internet inalámbrica'},
+{id:'bt',n:'Bluetooth',s:'Sony WH-1000XM5 80%',i:'bt',k:'bluetooth auriculares dispositivos'},
+{id:'mon',n:'Pantallas',s:'2 monitores',i:'mon',k:'pantallas monitor resolución hz frecuencia escala'},
+{id:'snd',n:'Sonido',s:'Sony WH-1000XM5 · 45%',i:'snd',k:'sonido audio volumen salida'},
+{id:'app',n:'Apariencia',s:'Sky (del fondo)',i:'pal',k:'apariencia tema color oscuro fuente iconos'},
+{id:'kb',n:'Teclado e idioma',s:'Español (España)',i:'kb',k:'teclado idioma distribución'},
+{id:'time',n:'Fecha y hora',s:'Europe/Madrid, 24 h',i:'clk',k:'fecha hora zona horaria'},
+{id:'def',n:'Aplicaciones predeterminadas',s:'Dolphin, mpv, Zen',i:'app',k:'aplicaciones predeterminadas navegador archivos vídeo'}];
+const S=[
+['Frecuencia de DP-2','165 Hz','mon','hz frecuencia refresco'],['Frecuencia de HDMI-A-2','60 Hz','mon','hz frecuencia refresco'],
+['Resolución de DP-2','2560×1440','mon','resolución'],['Escala de pantalla','100 %','mon','escala'],
+['Modo oscuro','Activado','app','oscuro tema'],['Iconos','Papirus-Dark','app','iconos'],['Tamaño de fuente','Medio','app','fuente texto'],
+['Red conectada','MOVISTAR_5G_A3F2','wifi','wifi red'],['Auriculares conectados','Sony WH-1000XM5','bt','bluetooth'],
+['Volumen de salida','45 %','snd','volumen'],['Idioma del sistema','Español (España)','kb','idioma'],['Distribución de teclado','es','kb','teclado'],
+['Zona horaria','Europe/Madrid','time','hora'],['Formato de 24 horas','Activado','time','hora reloj'],['Gestor de archivos','Dolphin','def','archivos'],['Reproductor de vídeo','mpv','def','vídeo']];
+const $=s=>document.querySelector(s),st=$('#stage'),rail=$('#rail'),q=$('#q');
+const ic=n=>`<svg aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const norm=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+let open='mon';
+const M={a:{n:'HDMI-A-2',w:1920,h:1080,hz:60,x:30,y:78,sc:'100 %'},b:{n:'DP-2',w:2560,h:1440,hz:165,x:222,y:42,sc:'100 %'}};
+let sel='b',mode='Extender',timer=null;
+function renderRail(){rail.innerHTML=C.map(c=>`<button class="chip" data-c="${c.id}" aria-current="${open===c.id}">${ic(c.i)}${c.n}</button>`).join('')}
+function home(){open=null;render()}
+function render(){renderRail();const t=norm(q.value.trim());
+ if(t){const cs=C.filter(c=>norm(c.n+' '+c.k+' '+c.s).includes(t)),rs=S.filter(r=>norm(r.join(' ')).includes(t));
+  st.innerHTML=(cs.length?`<div class="grid">${cs.map(card).join('')}</div>`:'')+(rs.length?`<div class="rows"><h3>Ajustes que coinciden</h3>${rs.map(r=>`<button class="row" data-c="${r[2]}">${ic(C.find(c=>c.id===r[2]).i)}<b>${r[0]} · ${r[1]}</b><span class="cat">${C.find(c=>c.id===r[2]).n}</span></button>`).join('')}</div>`:'')||'<p class="empty">Sin resultados para «'+q.value.replace(/</g,'&lt;')+'».</p>';return}
+ if(!open){st.innerHTML=`<div class="grid">${C.map(card).join('')}</div>`;return}
+ st.innerHTML=`<article class="panel" aria-labelledby="pt"><div class="ph"><button class="back" id="bk" aria-label="Volver a todos los ajustes">${ic('b')}</button><div><h2 id="pt">${C.find(c=>c.id===open).n}</h2><p>${C.find(c=>c.id===open).s}</p></div></div>${open==='mon'?mon():open==='app'?apar():`<div class="box"><p class="hint">Esta categoría se diseña en otra iteración. Pantallas y Apariencia muestran el detalle.</p></div>`}</article>`;
+ if(open==='mon')bindMon();if(open==='app')bindApp();$('#bk').onclick=home}
+const card=c=>`<button class="card" data-c="${c.id}" aria-label="${c.n}: ${c.s}"><div class="top"><span class="ic">${ic(c.i)}</span><span class="dot" aria-hidden="true"></span></div><div><h2>${c.n}</h2><p>${c.s}</p></div></button>`;
+function mon(){const m=M[sel];return `<div class="cols"><div class="box"><h3>Disposición</h3><div class="arr" id="arr">${['a','b'].map(k=>{const d=M[k];return `<div class="mon" role="button" tabindex="0" aria-pressed="${sel===k}" data-m="${k}" style="left:${d.x}px;top:${d.y}px;width:${d.w/10}px;height:${d.h/10}px"><b>${d.n}</b><span>${d.w}×${d.h} · ${d.hz} Hz</span>${k==='b'?'<span class="tag">Principal</span>':''}</div>`}).join('')}</div><p class="hint">Arrastra los monitores para cambiar su posición. Seleccionado: <strong>${m.n}</strong>.</p></div>
+<div class="box"><h3>${m.n}</h3>
+<label class="field">Resolución<select id="sr">${(m.n==='DP-2'?['2560×1440','1920×1080','1280×720']:['1920×1080','1280×720']).map(o=>`<option${o===m.w+'×'+m.h?' selected':''}>${o}</option>`).join('')}</select></label>
+<label class="field">Frecuencia<select id="sh">${(m.n==='DP-2'?[165,144,120,60]:[60,50]).map(o=>`<option${o===m.hz?' selected':''}>${o} Hz</option>`).join('')}</select></label>
+<label class="field">Escala<select id="ss">${['100 %','125 %','150 %','200 %'].map(o=>`<option${o===m.sc?' selected':''}>${o}</option>`).join('')}</select></label>
+<div class="field" id="mm">Modo<div class="seg" role="group" aria-label="Modo de pantallas">${['Duplicar','Extender'].map(o=>`<button aria-pressed="${mode===o}">${o}</button>`).join('')}</div></div>
+<div class="toast" id="ts" role="status"></div>
+<div class="actions"><button class="btn pri" id="ap">Aplicar</button><button class="btn" id="rv" disabled>Revertir en 15 s</button></div></div></div>`}
+function bindMon(){const arr=$('#arr');
+ arr.querySelectorAll('.mon').forEach(e=>{e.onclick=()=>{if(sel!==e.dataset.m&&!e._d){sel=e.dataset.m;render()}};
+  e.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();sel=e.dataset.m;render();arr.querySelector(`[data-m=${sel}]`).focus()}};
+  e.onpointerdown=ev=>{const d=M[e.dataset.m],ox=ev.clientX-d.x,oy=ev.clientY-d.y;e._d=false;e.setPointerCapture(ev.pointerId);
+   e.onpointermove=p=>{e._d=true;d.x=Math.max(0,Math.min(arr.clientWidth-e.offsetWidth,p.clientX-ox));d.y=Math.max(0,Math.min(arr.clientHeight-e.offsetHeight,p.clientY-oy));e.style.left=d.x+'px';e.style.top=d.y+'px'};
+   e.onpointerup=()=>{e.onpointermove=null;setTimeout(()=>e._d=false)}}});
+ $('#mm').querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.textContent;render()});
+ const ap=$('#ap'),rv=$('#rv'),ts=$('#ts');
+ const stop=m=>{clearInterval(timer);timer=null;ap.textContent='Aplicar';ap.className='btn pri';rv.disabled=true;rv.textContent='Revertir en 15 s';ts.textContent=m||''};
+ ap.onclick=()=>{if(timer){stop('Cambios conservados.');return}let n=15;ap.textContent='Conservar cambios';ap.className='btn pri';rv.disabled=false;rv.className='btn warn';
+  const tick=()=>{rv.textContent='Revertir en '+n+' s';ts.textContent='¿Se ve bien? Se revertirá solo si no confirmas.'};tick();
+  timer=setInterval(()=>{n--;if(n<=0)stop('Se han revertido los cambios.');else tick()},1000)};
+ rv.onclick=()=>stop('Se han revertido los cambios.')}
+function apar(){const p=[['Acento','#8fcff3','#003549'],['Sobre acento','#003549','#8fcff3'],['Secundario','#b5c9d7','#0f1417'],['Terciario','#cac1ea','#0f1417'],['Superficie','#0f1417','#dfe3e7'],['Widget','#1c2023','#dfe3e7']];
+ return `<div class="cols"><div class="box"><h3>Paleta derivada del fondo</h3><div class="wp">Sky · fondo actual</div><div class="sw">${p.map(c=>`<div style="background:${c[1]};color:${c[2]};border:1px solid #41484d">${c[0]}</div>`).join('')}</div><p class="hint">Los colores se regeneran al cambiar el fondo y se aplican a la barra, Qt y GTK.</p></div>
+<div class="box"><h3>Preferencias</h3>
+<div class="tog"><div>Modo oscuro<small>Aplicado a todas las apps</small></div><button class="sw-t" role="switch" aria-checked="true" aria-label="Modo oscuro" id="dk"></button></div>
+<label class="field">Tamaño de fuente: <span id="fv">11 pt</span><input type="range" id="fs" min="9" max="16" value="11" aria-label="Tamaño de fuente"></label>
+<label class="field">Iconos<select><option>Papirus-Dark</option><option>Papirus</option><option>Adwaita</option></select></label>
+<div class="pv" id="pv"><div class="t">Vista previa</div><div style="color:var(--muted)">Aa Bb Cc — El veloz murciélago hindú</div><div class="i">${ic('wifi')}${ic('bt')}${ic('snd')}${ic('app')}</div></div></div></div>`}
+function bindApp(){const d=$('#dk');d.onclick=()=>d.setAttribute('aria-checked',d.getAttribute('aria-checked')!=='true');
+ $('#fs').oninput=e=>{$('#fv').textContent=e.target.value+' pt';$('#pv').style.fontSize=(e.target.value*1.25)+'px'}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;open=b.dataset.c;q.value='';render();const h=$('#pt');if(h){h.tabIndex=-1;h.focus()}});
+q.oninput=render;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(q.value){q.value='';render()}else if(open)home()}});
+render();
+</script></body></html>

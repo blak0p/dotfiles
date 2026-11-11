@@ -1,0 +1,10 @@
+{
+  "title": "Sky settings (Super+I)",
+  "brief": "Our own settings for the sky shell, replacing KDE System Settings: Wi-Fi, Bluetooth, displays, sound, appearance and system, opened with Super+I",
+  "feature": "odd/tasks/remove-kde.md",
+  "artboards": [
+    { "file": "01-sidebar-window.html", "title": "Sidebar window", "tradeoff": "Familiar and scales to many pages; feels like a separate app, least tied to the shell", "width": 1440, "height": 900 },
+    { "file": "02-island-sheet.html", "title": "Island sheet", "tradeoff": "Feels native to sky and fast for toggles; less room for deep pages like display arrangement", "width": 1440, "height": 900 },
+    { "file": "03-search-grid.html", "title": "Search first + card grid", "tradeoff": "Fastest to find any setting and shows live state at a glance; more custom work and a full-screen takeover", "width": 1440, "height": 900 }
+  ]
+}

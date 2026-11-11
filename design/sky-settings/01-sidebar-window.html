@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1440">
+<title>Ajustes de sky — Ventana con barra lateral</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark;--accent:#8fcff3;--onAccent:#003549;--secondary:#b5c9d7;--tertiary:#cac1ea;--surface:#0f1417;--surface2:#262b2e;--widget:#1c2023;--on:#dfe3e7;--muted:#c0c7cd;--outline:#8a9297;--outlineVariant:#41484d;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{width:1440px;height:900px;overflow:hidden;background:#05070b;color:var(--on);font-size:14px}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+svg{width:1em;height:1em;display:block;flex:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.desktop{position:relative;width:1440px;height:900px;overflow:hidden;isolation:isolate}
+.wall{position:absolute;inset:-60px;z-index:-1;filter:blur(18px) saturate(1.1);background:
+ radial-gradient(50% 40% at 70% 85%,hsl(200 80% 45% / .6),transparent 70%),
+ radial-gradient(40% 30% at 20% 20%,hsl(265 50% 40% / .45),transparent 70%),
+ linear-gradient(180deg,hsl(205 50% 8%),hsl(205 45% 14%) 55%,hsl(200 60% 26%))}
+.hint{position:absolute;top:18px;left:50%;transform:translateX(-50%);padding:6px 14px;border-radius:15px;background:#0f1417cc;font-size:12px;color:var(--muted)}
+kbd{font:inherit;font-weight:700;padding:1px 7px;border-radius:6px;background:var(--surface2);color:var(--on)}
+.win{position:absolute;left:170px;top:90px;width:1100px;height:720px;border-radius:26px;display:flex;overflow:hidden;
+ background:#0f1417e6;backdrop-filter:blur(30px);border:1px solid #ffffff1a;box-shadow:0 30px 80px #000a}
+.side{width:280px;flex:none;padding:20px 14px;display:flex;flex-direction:column;gap:14px;background:#0a0f12a0;border-right:1px solid var(--outlineVariant)}
+.side h1{font-size:18px;padding:2px 10px;display:flex;align-items:center;gap:8px}
+.search{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:19px;background:var(--surface2)}
+.search input{flex:1;background:none;border:0;outline:0;min-width:0}
+.search:focus-within{outline:2px solid var(--accent)}
+.search input::placeholder{color:var(--muted);opacity:1}
+nav ul{list-style:none;display:flex;flex-direction:column;gap:3px}
+nav button{width:100%;display:flex;align-items:center;gap:12px;height:42px;padding:0 14px;border-radius:21px;color:var(--on);text-align:left}
+nav button svg{font-size:18px;color:var(--secondary)}
+nav button:hover{background:var(--surface2)}
+nav button[aria-current="page"]{background:var(--accent);color:var(--onAccent);font-weight:600}
+nav button[aria-current="page"] svg{color:var(--onAccent)}
+main{flex:1;min-width:0;overflow-y:auto;padding:26px 32px 32px}
+.page[hidden]{display:none}
+.head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+h2{font-size:26px;letter-spacing:-.01em}
+h3{font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--accent);margin:22px 0 10px 6px}
+.card{background:var(--widget);border-radius:22px;padding:6px;border:1px solid var(--outlineVariant)}
+.row{display:flex;align-items:center;gap:14px;min-height:56px;padding:8px 16px;border-radius:18px;width:100%;text-align:left}
+button.row:hover{background:var(--surface2)}
+.row+.row{border-top:1px solid var(--outlineVariant);border-radius:0 0 18px 18px}
+.row .ico{width:38px;height:38px;border-radius:19px;background:var(--surface2);display:grid;place-items:center;font-size:18px;color:var(--secondary)}
+.row .t{flex:1;min-width:0;display:flex;flex-direction:column}
+.row .t small,.muted{color:var(--muted);font-size:12px}
+.cur .ico{background:var(--accent);color:var(--onAccent)}
+.badge{font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px;background:var(--surface2);color:var(--accent)}
+.badge.t{color:var(--tertiary)}
+.sw{position:relative;width:48px;height:28px;border-radius:14px;background:var(--surface2);border:2px solid var(--outline);flex:none}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:16px;height:16px;border-radius:8px;background:var(--outline);transition:all .2s}
+.sw[aria-checked="true"]{background:var(--accent);border-color:var(--accent)}
+.sw[aria-checked="true"]::after{left:24px;width:16px;background:var(--onAccent)}
+.btn{height:36px;padding:0 18px;border-radius:18px;background:var(--surface2);font-weight:600}
+.btn:hover{background:var(--outlineVariant)}
+.btn.pri{background:var(--accent);color:var(--onAccent)}
+.btn.pri:hover{background:#a6d9f6}
+.btn.danger{color:#ffb4ab}
+.details{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:6px 16px 14px 68px}
+.details div{display:flex;flex-direction:column;font-size:12px;color:var(--muted)}
+.details strong{color:var(--on);font-size:14px;font-weight:600}
+.sig{display:flex;align-items:flex-end;gap:2px;height:16px;flex:none}
+.sig i{width:4px;border-radius:2px;background:var(--surface2);border:1px solid var(--outline)}
+.sig i.on{background:var(--accent);border-color:var(--accent)}
+.sig i:nth-child(1){height:5px}.sig i:nth-child(2){height:8px}.sig i:nth-child(3){height:12px}.sig i:nth-child(4){height:16px}
+.pw{display:flex;gap:10px;align-items:center;padding:4px 16px 16px 68px}
+.pw label{display:flex;flex:1;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:20px;background:var(--surface2)}
+.pw input{flex:1;background:none;border:0;outline:0;min-width:0}
+.pw label:focus-within{outline:2px solid var(--accent)}
+select{height:36px;padding:0 12px;border-radius:18px;background:var(--surface2);border:1px solid var(--outline);min-width:170px}
+select option{background:var(--surface)}
+.stage{height:210px;border-radius:18px;background:var(--surface);border:1px dashed var(--outline);display:flex;align-items:center;justify-content:center;gap:22px;margin:6px}
+.mon{border-radius:12px;background:var(--surface2);border:2px solid var(--outline);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:grab;text-align:center}
+.mon.main{border-color:var(--accent);background:#8fcff326}
+.mon b{font-size:15px}.mon span{font-size:12px;color:var(--muted)}
+.stub{padding:40px 16px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="desktop">
+ <div class="wall" aria-hidden="true"></div>
+ <p class="hint">Abierto con <kbd>Super</kbd> + <kbd>I</kbd> · <kbd>Esc</kbd> para cerrar</p>
+ <div class="win" role="dialog" aria-label="Ajustes">
+  <aside class="side" aria-label="Categorías">
+   <h1><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#8fcff3" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Ajustes</h1>
+   <label class="search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#c0c7cd" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr">Buscar ajustes</span><input type="search" placeholder="Buscar ajustes"></label>
+   <nav aria-label="Categorías de ajustes"><ul id="cats">
+    <li><button data-p="wifi" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.500 16.500a5 5 0 0 1 7 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>Wi-Fi</button></li>
+    <li><button data-p="bt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 7 12 10-6 5V2l6 5L6 17"/></svg>Bluetooth</button></li>
+    <li><button data-p="disp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Pantallas</button></li>
+    <li><button data-p="snd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9zM17 8a5 5 0 0 1 0 8"/></svg>Sonido</button></li>
+    <li><button data-p="look"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 0 18c1.500 0 2-1 1.500-2s0-2 1.500-2h2a3 3 0 0 0 3-3A9 9 0 0 0 12 3z"/></svg>Apariencia</button></li>
+    <li><button data-p="kbd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h1M10 10h1M14 10h1M18 10h0M7 14h10"/></svg>Teclado e idioma</button></li>
+    <li><button data-p="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Fecha y hora</button></li>
+    <li><button data-p="apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><path d="M17.500 14v7M14 17.500h7"/></svg>Aplicaciones predeterminadas</button></li>
+   </ul></nav>
+  </aside>
+  <main id="main" tabindex="-1">
+   <!-- WIFI -->
+   <section class="page" id="p-wifi" aria-labelledby="h-wifi">
+    <div class="head"><h2 id="h-wifi">Wi-Fi</h2><button class="sw" role="switch" aria-checked="true" aria-label="Wi-Fi activado"></button></div>
+    <h3>Red actual</h3>
+    <div class="card">
+     <div class="row cur"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.500 16.500a5 5 0 0 1 7 0"/></svg></span>
+      <span class="t"><strong>MOVISTAR_5G_A3F2</strong><small>Conectado · 5 GHz · Señal fuerte</small></span>
+      <span class="sig" role="img" aria-label="Señal fuerte"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+      <button class="btn danger">Olvidar red</button></div>
+     <div class="details"><div>Dirección IP<strong>192.168.1.42</strong></div><div>DNS<strong>Automático</strong></div><div>Puerta de enlace<strong>192.168.1.1</strong></div><div>Velocidad<strong>866 Mbps</strong></div></div>
+    </div>
+    <h3>Redes disponibles</h3>
+    <div class="card">
+     <button class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="t"><strong>MOVISTAR_A3F2</strong><small>2,4 GHz · Protegida</small></span><span class="sig" role="img" aria-label="Señal fuerte"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></button>
+     <div class="row" style="flex-wrap:wrap;background:var(--surface);border-radius:18px"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="t"><strong>Vecinos_Planta3</strong><small>5 GHz · Protegida (WPA2) · Seleccionada</small></span><span class="sig" role="img" aria-label="Señal media"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+      <div class="pw" style="width:100%;padding:4px 0 8px 52px"><label><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#c0c7cd" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="sr">Contraseña de Vecinos_Planta3</span><input type="password" placeholder="Contraseña" value="contraseña"></label><button class="btn">Cancelar</button><button class="btn pri">Conectar</button></div></div>
+     <button class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="t"><strong>vodafone7C21</strong><small>2,4 GHz · Protegida</small></span><span class="sig" role="img" aria-label="Señal media"><i class="on"></i><i class="on"></i><i></i><i></i></span></button>
+     <button class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.500 16.500a5 5 0 0 1 7 0"/></svg></span><span class="t"><strong>CafeLuna_Gratis</strong><small>2,4 GHz · Abierta</small></span><span class="sig" role="img" aria-label="Señal débil"><i class="on"></i><i></i><i></i><i></i></span></button>
+    </div>
+    <h3>Avanzado</h3>
+    <div class="card">
+     <div class="row"><span class="t"><strong>Configuración de IP</strong><small>Asignar dirección y DNS a mano</small></span><select aria-label="Modo de IP"><option>Automática (DHCP)</option><option>Manual</option></select></div>
+     <div class="row"><span class="t"><strong>Servidores DNS</strong><small>Solo con IP manual</small></span><select aria-label="DNS"><option>Automático</option><option>1.1.1.1 · 1.0.0.1</option><option>8.8.8.8 · 8.8.4.4</option></select></div>
+     <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.500 8 8 9 4.500-1 8-4 8-9V6z"/></svg></span><span class="t"><strong>VPN · WireGuard casa</strong><small>Desconectada · 10.8.0.2</small></span><button class="btn pri">Conectar</button></div>
+    </div>
+   </section>
+   <!-- BLUETOOTH -->
+   <section class="page" id="p-bt" aria-labelledby="h-bt" hidden>
+    <div class="head"><h2 id="h-bt">Bluetooth</h2><button class="sw" role="switch" aria-checked="true" aria-label="Bluetooth activado"></button></div>
+    <h3>Mis dispositivos</h3>
+    <div class="card">
+     <div class="row cur"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.500"/><rect x="17" y="14" width="4" height="6" rx="1.500"/></svg></span><span class="t"><strong>Sony WH-1000XM5</strong><small>Conectado · Batería 80 %</small></span><span class="badge">80 %</span><button class="btn">Desconectar</button></div>
+     <div class="row"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10v5M4.500 12.500h5M16 11h.01M18 14h.01"/></svg></span><span class="t"><strong>Mando Xbox</strong><small>Emparejado · No conectado</small></span><button class="btn">Conectar</button></div>
+    </div>
+    <h3>Dispositivos cercanos</h3>
+    <div class="card"><div class="row"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M6 6a8.500 8.500 0 0 0 0 12M18 6a8.500 8.500 0 0 1 0 12"/></svg></span><span class="t"><strong>Buscando dispositivos…</strong><small>Teclado K380 · Listo para emparejar</small></span><button class="btn pri">Emparejar</button></div></div>
+   </section>
+   <!-- PANTALLAS -->
+   <section class="page" id="p-disp" aria-labelledby="h-disp" hidden>
+    <div class="head"><h2 id="h-disp">Pantallas</h2><button class="btn">Identificar</button></div>
+    <h3>Disposición</h3>
+    <div class="card"><div class="stage" role="group" aria-label="Disposición de monitores">
+     <div class="mon" style="width:170px;height:96px" tabindex="0"><b>HDMI-A-2</b><span>1920×1080 · 60 Hz</span></div>
+     <div class="mon main" style="width:226px;height:127px" tabindex="0"><b>DP-2</b><span>2560×1440 · 165 Hz</span><span class="badge" style="color:var(--accent)">Principal</span></div>
+    </div><p class="muted" style="padding:2px 16px 10px">Arrastra las pantallas o usa las flechas con una seleccionada.</p></div>
+    <h3>DP-2 · Principal</h3>
+    <div class="card">
+     <div class="row"><span class="t"><strong>Resolución</strong></span><select aria-label="Resolución"><option>2560×1440</option><option>1920×1080</option></select></div>
+     <div class="row"><span class="t"><strong>Frecuencia de actualización</strong></span><select aria-label="Frecuencia"><option>165 Hz</option><option>144 Hz</option><option>60 Hz</option></select></div>
+     <div class="row"><span class="t"><strong>Escala</strong></span><select aria-label="Escala"><option>100 %</option><option>125 %</option><option>150 %</option></select></div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px"><button class="btn">Revertir</button><button class="btn pri">Aplicar</button></div>
+   </section>
+   <!-- RESTO -->
+   <section class="page" id="p-other" aria-labelledby="h-other" hidden><div class="head"><h2 id="h-other"></h2></div><div class="card"><p class="stub">Esta página sigue el mismo patrón de tarjetas y filas que Wi-Fi y Bluetooth.</p></div></section>
+  </main>
+ </div>
+</div>
+<script>
+const pages={wifi:'wifi',bt:'bt',disp:'disp'};
+document.querySelectorAll('#cats button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('#cats button').forEach(x=>x.removeAttribute('aria-current'));
+ b.setAttribute('aria-current','page');
+ document.querySelectorAll('.page').forEach(p=>p.hidden=true);
+ const id=pages[b.dataset.p]||'other';
+ if(id==='other')document.getElementById('h-other').textContent=b.textContent;
+ document.getElementById('p-'+id).hidden=false;
+}));
+document.querySelectorAll('.sw').forEach(s=>s.addEventListener('click',()=>s.setAttribute('aria-checked',s.getAttribute('aria-checked')!=='true')));
+</script>
+</body></html>

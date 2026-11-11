@@ -1,0 +1,28 @@
+{
+  "title": "Island modules",
+  "brief": "Reorganize the Dynamic Island into modules: Quick settings (default), Performance (CPU, RAM, GPU, disks) and Music player",
+  "artboards": [
+    {
+      "file": "01-top-tabs.html",
+      "title": "Pestañas arriba",
+      "tradeoff": "Clear and familiar; tabs cost a row and cap the number of modules at ~4",
+      "width": 1500,
+      "height": 820
+    },
+    {
+      "file": "02-icon-rail.html",
+      "title": "Riel de íconos",
+      "tradeoff": "Scales to more modules; island gets 60px wider and less 'pill-like'",
+      "width": 1700,
+      "height": 820
+    },
+    {
+      "file": "03-glance-cards.html",
+      "title": "Tarjetas de vistazo",
+      "tradeoff": "Live glance without navigating; quick settings page grows taller",
+      "width": 1500,
+      "height": 900
+    }
+  ],
+  "feature": "odd/tasks/island-modules.md"
+}

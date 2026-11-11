@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "chosen": "01-top-tabs.html",
+  "handoffs": {
+    "01-top-tabs.html": {
+      "status": "implemented",
+      "queued": false,
+      "sentAt": "2026-11-09T16:26:20.775Z",
+      "startedAt": null,
+      "implementedAt": "2026-11-09T16:36:01.002Z",
+      "note": "Implemented in quickshell/sky (commits 8ef2e0d, 725749d, 7f6c461). Music player with a live MPRIS source still to be checked on screen."
+    }
+  }
+}

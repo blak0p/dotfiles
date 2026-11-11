@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1440">
+<title>Ajustes · Hoja desde la isla</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--accent:#8fcff3;--onAccent:#003549;--secondary:#b5c9d7;--tertiary:#cac1ea;--surface:#0f1417;--surface2:#262b2e;--widget:#1c2023;--on:#dfe3e7;--muted:#c0c7cd;--outline:#8a9297;--outlineVariant:#41484d;--glass:rgba(15,20,23,.88);
+color-scheme:dark;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{background:#05070b;color:var(--on);width:1440px;height:900px;overflow:hidden;font-size:14px}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+svg{width:1em;height:1em;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.desktop{position:relative;width:1440px;height:900px;overflow:hidden;isolation:isolate}
+.wall{position:absolute;inset:0;z-index:-1;background:
+ radial-gradient(40% 30% at 22% 78%,rgba(255,200,170,.35),transparent 70%),
+ radial-gradient(60% 40% at 70% 100%,rgba(250,150,130,.35),transparent 70%),
+ linear-gradient(180deg,#1b4f86 0%,#3f7fb8 38%,#9cc3e0 68%,#f0cdb4 100%)}
+.wall::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:radial-gradient(60% 100% at 30% 100%,rgba(255,255,255,.35),transparent 70%),radial-gradient(50% 90% at 80% 100%,rgba(255,255,255,.25),transparent 70%)}
+/* top bar */
+.bar{position:absolute;inset:0 0 auto 0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:3}
+.ws{display:flex;gap:6px;align-items:center;padding:4px 6px;border-radius:15px;background:var(--glass)}
+.ws .w{min-width:22px;height:22px;border-radius:11px;display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--muted)}
+.ws .used{background:var(--surface2);color:var(--on)}
+.ws .on{min-width:40px;background:var(--accent);color:var(--onAccent)}
+.status{display:flex;gap:14px;align-items:center;padding:6px 14px;border-radius:15px;background:var(--glass);font-size:15px}
+.status b{font-size:13px;font-weight:600}
+/* sheet */
+.sheet{position:absolute;left:220px;top:0;width:1000px;height:664px;z-index:2;background:var(--glass);backdrop-filter:blur(24px);border-radius:0 0 26px 26px;border:1px solid var(--outlineVariant);border-top:0;box-shadow:0 30px 70px rgba(0,0,0,.45);padding:7px 24px 22px;display:flex;flex-direction:column;gap:14px;animation:grow .5s cubic-bezier(.2,.9,.25,1.05)}
+@keyframes grow{from{transform:translateY(-40px) scaleY(.85);opacity:0;transform-origin:top}}
+.island{align-self:center;height:30px;min-width:190px;border-radius:15px;background:var(--surface2);display:flex;align-items:center;justify-content:center;gap:12px;padding:0 16px}
+.island b{font-variant-numeric:tabular-nums;font-size:14px}
+.island span{font-size:13px;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tile{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border-radius:22px;background:var(--widget);border:1px solid transparent;min-width:0}
+.tile:hover{background:var(--surface2)}
+.tile .ic{flex:none;width:34px;height:34px;border-radius:17px;background:var(--surface2);display:grid;place-items:center;font-size:18px;color:var(--secondary)}
+.tile strong{display:block;font-size:13px;font-weight:600}
+.tile small{display:block;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile>span:last-child{min-width:0}
+.tile[aria-selected=true]{background:var(--accent);color:var(--onAccent)}
+.tile[aria-selected=true] .ic{background:rgba(0,53,73,.15);color:var(--onAccent)}
+.tile[aria-selected=true] small{color:var(--onAccent)}
+main{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.page{display:none;flex-direction:column;gap:14px;min-height:0;flex:1}
+.page.show{display:flex}
+.head{display:flex;align-items:center;gap:12px}
+.head h1{font-size:22px;font-weight:700;letter-spacing:-.01em;flex:1}
+.back{width:36px;height:36px;border-radius:18px;background:var(--surface2);display:grid;place-items:center;font-size:18px}
+.back:hover{background:var(--outlineVariant)}
+.scroll{overflow:auto;display:flex;flex-direction:column;gap:12px;padding-right:4px}
+.eyebrow{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.02em}
+.card{background:var(--widget);border-radius:22px;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.row{display:flex;align-items:center;gap:14px}
+.row .ic{flex:none;width:38px;height:38px;border-radius:19px;background:var(--surface2);display:grid;place-items:center;font-size:19px;color:var(--secondary)}
+.row .t{flex:1;min-width:0}
+.row .t strong{display:block;font-size:14px;font-weight:600}
+.row .t span{font-size:12px;color:var(--muted)}
+.chip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;background:var(--surface2);color:var(--muted)}
+.chip.t{background:var(--tertiary);color:#1d1a2c}
+.btn{height:34px;padding:0 16px;border-radius:17px;background:var(--surface2);font-weight:600;font-size:13px}
+.btn:hover{background:var(--outlineVariant)}
+.btn.p{background:var(--accent);color:var(--onAccent)}
+.btn.p:hover{filter:brightness(1.08)}
+.btn.d{color:#ffb4ab}
+/* switch */
+.sw{position:relative;width:48px;height:28px;border-radius:14px;background:var(--surface2);border:2px solid var(--outline);flex:none}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:16px;height:16px;border-radius:8px;background:var(--outline);transition:all .2s}
+.sw[aria-checked=true]{background:var(--accent);border-color:var(--accent)}
+.sw[aria-checked=true]::after{left:24px;background:var(--onAccent)}
+/* scan */
+.scan{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+.spin{width:16px;height:16px;border-radius:8px;border:2px solid var(--outlineVariant);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.batt{display:inline-flex;align-items:center;gap:6px}
+.bar8{width:34px;height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;display:inline-block}
+.bar8 i{display:block;height:100%;width:80%;background:var(--accent)}
+/* wifi */
+.sig{display:flex;gap:2px;align-items:flex-end;height:16px;flex:none}
+.sig i{width:4px;border-radius:1px;background:var(--outlineVariant)}
+.sig i.f{background:var(--on)}
+.sig i:nth-child(1){height:5px}.sig i:nth-child(2){height:9px}.sig i:nth-child(3){height:13px}.sig i:nth-child(4){height:16px}
+.lock{font-size:14px;color:var(--muted)}
+.net{display:flex;flex-direction:column;gap:10px;padding:10px 12px;border-radius:16px;background:var(--surface2)}
+.net.cur{background:transparent;padding:0}
+.pw{display:flex;gap:8px}
+.pw input{flex:1;height:36px;border-radius:18px;border:1px solid var(--outline);background:var(--surface);padding:0 16px}
+.pw input::placeholder{color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.field input{height:34px;border-radius:12px;border:1px solid var(--outline);background:var(--surface);padding:0 12px;color:var(--on)}
+/* sliders */
+input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--accent) var(--v,50%),var(--outlineVariant) var(--v,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:9px;background:var(--accent);border:2px solid var(--onAccent)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:9px;background:var(--accent);border:2px solid var(--onAccent)}
+.pct{width:40px;text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.radio{width:20px;height:20px;border-radius:10px;border:2px solid var(--outline);flex:none;display:grid;place-items:center}
+.sel .radio{border-color:var(--accent)}.sel .radio::after{content:"";width:10px;height:10px;border-radius:5px;background:var(--accent)}
+.opt{width:100%;text-align:left;padding:8px 10px;border-radius:16px}
+.opt:hover{background:var(--surface2)}
+.opt.sel{background:var(--surface2)}
+.empty{flex:1;display:grid;place-items:center;text-align:center;color:var(--muted);gap:6px;align-content:center}
+.empty svg{font-size:36px;margin:0 auto;color:var(--secondary)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r=".8"/></symbol>
+<symbol id="i-bt" viewBox="0 0 24 24"><path d="m7 7 10 10-5 4V3l5 4L7 17"/></symbol>
+<symbol id="i-vol" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></symbol>
+<symbol id="i-mon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+<symbol id="i-pal" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r=".8"/><circle cx="11" cy="7.5" r=".8"/><circle cx="15.5" cy="8.5" r=".8"/></symbol>
+<symbol id="i-sys" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-head" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+<symbol id="i-pad" viewBox="0 0 24 24"><path d="M7 7h10a5 5 0 0 1 5 5l-1 5a2.5 2.5 0 0 1-4.5 1L15 16H9l-1.5 2a2.5 2.5 0 0 1-4.5-1l-1-5a5 5 0 0 1 5-5zM8 10v3M6.5 11.5h3"/></symbol>
+<symbol id="i-kb" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-vpn" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></symbol>
+<symbol id="i-bat" viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 11v2"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></symbol>
+</defs></svg>
+
+<div class="desktop">
+ <div class="wall" role="presentation"></div>
+ <header class="bar">
+  <nav class="ws" aria-label="Espacios de trabajo"><span class="w used">1</span><span class="w on" aria-current="true">2</span><span class="w used">3</span><span class="w">4</span></nav>
+  <div class="status" aria-label="Estado del sistema"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wifi"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bt"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-vol"/></svg><b>82%</b></div>
+ </header>
+
+ <div class="sheet" role="dialog" aria-label="Ajustes">
+  <div class="island" aria-label="Isla"><b>14:32</b><span>Ajustes</span></div>
+  <div class="tiles" role="tablist" aria-label="Categorías de ajustes">
+   <button class="tile" role="tab" id="t-wifi" aria-controls="p-wifi" aria-selected="false" data-p="wifi"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wifi"/></svg></span><span><strong>Wi-Fi</strong><small>MOVISTAR_5G_A3F2</small></span></button>
+   <button class="tile" role="tab" id="t-bt" aria-controls="p-bt" aria-selected="true" data-p="bt"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bt"/></svg></span><span><strong>Bluetooth</strong><small>1 conectado</small></span></button>
+   <button class="tile" role="tab" id="t-snd" aria-controls="p-snd" aria-selected="false" data-p="snd"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-vol"/></svg></span><span><strong>Sonido</strong><small>Sony WH-1000XM5</small></span></button>
+   <button class="tile" role="tab" id="t-mon" aria-controls="p-mon" aria-selected="false" data-p="mon"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mon"/></svg></span><span><strong>Pantallas</strong><small>2 monitores</small></span></button>
+   <button class="tile" role="tab" id="t-app" aria-controls="p-app" aria-selected="false" data-p="app"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pal"/></svg></span><span><strong>Apariencia</strong><small>Oscuro · cielo</small></span></button>
+   <button class="tile" role="tab" id="t-sys" aria-controls="p-sys" aria-selected="false" data-p="sys"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sys"/></svg></span><span><strong>Sistema</strong><small>Arch · 6.12</small></span></button>
+  </div>
+
+  <main>
+   <!-- Overview (after back) -->
+   <section class="page" id="p-home" aria-label="Resumen"><div class="empty"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sys"/></svg><strong>Elige un ajuste</strong><span>Selecciona una categoría de arriba para ver sus opciones.</span></div></section>
+
+   <section class="page show" id="p-bt" role="tabpanel" aria-labelledby="t-bt">
+    <div class="head"><button class="back" data-back aria-label="Volver al resumen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button><h1>Bluetooth</h1>
+     <span id="btl" style="color:var(--muted);font-size:13px">Activado</span><button class="sw" id="btsw" role="switch" aria-checked="true" aria-labelledby="btl"></button></div>
+    <div class="scroll">
+     <div class="eyebrow">Conectado</div>
+     <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-head"/></svg></span><div class="t"><strong>Sony WH-1000XM5</strong><span class="batt">80 % batería <span class="bar8" aria-hidden="true"><i></i></span> · Códec LDAC</span></div><button class="btn">Desconectar</button><button class="btn d">Olvidar</button></div></div>
+     <div class="eyebrow">Emparejados</div>
+     <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pad"/></svg></span><div class="t"><strong>Mando Xbox</strong><span>Desconectado</span></div><button class="btn p">Conectar</button><button class="btn d">Olvidar</button></div></div>
+     <div class="row" style="justify-content:space-between"><span class="eyebrow">Disponibles</span><span class="scan"><span class="spin" aria-hidden="true"></span><span role="status">Buscando dispositivos…</span></span></div>
+     <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-kb"/></svg></span><div class="t"><strong>Teclado Keychron K2</strong><span>Teclado · señal buena</span></div><button class="btn p">Emparejar</button></div></div>
+    </div>
+   </section>
+
+   <section class="page" id="p-wifi" role="tabpanel" aria-labelledby="t-wifi">
+    <div class="head"><button class="back" data-back aria-label="Volver al resumen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button><h1>Wi-Fi</h1>
+     <span id="wl" style="color:var(--muted);font-size:13px">Activado</span><button class="sw" role="switch" aria-checked="true" aria-labelledby="wl"></button></div>
+    <div class="scroll">
+     <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wifi"/></svg></span><div class="t"><strong>MOVISTAR_5G_A3F2</strong><span>Conectado · 5 GHz · 866 Mbps</span></div><span class="sig" aria-label="Señal excelente"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span><button class="btn">Desconectar</button></div></div>
+     <div class="eyebrow">Redes disponibles</div>
+     <div class="card" style="gap:6px">
+      <div class="net"><div class="row"><svg class="lock" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg><div class="t"><strong>Vodafone-7D21</strong><span>2,4 GHz · WPA2</span></div><span class="sig" aria-label="Señal buena"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></span></div>
+       <div class="pw"><label class="sr" for="pw">Contraseña de Vodafone-7D21</label><input id="pw" type="password" placeholder="Contraseña de la red"><button class="btn p">Conectar</button></div></div>
+      <div class="row" style="padding:8px 12px"><svg class="lock" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg><div class="t"><strong>DIGI_Fibra_91</strong><span>5 GHz · WPA3</span></div><span class="sig" aria-label="Señal media"><i class="f"></i><i class="f"></i><i></i><i></i></span></div>
+      <div class="row" style="padding:8px 12px"><span style="width:14px"></span><div class="t"><strong>Cafetería_Libre</strong><span>2,4 GHz · Abierta</span></div><span class="sig" aria-label="Señal débil"><i class="f"></i><i></i><i></i><i></i></span></div>
+     </div>
+     <div class="eyebrow">Avanzado</div>
+     <div class="card"><div class="row"><div class="t"><strong>IP y DNS manuales</strong><span>Sustituye la configuración automática (DHCP)</span></div><button class="sw" role="switch" aria-checked="true" aria-label="IP y DNS manuales"></button></div>
+      <div class="two"><label class="field">Dirección IP<input value="192.168.1.42"></label><label class="field">Puerta de enlace<input value="192.168.1.1"></label><label class="field">DNS primario<input value="1.1.1.1"></label><label class="field">DNS secundario<input value="9.9.9.9"></label></div></div>
+     <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-vpn"/></svg></span><div class="t"><strong>VPN · WireGuard casa</strong><span>Desconectada</span></div><button class="btn p">Conectar</button></div></div>
+    </div>
+   </section>
+
+   <section class="page" id="p-snd" role="tabpanel" aria-labelledby="t-snd">
+    <div class="head"><button class="back" data-back aria-label="Volver al resumen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button><h1>Sonido</h1></div>
+    <div class="scroll">
+     <div class="eyebrow">Salida</div>
+     <div class="card" style="gap:2px" role="radiogroup" aria-label="Dispositivo de salida">
+      <button class="opt sel row" role="radio" aria-checked="true"><span class="radio"></span><div class="t"><strong>Sony WH-1000XM5</strong><span>Bluetooth · LDAC</span></div></button>
+      <button class="opt row" role="radio" aria-checked="false"><span class="radio"></span><div class="t"><strong>Altavoces HDMI</strong><span>Monitor principal</span></div></button>
+      <div class="row" style="padding:8px 10px"><label for="vo" style="width:110px;color:var(--muted)">Volumen</label><input id="vo" type="range" value="72" style="--v:72%"><span class="pct">72 %</span></div></div>
+     <div class="eyebrow">Entrada</div>
+     <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mic"/></svg></span><div class="t"><strong>Micrófono Fifine K669</strong><span>USB · predeterminado</span></div></div>
+      <div class="row"><label for="vi" style="width:110px;color:var(--muted)">Nivel</label><input id="vi" type="range" value="58" style="--v:58%"><span class="pct">58 %</span></div></div>
+     <div class="eyebrow">Volumen por aplicación</div>
+     <div class="card">
+      <div class="row"><label for="a1" style="width:110px">Zen</label><input id="a1" type="range" value="65" style="--v:65%"><span class="pct">65 %</span></div>
+      <div class="row"><label for="a2" style="width:110px">Spotify</label><input id="a2" type="range" value="40" style="--v:40%"><span class="pct">40 %</span></div>
+      <div class="row"><label for="a3" style="width:110px">Vesktop</label><input id="a3" type="range" value="85" style="--v:85%"><span class="pct">85 %</span></div></div>
+    </div>
+   </section>
+
+   <section class="page" id="p-mon" role="tabpanel" aria-labelledby="t-mon">
+    <div class="head"><button class="back" data-back aria-label="Volver al resumen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button><h1>Pantallas</h1></div>
+    <div class="scroll"><div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mon"/></svg></span><div class="t"><strong>DP-1 · 2560×1440 a 165 Hz</strong><span>Principal · escala 100 %</span></div></div></div>
+    <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mon"/></svg></span><div class="t"><strong>HDMI-A-1 · 1920×1080 a 60 Hz</strong><span>Secundaria · a la derecha</span></div></div></div></div>
+   </section>
+   <section class="page" id="p-app" role="tabpanel" aria-labelledby="t-app">
+    <div class="head"><button class="back" data-back aria-label="Volver al resumen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button><h1>Apariencia</h1></div>
+    <div class="scroll"><div class="card"><div class="row"><div class="t"><strong>Colores del fondo de pantalla</strong><span>La paleta se genera a partir del cielo actual</span></div><button class="sw" role="switch" aria-checked="true" aria-label="Colores del fondo"></button></div></div></div>
+   </section>
+   <section class="page" id="p-sys" role="tabpanel" aria-labelledby="t-sys">
+    <div class="head"><button class="back" data-back aria-label="Volver al resumen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button><h1>Sistema</h1></div>
+    <div class="scroll"><div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bat"/></svg></span><div class="t"><strong>Energía</strong><span>Equilibrado · 82 % de batería</span></div></div></div>
+    <div class="card"><div class="row"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bell"/></svg></span><div class="t"><strong>Notificaciones</strong><span>No molestar desactivado</span></div></div></div></div>
+   </section>
+  </main>
+ </div>
+</div>
+<script>
+(function(){
+var tabs=[].slice.call(document.querySelectorAll('.tile'));
+function show(id){
+ tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.dataset.p===id));t.tabIndex=(t.dataset.p===id||(id==='home'&&t===tabs[0]))?0:-1});
+ [].forEach.call(document.querySelectorAll('.page'),function(p){p.classList.toggle('show',p.id==='p-'+id)});
+}
+tabs.forEach(function(t,i){
+ t.addEventListener('click',function(){show(t.dataset.p)});
+ t.addEventListener('keydown',function(e){
+  var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;
+  if(n===null)return;n=(n+tabs.length)%tabs.length;tabs[n].focus();show(tabs[n].dataset.p);e.preventDefault();
+ });
+});
+[].forEach.call(document.querySelectorAll('[data-back]'),function(b){b.addEventListener('click',function(){show('home');tabs[0].focus()})});
+[].forEach.call(document.querySelectorAll('.sw'),function(s){s.addEventListener('click',function(){s.setAttribute('aria-checked',String(s.getAttribute('aria-checked')!=='true'))})});
+[].forEach.call(document.querySelectorAll('input[type=range]'),function(r){r.addEventListener('input',function(){r.style.setProperty('--v',r.value+'%');r.nextElementSibling.textContent=r.value+' %'})});
+[].forEach.call(document.querySelectorAll('[role=radio]'),function(o){o.addEventListener('click',function(){var g=o.parentNode;[].forEach.call(g.querySelectorAll('[role=radio]'),function(x){x.classList.toggle('sel',x===o);x.setAttribute('aria-checked',String(x===o))})})});
+show('bt');
+})();
+</script>
+</body></html>

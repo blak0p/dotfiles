@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "comments": [
+    {
+      "id": "9ocg3q9u",
+      "file": "01-top-tabs.html",
+      "selector": "body > div > div:nth-of-type(2)",
+      "excerpt": "19:42",
+      "comment": "esto un poco mas grande y que salga la foto de la cancion",
+      "createdAt": "2026-11-09T16:25:33.964Z",
+      "status": "resolved",
+      "sentAt": "2026-11-09T16:25:37.844Z",
+      "resolvedAt": "2026-11-09T16:25:47.721Z"
+    }
+  ]
+}

@@ -3,7 +3,8 @@
 
 gpu-screen-recorder keeps the last N seconds in RAM; ReplayService.qml runs it
 with the command built here and sends SIGUSR1 to save a clip. Options live in
-the "replay" object of ~/.config/sky/settings.json.
+the "replay" object of ~/.config/sky/settings.json. `monitor` is "auto" (the
+SCREEN the shell passes: its own screen, else the focused monitor) or a name.
 
   sky_replay.py cmd SETTINGS [SCREEN]      -> JSON argv for gpu-screen-recorder
   sky_replay.py set SETTINGS KEY VALUE     -> merge one replay option into SETTINGS
@@ -13,6 +14,7 @@ the "replay" object of ~/.config/sky/settings.json.
   sky_replay.py uri CLIP                   -> text/uri-list line for the clipboard
 """
 import hashlib
+import re
 import json
 import os
 import shutil
@@ -28,12 +30,14 @@ FPS = (30, 60, 120, 144)
 QUALITIES = ("medium", "high", "very_high", "ultra")
 AUDIO = {"none": None, "desktop": "default_output", "desktop_mic": "default_output|default_input"}
 VIDEO_EXT = {".mp4", ".mkv", ".webm", ".mov"}
+MONITOR_RE = re.compile(r"^[A-Za-z0-9_.-]+$")
 BOOLS = {"true": True, "1": True, "on": True, "false": False, "0": False, "off": False}
 
 
 def defaults() -> dict:
     return {"enabled": False, "seconds": 30, "fps": 60, "quality": "very_high",
-            "audio": "desktop", "dir": str(Path.home() / "Videos" / "Clips")}
+            "audio": "desktop", "dir": str(Path.home() / "Videos" / "Clips"),
+            "monitor": "auto"}
 
 
 def _read_settings(path: Path) -> dict:
@@ -72,13 +76,18 @@ def load_options(path) -> dict:
         o["quality"] = raw["quality"]
     if raw.get("audio") in AUDIO:
         o["audio"] = raw["audio"]
+    if isinstance(raw.get("monitor"), str) and MONITOR_RE.match(raw["monitor"]):
+        o["monitor"] = raw["monitor"]
     if isinstance(raw.get("dir"), str) and raw["dir"].strip():
         o["dir"] = _expand(raw["dir"].strip())
     return o
 
 
 def build_command(o: dict, screen: str = "") -> list:
-    argv = ["gpu-screen-recorder", "-w", screen or "screen", "-f", str(o["fps"]), "-c", "mp4",
+    target = o.get("monitor", "auto")
+    if target == "auto":
+        target = screen or "screen"
+    argv = ["gpu-screen-recorder", "-w", target, "-f", str(o["fps"]), "-c", "mp4",
             "-r", str(o["seconds"]), "-q", o["quality"]]
     if AUDIO[o["audio"]]:
         argv += ["-a", AUDIO[o["audio"]]]
@@ -109,6 +118,10 @@ def parse_value(key: str, value: str):
     if key == "audio":
         if value not in AUDIO:
             raise ValueError("audio must be one of: %s" % ", ".join(AUDIO))
+        return value
+    if key == "monitor":
+        if not MONITOR_RE.match(value):
+            raise ValueError("monitor must be auto or a monitor name")
         return value
     if key == "dir":
         if not value.strip():

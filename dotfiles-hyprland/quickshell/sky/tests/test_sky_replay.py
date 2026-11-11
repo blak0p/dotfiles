@@ -42,7 +42,8 @@ class Options(Base):
     def test_defaults_without_settings_file(self):
         o = rp.load_options(self.settings)
         self.assertEqual(o, {"enabled": False, "seconds": 30, "fps": 60, "quality": "very_high",
-                             "audio": "desktop", "dir": str(self.home / "Videos" / "Clips")})
+                             "audio": "desktop", "dir": str(self.home / "Videos" / "Clips"),
+                             "monitor": "auto"})
 
     def test_reads_replay_block_and_ignores_bad_values(self):
         self.settings.write_text(json.dumps({"language": "es", "replay": {
@@ -74,6 +75,39 @@ class Command(Base):
         argv = json.loads(out)
         self.assertEqual(argv[1:3], ["-w", "screen"])
         self.assertNotIn("-a", argv)
+
+
+class Monitor(Base):
+    def argv(self, *screen):
+        code, out, err = run_cli("cmd", self.settings, *screen)
+        self.assertEqual((code, err), (0, ""))
+        return json.loads(out)
+
+    def test_auto_uses_the_shell_screen(self):
+        self.assertEqual(self.argv("DP-2")[1:3], ["-w", "DP-2"])
+
+    def test_auto_without_screen_lets_the_recorder_pick(self):
+        self.assertEqual(self.argv()[1:3], ["-w", "screen"])
+
+    def test_explicit_monitor_wins_over_the_shell_screen(self):
+        self.settings.write_text(json.dumps({"replay": {"monitor": "HDMI-A-2"}}))
+        self.assertEqual(self.argv("DP-2")[1:3], ["-w", "HDMI-A-2"])
+
+    def test_bad_stored_monitor_falls_back_to_auto(self):
+        self.settings.write_text(json.dumps({"replay": {"monitor": "DP 2; rm"}}))
+        self.assertEqual(rp.load_options(self.settings)["monitor"], "auto")
+
+    def test_set_monitor(self):
+        run_cli("set", self.settings, "monitor", "HDMI-A-2")
+        self.assertEqual(json.loads(self.settings.read_text())["replay"]["monitor"], "HDMI-A-2")
+
+    def test_set_rejects_bad_monitor_without_touching_the_file(self):
+        self.settings.write_text("{}")
+        for value in ["", "DP 2", "a/b"]:
+            code, out, err = run_cli("set", self.settings, "monitor", value)
+            self.assertEqual((code, out), (1, ""), value)
+            self.assertEqual(err, "sky_replay: monitor must be auto or a monitor name\n")
+        self.assertEqual(self.settings.read_text(), "{}")
 
 
 class SetOption(Base):

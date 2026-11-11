@@ -2,6 +2,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 import qs
 import qs.island
 
@@ -84,15 +85,33 @@ Singleton {
     }
 
     // Small delay so several option writes in a row start the recorder once.
-    Timer { id: startDelay; interval: 400; onTriggered: builder.running = true }
+    // Main screen for "auto": the shell's own screen (Config.screen), else the
+    // monitor focused when the buffer starts. Frozen per start, so moving the
+    // focus does not restart the recorder.
+    function mainScreen() {
+        if (Config.screen) return Config.screen;
+        return Hyprland.focusedMonitor ? Hyprland.focusedMonitor.name : "";
+    }
+    // Capture target actually in use (-w of the running command).
+    property string monitor: ""
+
+    Timer {
+        id: startDelay
+        interval: 400
+        onTriggered: {
+            builder.command = ["python3", root.script, "cmd", Config.userFile, root.mainScreen()];
+            builder.running = true;
+        }
+    }
 
     Process {
         id: builder
-        command: ["python3", root.script, "cmd", Config.userFile, Config.screen]
         stdout: StdioCollector {
             onStreamFinished: {
                 try {
                     rec.command = JSON.parse(text);
+                    const w = rec.command.indexOf("-w");
+                    root.monitor = w >= 0 ? rec.command[w + 1] : "";
                     root.error = "";
                     rec.running = true;
                 } catch (e) {

@@ -12,6 +12,8 @@ Quickshell shell, a save-clip shortcut, island feedback, a settings page and a c
 - S5. Settings page (S3) controls: on/off, buffer length, FPS, quality, audio, clips folder (from the proposal accepted with S2).
 - S6. "ya instale pero queiro que en la dinmic island salga algo apra saber que se guardo y eso" — saving a clip shows a visible confirmation in the island.
 - S7. "y que haya varias opciones copiarlo guardarlo lo que sea" — the island confirmation offers several actions on the saved clip (copy, play, folder, gallery, delete).
+- S8. "lo podemos poner a menos calidad y eso para que no gaste tanto sabes lo que te quiero decir" — the user's replay runs at lower quality to use fewer resources.
+- S9. "y que sea de la pantalla principal no hardcodees" — the replay records the main screen, chosen without a hard-coded monitor name: a new replay option `monitor` ("auto" by default, or a monitor name picked on the settings page). "auto" = the shell's screen (Config.screen) when set, else the Hyprland focused monitor when the buffer starts, else gpu-screen-recorder's `screen`.
 
 ## Tasks
 
@@ -20,6 +22,8 @@ Quickshell shell, a save-clip shortcut, island feedback, a settings page and a c
 - T3 [S4,S5] settings page `ReplayPage.qml` with options and clips gallery, i18n (es), README docs — inline — commit: ec9f47d
 - T4 [S1-S5] verify: unit tests, i18n tests, qmllint/qs load check, live check if gpu-screen-recorder is installed — inline — commit: ec9f47d (verification only)
 - T5 [S6,S7] Island clip card (thumbnail, actions, hover hold, two-click delete), re-probe recorder after install, verifier advisories (intentional stop is not a crash, stable reset, symlink delete test) — inline — commit: f720409
+- T6 [S8] set the user's replay quality to medium in ~/.config/sky/settings.json (user layer, not the repo) — inline — commit: n/a (user config)
+- T7 [S9] `monitor` option: sky_replay.py (+tests), ReplayService.qml resolution, ReplayPage.qml "Screen" selector, i18n es, README — inline (worker unavailable) — commit: pending
 
 ## Log
 
@@ -33,3 +37,6 @@ Quickshell shell, a save-clip shortcut, island feedback, a settings page and a c
 - L8. Root cause of "no feedback": ReplayService probed gpu-screen-recorder only at shell start, so after installing it `available` stayed false and enable did nothing. Fixed by re-probing on enable/save. Live check after fix: enable -> recorder running on DP-2, save -> clip in ~/Videos/Clips and island card "Clip guardado" with thumbnail and 5 actions (screenshot). Verifier (gentle-ai-verify): S1-S5 pass statically, advisories 1-4 and 6 fixed here.
 - L9. Second verifier (gentle-ai-verify): S6, S7 pass; S1-S5 no regression; 176 py tests OK. Fixed its defects: stale thumbnail (clipThumb compared after assignment), island delete now checks against the clips folder, `stable` timer stops when the recorder exits, clipHold resets when the pop is hidden; added an i18n test that every replay UI string has a Spanish entry. Unverified: click/hover interactions in the card and the keybinds pressed by hand.
 - L10. User: "y cuanto gasta?? y me molesta que este el punto por cierto una cosa se ocupa espacio de la grabacion infinita?" — removed the red recording dot from the idle island; shell.qml now binds ReplayService.active so the service still starts with the shell. Proof: after `qs kill -c sky` + fresh start, with no IPC call, gpu-screen-recorder was running again; screenshot shows the idle island without the dot. Measured cost (very_high, 60 FPS, DP-2): ~2% CPU, ~140 MB RSS; a 30 s clip is ~6-26 MB on disk; the buffer itself uses RAM only.
+- L11. User: "lo podemos poner a menos calidad y eso para que no gaste tanto sabes lo que te quiero decir" — applied `sky_replay.py set ~/.config/sky/settings.json quality medium`; recorder restarted with `-q medium`.
+- L12. User: "y que sea de la pantalla principal no hardcodees". Monitors now: DP-2 2560x1440@180 at x=1920 (focused, shell screen per settings.json "screen") and HDMI-A-2 1920x1080@100 at x=0. gpu-screen-recorder `-w focused` is X11-only, so "auto" must be resolved by the shell.
+- L13. T7 done inline (writer repository preparation unavailable). RED: 5 failing monitor tests; GREEN: 183 py tests OK, i18n 8/8. Live: recorder `-w DP-2 -q medium` after reload; settings page shows "Pantalla: Pantalla principal (DP-2)" (screenshot).

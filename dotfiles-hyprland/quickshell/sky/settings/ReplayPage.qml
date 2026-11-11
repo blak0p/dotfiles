@@ -13,11 +13,13 @@ Page {
 
     readonly property string script: ReplayService.script
     // Effective options (defaults filled in by the script).
-    property var opts: ({ enabled: false, seconds: 30, fps: 60, quality: "very_high", audio: "desktop", dir: "" })
+    property var opts: ({ enabled: false, seconds: 30, fps: 60, quality: "very_high", audio: "desktop", dir: "", monitor: "auto" })
     property var clips: []
     property string busyPath: ""
 
     readonly property var secondsModel: [15, 30, 60, 120, 300].map(s => ({ label: s < 60 ? I18n.t("%1 seconds", [s]) : I18n.t("%1 min", [s / 60]), value: s }))
+    readonly property var screenModel: [{ label: I18n.t("Main screen (%1)", [ReplayService.monitor || Config.screen || "auto"]), value: "auto" }]
+        .concat(Quickshell.screens.map(sc => ({ label: sc.name, value: sc.name })))
     readonly property var fpsModel: [30, 60, 120, 144].map(f => ({ label: f + " FPS", value: f }))
     readonly property var qualityModel: [
         { label: I18n.t("Medium"), value: "medium" },
@@ -82,6 +84,16 @@ Page {
                 checked: ReplayService.enabled
                 label: I18n.t("Instant replay")
                 onToggled: on => ReplayService.setEnabled(on)
+            }
+        }
+        SettingRow {
+            divider: true
+            icon: "desktop_windows"
+            title: I18n.t("Screen")
+            Select {
+                model: page.screenModel
+                currentIndex: Math.max(0, page.screenModel.findIndex(x => x.value === (page.opts.monitor || "auto")))
+                onActivated: i => page.set("monitor", page.screenModel[i].value)
             }
         }
         SettingRow {

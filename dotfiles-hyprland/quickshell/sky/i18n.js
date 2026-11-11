@@ -286,6 +286,7 @@ var es = {
     "Replay buffer": "Búfer de repetición",
     "Recording the last %1 seconds · Alt+F10 saves a clip": "Grabando los últimos %1 segundos · Alt+F10 guarda un clip",
     "Starting…": "Iniciando…",
+    "Main screen (%1)": "Pantalla principal (%1)",
     "Clip length": "Duración del clip",
     "Seconds kept in memory": "Segundos que se guardan en memoria",
     "%1 seconds": "%1 segundos",

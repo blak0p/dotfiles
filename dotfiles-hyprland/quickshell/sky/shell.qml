@@ -6,6 +6,7 @@ import Quickshell.Hyprland
 import qs
 import qs.island
 import qs.wallpaper
+import qs.settings
 
 ShellRoot {
     Variants {
@@ -27,6 +28,25 @@ ShellRoot {
 
     // Our polkit agent (admin password dialog).
     PolkitDialog {}
+
+    // Settings window (Super+I), replaces KDE System Settings.
+    SettingsWindow {}
+
+    // qs -c sky ipc call settings toggle|close, or: settings open wifi
+    IpcHandler {
+        target: "settings"
+        function toggle(): void { SettingsState.toggle(""); }
+        // wifi | bluetooth | displays | sound | appearance | keyboard | time | apps
+        function open(page: string): void { SettingsState.open(page); }
+        function close(): void { SettingsState.close(); }
+    }
+
+    // Bound in Hyprland as hl.dsp.global("quickshell:settingsToggle").
+    GlobalShortcut {
+        name: "settingsToggle"
+        description: "Toggle the sky settings window"
+        onPressed: SettingsState.toggle("")
+    }
 
     // qs -c sky ipc call launcher toggle|open|close
     IpcHandler {

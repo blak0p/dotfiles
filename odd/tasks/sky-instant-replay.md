@@ -19,7 +19,7 @@ Quickshell shell, a save-clip shortcut, island feedback, a settings page and a c
 - T2 [S1,S3] `ReplayService.qml`, IPC `replay` target, global shortcuts, Hyprland keybinds, island recording dot and "clip saved" view — inline — commit: c6e51b5
 - T3 [S4,S5] settings page `ReplayPage.qml` with options and clips gallery, i18n (es), README docs — inline — commit: ec9f47d
 - T4 [S1-S5] verify: unit tests, i18n tests, qmllint/qs load check, live check if gpu-screen-recorder is installed — inline — commit: ec9f47d (verification only)
-- T5 [S6,S7] Island clip card (thumbnail, actions, hover hold, two-click delete), re-probe recorder after install, verifier advisories (intentional stop is not a crash, stable reset, symlink delete test) — inline — commit: pending
+- T5 [S6,S7] Island clip card (thumbnail, actions, hover hold, two-click delete), re-probe recorder after install, verifier advisories (intentional stop is not a crash, stable reset, symlink delete test) — inline — commit: f720409
 
 ## Log
 

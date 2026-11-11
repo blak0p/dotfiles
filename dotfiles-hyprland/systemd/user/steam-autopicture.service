@@ -1,5 +1,5 @@
 [Unit]
-Description=Auto Big Picture — Abre Steam Big Picture al conectar un mando
+Description=Auto launcher — Abre Heronite al enchufar un mando por cable
 After=graphical-session.target
 PartOf=graphical-session.target
 

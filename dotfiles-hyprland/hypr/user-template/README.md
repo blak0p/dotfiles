@@ -14,6 +14,8 @@ Every file is optional and loads after the repo defaults, so it wins:
 | `execs.lua` | apps started with the session | no |
 | `general.lua` | options, animations, gaps (`hl.config`) | no |
 | `rules.lua` | window and layer rules | no |
+| `input.lua` | keyboard layouts and key repeat | Keyboard page (owns the file) |
+| `appearance.lua` | cursor theme and size | Appearance page (owns the file) |
 | `keybinds.lua` | your own shortcuts (`hl.bind`) | Shortcuts page |
 | `monitors.lua` | resolution, refresh rate, scale, position (`hl.monitor`) | Displays page |
 | `workspaces.lua` | workspace-to-monitor rules | no |

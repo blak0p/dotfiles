@@ -59,9 +59,26 @@ deploy_configs() {
     done
 }
 
+# The user layer lives outside the repo; copy the templates only when missing.
+deploy_user_layer() {
+    local dst="${XDG_CONFIG_HOME:-$HOME/.config}/sky/hypr"
+    mkdir -p "$dst"
+    for src in "$REPO_ROOT"/hypr/user-template/*.lua; do
+        local name
+        name="$(basename "$src")"
+        if [ -e "$dst/$name" ]; then
+            info "User layer kept: $dst/$name"
+        else
+            cp -- "$src" "$dst/$name"
+            ok "User layer created: $dst/$name"
+        fi
+    done
+}
+
 main() {
     info "Deploying dotfiles-hyprland configs from $REPO_ROOT"
     deploy_configs
+    deploy_user_layer
     # DOTFILES_SHELL_SPECIFIC_BLOCK
     ok "dotfiles-hyprland deploy complete"
 }

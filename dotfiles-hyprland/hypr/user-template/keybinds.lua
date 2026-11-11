@@ -1,0 +1,4 @@
+-- Your shortcuts. Loaded after the repo defaults, so a bind here wins.
+-- The Settings window (Super+I > Shortcuts) also writes to this file.
+-- Example:
+-- hl.bind("SUPER + Return", hl.dsp.exec_cmd("kitty"), { description = "App: Terminal" })

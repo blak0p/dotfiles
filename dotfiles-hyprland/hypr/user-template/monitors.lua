@@ -1,0 +1,4 @@
+-- Your monitors. The Settings window (Super+I > Displays) writes this file.
+-- Without it Hyprland picks the preferred mode of every monitor.
+-- Example:
+-- hl.monitor({ output = "DP-1", mode = "2560x1440@144", position = "0x0", scale = 1 })

@@ -1,6 +1,6 @@
 -- Keybinds personalizados (se cargan al final, pisan los de end-4)
 -- Parte pública: window management, workspaces sync, navegación
--- Los binds privados se cargan desde keybinds-extra.lua si existe localmente
+-- Tus binds personales van en ~/.config/sky/hypr/keybinds.lua (capa de usuario)
 
 -- Launcher
 hl.bind("SUPER + Space", hl.dsp.global("quickshell:launcherToggle"), { description = "Shell: Toggle launcher" })
@@ -56,19 +56,6 @@ hl.bind("SUPER + SHIFT + up", hl.dsp.window.move({ direction = "u" }),
     { description = "Window: Move up" })
 hl.bind("SUPER + SHIFT + down", hl.dsp.window.move({ direction = "d" }),
     { description = "Window: Move down" })
-
--- Workspace sync: cambian AMBOS monitores a la vez (en vez de workspace groups)
-for i = 1, 10 do
-    hl.bind("SUPER + " .. (i % 10), function()
-        ws_both(i)
-    end, { description = "Workspace sync: Focus " .. i })
-end
-for i = 1, 10 do
-    local numpadkey = { 87, 88, 89, 83, 84, 85, 79, 80, 81, 90 }
-    hl.bind("SUPER + code:" .. numpadkey[i], function()
-        ws_both(i)
-    end)
-end
 
 -- Enviar ventana a workspace (global, no grupal)
 for i = 1, 10 do

@@ -68,6 +68,11 @@ deploy_user_layer() {
         name="$(basename "$src")"
         if [ -e "$dst/$name" ]; then
             info "User layer kept: $dst/$name"
+        elif [ "$name" = monitors.lua ] && [ -f "$REPO_ROOT/hypr/monitors.lua" ]; then
+            # Older installs kept monitors in the repo (hypr/monitors.lua, now
+            # git-ignored); carry them over instead of the empty template.
+            cp -- "$REPO_ROOT/hypr/monitors.lua" "$dst/$name"
+            ok "User layer created from hypr/monitors.lua: $dst/$name"
         else
             cp -- "$src" "$dst/$name"
             ok "User layer created: $dst/$name"

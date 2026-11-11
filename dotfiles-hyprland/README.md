@@ -57,6 +57,27 @@ The installer establishes clean symlinks from `~/.config/<name>` to this reposit
 | `~/.config/cava` | cava | Audio visualizer configuration for radial bar widgets |
 | `~/.config/qt6ct` | Qt6 Settings | Qt appearance and font synchronization |
 
+### Your own config (user layer)
+
+Everything you change for your machine goes in `~/.config/sky/hypr/`
+(`$XDG_CONFIG_HOME/sky/hypr/`), not in this repo, so `git pull` never conflicts
+with it. The installer creates that folder from `hypr/user-template/` and never
+overwrites a file that already exists.
+
+| File | Use it for |
+|---|---|
+| `monitors.lua` | resolution, refresh rate, scale and position; the Settings window (Super+I > Displays) writes it |
+| `keybinds.lua` | your own shortcuts; the Settings Shortcuts page writes it |
+| `env.lua`, `variables.lua`, `execs.lua`, `general.lua`, `rules.lua`, `workspaces.lua` | anything else, by hand |
+
+Each file loads after the repo defaults, so it wins. A file with an error is
+reported in the Hyprland log and skipped, and the rest of the session still
+loads. See `hypr/user-template/README.md` for details.
+
+The sky shell reads its own per-user choices from `~/.config/sky/settings.json`
+(optional): `{ "screen": "DP-1", "language": "es" }`. Without `screen` the shell
+shows on every monitor; `language` defaults to `auto` (follows `LANG`).
+
 ---
 
 ## 🏗️ Quickshell Desktop Architecture

@@ -1,12 +1,40 @@
 pragma Singleton
+import QtQuick
 import Quickshell
+import Quickshell.Io
 
 Singleton {
-    // Monitor that hosts the shell; falls back to every screen if it is absent.
-    readonly property string screen: "DP-2"
+    id: root
+
+    // Per-user choices live in the user layer, outside the repo:
+    // $XDG_CONFIG_HOME/sky/settings.json, e.g. { "screen": "DP-1", "language": "es" }.
+    // Missing file or keys -> the defaults below.
+    readonly property string userFile: (Quickshell.env("XDG_CONFIG_HOME") || (Quickshell.env("HOME") + "/.config")) + "/sky/settings.json"
+    property var user: ({})
+
+    FileView {
+        path: root.userFile
+        watchChanges: true
+        printErrors: false
+        onFileChanged: reload()
+        onLoaded: {
+            try {
+                const o = JSON.parse(text());
+                root.user = (o && typeof o === "object") ? o : {};
+            } catch (e) {
+                console.warn("sky: bad settings.json:", e);
+                root.user = {};
+            }
+        }
+        onLoadFailed: root.user = {}
+    }
+
+    // Monitor that hosts the shell; empty -> every screen (shell.qml) or the
+    // first one (dialogs).
+    readonly property string screen: typeof user.screen === "string" ? user.screen : ""
 
     // UI language (I18n.qml): "auto" follows LANG, or force "en" / "es".
-    readonly property string language: "auto"
+    readonly property string language: typeof user.language === "string" && user.language ? user.language : "auto"
 
     readonly property real barHeight: 38
 
@@ -52,7 +80,8 @@ Singleton {
     readonly property real cardH: 207
     readonly property int cardGap: 16
 
-    // System tray panel (island/TrayPanel.qml), opened from the status pill.    readonly property real trayItem: 28
+    // System tray panel (island/TrayPanel.qml), opened from the status pill.
+    readonly property real trayItem: 28
     readonly property real trayGap: 6
     readonly property real trayPad: 12
     readonly property real trayMinW: 168

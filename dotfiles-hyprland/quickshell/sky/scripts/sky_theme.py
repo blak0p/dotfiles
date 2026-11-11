@@ -31,6 +31,7 @@ import argparse
 import colorsys
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -49,6 +50,9 @@ DEFAULT_OUT_DIR = STATE_HOME / "sky"
 BTOP_THEME = CONFIG_HOME / "btop/themes/sky.theme"
 STARSHIP_BASE = CONFIG_HOME / "starship.toml"
 SKY_STATE = CONFIG_HOME / "sky/wallpaper.json"
+THEME_PREFS = CONFIG_HOME / "sky/theme.json"
+SCHEMES = {"scheme-tonal-spot", "scheme-vibrant", "scheme-expressive", "scheme-fidelity",
+           "scheme-content", "scheme-neutral", "scheme-monochrome"}
 KDEGLOBALS = CONFIG_HOME / "kdeglobals"
 DATA_HOME = Path(os.environ.get("XDG_DATA_HOME", Path.home() / ".local/share"))
 KDE_SCHEME = DATA_HOME / "color-schemes/Sky.colors"
@@ -447,15 +451,35 @@ def _matugen(*args: str) -> dict:
     return json.loads(out.stdout)
 
 
-def generate(wallpaper: Path | None) -> dict:
+def load_prefs(path: Path = THEME_PREFS) -> tuple[str | None, str | None]:
+    """(scheme, accent) from the user's theme.json; missing/invalid values are None."""
+    try:
+        data = json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None, None
+    if not isinstance(data, dict):
+        return None, None
+    scheme, accent = data.get("scheme"), data.get("accent")
+    if scheme not in SCHEMES:
+        scheme = None
+    if not (isinstance(accent, str) and re.fullmatch(r"#[0-9a-fA-F]{6}", accent)):
+        accent = None
+    return scheme, accent.lower() if accent else None
+
+
+def generate(wallpaper: Path | None, prefs: Path = THEME_PREFS) -> dict:
+    scheme, accent = load_prefs(prefs)
+    extra = ["-t", scheme] if scheme else []
     src, kind = color_source(wallpaper) if wallpaper else (None, "none")
     with tempfile.TemporaryDirectory() as tmp:
-        if src is None:
-            wall = _matugen("color", "hex", FALLBACK_SEED)
+        if accent:
+            wall = _matugen("color", "hex", accent, *extra)
+        elif src is None:
+            wall = _matugen("color", "hex", FALLBACK_SEED, *extra)
         else:
             img = src if kind == "image" else _still_frame(src, kind, Path(tmp))
             wall = _matugen("image", str(img), "--prefer", "saturation",
-                            "--fallback-color", FALLBACK_SEED)
+                            "--fallback-color", FALLBACK_SEED, *extra)
     palette = build_palette(wall)
     palette["wallpaper"] = str(wallpaper) if wallpaper else ""
     return palette

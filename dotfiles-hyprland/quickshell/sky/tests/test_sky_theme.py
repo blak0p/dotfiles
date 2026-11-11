@@ -363,3 +363,40 @@ class WriteAtomic(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ThemePrefs(unittest.TestCase):
+    def setUp(self):
+        self.calls = []
+        self.orig = sky_theme._matugen
+        sky_theme._matugen = lambda *a: (self.calls.append(a), matugen_dump(**WALL))[1]
+        self.tmp = Path(tempfile.mkdtemp())
+
+    def tearDown(self):
+        sky_theme._matugen = self.orig
+
+    def test_missing_file_means_todays_behavior(self):
+        self.assertEqual(sky_theme.load_prefs(self.tmp / "nope.json"), (None, None))
+        sky_theme.generate(None, self.tmp / "nope.json")
+        self.assertEqual(self.calls, [("color", "hex", sky_theme.FALLBACK_SEED)])
+
+    def test_scheme_is_passed_to_matugen(self):
+        f = self.tmp / "theme.json"
+        f.write_text('{"scheme": "scheme-vibrant", "accent": null}')
+        sky_theme.generate(None, f)
+        self.assertEqual(self.calls, [("color", "hex", sky_theme.FALLBACK_SEED, "-t", "scheme-vibrant")])
+
+    def test_fixed_accent_replaces_the_wallpaper_source(self):
+        f = self.tmp / "theme.json"
+        f.write_text('{"scheme": "scheme-content", "accent": "#112233"}')
+        img = self.tmp / "w.png"
+        img.write_bytes(b"x")
+        sky_theme.generate(img, f)
+        self.assertEqual(self.calls, [("color", "hex", "#112233", "-t", "scheme-content")])
+
+    def test_invalid_values_are_ignored(self):
+        f = self.tmp / "theme.json"
+        f.write_text('{"scheme": "evil", "accent": "red"}')
+        self.assertEqual(sky_theme.load_prefs(f), (None, None))
+        f.write_text("not json")
+        self.assertEqual(sky_theme.load_prefs(f), (None, None))

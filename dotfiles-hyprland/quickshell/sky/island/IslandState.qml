@@ -4,8 +4,8 @@ import Quickshell
 import Quickshell.Services.Pipewire
 import qs
 
-// What the island shows. Priority: launcher > center (user opened) > volume
-// > notification > idle.
+// What the island shows. Priority: launcher > center (user opened) > clip
+// saved > volume > notification > idle.
 Singleton {
     id: root
 
@@ -14,6 +14,11 @@ Singleton {
     property bool wallpaperOpen: false
     property bool trayOpen: false
     property bool osdVisible: false
+    // "Clip saved" pop (ReplayService): clipPath is the saved file, or "" for
+    // a status message such as "Replay is off".
+    property bool clipVisible: false
+    property string clipPath: ""
+    property string clipText: ""
     // The shell's monitor shows a fullscreen window (set by Island.qml):
     // the top pills hide and only critical notifications / volume pop up.
     property bool fullscreen: false
@@ -21,6 +26,7 @@ Singleton {
     readonly property string mode: launcherOpen ? "launcher"
         : wallpaperOpen ? "wallpaper"
         : centerOpen ? "center"
+        : clipVisible ? "clip"
         : osdVisible ? "volume"
         : Notifs.current ? "notif"
         : "idle"
@@ -103,6 +109,18 @@ Singleton {
         osdVisible = true;
         osdTimer.restart();
     }
+
+    // ---- Replay clips ----
+    function showClip(path, text) {
+        if (launcherOpen || wallpaperOpen || centerOpen) return;
+        trayOpen = false;
+        osdVisible = false;
+        clipPath = path || "";
+        clipText = text || "";
+        clipVisible = true;
+        clipTimer.restart();
+    }
+    Timer { id: clipTimer; interval: Config.clipMs; onTriggered: root.clipVisible = false }
 
     Timer { id: osdTimer; interval: Config.osdMs; onTriggered: root.osdVisible = false }
 

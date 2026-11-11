@@ -12,6 +12,11 @@ hl.bind("CTRL + SUPER + S", hl.dsp.exec_cmd(HOME .. "/.config/hypr/scripts/scree
 hl.bind("SUPER + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true, description = "Utilities: Record screen toggle" })
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh"), { locked = true, description = "Utilities: Record region toggle" })
 hl.bind("CTRL + ALT + R", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true })
+
+-- Instant replay (sky ReplayService, gpu-screen-recorder): save the last seconds as a clip
+hl.bind("ALT + F10", hl.dsp.global("quickshell:replaySave"), { locked = true, description = "Shell: Save replay clip" })
+hl.bind("SUPER + ALT + F10", hl.dsp.global("quickshell:replayToggle"), { description = "Shell: Toggle instant replay" })
+hl.bind("SUPER + ALT + C", hl.dsp.global("quickshell:replayGallery"), { description = "Shell: Open clips" })
 hl.bind("CTRL + ALT + r", hl.dsp.exec_cmd("bash " .. HOME .. "/.config/hypr/scripts/record.sh --fullscreen"), { locked = true })
 
 

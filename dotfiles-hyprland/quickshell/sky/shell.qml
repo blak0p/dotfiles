@@ -36,7 +36,7 @@ ShellRoot {
     IpcHandler {
         target: "settings"
         function toggle(): void { SettingsState.toggle(""); }
-        // wifi | bluetooth | displays | sound | appearance | keyboard | time | apps
+        // wifi | bluetooth | displays | sound | appearance | keyboard | shortcuts | replay | time | apps
         function open(page: string): void { SettingsState.open(page); }
         function close(): void { SettingsState.close(); }
     }
@@ -92,6 +92,37 @@ ShellRoot {
         name: "wallpaperClose"
         description: "Close the wallpaper picker"
         onPressed: IslandState.closeWallpaper()
+    }
+
+    // Instant replay. qs -c sky ipc call replay save|toggle|enable|disable|gallery|state
+    IpcHandler {
+        target: "replay"
+        function save(): void { ReplayService.save(); }
+        function toggle(): void { ReplayService.toggle(); }
+        function enable(): void { ReplayService.setEnabled(true); }
+        function disable(): void { ReplayService.setEnabled(false); }
+        function gallery(): void { SettingsState.open("replay"); }
+        function state(): string {
+            return JSON.stringify({ enabled: ReplayService.enabled, available: ReplayService.available,
+                active: ReplayService.active, lastClip: ReplayService.lastClip, error: ReplayService.error });
+        }
+    }
+
+    // Bound in Hyprland (hypr/custom/keybinds.lua) as hl.dsp.global("quickshell:replay…").
+    GlobalShortcut {
+        name: "replaySave"
+        description: "Save the instant replay as a clip"
+        onPressed: ReplayService.save()
+    }
+    GlobalShortcut {
+        name: "replayToggle"
+        description: "Turn the instant replay on or off"
+        onPressed: ReplayService.toggle()
+    }
+    GlobalShortcut {
+        name: "replayGallery"
+        description: "Open the clips gallery"
+        onPressed: SettingsState.open("replay")
     }
 
     // qs -c sky ipc call island toggle|open|close|clear|dnd|update|state, or: island page wifi

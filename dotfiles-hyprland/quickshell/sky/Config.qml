@@ -54,6 +54,10 @@ Singleton {
     readonly property real islandMaxW: 480
     readonly property int morphMs: 520
     readonly property int osdMs: 1600
+    // "Clip saved" pop of the instant replay.
+    readonly property real clipW: 360
+    readonly property real clipH: 48
+    readonly property int clipMs: 2600
     readonly property int notifMs: 5000
     // Fullscreen toast (island/MiniToast.qml).
     readonly property real toastW: 400

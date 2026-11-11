@@ -77,8 +77,9 @@ PanelWindow {
         case "wallpaper": return Qt.size(Math.min(win.width - 80, Config.wallpaperMaxW), Config.wallpaperH);
         case "center": return Qt.size(Config.centerW, center.wantedHeight);
         case "volume": return Qt.size(Config.volumeW, Config.volumeH);
+        case "clip": return Qt.size(Config.clipW, Config.clipH);
         case "notif": return Qt.size(Config.notifW, popup.implicitHeight + 2 * Config.notifPad);
-        default: return Qt.size((idleView.music ? Config.notchMusicW : Config.clockW) + (Notifs.unread > 0 ? 18 : 0) + win.stretch,
+        default: return Qt.size((idleView.music ? Config.notchMusicW : Config.clockW) + (Notifs.unread > 0 ? 18 : 0) + (ReplayService.active ? 18 : 0) + win.stretch,
                                 Config.islandH);
         }
     }
@@ -255,6 +256,11 @@ PanelWindow {
             shown: win.mode === "volume"
             width: Config.volumeW; height: Config.volumeH
             VolumeView { anchors.fill: parent }
+        }
+        View {
+            shown: win.mode === "clip"
+            width: Config.clipW; height: Config.clipH
+            ClipView { anchors.fill: parent }
         }
         View {
             shown: win.mode === "notif"

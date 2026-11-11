@@ -79,7 +79,7 @@ PanelWindow {
         case "volume": return Qt.size(Config.volumeW, Config.volumeH);
         case "clip": return IslandState.clipPath ? Qt.size(Config.clipCardW, Config.clipCardH) : Qt.size(Config.clipW, Config.clipH);
         case "notif": return Qt.size(Config.notifW, popup.implicitHeight + 2 * Config.notifPad);
-        default: return Qt.size((idleView.music ? Config.notchMusicW : Config.clockW) + (Notifs.unread > 0 ? 18 : 0) + (ReplayService.active ? 18 : 0) + win.stretch,
+        default: return Qt.size((idleView.music ? Config.notchMusicW : Config.clockW) + (Notifs.unread > 0 ? 18 : 0) + win.stretch,
                                 Config.islandH);
         }
     }

@@ -9,6 +9,10 @@ import qs.wallpaper
 import qs.settings
 
 ShellRoot {
+    // Singletons load on first use; this binding starts the instant replay
+    // service (ReplayService.qml) with the shell, with no visible indicator.
+    readonly property bool replayActive: ReplayService.active
+
     Variants {
         // Only the configured monitor gets the shell.
         model: {

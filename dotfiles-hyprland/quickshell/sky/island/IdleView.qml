@@ -95,21 +95,5 @@ Item {
                 NumberAnimation { to: 1; duration: 900; easing.type: Easing.InOutSine }
             }
         }
-
-        // Instant replay buffer is recording (ReplayService); click saves a clip.
-        Rectangle {
-            visible: ReplayService.active
-            anchors.verticalCenter: parent.verticalCenter
-            width: 8; height: 8; radius: 4
-            color: "#ff5a5f"
-            border.width: 2
-            border.color: Qt.alpha("#ff5a5f", 0.35)
-            MouseArea {
-                anchors.fill: parent
-                anchors.margins: -6
-                cursorShape: Qt.PointingHandCursor
-                onClicked: ReplayService.save()
-            }
-        }
     }
 }

@@ -19,6 +19,10 @@ Singleton {
     property bool clipVisible: false
     property string clipPath: ""
     property string clipText: ""
+    property string clipIcon: ""
+    property string clipThumb: ""
+    // The pointer is over the pop: keep it open (ClipView).
+    property bool clipHold: false
     // The shell's monitor shows a fullscreen window (set by Island.qml):
     // the top pills hide and only critical notifications / volume pop up.
     property bool fullscreen: false
@@ -111,16 +115,24 @@ Singleton {
     }
 
     // ---- Replay clips ----
-    function showClip(path, text) {
+    function showClip(path, text, icon) {
         if (launcherOpen || wallpaperOpen || centerOpen) return;
         trayOpen = false;
         osdVisible = false;
         clipPath = path || "";
         clipText = text || "";
+        clipIcon = icon || "";
+        if (clipPath !== path) clipThumb = "";
         clipVisible = true;
         clipTimer.restart();
     }
-    Timer { id: clipTimer; interval: Config.clipMs; onTriggered: root.clipVisible = false }
+    function hideClip() { clipVisible = false; clipHold = false; }
+    // A saved clip stays longer: its pop has actions (ClipView).
+    Timer {
+        id: clipTimer
+        interval: root.clipPath ? Config.clipActionsMs : Config.clipMs
+        onTriggered: root.clipHold ? restart() : root.hideClip()
+    }
 
     Timer { id: osdTimer; interval: Config.osdMs; onTriggered: root.osdVisible = false }
 

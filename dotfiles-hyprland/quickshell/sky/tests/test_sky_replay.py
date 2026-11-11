@@ -6,6 +6,7 @@ import os
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
@@ -151,10 +152,47 @@ class Clips(Base):
         self.assertTrue(outside.exists())
         self.assertTrue((self.clips / "notes.txt").exists())
 
+    def test_delete_refuses_symlink_to_outside_clip(self):
+        outside = self.dir / "other" / "x.mp4"
+        outside.parent.mkdir()
+        outside.write_bytes(b"v")
+        (self.clips / "l.mp4").symlink_to(outside)
+        code, _, err = run_cli("delete", self.clips, self.clips / "l.mp4")
+        self.assertEqual(code, 1)
+        self.assertTrue(err.startswith("sky_replay: "))
+        self.assertTrue(outside.exists())
+
     def test_uri_is_percent_encoded(self):
         code, out, _ = run_cli("uri", self.clips / "Replay new.mp4")
         self.assertEqual(code, 0)
         self.assertEqual(out, "file://" + str(self.clips).replace(" ", "%20") + "/Replay%20new.mp4\r\n")
+
+
+class Thumb(Base):
+    def test_prints_cached_still_for_a_clip(self):
+        import shutil, subprocess
+        if not shutil.which("ffmpeg"):
+            self.skipTest("ffmpeg not installed")
+        clip = self.dir / "c.mp4"
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "lavfi", "-i", "testsrc=size=320x180:rate=10",
+                        "-t", "2", "-pix_fmt", "yuv420p", str(clip)], check=True)
+        code, out, err = run_cli("thumb", clip)
+        self.assertEqual((code, err), (0, ""))
+        path = Path(out.strip())
+        self.assertTrue(path.is_file())
+        self.assertTrue(str(path).startswith(str(self.dir / "cache")))
+
+    def test_without_ffmpeg_prints_empty_line(self):
+        clip = self.dir / "c.mp4"
+        clip.write_bytes(b"x")
+        with unittest.mock.patch("shutil.which", return_value=None):
+            code, out, err = run_cli("thumb", clip)
+        self.assertEqual((code, out, err), (0, "\n", ""))
+
+    def test_missing_clip_fails(self):
+        code, out, err = run_cli("thumb", self.dir / "nope.mp4")
+        self.assertEqual((code, out), (1, ""))
+        self.assertTrue(err.startswith("sky_replay: "))
 
 
 class Usage(Base):

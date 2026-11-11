@@ -6,6 +6,7 @@ Rectangle {
     id: btn
     property string icon: ""
     property string tip: ""
+    readonly property bool hovered: area.containsMouse
     property bool danger: false
     signal clicked()
     width: 30; height: 30; radius: 15

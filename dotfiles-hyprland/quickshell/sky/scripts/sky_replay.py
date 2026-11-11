@@ -9,6 +9,7 @@ the "replay" object of ~/.config/sky/settings.json.
   sky_replay.py set SETTINGS KEY VALUE     -> merge one replay option into SETTINGS
   sky_replay.py scan DIR                   -> JSON list of clips, newest first
   sky_replay.py delete DIR CLIP            -> delete one clip inside DIR
+  sky_replay.py thumb CLIP                 -> cached still of CLIP (empty line without ffmpeg)
   sky_replay.py uri CLIP                   -> text/uri-list line for the clipboard
 """
 import hashlib
@@ -216,6 +217,11 @@ def _run(cmd: str, args: list) -> int:
         print(json.dumps(scan(args[0])))
     elif cmd == "delete" and len(args) == 2:
         delete(*args)
+    elif cmd == "thumb" and len(args) == 1:
+        p = Path(args[0])
+        if not p.is_file():
+            raise ValueError("%s is not a clip" % args[0])
+        print(thumb(p, int(p.stat().st_mtime)) or "")
     elif cmd == "uri" and len(args) == 1:
         print(uri(args[0]), end="")
     else:

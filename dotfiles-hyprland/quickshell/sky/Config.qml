@@ -58,6 +58,10 @@ Singleton {
     readonly property real clipW: 360
     readonly property real clipH: 48
     readonly property int clipMs: 2600
+    // Pop with a saved clip: thumbnail, name and actions.
+    readonly property real clipCardW: 440
+    readonly property real clipCardH: 104
+    readonly property int clipActionsMs: 6000
     readonly property int notifMs: 5000
     // Fullscreen toast (island/MiniToast.qml).
     readonly property real toastW: 400

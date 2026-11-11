@@ -98,5 +98,6 @@ fonts-dejavu-core
 # Notes:
 # - Hyprland: Available in Debian 13 (Trixie)+ and Ubuntu 24.10+. Older versions need a PPA or building from source.
 # - quickshell: Not yet packaged in official Debian/Ubuntu repos. Build from source (https://github.com/quickshell-mirror/quickshell).
+# - gpu-screen-recorder (sky instant replay): Flatpak com.dec05eba.gpu_screen_recorder or build from source (https://git.dec05eba.com/gpu-screen-recorder).
 # - swww, mpvpaper, hyprpicker, hyprshot, matugen: Install via cargo / GitHub releases / PPA.
 # - bibata-cursor-theme: Available in Debian Sid/Ubuntu or via GitHub releases.

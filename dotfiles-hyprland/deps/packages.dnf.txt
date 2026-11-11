@@ -95,6 +95,7 @@ dejavu-sans-fonts
 
 # Notes for tools not in standard Fedora official repos:
 # - quickshell: Build from source (https://github.com/quickshell-mirror/quickshell) or check COPR.
+# - gpu-screen-recorder (sky instant replay): Flatpak com.dec05eba.gpu_screen_recorder or build from source (https://git.dec05eba.com/gpu-screen-recorder).
 # - cliphist, swww, mpvpaper, hyprpicker, hyprshot:
 #   Available via COPR repositories (e.g. solopasha/hyprland) or cargo / release binaries.
 # - bibata-cursor-theme:

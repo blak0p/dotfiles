@@ -58,7 +58,7 @@ Singleton {
         IslandState.showClip(path, I18n.t("Copied to clipboard"), "content_copy");
     }
     function remove(path) {
-        remover.command = ["python3", root.script, "delete", path.substring(0, path.lastIndexOf("/")), path];
+        remover.command = ["python3", root.script, "delete", root.opts.dir || "~/Videos/Clips", path];
         remover.running = true;
         if (root.lastClip === path) root.lastClip = "";
         IslandState.showClip("", I18n.t("Clip deleted"), "delete");
@@ -124,7 +124,7 @@ Singleton {
             }
         }
         stderr: SplitParser { onRead: (line) => { if (line.trim()) root.lastErr = line.trim(); } }
-        onRunningChanged: if (running) stable.restart()
+        onRunningChanged: running ? stable.restart() : stable.stop()
         onExited: (code) => {
             if (root.stopping) { root.stopping = false; return; }
             if (!root.enabled || !root.available || code === 0) return;

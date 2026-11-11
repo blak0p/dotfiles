@@ -119,13 +119,15 @@ Singleton {
         if (launcherOpen || wallpaperOpen || centerOpen) return;
         trayOpen = false;
         osdVisible = false;
+        if (clipPath !== (path || "")) clipThumb = "";
         clipPath = path || "";
         clipText = text || "";
         clipIcon = icon || "";
-        if (clipPath !== path) clipThumb = "";
         clipVisible = true;
         clipTimer.restart();
     }
+    // A hidden pop cannot be hovered any more (HoverHandler may not report it).
+    onModeChanged: if (mode !== "clip") clipHold = false
     function hideClip() { clipVisible = false; clipHold = false; }
     // A saved clip stays longer: its pop has actions (ClipView).
     Timer {

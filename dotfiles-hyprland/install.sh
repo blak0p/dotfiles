@@ -82,8 +82,9 @@ deploy_user_layer() {
 
 # Icon themes live in the XDG data dir; GTK4 apps read the theme from gsettings.
 deploy_icons() {
-    local data="${XDG_DATA_HOME:-$HOME/.local/share}/icons"
+    local data="${XDG_DATA_HOME:-$HOME/.local/share}/icons" src
     for src in "$REPO_ROOT"/icons/*/; do
+        [ -d "$src" ] || continue  # no themes: the glob stays literal
         deploy_symlink "${src%/}" "$data/$(basename "$src")"
     done
     if command -v gsettings >/dev/null 2>&1; then

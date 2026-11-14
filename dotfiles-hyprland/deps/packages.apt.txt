@@ -49,7 +49,7 @@ libsecret-tools
 libnotify-bin
 geoclue-2.0
 gvfs
-dolphin
+nautilus
 file-roller
 mpv
 baobab
@@ -88,6 +88,7 @@ qml6-module-qtquick-shapes
 qt6-svg
 qt6ct
 papirus-icon-theme
+adwaita-icon-theme
 sound-theme-freedesktop
 fonts-jetbrains-mono
 fonts-noto-core

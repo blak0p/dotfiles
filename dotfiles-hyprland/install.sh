@@ -80,10 +80,26 @@ deploy_user_layer() {
     done
 }
 
+# Icon themes live in the XDG data dir; GTK4 apps read the theme from gsettings.
+deploy_icons() {
+    local data="${XDG_DATA_HOME:-$HOME/.local/share}/icons"
+    for src in "$REPO_ROOT"/icons/*/; do
+        deploy_symlink "${src%/}" "$data/$(basename "$src")"
+    done
+    if command -v gsettings >/dev/null 2>&1; then
+        if gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark-Rounded; then
+            ok "Icon theme: Papirus-Dark-Rounded"
+        else
+            warn "Could not set the icon theme with gsettings"
+        fi
+    fi
+}
+
 main() {
     info "Deploying dotfiles-hyprland configs from $REPO_ROOT"
     deploy_configs
     deploy_user_layer
+    deploy_icons
     # DOTFILES_SHELL_SPECIFIC_BLOCK
     ok "dotfiles-hyprland deploy complete"
 }

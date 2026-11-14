@@ -47,8 +47,6 @@ hl.window_rule({match = {class = "^(Zotero)$" },                             flo
 hl.window_rule({match = {class = "^(Zotero)$" },                             size = {"(monitor_w*0.45)", "(monitor_h*0.45)"} })
 
 -- Move
--- stupid dolphin copy
-hl.window_rule({match = {title = "^(Copying — Dolphin)$" }, move = {40, 80}})
 
 -- Tiling
 hl.window_rule({match = {class = "^dev\\.warp\\.Warp$" }, tile = true})

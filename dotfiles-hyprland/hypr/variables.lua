@@ -9,7 +9,7 @@ return {
     terminal                   = "kitty",
     browser                    = "zen-browser",
     editor                     = "nvim",
-    fileExplorer               = "thunar",
+    fileExplorer               = "nautilus",
     audioSettings              = "pavucontrol",
 
     -- Touchpad

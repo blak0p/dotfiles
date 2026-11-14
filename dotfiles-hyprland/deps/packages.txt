@@ -53,7 +53,7 @@ libsecret
 libnotify
 geoclue
 gvfs
-dolphin
+nautilus
 file-roller
 mpv
 baobab
@@ -94,6 +94,7 @@ qt6-wayland
 qt6-declarative
 qt6-svg
 qt6ct
+adwaita-icon-theme
 papirus-icon-theme
 bibata-cursor-theme
 sound-theme-freedesktop

@@ -171,6 +171,12 @@ $text_color = rgba({_h(p['on'])}ff)
 $entry_background_color = rgba({_h(p['surface'])}66)
 $entry_border_color = rgba({_h(p['accent'])}88)
 $entry_color = rgba({_h(p['on'])}ff)
+$card_color = rgba({_h(p['surface'])}cc)
+$card_border_color = rgba({_h(p['outlineVariant'])}66)
+$field_color = rgba({_h(p['surface2'])}99)
+$accent_color = rgba({_h(p['accent'])}ff)
+$on_accent_color = rgba({_h(p['onAccent'])}ff)
+$muted_color = rgba({_h(p['muted'])}ff)
 """
 
 

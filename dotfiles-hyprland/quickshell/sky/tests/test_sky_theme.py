@@ -110,6 +110,17 @@ class Renderers(unittest.TestCase):
         self.assertIn("$entry_border_color = rgba(ffb59a88)", out)
         self.assertNotIn("background_image", out)
 
+    def test_hyprlock_card_variables_follow_the_palette(self):
+        out = sky_theme.render_hyprlock(self.p)
+        p = self.p
+        h = sky_theme._h
+        self.assertIn(f"$card_color = rgba({h(p['surface'])}cc)", out)
+        self.assertIn(f"$card_border_color = rgba({h(p['outlineVariant'])}66)", out)
+        self.assertIn(f"$field_color = rgba({h(p['surface2'])}99)", out)
+        self.assertIn(f"$accent_color = rgba({h(p['accent'])}ff)", out)
+        self.assertIn(f"$on_accent_color = rgba({h(p['onAccent'])}ff)", out)
+        self.assertIn(f"$muted_color = rgba({h(p['muted'])}ff)", out)
+
     def test_gtk_accent(self):
         out = sky_theme.render_gtk(self.p)
         self.assertIn("@define-color accent_color #ffb59a;", out)

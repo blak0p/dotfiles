@@ -1,0 +1,9 @@
+{
+  "title": "Lock screen",
+  "brief": "Decent hyprlock lock screen for the sky Hyprland setup: wallpaper-driven colors from sky_theme.py, clock, date, user, password field with wrong-password and Caps Lock states, keyboard layout, system status and now-playing. Every element must be buildable with hyprlock (background, label, shape, image, input-field).",
+  "artboards": [
+    { "file": "01-centered-stack.html", "title": "Centered stack", "tradeoff": "Familiar and balanced; blurred wallpaper loses the scene, status pushed to the corners", "width": 2560, "height": 1440 },
+    { "file": "02-editorial-corner.html", "title": "Editorial corner", "tradeoff": "Sharp wallpaper stays the hero and the clock has character; input off-center is less obvious on the second monitor", "width": 2560, "height": 1440 },
+    { "file": "03-glass-card.html", "title": "Glass card", "tradeoff": "Everything grouped in one readable panel on any wallpaper; heavier, more 'widget' than ambient", "width": 2560, "height": 1440 }
+  ]
+}

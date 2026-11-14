@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=2560">
+<title>Centered stack</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark;--on:#dfe3e7;--muted:#9aa4ad;--accent:#8fcff3;--entry:rgba(15,20,23,.55);--err:#ffb4ab;--warn:#f5d38a;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{width:2560px;height:1440px;overflow:hidden;background:#05070b;color:var(--on)}
+main{position:relative;width:2560px;height:1440px;isolation:isolate}
+.wall{position:absolute;inset:-40px;z-index:-1;filter:blur(18px) brightness(.62);background:
+ radial-gradient(55% 40% at 58% 92%,hsl(205 80% 40%/.6),transparent 70%),
+ linear-gradient(180deg,hsl(215 45% 6%),hsl(212 40% 11%) 55%,hsl(200 60% 20%))}
+.wall::after{content:"";position:absolute;left:61%;top:0;width:60px;height:100%;background:linear-gradient(90deg,transparent,hsl(200 80% 80%/.45),transparent)}
+.stack{position:absolute;left:50%;top:50%;transform:translate(-50%,-56%);display:flex;flex-direction:column;align-items:center;text-align:center}
+.date{font-size:26px;font-weight:500;color:var(--muted);letter-spacing:.01em}
+.time{font-size:200px;font-weight:700;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin:6px 0 64px}
+.avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#2c4a5c,#8fcff3);display:grid;place-items:center;font-size:40px;font-weight:700;color:#0f1417;box-shadow:0 0 0 3px rgba(223,227,231,.18)}
+.user{font-size:22px;font-weight:600;margin:16px 0 22px}
+.field{width:380px;height:56px;border-radius:28px;background:var(--entry);border:2px solid rgba(143,207,243,.35);display:flex;align-items:center;justify-content:center;gap:10px;transition:border-color .2s,transform .2s;backdrop-filter:blur(6px)}
+.field .ph{color:var(--muted);font-size:17px}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--on)}
+.hint{height:24px;margin-top:14px;font-size:16px;font-weight:500}
+[data-s=typing] .field{border-color:var(--accent)}
+[data-s=wrong] .field{border-color:var(--err);animation:shake .35s}
+[data-s=wrong] .hint{color:var(--err)}
+[data-s=caps] .hint{color:var(--warn)}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.corner{position:absolute;bottom:44px;font-size:16px;color:var(--muted);display:flex;gap:22px;align-items:center}
+.corner.l{left:56px}.corner.r{right:56px}
+.corner b{color:var(--on);font-weight:600}
+.states{position:absolute;top:24px;right:24px;display:flex;gap:6px;opacity:.75}
+.states button{font:inherit;font-size:13px;padding:6px 12px;border-radius:14px;border:1px solid #fff3;background:#0008;color:var(--on);cursor:pointer}
+.states button[aria-pressed=true]{background:var(--accent);color:#0f1417}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<main data-s="idle" id="lock" aria-label="Lock screen">
+<div class="wall" aria-hidden="true"></div>
+<nav class="states" aria-label="Preview state">
+ <button aria-pressed="true" data-v="idle">Idle</button><button aria-pressed="false" data-v="typing">Typing</button><button aria-pressed="false" data-v="wrong">Wrong</button><button aria-pressed="false" data-v="caps">Caps Lock</button>
+</nav>
+<section class="stack">
+ <p class="date">Saturday, November 14</p>
+ <p class="time">10:42</p>
+ <div class="avatar" aria-hidden="true">A</div>
+ <p class="user">alejandro</p>
+ <div class="field" role="textbox" aria-label="Password"><span class="ph">Password</span></div>
+ <p class="hint" role="status"></p>
+</section>
+<footer class="corner l"><span>⌨ <b>us</b></span></footer>
+<footer class="corner r"><span>♪ Nils Frahm — Says</span><span>Wi-Fi <b>Home</b></span><span>Battery <b>82%</b></span></footer>
+</main>
+<script>
+const m=document.getElementById('lock'),f=m.querySelector('.field'),h=m.querySelector('.hint');
+const R={idle:['<span class="ph">Password</span>',''],typing:['<i class="dot"></i>'.repeat(8),''],wrong:['<span class="ph">Password</span>','Wrong password — attempt 2'],caps:['<i class="dot"></i>'.repeat(3),'Caps Lock is on']};
+document.querySelectorAll('.states button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.states button').forEach(x=>x.setAttribute('aria-pressed',x===b));m.dataset.s=b.dataset.v;[f.innerHTML,h.textContent]=R[b.dataset.v]});
+</script></body></html>

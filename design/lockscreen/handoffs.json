@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "chosen": "03-glass-card.html",
+  "handoffs": {
+    "03-glass-card.html": {
+      "status": "implemented",
+      "queued": false,
+      "sentAt": "2026-11-14T09:27:26.576Z",
+      "startedAt": "2026-11-14T09:27:34.803Z",
+      "implementedAt": "2026-11-14T09:29:36.843Z",
+      "note": "Implemented in hypr/hyprlock.conf (shape card + labels + input-field), new hyprlock/status.sh, check-capslock.sh, media.sh; sky_theme.py now emits card/accent/muted colors. Checked with a real lock + grim screenshot on DP-2. Not committed."
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=2560">
+<title>Glass card</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark;--on:#dfe3e7;--muted:#a3adb6;--accent:#8fcff3;--err:#ffb4ab;--warn:#f5d38a;
+font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{width:2560px;height:1440px;overflow:hidden;background:#05070b;color:var(--on)}
+main{position:relative;width:2560px;height:1440px;isolation:isolate}
+.wall{position:absolute;inset:0;z-index:-1;background:
+ radial-gradient(55% 40% at 58% 92%,hsl(205 80% 40%/.65),transparent 70%),
+ linear-gradient(180deg,hsl(215 45% 6%),hsl(212 40% 11%) 55%,hsl(200 60% 20%))}
+.wall::after{content:"";position:absolute;left:61%;top:0;width:60px;height:100%;background:linear-gradient(90deg,transparent,hsl(200 80% 80%/.5),transparent);filter:blur(10px)}
+.card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:560px;padding:56px 64px 44px;border-radius:36px;
+ background:rgba(15,20,23,.5);backdrop-filter:blur(28px) saturate(1.2);border:1px solid rgba(223,227,231,.12);box-shadow:0 30px 80px rgba(0,0,0,.45);text-align:center}
+.time{font-size:120px;font-weight:700;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.date{font-size:20px;color:var(--muted);margin:10px 0 40px}
+.sep{height:1px;background:rgba(223,227,231,.12);margin:0 -64px 32px}
+.who{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:22px}
+.avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2c4a5c,#8fcff3);display:grid;place-items:center;font-weight:700;color:#0f1417;font-size:20px}
+.who span{font-size:20px;font-weight:600}
+.field{height:54px;border-radius:16px;background:rgba(5,7,11,.45);border:2px solid transparent;display:flex;align-items:center;justify-content:center;gap:10px;transition:border-color .2s}
+.field .ph{color:var(--muted);font-size:17px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--on)}
+.hint{height:22px;margin-top:12px;font-size:15px;font-weight:500}
+.chips{display:flex;justify-content:center;gap:10px;margin-top:10px;font-size:14px;color:var(--muted)}
+.chips span{padding:6px 12px;border-radius:12px;background:rgba(223,227,231,.07)}
+[data-s=typing] .field{border-color:var(--accent)}
+[data-s=wrong] .field{border-color:var(--err);animation:shake .35s}
+[data-s=wrong] .hint{color:var(--err)}
+[data-s=caps] .hint{color:var(--warn)}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.media{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);font-size:16px;color:var(--muted)}
+.media b{color:var(--on);font-weight:600}
+.states{position:absolute;top:24px;right:24px;display:flex;gap:6px;opacity:.75}
+.states button{font:inherit;font-size:13px;padding:6px 12px;border-radius:14px;border:1px solid #fff3;background:#0008;color:var(--on);cursor:pointer}
+.states button[aria-pressed=true]{background:var(--accent);color:#0f1417}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<main data-s="idle" id="lock" aria-label="Lock screen">
+<div class="wall" aria-hidden="true"></div>
+<nav class="states" aria-label="Preview state">
+ <button aria-pressed="true" data-v="idle">Idle</button><button aria-pressed="false" data-v="typing">Typing</button><button aria-pressed="false" data-v="wrong">Wrong</button><button aria-pressed="false" data-v="caps">Caps Lock</button>
+</nav>
+<section class="card">
+ <p class="time">10:42</p>
+ <p class="date">Saturday, November 14</p>
+ <div class="sep"></div>
+ <div class="who"><div class="avatar" aria-hidden="true">A</div><span>alejandro</span></div>
+ <div class="field" role="textbox" aria-label="Password"><span class="ph">Password</span></div>
+ <p class="hint" role="status"></p>
+ <div class="chips"><span>us</span><span>Wi-Fi Home</span><span>82%</span></div>
+</section>
+<p class="media">Now playing · <b>Says</b> — Nils Frahm</p>
+</main>
+<script>
+const m=document.getElementById('lock'),f=m.querySelector('.field'),h=m.querySelector('.hint');
+const R={idle:['<span class="ph">Password</span>',''],typing:['<i class="dot"></i>'.repeat(8),''],wrong:['<span class="ph">Password</span>','Wrong password — attempt 2'],caps:['<i class="dot"></i>'.repeat(3),'Caps Lock is on']};
+document.querySelectorAll('.states button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.states button').forEach(x=>x.setAttribute('aria-pressed',x===b));m.dataset.s=b.dataset.v;[f.innerHTML,h.textContent]=R[b.dataset.v]});
+</script></body></html>
